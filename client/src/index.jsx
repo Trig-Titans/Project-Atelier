@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
+import Overview from "./components/overview/GalleryView.jsx"
 const root = createRoot(document.getElementById("root"));
 
 
