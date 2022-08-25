@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
+import Reviews from "./components/reviews/ReviewsList.jsx"
 const root = createRoot(document.getElementById("root"));
 
 
