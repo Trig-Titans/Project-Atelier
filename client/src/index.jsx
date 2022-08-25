@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
+import QuestionSearch from './components/questions/QuestionSearch.jsx'
 const root = createRoot(document.getElementById("root"));
 
 
