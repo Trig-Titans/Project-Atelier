@@ -1,8 +1,10 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
 import Overview from "./components/overview/GalleryView.jsx"
-const root = createRoot(document.getElementById("root"));
+import Reviews from "./components/reviews/ReviewsList.jsx"
+import QuestionSearch from './components/questions/QuestionSearch.jsx'
 
+const root = createRoot(document.getElementById("root"));
 
 const App = () => {
   return  <div>
