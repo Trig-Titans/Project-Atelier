@@ -1,8 +1,12 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
 import Card from './components/relatedProducts/card.jsx'
-const root = createRoot(document.getElementById("root"));
+import Overview from "./components/overview/GalleryView.jsx"
+import Reviews from "./components/reviews/ReviewsList.jsx"
+import QuestionSearch from './components/questions/QuestionSearch.jsx'
 
+
+const root = createRoot(document.getElementById("root"));
 
 const App = () => {
   return  <div>
