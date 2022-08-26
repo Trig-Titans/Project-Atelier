@@ -106,10 +106,10 @@ function Overview(props) {
       <OverViewStars stars={rating}/>
       <OverViewName name={productInfo.name}/>
       <OverViewPrice price={styles}/>
-      <OverViewSelector />
-      <OverViewForm/>
-      <OverviewDescription/>
-      <OverviewFacts/>
+      <OverViewSelector styles={styles}/>
+      <OverViewForm styles={styles}/>
+      <OverviewDescription description={productInfo.description}/>
+      <OverviewFacts facts={productInfo.features}/>
     </StyledOverviewGrid>
   )
 }
