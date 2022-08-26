@@ -9,10 +9,9 @@ const StyledOverviewStylesTitle = styled.div`
 const StyledOverviewStylesCircle = styled.div`
 `;
 
-export default function OverViewSelector(props) {
+export default function OverViewSelector({ styles }) {
   <StyledOverviewStyleSelector>
     <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
-    {/* maybe make this one a flexbox? */}
     <StyledOverviewStylesCircle></StyledOverviewStylesCircle>
   </StyledOverviewStyleSelector>
 }

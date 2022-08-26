@@ -7,7 +7,7 @@ const StyledOverviewOptionForm = styled.div`
 const StyledOverviewFavoriteStar = styled.button`
 `;
 
-export default function OverViewForm(props) {
+export default function OverViewForm({ styles }) {
   return (
     <StyledOverviewOptionForm>
         <form>

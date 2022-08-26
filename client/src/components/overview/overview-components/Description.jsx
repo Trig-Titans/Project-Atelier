@@ -6,7 +6,7 @@ const StyledOverviewProductDescription = styled.div`
   grid-area: OvDesc;
 `;
 
-export default function OverviewDescription(props) {
+export default function OverviewDescription({ description }) {
   return (
     <StyledOverviewProductDescription>
       <p>Buy these stickers, they are neat</p>

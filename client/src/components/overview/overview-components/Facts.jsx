@@ -5,7 +5,7 @@ const StyledOverviewProductFacts = styled.div`
   grid-area: OvMeta;
 `;
 
-export default function OverviewFacts(props) {
+export default function OverviewFacts({ facts }) {
   return (
     <StyledOverviewProductFacts>
       <ul>
