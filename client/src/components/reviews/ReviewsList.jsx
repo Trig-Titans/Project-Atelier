@@ -27,7 +27,7 @@ let ReviewTile = () => {
     <p>Title Line - summary max 60 char and bold</p>
     <p>Message Body</p>
     <p>Thumbnail pictures if any</p>
-    <p><Checkmark /> I recommend this product! -- make it a banner?</p>
+    <p><Checkmark size='medium'/> I recommend this product! -- make it a banner?</p>
     <p>Response from Seller: if any and message attached. Styling should be different</p>
     <p>Is this helpful? Yes [###] | No [###]</p>
     <hr />
