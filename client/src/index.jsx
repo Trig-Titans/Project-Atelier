@@ -11,7 +11,7 @@ const root = createRoot(document.getElementById("root"));
 const App = () => {
   return  <div>
             <h1>Front End Capstone Avatar Project</h1>
-              <div>Overview Div</div>
+              <Overview />
               <div>Questions Div</div>
               <div>
                 <p>related Div</p>
