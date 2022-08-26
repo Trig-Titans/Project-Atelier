@@ -33,6 +33,20 @@ const StyledOverviewGrid = styled.div`
 
 function Overview(props) {
   const [count, setCount] = useState(0);
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/styles',
+      headers: {
+        Authorization: API_KEY
+      }
+    })
+      .then((data) => {
+        console.log(data.data.results);
+      }).catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     // The grid
     <StyledOverviewGrid>
@@ -47,14 +61,5 @@ function Overview(props) {
     </StyledOverviewGrid>
   )
 }
-
-// useEffect(() => {
-//   axios({
-//     method: 'GET',
-//     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/styles',
-//     Authorization: API_KEY
-//   })
-//     .then()
-// })
 
 export default Overview;
