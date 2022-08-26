@@ -12,12 +12,9 @@ const root = createRoot(document.getElementById("root"));
 const App = () => {
   return  <div>
             <h1>Front End Capstone Avatar Project</h1>
-              <div>Overview Div</div>
-              <QandA/>
-              <div>
-                <p>related Div</p>
-                <Card/>
-              </div>
+              <Overview />
+              <Card />
+              <QandA />
               <Reviews />
           </div>
 }
