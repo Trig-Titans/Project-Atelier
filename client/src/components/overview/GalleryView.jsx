@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
+import axios from 'axios';
+import API_KEY from '../../../../config.js';
 
 // All of the imports from component files
 import OverviewCarousel from './overview-components/Carousel.jsx';
@@ -45,5 +47,14 @@ function Overview(props) {
     </StyledOverviewGrid>
   )
 }
+
+// useEffect(() => {
+//   axios({
+//     method: 'GET',
+//     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/styles',
+//     Authorization: API_KEY
+//   })
+//     .then()
+// })
 
 export default Overview;

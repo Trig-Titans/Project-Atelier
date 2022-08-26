@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React, { useState } from "react";
 
-const StyledOverviewStars = styled.p`
+const StyledOverviewStars = styled.div`
 grid-area: OvStar;
 margin-bottom: 0px
 `;
