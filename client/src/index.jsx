@@ -3,7 +3,7 @@ import React from "react";
 import Card from './components/relatedProducts/card.jsx'
 import Overview from "./components/overview/GalleryView.jsx"
 import Reviews from "./components/reviews/ReviewsList.jsx"
-import QuestionSearch from './components/questions/QuestionSearch.jsx'
+import QandA from './components/questions/QandA.jsx'
 
 
 const root = createRoot(document.getElementById("root"));
@@ -12,7 +12,7 @@ const App = () => {
   return  <div>
             <h1>Front End Capstone Avatar Project</h1>
               <div>Overview Div</div>
-              <div>Questions Div</div>
+              <QandA/>
               <div>
                 <p>related Div</p>
                 <Card/>
