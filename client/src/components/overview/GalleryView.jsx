@@ -31,30 +31,82 @@ const StyledOverviewGrid = styled.div`
     'OvDesc OvMeta'
 `;
 
+// Here is the axios request to receive the style information for a product
+const retrieveStyles = axios({
+  method: 'get',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/styles',
+  headers: {
+    Authorization: API_KEY
+  }
+  // data.data.results
+});
+
+// Here is the axios request to receive the product information
+const retrieveProductInfo = axios({
+  method: 'get',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/',
+  headers: {
+    Authorization: API_KEY
+  }
+  // data.data
+});
+
+// Here is the axios request to receive receive the ratings of a product
+const retrieveRatingInfo = axios({
+  method: 'get',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37314',
+  headers: {
+    Authorization: API_KEY
+  }
+  // data.data.ratings
+})
+
+// This is the function to create the average rating
+function findAverageRating(ratings)  {
+  var ratingArray = Object.values(ratings);
+  var numberOfVotes = 0;
+  var total = 0;
+  ratingArray.forEach((voteCount, index) => {
+    var intRating = parseInt(voteCount)
+    numberOfVotes += intRating;
+    total += ((index + 1) * voteCount)
+  })
+  var average = total / numberOfVotes;
+  var roundNearQtr = function(number) {
+    return (Math.round(number * 4) / 4).toFixed(2);
+  };
+  return roundNearQtr(average);
+}
+
+// This is the actual functional component
 function Overview(props) {
-  const [count, setCount] = useState(0);
+  // state for the style array
+  var [styles, setStyles] = useState([]);
+  // state for the product info object
+  var [productInfo, setInfo] = useState({});
+  // single digit average rating of the product
+  var [rating, setRating] = useState(0);
   useEffect(() => {
-    axios({
-      method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/styles',
-      headers: {
-        Authorization: API_KEY
-      }
-    })
-      .then((data) => {
-        console.log(data.data.results);
-      }).catch((err) => {
-        console.log(err);
-      });
+    Promise.all([retrieveStyles, retrieveProductInfo, retrieveRatingInfo])
+      .then((response) => {
+        // this sets the styles to an array of different styles
+        setStyles(styles = response[0].data.results);
+        console.log('styles: ', styles);
+        // this sets the product info to the correct object
+        setInfo(productInfo = response[1].data);
+        console.log('product info: ', productInfo);
+        // this sets the rating to the average of all the votes
+        setRating(rating = findAverageRating(response[2].data.ratings));
+      })
   }, []);
   return (
     // The grid
     <StyledOverviewGrid>
-      <OverviewCarousel/>
-      <OverViewStars/>
-      <OverViewName/>
-      <OverViewPrice/>
-      <OverViewSelector/>
+      <OverviewCarousel styles={styles}/>
+      <OverViewStars stars={rating}/>
+      <OverViewName name={productInfo.name}/>
+      <OverViewPrice price={styles}/>
+      <OverViewSelector />
       <OverViewForm/>
       <OverviewDescription/>
       <OverviewFacts/>
