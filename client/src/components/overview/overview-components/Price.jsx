@@ -5,10 +5,11 @@ const StyledOverviewPrice = styled.div`
   grid-area: OvPrice;
 `;
 
-export default function OverViewPrice(props) {
+export default function OverViewPrice({ price }) {
+  console.log(price);
   return (
     <StyledOverviewPrice>
-      <p>$8,000</p>
+      <p>$65.00</p>
     </StyledOverviewPrice>
   );
 }

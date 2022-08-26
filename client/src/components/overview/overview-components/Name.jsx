@@ -15,11 +15,11 @@ const StyledOverviewTitle = styled.div`
   font-size: large;
 `;
 
-export default function OverViewName(props) {
+export default function OverViewName({ name, category }) {
   return (
     <StyledOverviewName>
-      <StyledOverviewCategory>Category</StyledOverviewCategory>
-      <StyledOverviewTitle>Avatar Stickers</StyledOverviewTitle>
+      <StyledOverviewCategory>{category}</StyledOverviewCategory>
+      <StyledOverviewTitle>{name}</StyledOverviewTitle>
     </StyledOverviewName>
   );
 }
