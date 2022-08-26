@@ -1489,6 +1489,11 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.11.tgz"
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
 
+"@types/lodash@^4.14.105":
+  version "4.14.184"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.184.tgz#23f96cd2a21a28e106dc24d825d4aa966de7a9fe"
+  integrity sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==
+
 "@types/mime@*":
   version "3.0.1"
   resolved "https://registry.npmjs.org/@types/mime/-/mime-3.0.1.tgz"
@@ -1504,6 +1509,11 @@
   resolved "https://registry.npmjs.org/@types/prettier/-/prettier-2.7.0.tgz"
   integrity sha512-RI1L7N4JnW5gQw2spvL7Sllfuf1SaHdrZpCHiBlCXjIlufi1SMNnbu2teze3/QE67Fg2tBlH7W+mi4hVNk4p0A==
 
+"@types/prop-types@*":
+  version "15.7.5"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
+  integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
+
 "@types/qs@*":
   version "6.9.7"
   resolved "https://registry.npmjs.org/@types/qs/-/qs-6.9.7.tgz"
@@ -1514,10 +1524,24 @@
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.4.tgz"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
+"@types/react@^16.0.40":
+  version "16.14.30"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.30.tgz#a1d83f73f4326798d65fe6b58cb4caeacee47623"
+  integrity sha512-tG+xGtDDSuIl1l63mN0LnaROAc99knkYyN4YTheE80iPzYvSy0U8LVie+OBZkrgjVrpkQV6bMCkSphPBnVNk6g==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
 "@types/retry@0.12.0":
   version "0.12.0"
   resolved "https://registry.npmjs.org/@types/retry/-/retry-0.12.0.tgz"
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
+
+"@types/scheduler@*":
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
+  integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
 "@types/serve-index@^1.9.1":
   version "1.9.1"
@@ -2429,6 +2453,11 @@ cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
+
+csstype@^3.0.2:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
+  integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
 debug@2.6.9:
   version "2.6.9"
@@ -4812,6 +4841,14 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-rating@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/react-rating/-/react-rating-2.0.5.tgz#2c9d7ebe5907db0361ba28b7c19f0394e6e4dd76"
+  integrity sha512-uldxgLCe5bzqGX7V+7/bPgQQj2Kok6eiMgTMxjKOhfhnQkFLDlc4TjMlp7gaJFAHWdbiOnqpiShI7z8as6oWtg==
+  dependencies:
+    "@types/lodash" "^4.14.105"
+    "@types/react" "^16.0.40"
 
 react-responsive-carousel@^3.2.23:
   version "3.2.23"
