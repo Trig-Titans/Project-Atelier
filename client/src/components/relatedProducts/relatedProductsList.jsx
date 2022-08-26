@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
+import axios from 'axios';
+import API_KEY from '../../../../config.js'
 // import styled from 'styled-components';
 
 const responsive = {
@@ -22,8 +24,27 @@ const responsive = {
   }
 };
 
-function RelatedProducts(props) {
-  const [count, setCount] = useState(0);
+ const RelatedProducts = (props) => {
+  const [productID, setProductID,] = React.useState(null)
+  const [relatedProductIDs, setRelatedProductIDs] = React.useState(null);
+  const product_id = "37313"
+
+  React.useEffect(() => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: {Authorization: API_KEY }
+  })
+  .then((response) => {
+    console.log(response.data)
+    setRelatedProductIDs(response.data);
+    // Promise.all(response.data.map(id => {
+    //   axios.get()
+    // }))
+  })
+  }, []);
+
+
+
+
+
   return (
     <Carousel responsive={responsive}>
         <div>
