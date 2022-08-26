@@ -6,10 +6,9 @@ const StyledOverviewPrice = styled.div`
 `;
 
 export default function OverViewPrice({ price }) {
-  console.log(price);
   return (
     <StyledOverviewPrice>
-      <p>$65.00</p>
+      <p>${price.original_price}</p>
     </StyledOverviewPrice>
   );
 }

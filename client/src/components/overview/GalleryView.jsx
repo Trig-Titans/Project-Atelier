@@ -17,7 +17,8 @@ import OverviewFacts from './overview-components/Facts.jsx';
 // Here are all of the styled components
 const StyledOverviewGrid = styled.div`
   margin-left: 20%;
-  grid-gap: 10px;
+  column-gap: 20px;
+  row-gap: 20px;
   width: 60%;
   text-align: left;
   display: grid;
@@ -59,7 +60,7 @@ const retrieveRatingInfo = axios({
     Authorization: API_KEY
   }
   // data.data.ratings
-})
+});
 
 // This is the function to create the average rating
 function findAverageRating(ratings)  {
@@ -86,7 +87,7 @@ function Overview(props) {
       name: "",
       original_price: "",
       photos: [
-        {thumbnail_url: 'https://images.unsplash.com/photo-1554260570-9140f…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: 'https://images.unsplash.com/photo-1554260570-9140f…cHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'}
+        {thumbnail_url: 'https://images.unsplash.com/photo-1554260570-9140f…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: ''}
       ],
     }
   ]);
@@ -97,7 +98,7 @@ function Overview(props) {
     description: "",
     name: "",
     slogan: "",
-    features: [],
+    features: [{feature: 'Cut', value: 'Loose'}],
   });
   // single digit average rating of the product
   var [rating, setRating] = useState(0);
@@ -108,7 +109,6 @@ function Overview(props) {
         setStyles(styles = response[0].data.results);
         // this sets the product info to the correct object
         setInfo(productInfo = response[1].data);
-        console.log('Product info: ', productInfo)
         // this sets the rating to the average of all the votes
         setRating(rating = findAverageRating(response[2].data.ratings));
       }).catch((err) => {
@@ -118,7 +118,7 @@ function Overview(props) {
   return (
     // The grid
     <StyledOverviewGrid>
-      <OverviewCarousel styles={styles}/>
+      <OverviewCarousel photos={styles[0].photos}/>
       <OverViewStars stars={rating}/>
       <OverViewName name={productInfo.name} category={productInfo.category}/>
       <OverViewPrice price={styles[0]}/>
