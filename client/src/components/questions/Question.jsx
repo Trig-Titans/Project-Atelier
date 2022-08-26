@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const StyledQuestion = styled.div`
   text-align: left;
-  //padding: 0.7% 0;
+  padding: 0.7% 0;
 `;
 const StyledAnswer = styled.div`
   padding: 0.7% 0;
@@ -24,13 +24,33 @@ const Question = ({ questionData }) => {
       <strong>{'Q: ' + questionData.question_body}</strong>
       <div>
         {answerArray.map((answer) => {
+          var date = new Date(answer.date);
+          var dateStr = date.toDateString();
+          dateStr = dateStr.slice(dateStr.indexOf(' '));
+          var secondSpaceIndex = dateStr.indexOf(' ', 5);
+          dateStr = dateStr.slice(0, secondSpaceIndex) + ',' + dateStr.slice(secondSpaceIndex);
+
           if (answer === answerArray[0]) {
             return (
-            <StyledAnswer key={answer.id}><strong>A: </strong>{answer.body}</StyledAnswer>
+            <StyledAnswer key={answer.id}>
+              <div>
+                <strong>A: </strong>{answer.body}
+              </div>
+              <div>
+                by: {answer.answerer_name}, {dateStr}
+              </div>
+            </StyledAnswer>
             )
           }
           return (
-            <StyledAnswer key={answer.id}><strong style={{visibility: 'hidden'}}>A: </strong>{answer.body}</StyledAnswer>
+            <StyledAnswer key={answer.id}>
+              <div>
+                {answer.body}
+              </div>
+              <div>
+                by: {answer.answerer_name}, {dateStr}
+              </div>
+            </StyledAnswer>
           )
         })}
       </div>
