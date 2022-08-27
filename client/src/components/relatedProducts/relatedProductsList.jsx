@@ -4,6 +4,7 @@ import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
+import Card from './card.jsx'
 // import styled from 'styled-components';
 
 const responsive = {
@@ -24,69 +25,71 @@ const responsive = {
   }
 };
 
- const RelatedProducts = (props) => {
+const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState(null);
   const product_id = "37313"
 
-   React.useEffect(() => {
-     //FIND LIST OF RELATED PRODUCT IDS
-     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: { Authorization: API_KEY } })
-       .then((response) => {
-         let arrayOfRelatedProductIDs = response.data
+  React.useEffect(() => {
+    //FIND LIST OF RELATED PRODUCT IDS
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: { Authorization: API_KEY } })
+      .then((response) => {
+        let arrayOfRelatedProductIDs = response.data
 
-         //FIND All RELATED PRODUCTS INFO
-         Promise.all(arrayOfRelatedProductIDs.map(id => {
-           return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, { headers: { Authorization: API_KEY } })
-             .then(response => {
-               let productInfoObj = response.data
+        //FIND All RELATED PRODUCTS INFO
+        Promise.all(arrayOfRelatedProductIDs.map(id => {
+          return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, { headers: { Authorization: API_KEY } })
+            .then(response => {
+              let productInfoObj = response.data
 
-               return productInfoObj
-             })
-         }))
-           .then(response => {
-             let productsInfoArray = response;
+              return productInfoObj
+            })
+        }))
+          .then(response => {
+            let productsInfoArray = response;
 
-             //ONCE WE HAVE ALL RELATED PRODUCTS FIND THE STYLES FOR EACH PRODUCT
-             Promise.all(productsInfoArray.map(product => {
-               return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, {
-                 headers: { Authorization: API_KEY }
-               })
-                 .then(response => {
-                   let productStylesObj = response.data;
+            //ONCE WE HAVE ALL RELATED PRODUCTS FIND THE STYLES FOR EACH PRODUCT
+            Promise.all(productsInfoArray.map(product => {
+              return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, {
+                headers: { Authorization: API_KEY }
+              })
+                .then(response => {
+                  let productStylesObj = response.data;
 
-                   return productStylesObj;
-                 })
-             }))
-               .then(response => {
-                 //MERGE PRODUCT WITH ITS STYLES AND SET TO STATE
-                 let productsStylesArray = response;
+                  return productStylesObj;
+                })
+            }))
+              .then(response => {
+                //MAP PRODUCT WITH ITS STYLES AND SET TO STATE
+                let productsStylesArray = response;
 
-                 console.log(productsInfoArray, productsStylesArray)
-               })
-           })
-       })
-   }, []);
+                productsInfoArray.map((product, index) => {
+                  product.styles = productsStylesArray[index];
+                })
+
+                setAccumulatedProductData(productsInfoArray)
+
+              })
+          })
+      })
+  }, []);
 
 
-
+  console.log(accumulatedProductData)
 
 
   return (
     <Carousel responsive={responsive}>
-        <div>
-            <img src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
-            <p className="legend">Legend 1</p>
-        </div>
-        <div>
-            <img src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
-            <p className="legend">Legend 2</p>
-        </div>
-        <div>
-            <img src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
-            <p className="legend">Legend 3</p>
-        </div>
+      <div>
+        <img src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
+        <p className="legend">Legend 1</p>
+      </div>
+      <div>
+        <img src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
+        <p className="legend">Legend 2</p>
+      </div>
+      <Card/>
     </Carousel>
-);
+  );
 }
 
 export default RelatedProducts;
