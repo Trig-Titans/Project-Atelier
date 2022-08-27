@@ -39,7 +39,6 @@ const retrieveStyles = axios({
   headers: {
     Authorization: API_KEY
   }
-  // data.data.results
 });
 
 // Here is the axios request to receive the product information
@@ -49,7 +48,6 @@ const retrieveProductInfo = axios({
   headers: {
     Authorization: API_KEY
   }
-  // data.data
 });
 
 // Here is the axios request to receive receive the ratings of a product
@@ -59,7 +57,6 @@ const retrieveRatingInfo = axios({
   headers: {
     Authorization: API_KEY
   }
-  // data.data.ratings
 });
 
 // This is the function to create the average rating
