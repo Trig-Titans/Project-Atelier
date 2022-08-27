@@ -25,21 +25,47 @@ const responsive = {
 };
 
  const RelatedProducts = (props) => {
-  const [productID, setProductID,] = React.useState(null)
-  const [relatedProductIDs, setRelatedProductIDs] = React.useState(null);
+  const [accumulatedProductData, setAccumulatedProductData] = React.useState(null);
   const product_id = "37313"
 
-  React.useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: {Authorization: API_KEY }
-  })
-  .then((response) => {
-    console.log(response.data)
-    setRelatedProductIDs(response.data);
-    // Promise.all(response.data.map(id => {
-    //   axios.get()
-    // }))
-  })
-  }, []);
+   React.useEffect(() => {
+     //FIND LIST OF RELATED PRODUCT IDS
+     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: { Authorization: API_KEY } })
+       .then((response) => {
+         let arrayOfRelatedProductIDs = response.data
+
+         //FIND All RELATED PRODUCTS INFO
+         Promise.all(arrayOfRelatedProductIDs.map(id => {
+           return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, { headers: { Authorization: API_KEY } })
+             .then(response => {
+               let productInfoObj = response.data
+
+               return productInfoObj
+             })
+         }))
+           .then(response => {
+             let productsInfoArray = response;
+
+             //ONCE WE HAVE ALL RELATED PRODUCTS FIND THE STYLES FOR EACH PRODUCT
+             Promise.all(productsInfoArray.map(product => {
+               return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, {
+                 headers: { Authorization: API_KEY }
+               })
+                 .then(response => {
+                   let productStylesObj = response.data;
+
+                   return productStylesObj;
+                 })
+             }))
+               .then(response => {
+                 //MERGE PRODUCT WITH ITS STYLES AND SET TO STATE
+                 let productsStylesArray = response;
+
+                 console.log(productsInfoArray, productsStylesArray)
+               })
+           })
+       })
+   }, []);
 
 
 
