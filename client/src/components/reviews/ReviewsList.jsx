@@ -2,6 +2,7 @@ import React from 'react';
 import styled, {css} from 'styled-components';
 import {Checkmark} from 'react-checkmark';
 
+
 const Button = styled.button`
   background-color: #a8bdff;
   border-radius: 3px;
@@ -47,8 +48,9 @@ let AddReviewButton = () => {
 }
 
 
-let ReviewsList = () => {
+let ReviewsList = ( {reviews} ) => {
   return (<div>
+    <p>{console.log(reviews)}</p>
     <Sorter />
     <ReviewTile />
     <MoreReviewsButton />
