@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
+import axios from 'axios';
+import API_KEY from '../../../../config.js';
 
+// All of the imports from component files
+import OverviewCarousel from './overview-components/Carousel.jsx';
+import OverViewStars from './overview-components/Stars.jsx';
+import OverViewName from './overview-components/Name.jsx';
+import OverViewPrice from './overview-components/Price.jsx';
+import OverViewSelector from './overview-components/Selector.jsx';
+import OverViewForm from './overview-components/Form.jsx';
+import OverviewDescription from './overview-components/Description.jsx';
+import OverviewFacts from './overview-components/Facts.jsx';
 // Here are all of the styled components
 const StyledOverviewGrid = styled.div`
   margin-left: 20%;
-  grid-gap: 10px;
+  column-gap: 20px;
+  row-gap: 20px;
   width: 60%;
   text-align: left;
   display: grid;
@@ -19,98 +31,101 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvForm'
     'OvDesc OvMeta'
 `;
-const StyledOverviewCarousel = styled.div`
-  margin: auto;
-  grid-area: OvPicture;
-`;
-const StyledOverviewStars = styled.p`
-  grid-area: OvStar;
-  margin-bottom: 0px`;
-const StyledOverviewName = styled.p`
-  grid-area: OvName;
-`;
-const StyledOverviewPrice = styled.div`
-  grid-area: OvPrice;
-`;
-const StyledOverviewStyleSelector = styled.div`
-  grid-area: OvStyle;
-`;
-const StyledOverviewStylesTitle = styled.div`
-`;
-const StyledOverviewStylesCircle = styled.div`
-`;
-const StyledOverviewOptionForm = styled.div`
-  grid-area: OvForm;
-`;
-const StyledOverviewFavoriteStar = styled.button`
-`;
-const StyledOverviewProductDescription = styled.div`
-  margin-left: 30%;
-  grid-area: OvDesc;
-`;
-const StyledOverviewProductFacts = styled.div`
-  grid-area: OvMeta;
-`;
 
+// Here is the axios request to receive the style information for a product
+const retrieveStyles = axios({
+  method: 'get',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/styles',
+  headers: {
+    Authorization: API_KEY
+  }
+  // data.data.results
+});
+
+// Here is the axios request to receive the product information
+const retrieveProductInfo = axios({
+  method: 'get',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/',
+  headers: {
+    Authorization: API_KEY
+  }
+  // data.data
+});
+
+// Here is the axios request to receive receive the ratings of a product
+const retrieveRatingInfo = axios({
+  method: 'get',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37314',
+  headers: {
+    Authorization: API_KEY
+  }
+  // data.data.ratings
+});
+
+// This is the function to create the average rating
+function findAverageRating(ratings)  {
+  var ratingArray = Object.values(ratings);
+  var numberOfVotes = 0;
+  var total = 0;
+  ratingArray.forEach((voteCount, index) => {
+    var intRating = parseInt(voteCount)
+    numberOfVotes += intRating;
+    total += ((index + 1) * voteCount)
+  })
+  var average = total / numberOfVotes;
+  var roundNearQtr = function(number) {
+    return (Math.round(number * 4) / 4).toFixed(2);
+  };
+  return roundNearQtr(average);
+}
+
+// This is the actual functional component
 function Overview(props) {
-  const [count, setCount] = useState(0);
+  // state for the style array
+  var [styles, setStyles] = useState([
+    {
+      name: "",
+      original_price: "",
+      photos: [
+        {thumbnail_url: 'https://images.unsplash.com/photo-1554260570-9140f…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: ''}
+      ],
+    }
+  ]);
+  // state for the product info object
+  var [productInfo, setInfo] = useState({
+    category: "",
+    default_price: "",
+    description: "",
+    name: "",
+    slogan: "",
+    features: [{feature: 'Cut', value: 'Loose'}],
+  });
+  // single digit average rating of the product
+  var [rating, setRating] = useState(0);
+  useEffect(() => {
+    Promise.all([retrieveStyles, retrieveProductInfo, retrieveRatingInfo])
+      .then((response) => {
+        // this sets the styles to an array of different styles
+        setStyles(styles = response[0].data.results);
+        // this sets the product info to the correct object
+        setInfo(productInfo = response[1].data);
+        // this sets the rating to the average of all the votes
+        setRating(rating = findAverageRating(response[2].data.ratings));
+      }).catch((err) => {
+        console.log(err);
+      })
+  }, []);
   return (
     // The grid
     <StyledOverviewGrid>
-      {/* carousel */}
-      <StyledOverviewCarousel>
-        <img src="https://m.media-amazon.com/images/I/51NCiuMYKCL._AC_SS450_.jpg" />
-      </StyledOverviewCarousel>
-      {/* Starts section */}
-      <StyledOverviewStars>
-        <p>Stars</p>
-      </StyledOverviewStars>
-      {/* Product name section */}
-      <StyledOverviewName>
-        <p>Category</p>
-        <h2>Avatar Stickers</h2>
-      </StyledOverviewName>
-      {/* Price section */}
-      <StyledOverviewPrice>
-        <p>$8,000</p>
-      </StyledOverviewPrice>
-      {/* Style selector section */}
-      <StyledOverviewStyleSelector>
-        <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
-        {/* maybe make this one a flexbox? */}
-        <StyledOverviewStylesCircle></StyledOverviewStylesCircle>
-      </StyledOverviewStyleSelector>
-      {/* size, number, add to bag and favorite section - this should be a grid as well*/}
-      <StyledOverviewOptionForm>
-        <form>
-          <label>
-            <select>
-              <option value="air">air</option>
-              <option value="earth">earth</option>
-              <option value="fire">fire</option>
-              <option value="water">water</option>
-            </select>
-          </label>
-          <label>
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </label>
-          <input type="submit" value="Add to Bag"/>
-          {/* there needs to be a favorite button */}
-          <StyledOverviewFavoriteStar>STAR!</StyledOverviewFavoriteStar>
-        </form>
-      </StyledOverviewOptionForm>
-      <StyledOverviewProductDescription>
-        <p>Buy these stickers, they are neat</p>
-      </StyledOverviewProductDescription>
-      <StyledOverviewProductFacts>
-          <li>Super Fake</li>
-          <li>Not Real</li>
-          <li>Made up</li>
-      </StyledOverviewProductFacts>
+      <OverviewCarousel photos={styles[0].photos}/>
+      <OverViewStars stars={rating}/>
+      <OverViewName name={productInfo.name} category={productInfo.category}/>
+      <OverViewPrice price={styles[0]}/>
+      <OverViewSelector styles={styles}/>
+      <OverViewForm styles={styles}/>
+      <OverviewDescription description={productInfo.description}/>
+      <OverviewFacts facts={productInfo.features}/>
     </StyledOverviewGrid>
   )
 }
