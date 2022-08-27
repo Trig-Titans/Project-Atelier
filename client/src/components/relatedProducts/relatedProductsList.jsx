@@ -26,7 +26,7 @@ const responsive = {
 };
 
 const RelatedProducts = (props) => {
-  const [accumulatedProductData, setAccumulatedProductData] = React.useState(null);
+  const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
   const product_id = "37313"
 
   React.useEffect(() => {
@@ -74,20 +74,9 @@ const RelatedProducts = (props) => {
   }, []);
 
 
-  console.log(accumulatedProductData)
-
-
   return (
     <Carousel responsive={responsive}>
-      <div>
-        <img src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
-        <p className="legend">Legend 1</p>
-      </div>
-      <div>
-        <img src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
-        <p className="legend">Legend 2</p>
-      </div>
-      <Card/>
+      { accumulatedProductData.map( (product, index) => <Card key={index}/> ) }
     </Carousel>
   );
 }
