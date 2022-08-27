@@ -8,7 +8,7 @@ const Container = styled.div`
 `
 
 let Reviews = () => {
-  let [review, setReview] = useState()
+  // let [review, setReview] = useState()
   return (<Container>
     <h1>Ratings & Reviews</h1>
     <Breakdown /> <ReviewsList />

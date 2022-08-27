@@ -3,15 +3,19 @@ import styled, {css} from 'styled-components';
 import {Checkmark} from 'react-checkmark';
 
 const Button = styled.button`
-  background: transparent;
+  background-color: #a8bdff;
   border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
+  border: 2px solid #222325;
+  color: #040c27;
   margin: 0.5em 1em;
   padding: 0.25em 1em;
 
+  &:hover {
+    background-color: #6684e7e6
+  }
+
   ${props => props.primary && css`
-    background: palevioletred;
+    background: #002d71;
     color: white;
   `}
 `;
