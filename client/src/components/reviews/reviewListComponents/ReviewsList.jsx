@@ -1,25 +1,8 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
 import {Checkmark} from 'react-checkmark';
+import {ReviewButtons} from './AdditionalButtons.jsx'
 
 
-const Button = styled.button`
-  background-color: #a8bdff;
-  border-radius: 3px;
-  border: 2px solid #222325;
-  color: #040c27;
-  margin: 0.5em 1em;
-  padding: 0.25em 1em;
-
-  &:hover {
-    background-color: #6684e7e6
-  }
-
-  ${props => props.primary && css`
-    background: #002d71;
-    color: white;
-  `}
-`;
 
 
 let Sorter = () => {
@@ -39,22 +22,16 @@ let ReviewTile = () => {
   </div>);
 }
 
-let MoreReviewsButton = () => {
-  return (<Button>More Reviews</Button>);
-}
 
-let AddReviewButton = () => {
-  return (<Button primary>Add Reivew +</Button>);
-}
 
 
 let ReviewsList = ( {reviews} ) => {
+  let reviewList = reviews.results;
   return (<div>
     <p>{console.log(reviews)}</p>
     <Sorter />
     <ReviewTile />
-    <MoreReviewsButton />
-    <AddReviewButton />
+    <ReviewButtons />
     </div>)
 }
 
