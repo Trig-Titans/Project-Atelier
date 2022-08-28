@@ -11,12 +11,12 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3,
-    slidesToSlide: 3 // optional, default to 1.
+    slidesToSlide: 1 // optional, default to 1.
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
-    slidesToSlide: 2 // optional, default to 1.
+    slidesToSlide: 1 // optional, default to 1.
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -59,14 +59,33 @@ const RelatedProducts = (props) => {
                 })
             }))
               .then(response => {
-                //MAP PRODUCT WITH ITS STYLES AND SET TO STATE
+
                 let productsStylesArray = response;
-
-                productsInfoArray.map((product, index) => {
-                  product.styles = productsStylesArray[index];
+                // console.log(productsInfoArray,productsStylesArray)
+                //MAP PRODUCT WITH ITS STYLES AND SET TO STATE
+                // productsInfoArray.map((product, index) => {
+                //   product.styles = productsStylesArray[index];
+                // })
+                // setAccumulatedProductData(productsInfoArray)
+                Promise.all(productsStylesArray.map(product => {
+                  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${product.product_id}`, { headers: { Authorization: API_KEY }
                 })
+                  .then (response => {
+                    let productReviewsObj = response.data
 
-                setAccumulatedProductData(productsInfoArray)
+                    return productReviewsObj
+                  })
+                }))
+                  .then(response => {
+                    let productReviewsArray = response
+
+                    productsInfoArray.map((product, index) => {
+                      product.styles = productsStylesArray[index];
+                      product.reviews = productReviewsArray[index];
+                    })
+
+                    setAccumulatedProductData(productsInfoArray);
+                  })
 
               })
           })
