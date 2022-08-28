@@ -39,6 +39,7 @@ const Card = (props) => {
       <Container>
       <CardParagraphs>{props.category}</CardParagraphs>
         <h5><b>{props.name}</b></h5>
+        <CardParagraphs>{props.salePrice}</CardParagraphs>
         <CardParagraphs>${props.price}</CardParagraphs>
       </Container>
   </Carta>

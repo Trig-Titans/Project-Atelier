@@ -27,7 +27,7 @@ const responsive = {
 
 const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
-  const product_id = "37313"
+  const product_id = "37314"
 
   React.useEffect(() => {
     //FIND LIST OF RELATED PRODUCT IDS
