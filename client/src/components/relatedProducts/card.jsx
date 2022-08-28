@@ -5,6 +5,8 @@ import styled from 'styled-components';
 
 const Carta = styled.div`
 border: solid;
+border-width: thin;
+border-color: #f2f2f2;
 width: 200px;
 height: 299px;
 `
@@ -33,11 +35,11 @@ const Card = (props) => {
 
   return (
     <Carta>
-    <Pic src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
+    <Pic src={props.pic} />
       <Container>
-      <CardParagraphs>Category</CardParagraphs>
-        <h5><b>John Doe</b></h5>
-        <CardParagraphs>$123</CardParagraphs>
+      <CardParagraphs>{props.category}</CardParagraphs>
+        <h5><b>{props.name}</b></h5>
+        <CardParagraphs>${props.price}</CardParagraphs>
       </Container>
   </Carta>
   )

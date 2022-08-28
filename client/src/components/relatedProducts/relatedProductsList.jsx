@@ -61,20 +61,16 @@ const RelatedProducts = (props) => {
               .then(response => {
 
                 let productsStylesArray = response;
-                // console.log(productsInfoArray,productsStylesArray)
-                //MAP PRODUCT WITH ITS STYLES AND SET TO STATE
-                // productsInfoArray.map((product, index) => {
-                //   product.styles = productsStylesArray[index];
-                // })
-                // setAccumulatedProductData(productsInfoArray)
-                Promise.all(productsStylesArray.map(product => {
-                  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${product.product_id}`, { headers: { Authorization: API_KEY }
-                })
-                  .then (response => {
-                    let productReviewsObj = response.data
 
-                    return productReviewsObj
+                Promise.all(productsStylesArray.map(product => {
+                  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${product.product_id}`, {
+                    headers: { Authorization: API_KEY }
                   })
+                    .then(response => {
+                      let productReviewsObj = response.data
+
+                      return productReviewsObj
+                    })
                 }))
                   .then(response => {
                     let productReviewsArray = response
@@ -95,7 +91,7 @@ const RelatedProducts = (props) => {
 
   return (
     <Carousel responsive={responsive}>
-      { accumulatedProductData.map( (product, index) => <Card key={index}/> ) }
+      { accumulatedProductData.map( ( product, index ) => <Card category={product.category} name={product.name} key={index} /> ) }
     </Carousel>
   );
 }
