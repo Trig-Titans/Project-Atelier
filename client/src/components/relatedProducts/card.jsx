@@ -35,7 +35,7 @@ const Card = (props) => {
 
   return (
     <Carta>
-    <Pic src={props.pic} />
+    <Pic src={props.picUrl} />
       <Container>
       <CardParagraphs>{props.category}</CardParagraphs>
         <h5><b>{props.name}</b></h5>

@@ -91,7 +91,20 @@ const RelatedProducts = (props) => {
 
   return (
     <Carousel responsive={responsive}>
-      { accumulatedProductData.map( ( product, index ) => <Card category={product.category} name={product.name} key={index} /> ) }
+      {accumulatedProductData.map((product, index) =>{
+
+        let style = product.styles.results.length > 1 ?
+          product.styles.results.find(result => result['default?'] === true) !== undefined ?
+          product.styles.results.find(result => result['default?'] === true)
+          : product.styles.results[0]
+          : product.styles.results[0];
+
+          console.log('style', style)
+          // console.log('styleUrl', style.photos[0].url)
+
+
+        return (<Card picUrl= {style.photos[0]['url']} category={product.category} name={product.name} price={style.original_price} salePrice={style.sale_price} key={index} />)
+      } )}
     </Carousel>
   );
 }
