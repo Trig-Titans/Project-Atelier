@@ -23,7 +23,7 @@ const QandA = () => {
       setQuestions(response.data.results);
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
     })
   }, [])
 

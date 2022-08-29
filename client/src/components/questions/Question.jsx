@@ -11,6 +11,19 @@ const StyledAnswer = styled.div`
   padding: 0.7% 0;
 `;
 
+const dateParser = (rawDate) => {
+  var date = new Date(rawDate);
+  var dateStr = date.toDateString();
+
+  dateStr = dateStr.slice(dateStr.indexOf(' '));
+
+  var secondSpaceIndex = dateStr.indexOf(' ', 5);
+
+  dateStr = dateStr.slice(0, secondSpaceIndex) + ',' + dateStr.slice(secondSpaceIndex);
+
+  return dateStr;
+};
+
 const Question = ({ questionData }) => {
 
   // turns the answers object into an array for easy iteration
@@ -24,11 +37,8 @@ const Question = ({ questionData }) => {
       <strong>{'Q: ' + questionData.question_body}</strong>
       <div>
         {answerArray.map((answer) => {
-          var date = new Date(answer.date);
-          var dateStr = date.toDateString();
-          dateStr = dateStr.slice(dateStr.indexOf(' '));
-          var secondSpaceIndex = dateStr.indexOf(' ', 5);
-          dateStr = dateStr.slice(0, secondSpaceIndex) + ',' + dateStr.slice(secondSpaceIndex);
+
+          let dateStr = dateParser(answer.date);
 
           if (answer === answerArray[0]) {
             return (
