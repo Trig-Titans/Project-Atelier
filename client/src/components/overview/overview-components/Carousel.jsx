@@ -11,20 +11,44 @@ const StyledOverviewCarousel = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
+  border-radius: 2px;
 `;
 
 const ThumbnailSelector = styled.div`
   display: flex;
   flex-direction: column;
   justify-items: center;
-  width: 10%;
+  justify-content: space-between;
+  width: 4%;
   position: absolute;
-  width: 20%;
-  height: 100%
+  width: auto;
+  height: 60%;
+  background-color: rgba(255,255,255,0.5);
+  overflow: auto;
+  direction: rtl;
+  overflow-x: hidden;
+  border-radius: 2px;
+  &::-webkit-scrollbar {
+    background: transparent;
+    cursor: pointer;
+  };
+  &::-webkit-scrollbar-thumb {
+    background: #cecece;
+    border-radius: 2px;
+  }
 `
 
 const Thumbnail = styled.div`
-  padding: 5px;
+  margin: 10px;
+  margin-top: 20px;
+  border: 2px solid grey;
+  width: 100px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    border: 2px solid white;
+  }
 `
 
 // each photo has this class
@@ -36,7 +60,7 @@ const Slide = styled.div`
 const LeftButton = styled.button`
   position: absolute;
   width: 10%;
-  margin-left: 20%;
+  margin-left: 19%;
   height: 60%;
   border: none;
   background-color: transparent;
@@ -45,15 +69,15 @@ const LeftButton = styled.button`
   transition: 0.5s;
   color: transparent;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(255,255,255,0.3);
     border-radius: 10px;
-    color: white;
+    color: black;
   }
 `
 // right button for carousel
 const RightButton = styled.button`
   position: absolute;
-  right: 0;
+  right: 1%;
   width: 10%;
   height: 60%;
   border: none;
@@ -63,19 +87,17 @@ const RightButton = styled.button`
   transition: 0.5s;
   color: transparent;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(255,255,255,0.3);
     border-radius: 10px;
-    color: white;
+    color: black;
   }
 `
 
 export default function OverviewCarousel({ photos }) {
-  console.log(photos);
   // this state is the viewpoint that the carousel is currently at, when the button is pressed, it increases the current viewpoint of the div by 100, thus changing the photo.
   // Here is a link to the carousel video I watched to get this down. Bad music but good video
     // https://www.youtube.com/watch?v=Tdpq-9XYoNM
-  const [x, setx] = useState(0);
-  console.log(x);
+  var [x, setx] = useState(0)
   // on click function to move the carousel to the left
   const goLeft = () => {
     setx(x + 100);
@@ -102,11 +124,23 @@ export default function OverviewCarousel({ photos }) {
     <ThumbnailSelector>
       {
         photos.map((photo, index) => {
-          return (
-            <Thumbnail key={index}>
-              <img src={photo.thumbnail_url}></img>
-            </Thumbnail>
-          )
+          if (x === -100*index) {
+            return (
+              <Thumbnail key={index} style={{opacity: '0.5'}}onClick={() => {
+                setx(x = -100*index)
+              }}>
+                <img src={photo.thumbnail_url}></img>
+              </Thumbnail>
+            )
+          } else {
+            return (
+              <Thumbnail key={index} onClick={() => {
+                setx(x = -100*index)
+              }}>
+                <img src={photo.thumbnail_url}></img>
+              </Thumbnail>
+            )
+          }
         })
       }
     </ThumbnailSelector>
