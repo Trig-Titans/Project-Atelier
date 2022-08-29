@@ -2,6 +2,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import AnswerList from './AnswerList.jsx';
+import axios from 'axios';
+import API_KEY from '../../../../config.js';
 
 
 const StyledQandA = styled.div`
@@ -13,28 +16,9 @@ const StyledQuestion = styled.div`
   justify-content: space-between;
 
 `;
-const StyledAnswerList = styled.div`
-
-`;
-const StyledAnswer = styled.div`
-  padding: 0.7% 0;
-`;
 const StyledLinks = styled.div`
 
 `;
-
-const dateParser = (rawDate) => {
-  var date = new Date(rawDate);
-  var dateStr = date.toDateString();
-
-  dateStr = dateStr.slice(dateStr.indexOf(' '));
-
-  var secondSpaceIndex = dateStr.indexOf(' ', 5);
-
-  dateStr = dateStr.slice(0, secondSpaceIndex) + ',' + dateStr.slice(secondSpaceIndex);
-
-  return dateStr;
-};
 
 const Question = ({ questionData }) => {
 
@@ -52,7 +36,18 @@ const Question = ({ questionData }) => {
       return;
     } else {
       setHelpfulCount(helpfulCount + 1);
-      setCheckUserClick(true);
+      axios({
+        method: 'put',
+        url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionData.question_id}/helpful`,
+        headers: {Authorization: API_KEY}
+      })
+      .then((response) => {
+        setCheckUserClick(true);
+      })
+      .catch((err) => {
+        //console.log(err);
+      })
+
     }
 
   }
@@ -63,44 +58,11 @@ const Question = ({ questionData }) => {
         <strong>{'Q: ' + questionData.question_body}</strong>
         <StyledLinks>Helpful? <u onClick={helpfulClick}>Yes</u> {`(${helpfulCount})`}</StyledLinks>
       </StyledQuestion>
-      <StyledAnswerList>
-        {answerArray.map((answer) => {
-
-          let dateStr = dateParser(answer.date);
-          let user = answer.answerer_name;
-
-          if (answer.answerer_name === 'Seller') {
-            user = <strong>Seller</strong>;
-          }
-
-          if (answer === answerArray[0]) {
-            return (
-            <StyledAnswer key={answer.id}>
-              <div>
-                <strong>A: </strong>{answer.body}
-              </div>
-              <div>
-                by: {user}, {dateStr}
-              </div>
-            </StyledAnswer>
-            )
-          }
-          return (
-            <StyledAnswer key={answer.id}>
-              <div>
-                {answer.body}
-              </div>
-              <div>
-                by: {user}, {dateStr}
-              </div>
-            </StyledAnswer>
-          )
-        })}
-      </StyledAnswerList>
+      <AnswerList answers={answerArray}/>
     </StyledQandA>
 
   )
 }
 
-export {Question, dateParser};
+export default Question;
 

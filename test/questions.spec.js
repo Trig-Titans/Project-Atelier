@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 const jest = require('jest');
-const { dateParser } = require('../client/src/components/questions/Question.jsx');
+const { dateParser } = require('../client/src/components/questions/Answer.jsx');
 
 
 
@@ -21,7 +21,7 @@ test('date is rendering correctly', () => {
   }
 
   let date = dateParser(questionData.answers[1].date);
-  expect(date).toBe(' Jul 21, 2022');
+  expect(date).toBe(' Jul 22, 2022');
 
 
 })
