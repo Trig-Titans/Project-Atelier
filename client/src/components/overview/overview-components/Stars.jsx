@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const StyledOverviewStars = styled.div`
 grid-area: OvStar;
-margin-bottom: 0px
+margin-top: 50px
 `;
 
 export default function OverviewStars({ stars }) {
