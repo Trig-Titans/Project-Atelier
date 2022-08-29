@@ -5,11 +5,12 @@ import "react-multi-carousel/lib/styles.css";
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-function sum(a, b) {
-  return a + b;
-}
+const List = styled.div`
+  margin-left: 20%;
+  width: 60%;
+`
 
 const responsive = {
   desktop: {
@@ -94,6 +95,7 @@ const RelatedProducts = (props) => {
 
 
   return (
+    <List>
     <Carousel responsive={responsive}>
       {accumulatedProductData.map((product, index) =>{
 
@@ -110,6 +112,7 @@ const RelatedProducts = (props) => {
         return (<Card picUrl= {style.photos[0]['url']} category={product.category} name={product.name} price={style.original_price} salePrice={style.sale_price} key={index} />)
       } )}
     </Carousel>
+    </List>
   );
 }
 

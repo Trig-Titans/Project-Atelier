@@ -7,7 +7,7 @@ let container = {
   display: 'inline-block'
 }
 
-const TestStarIcon = (props) => (
+const TestStarIcon = () => (
   <div style={container}>
      <OutlineStarIcon />
     <SolidStarIcon />
