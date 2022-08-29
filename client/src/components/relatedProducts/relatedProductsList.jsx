@@ -33,7 +33,7 @@ const responsive = {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: {Authorization: API_KEY }
   })
   .then((response) => {
-    console.log(response.data)
+    //console.log(response.data)
     setRelatedProductIDs(response.data);
     // Promise.all(response.data.map(id => {
     //   axios.get()
