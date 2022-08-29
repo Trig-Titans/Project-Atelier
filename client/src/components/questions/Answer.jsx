@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 const StyledAnswer = styled.div`
   padding: 0.7% 0;
-  display: flex;
-  justify-content: flex-start;
 `;
 
 
@@ -22,13 +20,7 @@ const dateParser = (rawDate) => {
   return dateStr;
 };
 
-const Answer = ({ answerData, id }) => {
-
-  var A = 'hidden';
-
-  if (id === 1) {
-    A = 'visible';
-  }
+const Answer = ({ answerData }) => {
 
   let dateStr = dateParser(answerData.date);
   let user = answerData.answerer_name;
@@ -40,15 +32,10 @@ const Answer = ({ answerData, id }) => {
   return (
     <StyledAnswer >
       <div>
-        <strong style={{visibility: A}}>A:&nbsp;   </strong>
+        {answerData.body}
       </div>
       <div>
-        <div>
-          {answerData.body}
-        </div>
-        <div>
-          by: {user}, {dateStr}
-        </div>
+        by: {user}, {dateStr}
       </div>
     </StyledAnswer>
   )

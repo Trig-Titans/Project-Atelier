@@ -1,20 +1,27 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Answer } from './Answer.jsx'
+import { Answer } from './Answer.jsx';
+import styled from 'styled-components';
+
+const StyledAnswerList = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
 
 const AnswerList = ({ answers }) => {
 
-  var id = 0;
-
   return (
-    <div>
-      {answers.map((answer) => {
-        id++;
-        return (
-        <Answer answerData={answer} key={answer.id} id={id} />
-        )})}
-    </div>
-
+    <StyledAnswerList>
+      <div>
+          <strong>A:&nbsp;   </strong>
+      </div>
+      <div>
+        {answers.map((answer) => {
+          return (
+          <Answer answerData={answer} key={answer.id} />
+          )})}
+      </div>
+    </StyledAnswerList>
   )
 }
 
