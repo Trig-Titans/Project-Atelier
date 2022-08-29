@@ -15,7 +15,7 @@ import OverviewDescription from './overview-components/Description.jsx';
 import OverviewFacts from './overview-components/Facts.jsx';
 // Here are all of the styled components
 const StyledOverviewGrid = styled.div`
-  margin-left: 20%;
+  margin: auto;
   column-gap: 20px;
   row-gap: 20px;
   width: 60%;
@@ -83,7 +83,7 @@ function Overview(props) {
       name: "",
       original_price: "",
       photos: [
-        {thumbnail_url: 'https://images.unsplash.com/photo-1554260570-9140f…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: ''}
+        {thumbnail_url: '', url: ''}
       ],
     }
   ]);
