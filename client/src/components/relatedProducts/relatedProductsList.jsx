@@ -99,7 +99,7 @@ const RelatedProducts = (props) => {
           : product.styles.results[0]
           : product.styles.results[0];
 
-          console.log('style', style)
+          // console.log('style', style)
           // console.log('styleUrl', style.photos[0].url)
 
 

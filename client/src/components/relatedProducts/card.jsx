@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import TestStarIcon from '../stars/star.jsx'
 
 const Carta = styled.div`
 border: solid;
@@ -31,7 +32,6 @@ const CardParagraphs = styled.p`
 `
 
 const Card = (props) => {
-  axios
 
   return (
     <Carta>
@@ -41,6 +41,8 @@ const Card = (props) => {
         <h5><b>{props.name}</b></h5>
         <CardParagraphs>{props.salePrice}</CardParagraphs>
         <CardParagraphs>${props.price}</CardParagraphs>
+        <CardParagraphs>salePrice</CardParagraphs>
+        <TestStarIcon/>
       </Container>
   </Carta>
   )
