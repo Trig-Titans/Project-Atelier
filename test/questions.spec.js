@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 const jest = require('jest');
-const { dateParser } = require('../client/src/components/questions/Question.jsx')
+const { dateParser } = require('../client/src/components/questions/Question.jsx');
+
 
 
 test('date is rendering correctly', () => {

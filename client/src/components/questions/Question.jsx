@@ -1,14 +1,26 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const StyledQuestion = styled.div`
+
+const StyledQandA = styled.div`
   text-align: left;
   padding: 0.7% 0;
 `;
+const StyledQuestion = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+`;
+const StyledAnswerList = styled.div`
+
+`;
 const StyledAnswer = styled.div`
   padding: 0.7% 0;
+`;
+const StyledLinks = styled.div`
+
 `;
 
 const dateParser = (rawDate) => {
@@ -26,16 +38,32 @@ const dateParser = (rawDate) => {
 
 const Question = ({ questionData }) => {
 
+  const [checkUserClick, setCheckUserClick] = useState(false);
+  const [helpfulCount, setHelpfulCount] = useState(questionData.question_helpfulness);
+
   // turns the answers object into an array for easy iteration
   var answerArray = [];
   for (var key in questionData.answers) {
     answerArray.push(questionData.answers[key]);
   }
 
+  var helpfulClick = () => {
+    if (checkUserClick === true) {
+      return;
+    } else {
+      setHelpfulCount(helpfulCount + 1);
+      setCheckUserClick(true);
+    }
+
+  }
+
   return (
-    <StyledQuestion >
-      <strong>{'Q: ' + questionData.question_body}</strong>
-      <div>
+    <StyledQandA >
+      <StyledQuestion >
+        <strong>{'Q: ' + questionData.question_body}</strong>
+        <StyledLinks>Helpful? <u onClick={helpfulClick}>Yes</u> {`(${helpfulCount})`}</StyledLinks>
+      </StyledQuestion>
+      <StyledAnswerList>
         {answerArray.map((answer) => {
 
           let dateStr = dateParser(answer.date);
@@ -68,8 +96,8 @@ const Question = ({ questionData }) => {
             </StyledAnswer>
           )
         })}
-      </div>
-    </StyledQuestion>
+      </StyledAnswerList>
+    </StyledQandA>
 
   )
 }
