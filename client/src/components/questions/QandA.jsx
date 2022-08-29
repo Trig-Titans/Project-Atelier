@@ -19,7 +19,7 @@ const QandA = () => {
       headers: {Authorization: API_KEY}
     })
     .then((response) => {
-      console.log(response.data.results);
+      //console.log(response.data.results);
       setQuestions(response.data.results);
     })
     .catch((err) => {
