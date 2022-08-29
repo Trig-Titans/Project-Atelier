@@ -21,7 +21,7 @@ let ProductBreakdown = () => {
   </div>);
 }
 
-let Breakdown = () => {
+let Breakdown = ( {meta} ) => {
   return (<div>
     <AverageRating />
     <RatingBreakdown />
