@@ -1,31 +1,16 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faStar} from '@fortawesome/free-solid-svg-icons'
+import SolidStarIcon from './solidStar.jsx'
+import OutlineStarIcon from './outlineStar.jsx'
 
 let container = {
   position: 'relative',
-  display: 'inlineBlock'
+  display: 'inline-block'
 }
-
-let first = {
-  'verticalAlign': 'top',
-  color: 'lightgrey',
-}
-let second= {
-  color: 'white',
-  position: 'absolute',
-  left: '0',
-  top: '0',
-  // width: '10%',
-  overflow: 'hidden',
-}
-
-
 
 const TestStarIcon = (props) => (
   <div style={container}>
-    <FontAwesomeIcon style={first} icon={faStar}/>
-    <FontAwesomeIcon style={second} icon={faStar} transform="shrink-6"/>
+     <OutlineStarIcon />
+    <SolidStarIcon />
     </div> )
 
 
