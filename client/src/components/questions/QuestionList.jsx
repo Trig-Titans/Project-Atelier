@@ -5,11 +5,11 @@ import Question from './Question.jsx';
 
 const QuestionList = ({ questions }) => {
   return (
-   <ol>
+   <div>
     {questions.map((q) => (
       <Question questionData={q} key={q.question_id}/>
     ))}
-   </ol>
+   </div>
   )
 }
 
