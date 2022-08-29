@@ -53,23 +53,23 @@ const Question = ({ questionData }) => {
   var answerArray = sortAnswers(questionData.answers);
 
   var helpfulClick = () => {
-  if (checkUserClick === true) {
-    return;
-  } else {
-    setHelpfulCount(helpfulCount + 1);
-    axios({
-      method: 'put',
-      url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionData.question_id}/helpful`,
-      headers: {Authorization: API_KEY}
-    })
-    .then((response) => {
-      setCheckUserClick(true);
-    })
-    .catch((err) => {
-      //console.log(err);
-    })
+    if (checkUserClick === true) {
+      return;
+    } else {
+      setHelpfulCount(helpfulCount + 1);
+      axios({
+        method: 'put',
+        url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionData.question_id}/helpful`,
+        headers: {Authorization: API_KEY}
+      })
+      .then((response) => {
+        setCheckUserClick(true);
+      })
+      .catch((err) => {
+        //console.log(err);
+      })
+    }
   }
-}
 
   return (
     <StyledQandA >
