@@ -7,7 +7,6 @@ import {ReviewsContainer} from '../sharedStyles/sharedStyledComponents';
 let ReviewsList = ( {reviews} ) => {
   let reviewList = reviews.results;
   return (<ReviewsContainer>
-    <p>{console.log(reviews)}</p>
     <SorterBar />
     <ReviewTiles reviewList={reviewList} />
     <ReviewButtons />

@@ -23,7 +23,6 @@ let ProductBreakdown = () => {
 
 let Breakdown = ( {meta} ) => {
   return (<div>
-    <p>{console.log(meta)}</p>
     <AverageRating />
     <RatingBreakdown />
     <ProductBreakdown />

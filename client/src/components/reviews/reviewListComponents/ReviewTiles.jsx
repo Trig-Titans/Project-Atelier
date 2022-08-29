@@ -38,7 +38,7 @@ const makeReviewSummaryandBody = (summary, body) => {
 
 const makeSellerResponse = (response) => {
   if (response !== null) {
-    return <div><h4>Response from seller:</h4><p>{response}</p></div>
+    return <div style={{backgroundColor: '#8eaff158', borderRadius: '3px'}}><h4>Response from seller:</h4><p>{response}</p></div>
   } else {
     return '';
   }
@@ -53,7 +53,7 @@ const ReviewTiles = ({reviewList}) => {
     let sellerResponse = makeSellerResponse(review.response);
 
     return (<ReviewTileContainer key={review.review_id}>
-      <p>{review.rating}{date}</p>
+      <p>{review.rating} stars {date}</p>
       {summaryAndBody}
       {recommend}
       <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
