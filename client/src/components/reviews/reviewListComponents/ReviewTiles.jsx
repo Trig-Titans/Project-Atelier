@@ -1,6 +1,6 @@
 import React from 'react';
 import {ReviewTileContainer} from '../sharedStyles/sharedStyledComponents';
-const {Checkmark} = require('/Users/cathy/HackReactor/seniorProject/rfe2207-fec-trig-titans/node_modules/react-checkmark/dist/react-checkmark.min');
+const {Checkmark} = require('react-checkmark');
 
 const makeDate = (dateData) => {
   // without these regular expressions at the end of the dateData, the date shows up as off by a day. Adding these filters fixed that issue

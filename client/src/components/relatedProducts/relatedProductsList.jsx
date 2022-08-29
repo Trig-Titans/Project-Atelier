@@ -53,7 +53,7 @@ const RelatedProducts = (props) => {
                   return productStylesObj;
                 })
             }))
-              .then(response => 
+              .then(response => {
                 let productsStylesArray = response;
 
                 Promise.all(productsStylesArray.map(product => {
