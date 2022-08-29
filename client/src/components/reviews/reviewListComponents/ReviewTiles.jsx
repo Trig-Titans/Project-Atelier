@@ -2,19 +2,32 @@ import React from 'react';
 import {Checkmark} from 'react-checkmark';
 import {ReviewTileContainer} from '../sharedStyles/sharedStyledComponents';
 
+export const makeRecommendation = (recommendation) => {
+  if (recommendation === true) {
+    return <p><Checkmark size='medium'/> I recommend this product!</p>;
+  } else {
+    return <p>Nope!</p>
+  }
+};
+
+export const makeDate = (dateData) => {
+  let formatedDate = new Date(dateData);
+  formatedDate = formatedDate.toDateString();
+  formatedDate = formatedDate.split(' ');
+  formatedDate.shift();
+  formatedDate = formatedDate.join(' ');
+  return formatedDate;
+};
+
 export const ReviewTiles = ({reviewList}) => {
 
   return reviewList.map((review) => {
-    let recommend;
-    if (review.recommend === true) {
-      recommend = <p><Checkmark size='medium'/> I recommend this product!</p>;
-    } else {
-      recommend = <p>Nope!</p>
-    }
+    let recommend = makeRecommendation(review.recommend);
+    let date = makeDate(review.date);
+
     return (<ReviewTileContainer key={review.review_id}>
-      <p>{review.rating}</p>
-      <p>{review.date}</p>
-      <p>{review.summary}</p>
+      <p>{review.rating}{date}</p>
+      <h4>{review.summary}</h4>
       <p>{review.body}</p>
       {recommend}
       <p>{review.reviewer_name}</p>
