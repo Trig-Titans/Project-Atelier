@@ -7,6 +7,10 @@ import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
 // import styled from 'styled-components';
 
+function sum(a, b) {
+  return a + b;
+}
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
