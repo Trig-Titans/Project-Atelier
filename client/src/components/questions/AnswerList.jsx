@@ -10,19 +10,26 @@ const StyledAnswerList = styled.div`
 
 const AnswerList = ({ answers }) => {
 
-  const [loadMore, setLoadMore] = useState('none');
+  const [visible, setVisible] = useState('none');
+  const [loadMore, setLoadMore] = useState('See more answers');
   const [list, setList] = useState(answers);
 
   useEffect(() => {
     if (answers.length > 2) {
-      setLoadMore('block');
+      setVisible('block');
       setList(list.slice(0,2));
     }
   }, [])
 
   var loadAnswers = () => {
-    setList(answers);
-    setLoadMore('none');
+    if (loadMore == 'See more answers') {
+      setList(answers);
+      setLoadMore('Collapse answers');
+    } else if (loadMore == 'Collapse answers') {
+      setList(list.slice(0,2));
+      setLoadMore('See more answers');
+    }
+
   }
 
   return (
@@ -35,7 +42,7 @@ const AnswerList = ({ answers }) => {
           return (
           <Answer answerData={answer} key={answer.id} />
           )})}
-        <strong style={{display: loadMore}} onClick={loadAnswers}>See more answers</strong>
+        <strong style={{display: visible}} onClick={loadAnswers}>{loadMore}</strong>
       </div>
     </StyledAnswerList>
   )
