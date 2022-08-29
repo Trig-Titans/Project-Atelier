@@ -21,3 +21,15 @@ export const Button = styled.button`
 export const Container = styled.div`
   text-align: center;
 `;
+
+export const ReviewTileContainer = styled.div`
+  text-align: left;
+  border: 2px solid black;
+  margin: 10px;
+  padding: 2px;
+`;
+
+export const ReviewsContainer = styled.div`
+  float: right;
+  width: 60%;
+`;
