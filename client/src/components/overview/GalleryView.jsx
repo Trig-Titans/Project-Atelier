@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -16,10 +15,10 @@ import OverviewDescription from './overview-components/Description.jsx';
 import OverviewFacts from './overview-components/Facts.jsx';
 // Here are all of the styled components
 const StyledOverviewGrid = styled.div`
-  margin-left: 20%;
+  margin: auto;
   column-gap: 20px;
   row-gap: 20px;
-  width: 60%;
+  width: 50%;
   text-align: left;
   display: grid;
   color: black;
@@ -30,6 +29,12 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvStyle'
     'OvPicture OvForm'
     'OvDesc OvMeta'
+    /* 'OvPicture OvPicture'
+    'OvPicture OvPicture'
+    'OvPicture OvPicture'
+    'OvPicture OvPicture'
+    'OvPicture OvPicture'
+    'OvDesc OvMeta' */
 `;
 
 // Here is the axios request to receive the style information for a product
@@ -39,7 +44,6 @@ const retrieveStyles = axios({
   headers: {
     Authorization: API_KEY
   }
-  // data.data.results
 });
 
 // Here is the axios request to receive the product information
@@ -49,7 +53,6 @@ const retrieveProductInfo = axios({
   headers: {
     Authorization: API_KEY
   }
-  // data.data
 });
 
 // Here is the axios request to receive receive the ratings of a product
@@ -59,7 +62,6 @@ const retrieveRatingInfo = axios({
   headers: {
     Authorization: API_KEY
   }
-  // data.data.ratings
 });
 
 // This is the function to create the average rating
@@ -87,7 +89,7 @@ function Overview(props) {
       name: "",
       original_price: "",
       photos: [
-        {thumbnail_url: 'https://images.unsplash.com/photo-1554260570-9140f…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80', url: ''}
+        {thumbnail_url: '', url: ''}
       ],
     }
   ]);
@@ -130,4 +132,4 @@ function Overview(props) {
   )
 }
 
-export default Overview;
+export {Overview, findAverageRating}
