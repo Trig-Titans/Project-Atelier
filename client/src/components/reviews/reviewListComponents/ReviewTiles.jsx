@@ -19,9 +19,10 @@ const makeRecommendation = (recommendation) => {
   if (recommendation === true) {
     return <div style={{ display: 'flex'}}><Checkmark size='medium'/> <p>I recommend this product!</p></div>;
   } else {
-    return <p></p>
+    return '';
   }
 };
+
 const makeReviewSummaryandBody = (summary, body) => {
   let sumAndBod;
   if (summary === undefined) {
@@ -33,19 +34,30 @@ const makeReviewSummaryandBody = (summary, body) => {
     sumAndBod = <div><h4>{summary}</h4><p>{body}</p></div>
   }
   return sumAndBod;
-}
+};
+
+const makeSellerResponse = (response) => {
+  if (response !== null) {
+    return <div><h4>Response from seller:</h4><p>{response}</p></div>
+  } else {
+    return '';
+  }
+};
+
 const ReviewTiles = ({reviewList}) => {
 
   return reviewList.map((review) => {
     let recommend = makeRecommendation(review.recommend);
     let date = makeDate(review.date);
     let summaryAndBody = makeReviewSummaryandBody(review.summary, review.body);
+    let sellerResponse = makeSellerResponse(review.response);
 
     return (<ReviewTileContainer key={review.review_id}>
       <p>{review.rating}{date}</p>
       {summaryAndBody}
       {recommend}
-      <p>{review.reviewer_name}</p>
+      <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
+      {sellerResponse}
     </ReviewTileContainer>)
   });
   // (<div>
