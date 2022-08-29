@@ -39,6 +39,11 @@ const Question = ({ questionData }) => {
         {answerArray.map((answer) => {
 
           let dateStr = dateParser(answer.date);
+          let user = answer.answerer_name;
+
+          if (answer.answerer_name === 'Seller') {
+            user = <strong>Seller</strong>;
+          }
 
           if (answer === answerArray[0]) {
             return (
@@ -47,7 +52,7 @@ const Question = ({ questionData }) => {
                 <strong>A: </strong>{answer.body}
               </div>
               <div>
-                by: {answer.answerer_name}, {dateStr}
+                by: {user}, {dateStr}
               </div>
             </StyledAnswer>
             )
@@ -58,7 +63,7 @@ const Question = ({ questionData }) => {
                 {answer.body}
               </div>
               <div>
-                by: {answer.answerer_name}, {dateStr}
+                by: {user}, {dateStr}
               </div>
             </StyledAnswer>
           )
@@ -69,5 +74,5 @@ const Question = ({ questionData }) => {
   )
 }
 
-export default Question;
+export {Question, dateParser};
 

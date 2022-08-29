@@ -25,6 +25,7 @@ const QandA = () => {
     .catch((err) => {
       //console.log(err);
     })
+
   }, [])
 
 
