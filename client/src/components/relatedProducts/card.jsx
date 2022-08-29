@@ -2,9 +2,14 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import TestStarIcon from '../stars/star.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faStar} from '@fortawesome/free-solid-svg-icons'
 
 const Carta = styled.div`
 border: solid;
+border-width: thin;
+border-color: #f2f2f2;
 width: 200px;
 height: 299px;
 `
@@ -14,6 +19,10 @@ height: 299px;
 const Pic = styled.img`
 width: 200px;
 height: 195px;
+`
+const PicContainer=styled.div`
+  width: 200px;
+  height: 195px;
 `
 
 const Container = styled.div`
@@ -29,15 +38,22 @@ const CardParagraphs = styled.p`
 `
 
 const Card = (props) => {
-  axios
 
   return (
     <Carta>
-    <Pic src="https://image.shutterstock.com/image-vector/colorful-illustration-test-word-260nw-1438324490.jpg" />
+      <PicContainer >
+      <FontAwesomeIcon icon={faStar} />
+      <Pic src={props.picUrl} />
+
+      </PicContainer>
       <Container>
-      <CardParagraphs>Category</CardParagraphs>
-        <h5><b>John Doe</b></h5>
-        <CardParagraphs>$123</CardParagraphs>
+
+      <CardParagraphs>{props.category}</CardParagraphs>
+        <h5><b>{props.name}</b></h5>
+        <CardParagraphs>{props.salePrice}</CardParagraphs>
+        <CardParagraphs>${props.price}</CardParagraphs>
+        <CardParagraphs>salePrice</CardParagraphs>
+        <TestStarIcon/>
       </Container>
   </Carta>
   )
