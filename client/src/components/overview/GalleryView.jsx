@@ -18,7 +18,7 @@ const StyledOverviewGrid = styled.div`
   margin: auto;
   column-gap: 20px;
   row-gap: 20px;
-  width: 60%;
+  width: 50%;
   text-align: left;
   display: grid;
   color: black;
@@ -29,6 +29,12 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvStyle'
     'OvPicture OvForm'
     'OvDesc OvMeta'
+    /* 'OvPicture OvPicture'
+    'OvPicture OvPicture'
+    'OvPicture OvPicture'
+    'OvPicture OvPicture'
+    'OvPicture OvPicture'
+    'OvDesc OvMeta' */
 `;
 
 // Here is the axios request to receive the style information for a product

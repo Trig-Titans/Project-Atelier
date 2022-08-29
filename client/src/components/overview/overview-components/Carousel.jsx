@@ -5,13 +5,13 @@ import { findAverageRating } from '../GalleryView.jsx'
 
 const StyledOverviewCarousel = styled.div`
   grid-area: OvPicture;
-  max-width: 40vw;
-  height: auto;
+  max-width: 200vw;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
   border-radius: 2px;
+  background-color: white;
 `;
 
 const ThumbnailSelector = styled.div`
@@ -55,6 +55,10 @@ const Thumbnail = styled.div`
 const Slide = styled.div`
   min-width: 100%;
   transition: 0.5s;
+  img {
+    transition: 0.5s;
+    border-radius: 2px;
+  }
 `
 // left button for carousel
 const LeftButton = styled.button`
@@ -124,6 +128,7 @@ export default function OverviewCarousel({ photos }) {
     <ThumbnailSelector>
       {
         photos.map((photo, index) => {
+          // if the thumbnail is selected, change the opacity of the image
           if (x === -100*index) {
             return (
               <Thumbnail key={index} style={{opacity: '0.5'}}onClick={() => {
