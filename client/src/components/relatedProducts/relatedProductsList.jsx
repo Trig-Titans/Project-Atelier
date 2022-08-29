@@ -9,13 +9,13 @@ import styled from 'styled-components';
 
 const List = styled.div`
   margin-left: 20%;
-  width: 60%;
+  width:60%;
 `
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
+    breakpoint: {max: 3000, min: 1024 },
+    items: 3.25,
     slidesToSlide: 1 // optional, default to 1.
   },
   tablet: {
@@ -109,7 +109,9 @@ const RelatedProducts = (props) => {
           // console.log('styleUrl', style.photos[0].url)
 
 
-        return (<Card picUrl= {style.photos[0]['url']} category={product.category} name={product.name} price={style.original_price} salePrice={style.sale_price} key={index} />)
+        return (
+            <Card picUrl= {style.photos[0]['url']} category={product.category} name={product.name} price={style.original_price} salePrice={style.sale_price} key={index}/>
+        )
       } )}
     </Carousel>
     </List>
