@@ -1,11 +1,13 @@
 import React from 'react';
-
 import {ReviewTileContainer} from '../sharedStyles/sharedStyledComponents';
 const {Checkmark} = require('/Users/cathy/HackReactor/seniorProject/rfe2207-fec-trig-titans/node_modules/react-checkmark/dist/react-checkmark.min');
 
 const makeDate = (dateData) => {
-  let formatedDate = new Date(dateData.replace(/-/g, '\/').replace(/T.+/, ''));
-  formatedDate = formatedDate.toDateString();
+  // without these regular expressions at the end of the dateData, the date shows up as off by a day. Adding these filters fixed that issue
+  // this line writes a date stamp into human legible dates ex: Mon Jul 12 2019.
+  let formatedDate = new Date(dateData.replace(/-/g, '\/').replace(/T.+/, '')).toDateString();
+
+  // need to take off the day of the week and add a comma between day# and year#
   formatedDate = formatedDate.split(' ');
   formatedDate.shift();
   formatedDate[1] = formatedDate[1] + ',';
@@ -15,22 +17,33 @@ const makeDate = (dateData) => {
 
 const makeRecommendation = (recommendation) => {
   if (recommendation === true) {
-    return <p><Checkmark size='medium'/> I recommend this product!</p>;
+    return <div style={{ display: 'flex'}}><Checkmark size='medium'/> <p>I recommend this product!</p></div>;
   } else {
-    return <p>Nope!</p>
+    return <p></p>
   }
 };
-
+const makeReviewSummaryandBody = (summary, body) => {
+  let sumAndBod;
+  if (summary === undefined) {
+    let bod = body.substring(58, 250);
+    let sum = body.substring(0, 58);
+    sumAndBod = <div><h4>{sum}...</h4><p>{bod}</p></div>
+  } else {
+    body = body.substring(0,250);
+    sumAndBod = <div><h4>{summary}</h4><p>{body}</p></div>
+  }
+  return sumAndBod;
+}
 const ReviewTiles = ({reviewList}) => {
 
   return reviewList.map((review) => {
     let recommend = makeRecommendation(review.recommend);
     let date = makeDate(review.date);
+    let summaryAndBody = makeReviewSummaryandBody(review.summary, review.body);
 
     return (<ReviewTileContainer key={review.review_id}>
       <p>{review.rating}{date}</p>
-      <h4>{review.summary}</h4>
-      <p>{review.body}</p>
+      {summaryAndBody}
       {recommend}
       <p>{review.reviewer_name}</p>
     </ReviewTileContainer>)
