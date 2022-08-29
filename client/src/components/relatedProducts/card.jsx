@@ -3,6 +3,8 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import TestStarIcon from '../stars/star.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faStar} from '@fortawesome/free-solid-svg-icons'
 
 const Carta = styled.div`
 border: solid;
@@ -17,6 +19,10 @@ height: 299px;
 const Pic = styled.img`
 width: 200px;
 height: 195px;
+`
+const PicContainer=styled.div`
+  width: 200px;
+  height: 195px;
 `
 
 const Container = styled.div`
@@ -35,8 +41,13 @@ const Card = (props) => {
 
   return (
     <Carta>
-    <Pic src={props.picUrl} />
+      <PicContainer >
+      <FontAwesomeIcon icon={faStar} />
+      <Pic src={props.picUrl} />
+
+      </PicContainer>
       <Container>
+
       <CardParagraphs>{props.category}</CardParagraphs>
         <h5><b>{props.name}</b></h5>
         <CardParagraphs>{props.salePrice}</CardParagraphs>
