@@ -29,14 +29,12 @@ const StyleCircle = styled.div`
 
 
 export default function OverViewSelector({ styles }) {
-  console.log(styles[0]);
   return (
   <StyledOverviewStyleSelector>
     <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
     <StyledOverviewStylesSection>
       {
       styles.map((style, index) => {
-        console.log(style);
         return (
           // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
           // i.e. the first picture is at x=0, the second is x=100, the third is x=200
