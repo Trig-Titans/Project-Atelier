@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import styleIndexContext from '../GalleryView.jsx';
 
 const StyledOverviewStyleSelector = styled.div`
   grid-area: OvStyle;
@@ -20,15 +21,16 @@ const StyleCircle = styled.div`
   height:50px;
   overflow: hidden;
   border-radius: 50%;
-  img {
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: auto
-  }
+  background-size: cover;
+  border: 2px solid gray;
 `;
 
 
-export default function OverViewSelector({ styles }) {
+export default function OverViewSelector({ styles, setStyles, styleIndex }) {
+  function setNewIndex() {
+    setStyles(styleIndex = index)
+  }
+
   return (
   <StyledOverviewStyleSelector>
     <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
@@ -39,8 +41,10 @@ export default function OverViewSelector({ styles }) {
           // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
           // i.e. the first picture is at x=0, the second is x=100, the third is x=200
           // updating the x value changes what picture is shown
-          <StyleCircle key={index} style={{backgroundColor: 'white'}}>
-            <img src={style.photos[0].thumbnail_url}></img>
+          <StyleCircle onClick={() => {
+            setStyles(styleIndex = index)
+          }}
+          key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`}}>
           </StyleCircle>
         )
       })
