@@ -7,14 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 const Carta = styled.div`
-  border: solid;
+  border: solid 1px;
   border-width: thin;
-  border-color: #f2f2f2;
+  border-color: lightgrey;
   width: 200px;
   height: 299px;
 `
 const PicContainer = styled.div`
-  border: 1px solid;
   width: 200px;
   height: 195px;
   position: relative;
@@ -22,13 +21,13 @@ const PicContainer = styled.div`
 const StarBtn = styled.div`
   float: right;
   position: absolute;
-  right: 5px;
-  top: 0px;
+  right: 10px;
+  top: 2px;
   color: cornflowerblue;
 
 `
 const Pic = styled.img`
-  width: 200px;
+  width: 199px;
   height: 195px;
 `
 const Container = styled.div`
@@ -42,12 +41,18 @@ const CardParagraphs = styled.p`
 `
 
 const Card = (props) => {
+  // create hover handler for pic
+  // on hover will call set interval
+  // set interval will call hover handler
+  // hover handler will change the pic src
+  // when no longer hovering (mouse over) pic
+  //src will return to 0 index url
 
   return (
     <Carta>
       <PicContainer >
         <StarBtn><FontAwesomeIcon icon={faStar} /></StarBtn>
-        <Pic src={props.picUrl} />
+        <Pic src={props.picUrls[0]} />
       </PicContainer>
       <Container>
 

@@ -88,14 +88,12 @@ const RelatedProducts = (props) => {
       <Carousel responsive={responsive}>
         {accumulatedProductData.map((product, index) => {
 
-          let style = product.styles.results.length > 1 ?
-            product.styles.results.find(result => result['default?'] === true) !== undefined ?
+            let style = product.styles.results.find(result => result['default?'] === true) !== undefined ?
               product.styles.results.find(result => result['default?'] === true)
               : product.styles.results[0]
-            : product.styles.results[0];
 
           return (
-            <Card picUrl={style.photos[0]['url']} category={product.category} name={product.name} price={style.original_price} salePrice={style.sale_price} key={index} />
+            <Card picUrls={style.photos.map(photo => photo.url)}  category={product.category} name={product.name} price={style.original_price} salePrice={style.sale_price} key={index} />
           )
         })}
       </Carousel>
