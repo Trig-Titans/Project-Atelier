@@ -11,7 +11,7 @@ const root = createRoot(document.getElementById("root"));
 
 export const App = () => {
   return  <div >
-            <h1>Front End Capstone Avatar Project</h1>
+           <h1>Front End Capstone Avatar Project</h1>
               <Overview />
               <RelatedProducts />
               <QandA />

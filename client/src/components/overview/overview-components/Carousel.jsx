@@ -15,14 +15,15 @@ const StyledOverviewCarousel = styled.div`
 `;
 
 const ThumbnailSelector = styled.div`
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   justify-items: center;
-  justify-content: space-between;
-  width: 4%;
+  align-items: center;
+  width: 2%;
   position: absolute;
   width: auto;
-  height: 60%;
+  height: 100%;
   background-color: rgba(255,255,255,0.5);
   overflow: auto;
   direction: rtl;
@@ -31,23 +32,20 @@ const ThumbnailSelector = styled.div`
   &::-webkit-scrollbar {
     background: transparent;
     cursor: pointer;
+    width: 0px;
   };
-  &::-webkit-scrollbar-thumb {
-    background: #cecece;
-    border-radius: 2px;
-  }
 `
 
 const Thumbnail = styled.div`
-  margin: 10px;
-  margin-top: 20px;
+  margin: 5px;
+  margin-top: 5px;
   border: 2px solid grey;
-  width: 100px;
+  width: 75px;
   border-radius: 2px;
   cursor: pointer;
   transition: 0.3s;
   &:hover {
-    border: 2px solid white;
+    border: 2px solid black;
   }
 `
 
@@ -97,6 +95,31 @@ const RightButton = styled.button`
   }
 `
 
+const DownButton = styled.button`
+  position: absolute;
+  bottom: 0%;
+  color: gray;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s
+  &:hover {
+    color: black;
+  }
+`
+const UpButton = styled.button`
+  position: absolute;
+  top: 0%;
+  color: gray;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s
+  &:hover {
+    color: black;
+  }
+`
+
 export default function OverviewCarousel({ photos }) {
   // this state is the viewpoint that the carousel is currently at, when the button is pressed, it increases the current viewpoint of the div by 100, thus changing the photo.
   // Here is a link to the carousel video I watched to get this down. Bad music but good video
@@ -111,27 +134,28 @@ export default function OverviewCarousel({ photos }) {
     setx(x - 100);
   }
 
+  const photoList = photos.map((photo, index) => {
+    return (
+      // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
+      // i.e. the first picture is at x=0, the second is x=100, the third is x=200
+      // updating the x value changes what picture is shown
+      <Slide key={index} style={{transform: `translateX(${x}%)`}}>
+        <img src={photo.url}/>
+      </Slide>
+    )
+  })
+
   return (
   <StyledOverviewCarousel>
-    {
-      photos.map((photo, index) => {
-        return (
-          // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
-          // i.e. the first picture is at x=0, the second is x=100, the third is x=200
-          // updating the x value changes what picture is shown
-          <Slide key={index} style={{transform: `translateX(${x}%)`}}>
-            <img src={photo.url}/>
-          </Slide>
-        )
-      })
-    }
+    {photoList}
     <ThumbnailSelector>
+      <UpButton>Up</UpButton>
       {
         photos.map((photo, index) => {
           // if the thumbnail is selected, change the opacity of the image
           if (x === -100*index) {
             return (
-              <Thumbnail key={index} style={{opacity: '0.5'}}onClick={() => {
+              <Thumbnail key={index} style={{border: '2px solid white'}}onClick={() => {
                 setx(x = -100*index)
               }}>
                 <img src={photo.thumbnail_url}></img>
@@ -148,6 +172,7 @@ export default function OverviewCarousel({ photos }) {
           }
         })
       }
+      <DownButton>Down</DownButton>
     </ThumbnailSelector>
     {/* these two ternary statements are to render in either a button or nothing depending on what position the gallery is in */}
     {x === 0 ? (<div></div>) : (<LeftButton onClick={goLeft}>left</LeftButton>)}
