@@ -26,11 +26,21 @@ const makeRecommendation = (recommendation) => {
 const makeReviewSummaryandBody = (summary, body) => {
   let sumAndBod;
   if (summary === undefined) {
-    let bod = body.substring(58, 250);
-    let sum = body.substring(0, 58);
-    sumAndBod = <div><h4>{sum}...</h4><p>{bod}</p></div>
+    let sum;
+    let bod;
+    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+    sum = body.substring(0, 30);
+    sum += '...';
+    bod = body.substring(30, 280);
+    if (body.length > 280) {
+      bod += '...';
+    }
+    sumAndBod = <div><h4>{sum}</h4><p>{bod}</p></div>
   } else {
-    body = body.substring(0,250);
+    if (body.length > 250) {
+      body = body.substring(0,250);
+      body += '...';
+    }
     sumAndBod = <div><h4>{summary}</h4><p>{body}</p></div>
   }
   return sumAndBod;
@@ -73,4 +83,4 @@ const ReviewTiles = ({reviewList}) => {
 }
 
 
-export {ReviewTiles, makeDate, makeRecommendation}
+export {ReviewTiles, makeDate, makeRecommendation, makeReviewSummaryandBody}
