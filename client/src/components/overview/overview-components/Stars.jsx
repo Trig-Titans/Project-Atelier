@@ -9,7 +9,7 @@ margin-top: 50px
 export default function OverviewStars({ stars }) {
   return (
     <StyledOverviewStars>
-        <p>{stars}</p>
+        <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>
       </StyledOverviewStars>
   );
 }

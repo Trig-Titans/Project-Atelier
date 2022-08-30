@@ -9,9 +9,9 @@ import QandA from './components/questions/QandA.jsx'
 
 const root = createRoot(document.getElementById("root"));
 
-const App = () => {
-  return  <div>
-            <h1>Front End Capstone Avatar Project</h1>
+export const App = () => {
+  return  <div >
+           <h1>Front End Capstone Avatar Project</h1>
               <Overview />
               <RelatedProducts />
               <QandA />
@@ -20,3 +20,4 @@ const App = () => {
 }
 
 root.render(<App />);
+
