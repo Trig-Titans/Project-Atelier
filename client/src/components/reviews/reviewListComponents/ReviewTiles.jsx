@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReviewTileContainer} from '../sharedStyles/sharedStyledComponents';
+import {ReviewTileContainer, RecommendationContainer, SellersResponse} from '../sharedStyles/sharedStyledComponents';
 const {Checkmark} = require('react-checkmark');
 
 const makeDate = (dateData) => {
@@ -17,7 +17,7 @@ const makeDate = (dateData) => {
 
 const makeRecommendation = (recommendation) => {
   if (recommendation === true) {
-    return <div style={{ display: 'flex'}}><Checkmark size='medium'/> <p>I recommend this product!</p></div>;
+    return <RecommendationContainer><Checkmark size='medium' /> <p style={{margin: '5px'}} >I recommend this product!</p></RecommendationContainer>;
   } else {
     return '';
   }
@@ -48,7 +48,7 @@ const makeReviewSummaryandBody = (summary, body) => {
 
 const makeSellerResponse = (response) => {
   if (response !== null) {
-    return <div style={{backgroundColor: '#8eaff158', borderRadius: '3px'}}><h4>Response from seller:</h4><p>{response}</p></div>
+    return <SellersResponse><h4>Response from seller:</h4><p>{response}</p></SellersResponse>
   } else {
     return '';
   }

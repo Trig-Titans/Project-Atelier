@@ -44,3 +44,15 @@ export const BreakdownContainer = styled.div`
   float: left;
   width: 20%;
 `;
+
+export const RecommendationContainer = styled.div`
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const SellersResponse = styled.div`
+  background-color: #8eaff158;
+  border-radius: 5px;
+`;
