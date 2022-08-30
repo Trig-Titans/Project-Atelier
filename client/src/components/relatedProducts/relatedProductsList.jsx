@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import Carousel from 'react-multi-carousel';
-import "react-multi-carousel/lib/styles.css";
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
 import Card from './card.jsx'

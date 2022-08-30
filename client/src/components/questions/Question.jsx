@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import AnswerList from './AnswerList.jsx';
+import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
 
@@ -45,7 +46,9 @@ var sortAnswers = (answersObject) => {
 }
 
 
-const Question = ({ questionData }) => {
+const Question = ({ questionData, productName }) => {
+
+  const [answerModal, setAnswerModal] = useState(false);
 
   const [checkUserClick, setCheckUserClick] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(questionData.question_helpfulness);
@@ -71,13 +74,20 @@ const Question = ({ questionData }) => {
     }
   }
 
+  var addAnswer = () => {
+    setAnswerModal(true);
+  }
+
   return (
     <StyledQandA >
       <StyledQuestion >
         <strong>{'Q: ' + questionData.question_body}</strong>
-        <StyledLinks>Helpful? <u onClick={helpfulClick}>Yes</u> {`(${helpfulCount})`}</StyledLinks>
+        <StyledLinks>
+          Helpful? <u onClick={helpfulClick}>Yes</u> {`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <u data-testid={questionData.question_id} onClick={addAnswer}>Add Answer</u>
+        </StyledLinks>
       </StyledQuestion>
       <AnswerList answers={answerArray}/>
+      {answerModal ? <AnswerModal questionBody={questionData.question_body} productName={productName}/> : <div></div>}
     </StyledQandA>
 
   )
