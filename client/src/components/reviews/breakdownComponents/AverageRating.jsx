@@ -6,6 +6,6 @@ let AverageRating = () => {
     <p>ALL OF THE STARS</p>
     <p>Total Number of Reviews</p>
   </div>);
-}
+};
 
 export {AverageRating};

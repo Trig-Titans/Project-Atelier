@@ -4,4 +4,6 @@ let ProductBreakdown = () => {
   return (<div>
     <p>Qualities rating graph</p>
   </div>);
-}
+};
+
+export { ProductBreakdown };
