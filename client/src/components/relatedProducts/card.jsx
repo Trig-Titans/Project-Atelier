@@ -76,6 +76,9 @@ const Card = (props) => {
     event.target.src = props.picUrls[0]
   }
 
+
+
+
   /*if props.id === related
   set btn to faStar
   if props.id === outfit

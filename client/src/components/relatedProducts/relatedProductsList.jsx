@@ -19,6 +19,9 @@ const responsive = {
     slidesToSlide: .75
   }
 };
+
+
+
 //for new commit aug 30
 
 const RelatedProducts = (props) => {
