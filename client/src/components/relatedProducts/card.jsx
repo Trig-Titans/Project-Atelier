@@ -52,15 +52,38 @@ font-size: 11px;
 
 const Card = (props) => {
   // create hover handler for pic
-  const hoverHandler = () => {
-    console.log('helloWorld')
+
+  // let pic = 0
+
+  // const hoverHandler = (event) => {
+  //   pic++
+  //   console.log(pic)
+  //   event.target.src = props.picUrls[pic++]
+  // }
+
+  let urlIndex = 0;
+  let intervalID ;
+
+  const hoverHandler = (event) => {
+
+    intervalID = setInterval( ()=> {
+      urlIndex++
+
+      if(urlIndex === props.picUrls.length ){
+        urlIndex = 0;
+      }
+
+     event.target.src = props.picUrls[urlIndex]
+
+    },1000)
+
+    }
+
+
+  const exitHandler = (event) => {
+    clearInterval(intervalID)
+    event.target.src = props.picUrls[0]
   }
-  // on hover will call set interval
-  // set interval will call hover handler
-  // hover handler will change the pic src
-  // when no longer hovering (mouse over) pic
-  //src will return to 0 index url
-  // '7327.00' test sale price
 
   //if props.id === related
   //set btn to faStar
@@ -84,7 +107,7 @@ const Card = (props) => {
     <Carta>
       <PicContainer >
         <StarBtn><FontAwesomeIcon icon={faStar} /></StarBtn>
-        <Pic src={props.picUrls[0]} onMouseEnter ={hoverHandler}/>
+        <Pic src={props.picUrls[0]} onMouseEnter ={hoverHandler} onMouseLeave={exitHandler}/>
       </PicContainer>
       <Container>
 

@@ -94,7 +94,7 @@ const RelatedProducts = (props) => {
               : product.styles.results[0]
 
           return (
-            <Card picUrls={style.photos.map(photo => photo.url)}  category={product.category} name={product.name} price={'$' +style.original_price} salePrice={ + style.sale_price ? '$' + style.sale_price : '$7327.00'} key={index} />
+            <Card picUrls={style.photos.map(photo => photo.url)}  category={product.category} name={product.name} price={'$' +style.original_price} salePrice={ style.sale_price ? '$' + style.sale_price : '$7327.00'} key={index} />
           )
         })}
       </Carousel>
