@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReviewTileContainer} from '../sharedStyles/sharedStyledComponents';
+import {ReviewTileContainer, RecommendationContainer, SellersResponse} from '../sharedStyles/sharedStyledComponents';
 const {Checkmark} = require('react-checkmark');
 
 const makeDate = (dateData) => {
@@ -17,7 +17,7 @@ const makeDate = (dateData) => {
 
 const makeRecommendation = (recommendation) => {
   if (recommendation === true) {
-    return <div style={{ display: 'flex'}}><Checkmark size='medium'/> <p>I recommend this product!</p></div>;
+    return <RecommendationContainer><Checkmark size='medium' /> <p style={{margin: '5px'}} >I recommend this product!</p></RecommendationContainer>;
   } else {
     return '';
   }
@@ -26,11 +26,21 @@ const makeRecommendation = (recommendation) => {
 const makeReviewSummaryandBody = (summary, body) => {
   let sumAndBod;
   if (summary === undefined) {
-    let bod = body.substring(58, 250);
-    let sum = body.substring(0, 58);
-    sumAndBod = <div><h4>{sum}...</h4><p>{bod}</p></div>
+    let sum;
+    let bod;
+    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+    sum = body.substring(0, 30);
+    sum += '...';
+    bod = body.substring(30, 280);
+    if (body.length > 280) {
+      bod += '...';
+    }
+    sumAndBod = <div><h4>{sum}</h4><p>{bod}</p></div>
   } else {
-    body = body.substring(0,250);
+    if (body.length > 250) {
+      body = body.substring(0,250);
+      body += '...';
+    }
     sumAndBod = <div><h4>{summary}</h4><p>{body}</p></div>
   }
   return sumAndBod;
@@ -38,7 +48,7 @@ const makeReviewSummaryandBody = (summary, body) => {
 
 const makeSellerResponse = (response) => {
   if (response !== null) {
-    return <div style={{backgroundColor: '#8eaff158', borderRadius: '3px'}}><h4>Response from seller:</h4><p>{response}</p></div>
+    return <SellersResponse><h4>Response from seller:</h4><p>{response}</p></SellersResponse>
   } else {
     return '';
   }
@@ -73,4 +83,4 @@ const ReviewTiles = ({reviewList}) => {
 }
 
 
-export {ReviewTiles, makeDate, makeRecommendation}
+export {ReviewTiles, makeDate, makeRecommendation, makeReviewSummaryandBody}

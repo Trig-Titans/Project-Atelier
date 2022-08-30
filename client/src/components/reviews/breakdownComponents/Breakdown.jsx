@@ -1,31 +1,14 @@
 import React from 'react';
-
-let AverageRating = () => {
-  return(<div>
-    <p>3.6</p>
-    <p>ALL OF THE STARS</p>
-    <p>Total Number of Reviews</p>
-  </div>);
-}
-
-let RatingBreakdown = () => {
-  return (<div>
-    <p><a>5 Stars</a> Graph </p>
-    <p><a>5 Stars</a> Graph </p>
-  </div>);
-}
-
-let ProductBreakdown = () => {
-  return (<div>
-    <p>Qualities rating graph</p>
-  </div>);
-}
+import {ProductBreakdown} from './ProductBreakdown.jsx';
+import {RatingBreakdown} from './RatingBreakdown.jsx';
+import {AverageRating} from './AverageRating.jsx';
+import {BreakdownContainer} from '../sharedStyles/sharedStyledComponents';
 
 let Breakdown = ( {meta} ) => {
-  return (<div>
+  return (<BreakdownContainer>
     <AverageRating />
     <RatingBreakdown />
     <ProductBreakdown />
-    </div>);
+    </BreakdownContainer>);
 }
 export default Breakdown;

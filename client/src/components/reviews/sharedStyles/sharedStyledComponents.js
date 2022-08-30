@@ -19,7 +19,10 @@ export const Button = styled.button`
 `;
 
 export const Container = styled.div`
-  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 `;
 
 export const ReviewTileContainer = styled.div`
@@ -30,6 +33,26 @@ export const ReviewTileContainer = styled.div`
 `;
 
 export const ReviewsContainer = styled.div`
-  float: right;
-  width: 60%;
+  text-align: left;
+  float: left;
+  width: 70%;
+`;
+
+export const BreakdownContainer = styled.div`
+  text-align: left;
+  margin-left: 10%;
+  float: left;
+  width: 20%;
+`;
+
+export const RecommendationContainer = styled.div`
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const SellersResponse = styled.div`
+  background-color: #8eaff158;
+  border-radius: 5px;
 `;
