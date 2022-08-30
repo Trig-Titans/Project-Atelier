@@ -76,10 +76,10 @@ const Card = (props) => {
     event.target.src = props.picUrls[0]
   }
 
-  //if props.id === related
-  //set btn to faStar
-  //if props.id === outfit
-  //set bt to faAdd
+  /*if props.id === related
+  set btn to faStar
+  if props.id === outfit
+  set bt to faAdd*/
 
   const renderSale = () => {
     if (props.salePrice !== null) {
