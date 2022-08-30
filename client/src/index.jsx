@@ -10,12 +10,12 @@ import QandA from './components/questions/QandA.jsx'
 const root = createRoot(document.getElementById("root"));
 
 const App = () => {
-  return  <div>
+  return  <div id="page">
             <h1>Front End Capstone Avatar Project</h1>
-              <Overview />
-              <RelatedProducts />
-              <QandA />
-              <Reviews />
+              <Overview id="overview"/>
+              <RelatedProducts id="relatedProducts"/>
+              <QandA className="QandA"/>
+              <Reviews id="reviews"/>
           </div>
 }
 

@@ -30,7 +30,7 @@ const QandA = () => {
 
 
   return (
-    <div>
+    <div >
       <h4>QUESTIONS &#38; ANSWERS</h4>
       <QuestionSearch/>
       <QuestionList questions={questions}/>
