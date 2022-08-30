@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faStar} from '@fortawesome/free-solid-svg-icons'
+
+
 
 const StyledOverviewOptionForm = styled.div`
   grid-area: OvForm;
@@ -10,7 +14,8 @@ const StyledOverviewFavoriteStar = styled.button`
 export default function OverViewForm({ styles }) {
   const sizeAndQuant = Object.values(styles.skus);
   var [currentSize, setSize] = useState(0);
-  console.log(sizeAndQuant);
+  var [isFavorite, setFavorite] = useState(false);
+
   // create an array of numbers containing all of the quantities
   function createQuantArray(quantity) {
     var array = [];
@@ -37,7 +42,12 @@ export default function OverViewForm({ styles }) {
     )
   })
 
-  // const quantList = sizeAndQuant(currentSize).map
+  // this is a function that changes the favortited value when clicked
+  const handleFavorite = (e) => {
+    e.preventDefault();
+    console.log('it worked')
+    setFavorite(isFavorite = !isFavorite);
+  }
 
   return (
     <StyledOverviewOptionForm>
@@ -46,6 +56,7 @@ export default function OverViewForm({ styles }) {
             <select onChange={(e) => {
                 setSize(currentSize = e.target.value);
               }}>
+              <option>select size</option>
               {sizeList}
             </select>
           </label>
@@ -56,8 +67,9 @@ export default function OverViewForm({ styles }) {
           </label>
           <input type="submit" value="Add to Bag"/>
           {/* there needs to be a favorite button */}
-          <StyledOverviewFavoriteStar>&#9733;</StyledOverviewFavoriteStar>
+          <StyledOverviewFavoriteStar onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon icon={faStar} style={{color: 'black'}}/>}</StyledOverviewFavoriteStar>
         </form>
+
       </StyledOverviewOptionForm>
   );
 }
