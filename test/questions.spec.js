@@ -2,6 +2,11 @@
 /* eslint-disable no-unused-vars */
 const jest = require('jest');
 const { dateParser } = require('../client/src/components/questions/Answer.jsx');
+const React = require('react');
+require('@testing-library/jest-dom');
+const userEvent = require('@testing-library/user-event');
+const {render, screen, waitFor} = require('@testing-library/react');
+const App = require('../client/src/index.jsx');
 
 
 
@@ -23,5 +28,18 @@ test('date is rendering correctly', () => {
   let date = dateParser(questionData.answers[1].date);
   expect(date).toBe(' Jul 22, 2022');
 
+
+})
+
+test('add answer modal popping up correctly', () => {
+  render(<App />);
+
+  return waitFor(() => expect(screen.queryByText(/does this go well with black/)).toBeInTheDocument())
+  .then(() => {
+    return user.click(screen.getByTestId(642189))
+  })
+  .then(() => {
+    expect(screen.queryByText(/Submit your Answer/)).toBeInTheDocument();
+  })
 
 })

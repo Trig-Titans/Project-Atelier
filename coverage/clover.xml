@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1661881226325" clover="3.2.0">
-  <project timestamp="1661881226325" name="All files">
-    <metrics statements="95" coveredstatements="44" conditionals="12" coveredconditionals="0" methods="31" coveredmethods="4" elements="138" coveredelements="48" complexity="0" loc="95" ncloc="95" packages="4" files="11" classes="11"/>
+<coverage generated="1661890009147" clover="3.2.0">
+  <project timestamp="1661890009147" name="All files">
+    <metrics statements="67" coveredstatements="35" conditionals="6" coveredconditionals="0" methods="23" coveredmethods="3" elements="96" coveredelements="38" complexity="0" loc="67" ncloc="67" packages="3" files="10" classes="10"/>
     <package name="rfe2207-fec-trig-titans">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="config.js" path="/Users/nickadam/Documents/HackReactor/rfe2207-fec-trig-titans/config.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="3" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
       </file>
     </package>
     <package name="rfe2207-fec-trig-titans.client.src.components.overview">
@@ -106,40 +106,6 @@
         <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="4" count="2" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="rfe2207-fec-trig-titans.client.src.components.questions">
-      <metrics statements="28" coveredstatements="9" conditionals="6" coveredconditionals="0" methods="8" coveredmethods="1"/>
-      <file name="Answer.jsx" path="/Users/nickadam/Documents/HackReactor/rfe2207-fec-trig-titans/client/src/components/questions/Answer.jsx">
-        <metrics statements="28" coveredstatements="9" conditionals="6" coveredconditionals="0" methods="8" coveredmethods="1"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
       </file>
     </package>
   </project>

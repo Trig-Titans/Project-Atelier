@@ -10,6 +10,7 @@ const QandA = () => {
 
   //depending on what product is given as prop make api request and change state
   var product_id = 37314;
+  var product_name = "Slacker's Slacks";
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const QandA = () => {
     <div >
       <h4>QUESTIONS &#38; ANSWERS</h4>
       <QuestionSearch/>
-      <QuestionList questions={questions}/>
+      <QuestionList productName={product_name} questions={questions}/>
       <div>More Answered Questions Button</div>
       <div>Add Question Button</div>
     </div>

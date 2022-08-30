@@ -9,14 +9,15 @@ import QandA from './components/questions/QandA.jsx'
 
 const root = createRoot(document.getElementById("root"));
 
-const App = () => {
-  return  <div id="page">
+export const App = () => {
+  return  <div >
             <h1>Front End Capstone Avatar Project</h1>
-              <Overview id="overview"/>
-              <RelatedProducts id="relatedProducts"/>
-              <QandA className="QandA"/>
-              <Reviews id="reviews"/>
+              <Overview />
+              <RelatedProducts />
+              <QandA />
+              <Reviews />
           </div>
 }
 
 root.render(<App />);
+

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
@@ -25,7 +26,15 @@ const StyledTitle = styled.div`
   text-align: center;
 `;
 
-const AnswerModal = () => {
+const StyledForm = styled.form`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 87.5%;
+  padding-left: 12.5%;
+`;
+
+const AnswerModal = ({ productName, questionBody }) => {
 
   return (
     <div>
@@ -33,8 +42,14 @@ const AnswerModal = () => {
       <StyledModal>
           <StyledTitle>
           <h3>Submit your Answer</h3>
-          <h4>product name and question body</h4>
+          <h4>{productName}: {questionBody}</h4>
           </StyledTitle>
+          <StyledForm>
+            <label htmlFor="answer">Your Answer* :</label>
+            <input type="text" name="answer"></input>
+            <label htmlFor="name">What is your nickname?* :</label>
+            <input type="text" name="name"></input>
+          </StyledForm>
       </StyledModal>
     </div>
 

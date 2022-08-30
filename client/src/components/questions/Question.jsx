@@ -46,7 +46,7 @@ var sortAnswers = (answersObject) => {
 }
 
 
-const Question = ({ questionData }) => {
+const Question = ({ questionData, productName }) => {
 
   const [answerModal, setAnswerModal] = useState(false);
 
@@ -83,11 +83,11 @@ const Question = ({ questionData }) => {
       <StyledQuestion >
         <strong>{'Q: ' + questionData.question_body}</strong>
         <StyledLinks>
-          Helpful? <u onClick={helpfulClick}>Yes</u> {`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <u onClick={addAnswer}>Add Answer</u>
+          Helpful? <u onClick={helpfulClick}>Yes</u> {`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <u data-testid={questionData.question_id} onClick={addAnswer}>Add Answer</u>
         </StyledLinks>
       </StyledQuestion>
       <AnswerList answers={answerArray}/>
-      {answerModal ? <AnswerModal id="answerModal"/> : <div></div>}
+      {answerModal ? <AnswerModal questionBody={questionData.question_body} productName={productName}/> : <div></div>}
     </StyledQandA>
 
   )
