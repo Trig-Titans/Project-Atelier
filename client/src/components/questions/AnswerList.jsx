@@ -6,6 +6,9 @@ import styled from 'styled-components';
 const StyledAnswerList = styled.div`
   display: flex;
   justify-content: flex-start;
+  max-height: 50vh;
+  overflow: auto;
+
 `;
 
 const AnswerList = ({ answers }) => {
