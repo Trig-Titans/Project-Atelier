@@ -36,8 +36,19 @@ const Container = styled.div`
   position: relative;
   bottom: 0;
 `
-const CardParagraphs = styled.p`
+const CategoryP = styled.p`
   font-size: 11px;
+`
+const SaleP = styled.p`
+  font-size: 11px;
+  color: red;
+`
+const PriceP2 = styled.p`
+  font-size: 11px;
+  text-decoration: line-through;
+`
+const PriceP = styled.p`
+font-size: 11px;
 `
 
 const Card = (props) => {
@@ -47,6 +58,25 @@ const Card = (props) => {
   // hover handler will change the pic src
   // when no longer hovering (mouse over) pic
   //src will return to 0 index url
+  // '7327.00' test sale price
+
+  //if props.id === related
+  //set btn to faStar
+  //if props.id === outfit
+  //set bt to faAdd
+
+  const renderSale = () => {
+    if (props.salePrice !== null) {
+      return (
+        <div>
+          <SaleP>{props.salePrice}</SaleP>
+          <PriceP2>{props.price}</PriceP2>
+        </div>
+      )
+    } else {
+      return (<PriceP>{props.price}</PriceP>)
+    }
+  }
 
   return (
     <Carta>
@@ -56,11 +86,9 @@ const Card = (props) => {
       </PicContainer>
       <Container>
 
-        <CardParagraphs>{props.category}</CardParagraphs>
+        <CategoryP>{props.category}</CategoryP>
         <h5><b>{props.name}</b></h5>
-        <CardParagraphs>{props.salePrice}</CardParagraphs>
-        <CardParagraphs>${props.price}</CardParagraphs>
-        <CardParagraphs>salePrice</CardParagraphs>
+        {renderSale()}
         <TestStarIcon />
       </Container>
     </Carta>
