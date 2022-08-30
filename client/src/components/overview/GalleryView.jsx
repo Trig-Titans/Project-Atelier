@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -81,8 +81,11 @@ function findAverageRating(ratings)  {
   return roundNearQtr(average);
 }
 
+
+
 // This is the actual functional component
 function Overview(props) {
+  const [styleIndex, setStyleIndex] = useState(0)
   // state for the style array
   var [styles, setStyles] = useState([
     {
@@ -91,6 +94,10 @@ function Overview(props) {
       photos: [
         {thumbnail_url: '', url: ''}
       ],
+      skus: {
+        1281104: {quantity: 8, size: 'XS'},
+        1281105: {quantity: 16, size: 'S'}
+      }
     }
   ]);
   // state for the product info object
@@ -120,12 +127,12 @@ function Overview(props) {
   return (
     // The grid
     <StyledOverviewGrid>
-      <OverviewCarousel photos={styles[0].photos}/>
+      <OverviewCarousel photos={styles[styleIndex].photos}/>
       <OverViewStars stars={rating}/>
       <OverViewName name={productInfo.name} category={productInfo.category}/>
-      <OverViewPrice price={styles[0]}/>
-      <OverViewSelector styles={styles}/>
-      <OverViewForm styles={styles}/>
+      <OverViewPrice price={styles[styleIndex]}/>
+      <OverViewSelector styles={styles} setStyles={setStyleIndex} styleIndex={styleIndex}/>
+      <OverViewForm styles={styles[styleIndex]}/>
       <OverviewDescription description={productInfo.description}/>
       <OverviewFacts facts={productInfo.features}/>
     </StyledOverviewGrid>
