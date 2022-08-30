@@ -51,15 +51,6 @@ font-size: 11px;
 `
 
 const Card = (props) => {
-  // create hover handler for pic
-
-  // let pic = 0
-
-  // const hoverHandler = (event) => {
-  //   pic++
-  //   console.log(pic)
-  //   event.target.src = props.picUrls[pic++]
-  // }
 
   let urlIndex = 0;
   let intervalID ;
@@ -121,3 +112,4 @@ const Card = (props) => {
 }
 
 export default Card;
+
