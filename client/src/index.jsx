@@ -10,8 +10,8 @@ import QandA from './components/questions/QandA.jsx'
 const root = createRoot(document.getElementById("root"));
 
 export const App = () => {
-  return  <div>
-            <h1>Front End Capstone Avatar Project</h1>
+  return  <div >
+           <h1>Front End Capstone Avatar Project</h1>
               <Overview />
               <RelatedProducts />
               <QandA />
@@ -20,3 +20,4 @@ export const App = () => {
 }
 
 root.render(<App />);
+
