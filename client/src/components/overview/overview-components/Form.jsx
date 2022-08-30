@@ -8,15 +8,19 @@ const StyledOverviewFavoriteStar = styled.button`
 `;
 
 export default function OverViewForm({ styles }) {
+  const sizeAndQuant = Object.values(styles.skus);
+  const sizeList = sizeAndQuant.map((size, index) => {
+    return (
+      <option value={size.size} key={index}>{size.size}</option>
+    )
+  })
+
   return (
     <StyledOverviewOptionForm>
         <form>
           <label>
             <select>
-              <option value="air">air</option>
-              <option value="earth">earth</option>
-              <option value="fire">fire</option>
-              <option value="water">water</option>
+              {sizeList}
             </select>
           </label>
           <label>
