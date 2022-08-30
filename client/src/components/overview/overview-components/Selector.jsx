@@ -22,7 +22,6 @@ const StyleCircle = styled.div`
   overflow: hidden;
   border-radius: 50%;
   background-size: cover;
-  border: 2px solid gray;
 `;
 
 
@@ -31,22 +30,34 @@ export default function OverViewSelector({ styles, setStyles, styleIndex }) {
     setStyles(styleIndex = index)
   }
 
+
+
   return (
   <StyledOverviewStyleSelector>
     <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
     <StyledOverviewStylesSection>
       {
       styles.map((style, index) => {
-        return (
-          // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
-          // i.e. the first picture is at x=0, the second is x=100, the third is x=200
-          // updating the x value changes what picture is shown
-          <StyleCircle onClick={() => {
-            setStyles(styleIndex = index)
-          }}
-          key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`}}>
-          </StyleCircle>
-        )
+        if (styleIndex === index) {
+          return (
+            // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
+            // i.e. the first picture is at x=0, the second is x=100, the third is x=200
+            // updating the x value changes what picture is shown
+            <StyleCircle onClick={() => {
+              setStyles(styleIndex = index)
+            }}
+            key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '3px solid lightgray'}}>
+            </StyleCircle>
+          )
+        } else {
+          return (
+            <StyleCircle onClick={() => {
+              setStyles(styleIndex = index)
+            }}
+            key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '2px solid gray'}}>
+            </StyleCircle>
+          )
+        }
       })
     }
     </StyledOverviewStylesSection>
