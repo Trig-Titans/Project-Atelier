@@ -8,15 +8,15 @@ import Card from './card.jsx'
 import styled from 'styled-components';
 
 const List = styled.div`
-  margin-left: 20%;
-  width:60%;
+  margin-left: 23%;
+  width:53%;
 `
 
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3.25,
-    slidesToSlide: 1 // optional, default to 1.
+    slidesToSlide: .75
   }
 };
 

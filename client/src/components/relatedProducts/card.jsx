@@ -13,9 +13,6 @@ border-color: #f2f2f2;
 width: 200px;
 height: 299px;
 `
-
-
-
 const Pic = styled.img`
 width: 200px;
 height: 195px;
@@ -24,15 +21,12 @@ const PicContainer=styled.div`
   width: 200px;
   height: 195px;
 `
-
 const Container = styled.div`
  text-align: left;
  padding: 2px 16px;
  position: relative;
  bottom: 0;
 `
-
-
 const CardParagraphs = styled.p`
   font-size: 11px;
 `
