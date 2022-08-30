@@ -1,42 +1,42 @@
-// const { makeDate } = require('../client/src/components/reviews/reviewListComponents/ReviewTiles.jsx');
+const { makeDate, makeReviewSummaryandBody } = require('../client/src/components/reviews/reviewListComponents/ReviewTiles.jsx');
 // const jest = require('jest');
 import React from 'react';
 
-const makeDate = (dateData) => {
-  // without these regular expressions at the end of the dateData, the date shows up as off by a day. Adding these filters fixed that issue
-  // this line writes a date stamp into human legible dates ex: Mon Jul 12 2019.
-  let formatedDate = new Date(dateData.replace(/-/g, '\/').replace(/T.+/, '')).toDateString();
+// const makeDate = (dateData) => {
+//   // without these regular expressions at the end of the dateData, the date shows up as off by a day. Adding these filters fixed that issue
+//   // this line writes a date stamp into human legible dates ex: Mon Jul 12 2019.
+//   let formatedDate = new Date(dateData.replace(/-/g, '\/').replace(/T.+/, '')).toDateString();
 
-  // need to take off the day of the week and add a comma between day# and year#
-  formatedDate = formatedDate.split(' ');
-  formatedDate.shift();
-  formatedDate[1] = formatedDate[1] + ',';
-  formatedDate = formatedDate.join(' ');
-  return formatedDate;
-};
+//   // need to take off the day of the week and add a comma between day# and year#
+//   formatedDate = formatedDate.split(' ');
+//   formatedDate.shift();
+//   formatedDate[1] = formatedDate[1] + ',';
+//   formatedDate = formatedDate.join(' ');
+//   return formatedDate;
+// };
 
-const makeReviewSummaryandBody = (summary, body) => {
-  let sumAndBod;
-  if (summary === undefined) {
-    let sum;
-    let bod;
-    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
-    sum = body.substring(0, 30);
-    sum += '...';
-    bod = body.substring(30, 280);
-    if (body.length > 280) {
-      bod += '...';
-    }
-    sumAndBod = <div><h4>{sum}</h4><p>{bod}</p></div>
-  } else {
-    if (body.length > 250) {
-      body = body.substring(0,250);
-      body += '...';
-    }
-    sumAndBod = <div><h4>{summary}</h4><p>{body}</p></div>
-  }
-  return sumAndBod;
-};
+// const makeReviewSummaryandBody = (summary, body) => {
+//   let sumAndBod;
+//   if (summary === undefined) {
+//     let sum;
+//     let bod;
+//     // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+//     sum = body.substring(0, 30);
+//     sum += '...';
+//     bod = body.substring(30, 280);
+//     if (body.length > 280) {
+//       bod += '...';
+//     }
+//     sumAndBod = <div><h4>{sum}</h4><p>{bod}</p></div>
+//   } else {
+//     if (body.length > 250) {
+//       body = body.substring(0,250);
+//       body += '...';
+//     }
+//     sumAndBod = <div><h4>{summary}</h4><p>{body}</p></div>
+//   }
+//   return sumAndBod;
+// };
 // test('use jsdom in this test file', () => {
 //   const element = document.createElement('div');
 //   expect(element).not.toBeNull();
