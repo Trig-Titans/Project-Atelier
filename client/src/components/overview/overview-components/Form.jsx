@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
 
@@ -13,6 +13,7 @@ const StyledOverviewFavoriteStar = styled.button`
 
 export default function OverViewForm({ styles }) {
   const sizeAndQuant = Object.values(styles.skus);
+  var [addedToBag, setAdded] = useState(false);
   var [currentSize, setSize] = useState(0);
   var [isFavorite, setFavorite] = useState(false);
 
@@ -31,7 +32,7 @@ export default function OverViewForm({ styles }) {
   // map out the sizes into the options bar
   const sizeList = sizeAndQuant.map((size, index) => {
     return (
-      <option value={index} key={index}>{size.size}</option>
+      <option value={index} key={index} className={size.size}>{size.size}</option>
     )
   })
 
@@ -43,19 +44,35 @@ export default function OverViewForm({ styles }) {
   })
 
   // this is a function that changes the favortited value when clicked
-  const handleFavorite = (e) => {
+  function handleFavorite(e) {
     e.preventDefault();
-    console.log('it worked')
     setFavorite(isFavorite = !isFavorite);
+  }
+
+  // function to change if the item has been added to the bag or not
+  function handleAdded(e) {
+    e.preventDefault()
+    setAdded(addedToBag = !addedToBag);
+  }
+
+  // This uses createRef from React to make a reference point for the size selector to be accessed when the user clicks the add button
+  const sizeSelectorRef = createRef()
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    // if (sizeSelectorRef.current.value === 'select size') {
+    //   sizeSelectorRef
+    // }
+    setAdded(addedToBag = !addedToBag);
   }
 
   return (
     <StyledOverviewOptionForm>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>
-            <select onChange={(e) => {
+            <select ref={sizeSelectorRef} onChange={(e) => {
                 setSize(currentSize = e.target.value);
-              }}>
+              }} required>
               <option>select size</option>
               {sizeList}
             </select>
@@ -65,8 +82,7 @@ export default function OverViewForm({ styles }) {
               {quantList}
             </select>
           </label>
-          <input type="submit" value="Add to Bag"/>
-          {/* there needs to be a favorite button */}
+          {addedToBag ? <input type="submit" value="Added! Remove?"/> : <input type="submit" value="Add to Bag"/>}
           <StyledOverviewFavoriteStar onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon icon={faStar} style={{color: 'black'}}/>}</StyledOverviewFavoriteStar>
         </form>
 

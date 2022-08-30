@@ -30,8 +30,6 @@ export default function OverViewSelector({ styles, setStyles, styleIndex }) {
     setStyles(styleIndex = index)
   }
 
-
-
   return (
   <StyledOverviewStyleSelector>
     <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>

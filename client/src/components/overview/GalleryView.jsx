@@ -85,7 +85,7 @@ function findAverageRating(ratings)  {
 
 // This is the actual functional component
 function Overview(props) {
-  const [styleIndex, setStyleIndex] = useState(0);
+  const [styleIndex, setStyleIndex] = useState(0)
   // state for the style array
   var [styles, setStyles] = useState([
     {
@@ -94,6 +94,10 @@ function Overview(props) {
       photos: [
         {thumbnail_url: '', url: ''}
       ],
+      skus: {
+        1281104: {quantity: 8, size: 'XS'},
+        1281105: {quantity: 16, size: 'S'}
+      }
     }
   ]);
   // state for the product info object
@@ -112,10 +116,8 @@ function Overview(props) {
       .then((response) => {
         // this sets the styles to an array of different styles
         setStyles(styles = response[0].data.results);
-        console.log('styles',styles)
         // this sets the product info to the correct object
         setInfo(productInfo = response[1].data);
-        console.log("product info", productInfo)
         // this sets the rating to the average of all the votes
         setRating(rating = findAverageRating(response[2].data.ratings));
       }).catch((err) => {
