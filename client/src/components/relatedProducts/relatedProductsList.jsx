@@ -7,17 +7,21 @@ import Card from './card.jsx'
 import styled from 'styled-components';
 
 const List = styled.div`
-  margin-left: 20%;
-  width:60%;
+  margin-left: 23%;
+  width:53%;
 `
 
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3.25,
-    slidesToSlide: 1 // optional, default to 1.
+    slidesToSlide: .75
   }
 };
+
+
+
+//for new commit aug 30
 
 const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
@@ -81,20 +85,19 @@ const RelatedProducts = (props) => {
       })
   }, []);
 
+  // salePrice={style.sale_price}
 
   return (
     <List>
       <Carousel responsive={responsive}>
         {accumulatedProductData.map((product, index) => {
 
-          let style = product.styles.results.length > 1 ?
-            product.styles.results.find(result => result['default?'] === true) !== undefined ?
+            let style = product.styles.results.find(result => result['default?'] === true) !== undefined ?
               product.styles.results.find(result => result['default?'] === true)
               : product.styles.results[0]
-            : product.styles.results[0];
 
           return (
-            <Card picUrl={style.photos[0]['url']} category={product.category} name={product.name} price={style.original_price} salePrice={style.sale_price} key={index} />
+            <Card picUrls={style.photos.map(photo => photo.url)}  category={product.category} name={product.name} price={'$' +style.original_price} salePrice={ style.sale_price ? '$' + style.sale_price : '$7327.00'} key={index} />
           )
         })}
       </Carousel>
