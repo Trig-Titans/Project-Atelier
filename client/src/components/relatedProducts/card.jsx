@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import TestStarIcon from '../stars/star.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -53,6 +52,9 @@ font-size: 11px;
 
 const Card = (props) => {
   // create hover handler for pic
+  const hoverHandler = () => {
+    console.log('helloWorld')
+  }
   // on hover will call set interval
   // set interval will call hover handler
   // hover handler will change the pic src
@@ -82,7 +84,7 @@ const Card = (props) => {
     <Carta>
       <PicContainer >
         <StarBtn><FontAwesomeIcon icon={faStar} /></StarBtn>
-        <Pic src={props.picUrls[0]} />
+        <Pic src={props.picUrls[0]} onMouseEnter ={hoverHandler}/>
       </PicContainer>
       <Container>
 
