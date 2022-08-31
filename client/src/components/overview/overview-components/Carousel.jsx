@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { Carousel } from 'react-responsive-carousel';
+import React, { useState } from "react"
 import styled from 'styled-components';
 import { findAverageRating } from '../GalleryView.jsx'
 
 const StyledOverviewCarousel = styled.div`
   grid-area: OvPicture;
-  max-width: 200vw;
   max-height: 32rem;
   min-width: 20rem;
   min-height: 32rem;
@@ -30,7 +28,7 @@ const ThumbnailSelector = styled.div`
   overflow: auto;
   direction: rtl;
   overflow-x: hidden;
-  border-radius: 2px;
+  border-radius: 5px;
   &::-webkit-scrollbar {
     background: transparent;
     cursor: pointer;
@@ -66,7 +64,7 @@ const Slide = styled.div`
 const LeftButton = styled.button`
   position: absolute;
   width: 10%;
-  margin-left: 19%;
+  margin-left: 14%;
   height: 60%;
   border: none;
   background-color: transparent;
@@ -126,12 +124,18 @@ const UpButton = styled.button`
   }
 `
 
-export default function OverviewCarousel({ photos }) {
+export default function OverviewCarousel({ photos, expanded, setView }) {
   // this state is the viewpoint that the carousel is currently at, when the button is pressed, it increases the current viewpoint of the div by 100, thus changing the photo.
   // Here is a link to the carousel video I watched to get this down. Bad music but good video
     // https://www.youtube.com/watch?v=Tdpq-9XYoNM
   var [x, setx] = useState(0);
   var [y, sety] = useState(0);
+
+  // function for the image to expand on click
+  const handleExtend = (e) => {
+    e.preventDefault();
+    setView(expanded = !expanded)
+  }
   // on click function to move the carousel to the left
   const goLeft = () => {
     setx(x + 100);
@@ -156,7 +160,7 @@ export default function OverviewCarousel({ photos }) {
       // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
       // i.e. the first picture is at x=0, the second is x=100, the third is x=200
       // updating the x value changes what picture is shown
-      <Slide key={index} style={{transform: `translateX(${x}%)`}}>
+      <Slide key={index} onClick={handleExtend} style={{transform: `translateX(${x}%)`}}>
         <img src={photo.url}/>
       </Slide>
     )
