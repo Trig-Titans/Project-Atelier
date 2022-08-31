@@ -35,14 +35,14 @@ export const ReviewTileContainer = styled.div`
 export const ReviewsContainer = styled.div`
   text-align: left;
   float: left;
-  width: 70%;
+  width: 65%;
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
   margin-left: 10%;
   float: left;
-  width: 20%;
+  width: 25%;
 `;
 
 export const RecommendationContainer = styled.div`
@@ -64,8 +64,7 @@ export const BarForGraph = styled.div`
 `;
 
 export const BarGraphContainer = styled.div`
-  background-color: #787878;
+  background-color: #A8A8A8;
   height: 10px;
   width: 100px;
-
 `
