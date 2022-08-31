@@ -27,6 +27,7 @@ const StyledModal = styled.div`
 
 const StyledTitle = styled.div`
   text-align: center;
+  padding: 5vh 0;
 `;
 
 const StyledForm = styled.form`
@@ -35,6 +36,19 @@ const StyledForm = styled.form`
   flex-direction: column;
   width: 87.5%;
   padding-left: 12.5%;
+  padding-bottom: 5vh;
+`;
+
+const StyledInput = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2.5vh 0;
+`;
+
+const StyledLabel = styled.label`
+  padding-bottom: 1vh;
+  font-weight: bold;
 `;
 
 const StyledAnswerBox = styled.textarea`
@@ -47,7 +61,7 @@ const StyledAnswerBox = styled.textarea`
 const StyledPhoto = styled.img`
   height: 10vh;
   width: auto;
-
+  margin: 2vh 0;
 `;
 
 const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
@@ -84,34 +98,42 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
           <h4>{productName}: {questionBody}</h4>
           </StyledTitle>
           <StyledForm onSubmit={(e) => submit(e, photoArray)}>
-            <label htmlFor="answer">Your Answer* :</label>
-            <StyledAnswerBox name="answer" maxLength="1000" required ></StyledAnswerBox>
-            <label htmlFor="name">What is your nickname?* :</label>
-            <input type="text" name="name" placeholder="Example: jack543!" maxLength="60" required></input>
-            <i>For privacy reasons, do not use your full name or email address</i>
-            <label htmlFor="email">Your email?* :</label>
-            <input type="email" name="email" placeholder="Example: jack@email.com" maxLength="60" required></input>
-            <i>For authentication reasons, you will not be emailed</i>
-            <label htmlFor="photos">Upload your photos :</label>
-            <input type="file" name="photos" onChange={addPhoto} accept="image/*"></input>
-            <div style={{display: largeImgErr, color: 'red'}}>Image too large, please upload smaller image file.</div>
-            {photoArray.length > 0 ? photoArray.map((photoURL, index) => {
-              if (index === 4) {
+            <StyledInput>
+              <StyledLabel htmlFor="answer">Your Answer* :</StyledLabel>
+              <StyledAnswerBox name="answer" maxLength="1000" required ></StyledAnswerBox>
+            </StyledInput>
+            <StyledInput>
+              <StyledLabel htmlFor="name">What is your nickname?* :</StyledLabel>
+              <input type="text" name="name" placeholder="Example: jack543!" maxLength="60" required></input>
+              <i>For privacy reasons, do not use your full name or email address</i>
+            </StyledInput>
+            <StyledInput>
+              <StyledLabel htmlFor="email">Your email* :</StyledLabel>
+              <input type="email" name="email" placeholder="Example: jack@email.com" maxLength="60" required></input>
+              <i>For authentication reasons, you will not be emailed</i>
+            </StyledInput>
+            <StyledInput>
+              <StyledLabel htmlFor="photos">Upload your photos :</StyledLabel>
+              <input type="file" name="photos" onChange={addPhoto} accept="image/*"></input>
+              <div style={{display: largeImgErr, color: 'red'}}>Image too large, please upload smaller image file.</div>
+              {photoArray.length > 0 ? photoArray.map((photoURL, index) => {
+                if (index === 4) {
+                  return (
+                    <div key={photoURL}>
+                      <StyledPhoto src={photoURL} ></StyledPhoto>
+                    </div>
+                  )
+                }
                 return (
                   <div key={photoURL}>
                     <StyledPhoto src={photoURL} ></StyledPhoto>
+                    <input type="file" name="photos" onChange={addPhoto} accept="image/*"></input>
+                    <div style={{display: largeImgErr, color: 'red'}}>Image too large, please upload smaller image file.</div>
                   </div>
                 )
-              }
-              return (
-                <div key={photoURL}>
-                  <StyledPhoto src={photoURL} ></StyledPhoto>
-                  <input type="file" name="photos" onChange={addPhoto} accept="image/*"></input>
-                  <div style={{display: largeImgErr, color: 'red'}}>Image too large, please upload smaller image file.</div>
-                </div>
-              )
-            }) : <div></div>}
-            <input type="submit" value="Submit Answer"></input>
+              }) : <div></div>}
+            </StyledInput>
+            <input type="submit" value="Submit Answer" style={{width: '33%', margin: 'auto'}}></input>
           </StyledForm>
       </StyledModal>
     </div>
