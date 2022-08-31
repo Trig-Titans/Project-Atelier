@@ -54,6 +54,7 @@ const Question = ({ questionData, productName }) => {
   const [helpfulCount, setHelpfulCount] = useState(questionData.question_helpfulness);
 
   var answerArray = sortAnswers(questionData.answers);
+  const [answers, setAnswers] = useState(answerArray);
 
   var helpfulClick = () => {
     if (checkUserClick === true) {
@@ -78,16 +79,38 @@ const Question = ({ questionData, productName }) => {
     setAnswerModal(true);
   }
 
+  var submitAnswer = (e, photoArray) => {
+    e.preventDefault();
+
+    axios({
+      method: 'post',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionData.question_id}/answers`,
+      headers: {Authorization: API_KEY},
+      data: {
+        body: e.target[0].value,
+        name: e.target[1].value,
+        email: e.target[2].value,
+        photos: photoArray
+      }
+    })
+    .then((response) => {
+      setAnswerModal(false);
+    })
+    .catch((err) => {
+      //console.log(err);
+    })
+  }
+
   return (
     <StyledQandA >
       <StyledQuestion >
         <strong>{'Q: ' + questionData.question_body}</strong>
         <StyledLinks>
-          Helpful? <u onClick={helpfulClick}>Yes</u> {`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <u data-testid={questionData.question_id} onClick={addAnswer}>Add Answer</u>
+          Helpful? <u onClick={helpfulClick} style={{cursor: 'pointer'}}>Yes</u> {`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <u data-testid={questionData.question_id} onClick={addAnswer} style={{cursor: 'pointer'}}>Add Answer</u>
         </StyledLinks>
       </StyledQuestion>
-      <AnswerList answers={answerArray}/>
-      {answerModal ? <AnswerModal questionBody={questionData.question_body} productName={productName}/> : <div></div>}
+      <AnswerList answers={answers}/>
+      {answerModal ? <AnswerModal questionBody={questionData.question_body} productName={productName} submit={submitAnswer} setAnswerModal={setAnswerModal}/> : <div></div>}
     </StyledQandA>
 
   )
