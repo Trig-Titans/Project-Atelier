@@ -30,18 +30,18 @@ let averageRating = (ratingsObj, total) => {
 
 let Breakdown = ( {productID} ) => {
   let meta = data.reviewsMeta;
-  console.log('meta', meta);
+  // console.log('meta', meta);
 
   let totalReviews = ratingsCountTotal(meta.ratings);
   let averageStars = averageRating(meta.ratings, totalReviews);
-  console.log('averageStars', averageStars);
+  // console.log('averageStars', averageStars);
 
 
 
 
   return (<BreakdownContainer>
-    <AverageRating />
-    <RatingBreakdown starRatings={meta.ratings} totalReviews={totalReviews}/>
+    <AverageRating averageStars={averageStars} totalCount={totalReviews}/>
+    <RatingBreakdown starRatings={meta.ratings} totalCount={totalReviews}/>
     <ProductBreakdown />
     </BreakdownContainer>);
 }
