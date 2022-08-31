@@ -13,6 +13,7 @@ const StyledOverviewFavoriteStar = styled.button`
 
 export default function OverViewForm({ styles }) {
   const sizeAndQuant = Object.values(styles.skus);
+  var [selected, setSelected] = useState(false);
   var [addedToBag, setAdded] = useState(false);
   var [currentSize, setSize] = useState(0);
   var [isFavorite, setFavorite] = useState(false);
@@ -49,20 +50,16 @@ export default function OverViewForm({ styles }) {
     setFavorite(isFavorite = !isFavorite);
   }
 
-  // function to change if the item has been added to the bag or not
-  function handleAdded(e) {
-    e.preventDefault()
-    setAdded(addedToBag = !addedToBag);
-  }
-
   // This uses createRef from React to make a reference point for the size selector to be accessed when the user clicks the add button
   const sizeSelectorRef = createRef()
 
   function handleSubmit(e) {
     e.preventDefault()
-    // if (sizeSelectorRef.current.value === 'select size') {
-    //   sizeSelectorRef
-    // }
+    if (sizeSelectorRef.current.value === '-- select a size --') {
+      setSelected(selected = true);
+      return;
+    }
+    setSelected(selected = false);
     setAdded(addedToBag = !addedToBag);
   }
 
@@ -70,12 +67,18 @@ export default function OverViewForm({ styles }) {
     <StyledOverviewOptionForm>
         <form onSubmit={handleSubmit}>
           <label>
-            <select ref={sizeSelectorRef} onChange={(e) => {
+          {!selected ? <select ref={sizeSelectorRef} onChange={(e) => {
                 setSize(currentSize = e.target.value);
-              }} required>
-              <option>select size</option>
+              }}>
+              <option>-- select a size --</option>
               {sizeList}
-            </select>
+            </select> :
+            <select style={{backgroundColor: '#d107079b'}}ref={sizeSelectorRef} onChange={(e) => {
+                setSize(currentSize = e.target.value);
+              }}>
+                <option>-- select a size --</option>
+                {sizeList}
+            </select>}
           </label>
           <label>
             <select>

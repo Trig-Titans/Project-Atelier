@@ -178,7 +178,7 @@ function Overview(props) {
         imageSrc.src = imageUrl;
       });
     }
-  })
+  });
 
   if (!expanded) {
     return (

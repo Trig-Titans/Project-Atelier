@@ -21,7 +21,7 @@ const StyledExpandedView = styled.div`
     border-radius: 5px;
     border: none;
     padding: 10px;
-    cursor: pointer;
+    cursor: zoom-out;
     transition: 0.3s;
     &:hover {
       background-color: rgba(255,255,255,0.5);
@@ -57,22 +57,21 @@ const StyledExpandedView = styled.div`
       border: 2px solid white;
     }
   `;
-export default function Expanded({ photos, expanded, setView }) {
+export default function Expanded({ photos, expanded, setView, imgIndex, setImgIndex }) {
   var [currentImg, setImg] = useState(0);
-
   const handleShrink = (e) => {
     e.preventDefault();
     setView(expanded = !expanded)
   }
 
   return (
-    <StyledExpandedView style={{backgroundImage: `url(${photos[currentImg].url})`}}>
+    <StyledExpandedView className='detail-view' style={{backgroundImage: `url(${photos[imgIndex].url})`}}>
       <StyledShrinkButton onClick={handleShrink}>Shrink</StyledShrinkButton>
       <StyledIconSection>
         {
           photos.map((photo, index) => {
             return <StyledIcon onClick={() => {
-              setImg(currentImg = index);
+              setImgIndex(imgIndex = index);
             }}
             value={index} key={index} style={{backgroundImage: `url(${photo.url})`}}></StyledIcon>
           })
