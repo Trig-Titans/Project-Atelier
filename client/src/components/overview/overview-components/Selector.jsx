@@ -50,8 +50,7 @@ export default function OverViewSelector({ styles, setStyles, styleIndex }) {
         } else {
           return (
             <StyleCircle onClick={() => {
-              setStyles(styleIndex = index)
-              console.log(styleIndex);
+              setStyles(styleIndex = index);
             }}
             key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '2px solid gray'}}>
             </StyleCircle>
