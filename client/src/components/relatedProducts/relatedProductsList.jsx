@@ -5,6 +5,7 @@ import axios from 'axios';
 import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
 import styled from 'styled-components';
+//import "react-multi-carousel/lib/styles.css";
 
 const List = styled.div`
   margin-left: 23%;

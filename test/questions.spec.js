@@ -5,8 +5,8 @@ const { dateParser } = require('../client/src/components/questions/Answer.jsx');
 const React = require('react');
 require('@testing-library/jest-dom');
 const userEvent = require('@testing-library/user-event');
-const {render, screen, waitFor} = require('@testing-library/react');
-const App = require('../client/src/index.jsx');
+const { render, screen, waitFor } = require('@testing-library/react');
+const { App } = require('../client/src/app.jsx');
 
 
 
@@ -32,6 +32,8 @@ test('date is rendering correctly', () => {
 })
 
 test('add answer modal popping up correctly', () => {
+
+  const user = userEvent.setup();
   render(<App />);
 
   return waitFor(() => expect(screen.queryByText(/does this go well with black/)).toBeInTheDocument())
