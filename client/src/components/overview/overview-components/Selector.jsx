@@ -12,6 +12,9 @@ const StyledOverviewStylesSection = styled.div`
   flex-wrap: wrap;
   gap: 5px;
   max-width: 250px;
+  max-height: 250px;
+  overflow: scroll;
+  overflow-x: hidden;
 `;
 const StyleCircle = styled.div`
   display: flex;
