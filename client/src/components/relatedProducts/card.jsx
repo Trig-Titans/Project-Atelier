@@ -2,8 +2,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import TestStarIcon from '../stars/star.jsx'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 const Carta = styled.div`
   border: solid 1px;
@@ -17,7 +15,7 @@ const PicContainer = styled.div`
   height: 195px;
   position: relative;
 `
-const StarBtn = styled.div`
+const RelatedBtn = styled.div`
   float: right;
   position: absolute;
   right: 10px;
@@ -77,13 +75,6 @@ const Card = (props) => {
   }
 
 
-
-
-  /*if props.id === related
-  set btn to faStar
-  if props.id === outfit
-  set bt to faAdd*/
-
   const renderSale = () => {
     if (props.salePrice !== null) {
       return (
@@ -100,11 +91,10 @@ const Card = (props) => {
   return (
     <Carta>
       <PicContainer >
-        <StarBtn><FontAwesomeIcon icon={faStar} /></StarBtn>
+        <RelatedBtn>{props.button}</RelatedBtn>
         <Pic src={props.picUrls[0]} onMouseEnter ={hoverHandler} onMouseLeave={exitHandler}/>
       </PicContainer>
       <Container>
-
         <CategoryP>{props.category}</CategoryP>
         <h5><b>{props.name}</b></h5>
         {renderSale()}
