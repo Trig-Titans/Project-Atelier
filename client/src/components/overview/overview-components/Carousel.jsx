@@ -6,6 +6,9 @@ import { findAverageRating } from '../GalleryView.jsx'
 const StyledOverviewCarousel = styled.div`
   grid-area: OvPicture;
   max-width: 200vw;
+  max-height: 32rem;
+  min-width: 20rem;
+  min-height: 32rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -15,7 +18,6 @@ const StyledOverviewCarousel = styled.div`
 `;
 
 const ThumbnailSelector = styled.div`
-  padding-top: 30px;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -23,7 +25,7 @@ const ThumbnailSelector = styled.div`
   width: 2%;
   position: absolute;
   width: auto;
-  height: 100%;
+  height: 18rem;
   background-color: rgba(255,255,255,0.5);
   overflow: auto;
   direction: rtl;
@@ -39,11 +41,13 @@ const ThumbnailSelector = styled.div`
 const Thumbnail = styled.div`
   margin: 5px;
   margin-top: 5px;
+  max-height: 30px;
   border: 2px solid grey;
   width: 75px;
   border-radius: 2px;
   cursor: pointer;
   transition: 0.3s;
+  overflow: hidden;
   &:hover {
     border: 2px solid black;
   }
@@ -102,7 +106,8 @@ const DownButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  transition: 0.3s
+  transition: 0.3s;
+  z-index: 1;
   &:hover {
     color: black;
   }
@@ -114,7 +119,8 @@ const UpButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  transition: 0.3s
+  transition: 0.3s;
+  z-index: 1;
   &:hover {
     color: black;
   }
@@ -124,7 +130,8 @@ export default function OverviewCarousel({ photos }) {
   // this state is the viewpoint that the carousel is currently at, when the button is pressed, it increases the current viewpoint of the div by 100, thus changing the photo.
   // Here is a link to the carousel video I watched to get this down. Bad music but good video
     // https://www.youtube.com/watch?v=Tdpq-9XYoNM
-  var [x, setx] = useState(0)
+  var [x, setx] = useState(0);
+  var [y, sety] = useState(0);
   // on click function to move the carousel to the left
   const goLeft = () => {
     setx(x + 100);
@@ -132,6 +139,16 @@ export default function OverviewCarousel({ photos }) {
   // on click function to move the carousel to the right
   const goRight = () => {
     setx(x - 100);
+  }
+
+  const goUp = () => {
+    sety(y + 135);
+    console.log(y);
+  }
+
+  const goDown = () => {
+    sety(y - 135);
+    console.log(y);
   }
 
   const photoList = photos.map((photo, index) => {
@@ -149,13 +166,13 @@ export default function OverviewCarousel({ photos }) {
   <StyledOverviewCarousel>
     {photoList}
     <ThumbnailSelector>
-      <UpButton>Up</UpButton>
+      {y !== 0 ? <UpButton onClick={goUp}>Up</UpButton> : <div></div>}
       {
         photos.map((photo, index) => {
           // if the thumbnail is selected, change the opacity of the image
           if (x === -100*index) {
             return (
-              <Thumbnail key={index} style={{border: '2px solid white'}}onClick={() => {
+              <Thumbnail key={index} style={{border: '2px solid white', transform: `translateY(${y}%)`}}onClick={() => {
                 setx(x = -100*index)
               }}>
                 <img src={photo.thumbnail_url}></img>
@@ -163,7 +180,7 @@ export default function OverviewCarousel({ photos }) {
             )
           } else {
             return (
-              <Thumbnail key={index} onClick={() => {
+              <Thumbnail style={{transform: `translateY(${y}%)`}} key={index} onClick={() => {
                 setx(x = -100*index)
               }}>
                 <img src={photo.thumbnail_url}></img>
@@ -172,7 +189,7 @@ export default function OverviewCarousel({ photos }) {
           }
         })
       }
-      <DownButton>Down</DownButton>
+      {y >= ((photos.length * 135) - 800) ? <DownButton onClick={goDown}>Down</DownButton> : (<div></div>)}
     </ThumbnailSelector>
     {/* these two ternary statements are to render in either a button or nothing depending on what position the gallery is in */}
     {x === 0 ? (<div></div>) : (<LeftButton onClick={goLeft}>left</LeftButton>)}
