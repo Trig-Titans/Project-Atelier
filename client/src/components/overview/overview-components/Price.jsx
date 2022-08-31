@@ -8,7 +8,7 @@ const StyledOverviewPrice = styled.div`
 export default function OverViewPrice({ price }) {
   if (price.sale_price) {
     return (
-      <StyledOverviewPrice>
+      <StyledOverviewPrice data-testid="price">
         <span style={{textDecoration: 'line-through'}}>${price.original_price}</span><br></br>
         <span style={{color: 'red'}}>${price.sale_price}</span>
       </StyledOverviewPrice>
