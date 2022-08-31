@@ -1,5 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
-import { Carousel } from 'react-responsive-carousel';
+import React, { useState, useEffect, useRef } from "react";
 import styled from 'styled-components';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
@@ -13,13 +12,17 @@ import OverViewSelector from './overview-components/Selector.jsx';
 import OverViewForm from './overview-components/Form.jsx';
 import OverviewDescription from './overview-components/Description.jsx';
 import OverviewFacts from './overview-components/Facts.jsx';
+import Expanded from './overview-components/Expanded.jsx'
 // Here are all of the styled components
 const StyledOverviewGrid = styled.div`
-  margin: auto;
+  min-height: 30rem;
   column-gap: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   row-gap: 20px;
   width: 50%;
-  text-align: left;
+  text-align: center;
   display: grid;
   color: black;
   grid-template-areas:
@@ -29,12 +32,6 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvStyle'
     'OvPicture OvForm'
     'OvDesc OvMeta'
-    /* 'OvPicture OvPicture'
-    'OvPicture OvPicture'
-    'OvPicture OvPicture'
-    'OvPicture OvPicture'
-    'OvPicture OvPicture'
-    'OvDesc OvMeta' */
 `;
 
 // Here is the axios request to receive the style information for a product
@@ -85,12 +82,15 @@ function findAverageRating(ratings)  {
 
 // This is the actual functional component
 function Overview(props) {
+  var [expanded, setView] = useState(false);
+  var [imgIndex, setImgIndex] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0)
   // state for the style array
   var [styles, setStyles] = useState([
     {
       name: "",
       original_price: "",
+      sale_price: null,
       photos: [
         {thumbnail_url: '', url: ''}
       ],
@@ -124,19 +124,82 @@ function Overview(props) {
         console.log(err);
       })
   }, []);
-  return (
-    // The grid
-    <StyledOverviewGrid>
-      <OverviewCarousel photos={styles[styleIndex].photos}/>
-      <OverViewStars stars={rating}/>
-      <OverViewName name={productInfo.name} category={productInfo.category}/>
-      <OverViewPrice price={styles[styleIndex]}/>
-      <OverViewSelector styles={styles} setStyles={setStyleIndex} styleIndex={styleIndex}/>
-      <OverViewForm styles={styles[styleIndex]}/>
-      <OverviewDescription description={productInfo.description}/>
-      <OverviewFacts facts={productInfo.features}/>
-    </StyledOverviewGrid>
-  )
+
+  const isInitialMount = useRef(true);
+  useEffect(() => {
+    if (isInitialMount.current) {
+     isInitialMount.current = false;
+    } else {
+      var zoomBoxes = document.querySelectorAll('.detail-view');
+
+      // Extract the URL
+      zoomBoxes.forEach(function(image) {
+        var imageCss = window.getComputedStyle(image, false),
+          imageUrl = imageCss.backgroundImage
+                            .slice(4, -1).replace(/['"]/g, '');
+
+        // Get the original source image
+        var imageSrc = new Image();
+        imageSrc.onload = function() {
+          var imageWidth = imageSrc.naturalWidth,
+              imageHeight = imageSrc.naturalHeight,
+              ratio = imageHeight / imageWidth;
+
+          // Adjust the box to fit the image and to adapt responsively
+          var percentage = ratio * 100 + '%';
+          image.style.paddingBottom = percentage;
+
+          // Zoom and scan on mousemove
+          image.onmousemove = function(e) {
+            // Get the width of the thumbnail
+            var boxWidth = image.clientWidth,
+                // Get the cursor position, minus element offset
+                x = e.pageX - this.offsetLeft,
+                y = e.pageY - this.offsetTop,
+                // Convert coordinates to % of elem. width & height
+                xPercent = x / (boxWidth / 100) + '%',
+                yPercent = y / (boxWidth * ratio / 100) + '%';
+
+            // Update styles w/actual size
+            Object.assign(image.style, {
+              backgroundPosition: xPercent + ' ' + yPercent,
+              backgroundSize: imageWidth + 'px'
+            });
+          };
+
+          // Reset when mouse leaves
+          image.onmouseleave = function(e) {
+            Object.assign(image.style, {
+              backgroundPosition: 'center',
+              backgroundSize: 'cover'
+            });
+          };
+        }
+        imageSrc.src = imageUrl;
+      });
+    }
+  })
+
+  if (!expanded) {
+    return (
+      <StyledOverviewGrid>
+        <OverviewCarousel photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/>
+        <OverViewStars stars={rating}/>
+        <OverViewName name={productInfo.name} category={productInfo.category}/>
+        <OverViewPrice price={styles[styleIndex]}/>
+        <OverViewSelector styles={styles} setStyles={setStyleIndex} styleIndex={styleIndex}/>
+        <OverViewForm styles={styles[styleIndex]}/>
+        <OverviewDescription description={productInfo.description}/>
+        <OverviewFacts facts={productInfo.features}/>
+      </StyledOverviewGrid>
+    )
+  } else {
+    return (
+      <StyledOverviewGrid>
+        <Expanded photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/>
+      </StyledOverviewGrid>
+    )
+  }
 }
 
 
