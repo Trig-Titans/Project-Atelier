@@ -72,7 +72,7 @@ let ReviewsList = ( {productID} ) => {
   return (<ReviewsContainer>
     <SorterBar setSortFilter={setSortFilter}/>
     <ReviewTiles reviewList={currentDisplay} />
-    <ReviewButtons setReviewIndex={setReviewIndex} reviewIndex={reviewIndex}/>
+    <ReviewButtons wholeReviewList={wholeReviewList} setReviewIndex={setReviewIndex} reviewIndex={reviewIndex}/>
     </ReviewsContainer>)
 }
 
