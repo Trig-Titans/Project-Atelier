@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel';
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
 import AddOutfit from './addOutfitCard.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,6 +19,9 @@ const responsive = {
 
 const Outfit = (props) => {
   const [productData, setProductData] = React.useState([]);
+  const [list, setList] = React.useState([<AddOutfit key = {0} handleClick = {()=>{console.log('test add button')}}/>])
+
+  //WILL RECIEVE FROM PROPS
   const product_id = "37314"
   const product_style = 0
 
@@ -50,11 +53,13 @@ const Outfit = (props) => {
       })
   }, []);
 
+
+
   return (
     <div>
       <Carousel responsive={responsive}>
         <AddOutfit handleClick = {()=>{console.log('test add button')}}/>
-        {/*map added cards*/}
+        {list.map(card => card)}
       </Carousel>
     </div>
   );
