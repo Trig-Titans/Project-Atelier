@@ -14,35 +14,37 @@ let ratingsCountTotal = (ratingsObj) => {
 }
 
 let averageRating = (ratingsObj, total) => {
-  if (total === 0) {
-    return 0;
-  }
+  // if there are no reviews you can't divide by zero so return 0;
+  if (total === 0) { return 0; }
+  // define variable for the sum of all the star votes
   let weightedSum = 0
-  let star, value;
+  let star, value, average;
+  //loop through the ratings object to calculate the weightedSum
   for (let key in ratingsObj) {
     star = Number(key);
     value = Number(ratingsObj[key]);
     weightedSum += (star * value);
   }
-  let average = (weightedSum/total);
+  //calculate final average and return it rounded to tenths place
+  average = (weightedSum/total);
   return average.toFixed(1);
 }
 
 let Breakdown = ( {productID} ) => {
-  let meta = data.reviewsMeta;
-  //console.log('meta', meta);
 
+  // dummy data
+  const meta = data.reviewsMeta;
+
+
+  // calculations for total number of reviews and the average rating
   let totalReviews = ratingsCountTotal(meta.ratings);
   let averageStars = averageRating(meta.ratings, totalReviews);
-  //console.log('averageStars', averageStars);
-
-
 
 
   return (<BreakdownContainer>
-    <AverageRating />
-    <RatingBreakdown starRatings={meta.ratings} totalReviews={totalReviews}/>
-    <ProductBreakdown />
+    <AverageRating averageStars={averageStars} totalCount={totalReviews}/>
+    <RatingBreakdown starRatings={meta.ratings} totalCount={totalReviews} recommended={meta.recommended.true}/>
+    <ProductBreakdown characteristics={meta.characteristics}/>
     </BreakdownContainer>);
 }
 export default Breakdown;

@@ -35,14 +35,14 @@ export const ReviewTileContainer = styled.div`
 export const ReviewsContainer = styled.div`
   text-align: left;
   float: left;
-  width: 70%;
+  width: 65%;
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
   margin-left: 10%;
   float: left;
-  width: 20%;
+  width: 25%;
 `;
 
 export const RecommendationContainer = styled.div`
@@ -55,4 +55,21 @@ export const RecommendationContainer = styled.div`
 export const SellersResponse = styled.div`
   background-color: #8eaff158;
   border-radius: 5px;
+`;
+
+export const BarForGraph = styled.div`
+  background-color: #027a02;
+  border: 2px solid black;
+  height: 10px;
+`;
+
+export const BarGraphContainer = styled.div`
+  background-color: #A8A8A8;
+  height: 10px;
+  width: 100px;
+`;
+
+export const ScrollableContainer = styled.div`
+  height: 50vh;
+  overflow: auto;
 `;
