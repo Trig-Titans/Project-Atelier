@@ -6,9 +6,18 @@ const StyledOverviewPrice = styled.div`
 `;
 
 export default function OverViewPrice({ price }) {
-  return (
-    <StyledOverviewPrice>
-      <p>${price.original_price}</p>
-    </StyledOverviewPrice>
-  );
+  if (price.sale_price) {
+    return (
+      <StyledOverviewPrice>
+        <span style={{textDecoration: 'line-through', color: 'red'}}>${price.original_price}</span><br></br>
+        <span>${price.sale_price}</span>
+      </StyledOverviewPrice>
+    );
+  } else {
+    return (
+      <StyledOverviewPrice>
+        <p>${price.original_price}</p>
+      </StyledOverviewPrice>
+    );
+  }
 }
