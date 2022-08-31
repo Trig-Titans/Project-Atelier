@@ -2,19 +2,23 @@ import React from 'react';
 import {BarGraph} from './BarGraph.jsx';
 import {BarGraphContainer, RecommendationContainer} from '../sharedStyles/sharedStyledComponents';
 
-let RatingBreakdown = ({ starRatings, totalCount, recommended }) => {
-  console.log("🚀 ~ file: RatingBreakdown.jsx ~ line 4 ~ totalCount", totalCount);
-  console.log("🚀 ~ file: RatingBreakdown.jsx ~ line 4 ~ starRatings", starRatings);
-  let findPercent = (star) => { return 100*starRatings[star]/totalCount; }
-  let recommendation = 100*recommended/totalCount;
 
-  let percent = {
+let RatingBreakdown = ({ starRatings, totalCount, recommended }) => {
+
+  const recommendation = 100*recommended/totalCount;
+
+  const findPercent = (star) => {
+    return 100*starRatings[star]/totalCount;
+  }
+
+  const percent = {
     5: findPercent(5),
     4: findPercent(4),
     3: findPercent(3),
     2: findPercent(2),
     1: findPercent(1)
   }
+
   return (<div>
     <RecommendationContainer><a>5 Stars</a> <BarGraphContainer><BarGraph percent={percent[5]}/></BarGraphContainer> <p>({starRatings[5]})</p></RecommendationContainer>
     <RecommendationContainer><a>4 Stars</a> <BarGraphContainer><BarGraph percent={percent[4]}/></BarGraphContainer> <p>({starRatings[4]})</p></RecommendationContainer>

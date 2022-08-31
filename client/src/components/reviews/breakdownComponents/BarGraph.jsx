@@ -6,6 +6,5 @@ export const BarGraph = ({percent}) => {
   let styling = {
     width: `${starPercent}%`
   }
-  console.log('percent is ', percent.toFixed(0))
   return (<BarForGraph style={styling} />);
 }
