@@ -80,7 +80,7 @@ const Answer = ({ answerData }) => {
         {answerData.body}
       </div>
       <div>
-        by: {user}, {dateStr} &nbsp;&nbsp;|&nbsp;&nbsp; Helpful?&nbsp; <u onClick={helpfulClick}>Yes</u>{`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <span onClick={reportClick}>{reportText}</span>
+        by: {user}, {dateStr} &nbsp;&nbsp;|&nbsp;&nbsp; Helpful?&nbsp; <u onClick={helpfulClick} style={{cursor: 'pointer'}}>Yes</u>{`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <span onClick={reportClick} style={{cursor: 'pointer'}}>{reportText}</span>
       </div>
     </StyledAnswer>
   )

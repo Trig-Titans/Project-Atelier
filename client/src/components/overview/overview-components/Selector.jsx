@@ -11,7 +11,10 @@ const StyledOverviewStylesSection = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  max-width: 250px;
+  max-width: 275px;
+  max-height: 175px;
+  overflow: scroll;
+  overflow-x: hidden;
 `;
 const StyleCircle = styled.div`
   display: flex;
@@ -26,9 +29,6 @@ const StyleCircle = styled.div`
 
 
 export default function OverViewSelector({ styles, setStyles, styleIndex }) {
-  function setNewIndex() {
-    setStyles(styleIndex = index)
-  }
 
   return (
   <StyledOverviewStyleSelector>
@@ -42,7 +42,7 @@ export default function OverViewSelector({ styles, setStyles, styleIndex }) {
             // i.e. the first picture is at x=0, the second is x=100, the third is x=200
             // updating the x value changes what picture is shown
             <StyleCircle onClick={() => {
-              setStyles(styleIndex = index)
+              setStyles(styleIndex = index);
             }}
             key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '3px solid lightgray'}}>
             </StyleCircle>
@@ -51,6 +51,7 @@ export default function OverViewSelector({ styles, setStyles, styleIndex }) {
           return (
             <StyleCircle onClick={() => {
               setStyles(styleIndex = index)
+              console.log(styleIndex);
             }}
             key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '2px solid gray'}}>
             </StyleCircle>

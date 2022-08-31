@@ -4,7 +4,7 @@ const jest = require('jest');
 const { dateParser } = require('../client/src/components/questions/Answer.jsx');
 const React = require('react');
 require('@testing-library/jest-dom');
-const userEvent = require('@testing-library/user-event');
+const {default: userEvent} = require('@testing-library/user-event');
 const { render, screen, waitFor } = require('@testing-library/react');
 const { App } = require('../client/src/app.jsx');
 
@@ -27,7 +27,6 @@ test('date is rendering correctly', () => {
 
   let date = dateParser(questionData.answers[1].date);
   expect(date).toBe(' Jul 22, 2022');
-
 
 })
 

@@ -31,12 +31,15 @@ let averageRating = (ratingsObj, total) => {
 }
 
 let Breakdown = ( {productID} ) => {
+
   // dummy data
   const meta = data.reviewsMeta;
+
 
   // calculations for total number of reviews and the average rating
   let totalReviews = ratingsCountTotal(meta.ratings);
   let averageStars = averageRating(meta.ratings, totalReviews);
+
 
   return (<BreakdownContainer>
     <AverageRating averageStars={averageStars} totalCount={totalReviews}/>
