@@ -1,14 +1,35 @@
 const { makeDate, makeReviewSummaryandBody } = require('../client/src/components/reviews/reviewListComponents/ReviewTiles.jsx');
 import React from 'react';
 import {render, screen, waitFor} from '@testing-library/react';
-import App from '../client/src/app.jsx';
+import ReviewsList from '../client/src/components/reviews/reviewListComponents/ReviewsList.jsx';
+const {default: userEvent} = require('@testing-library/user-event');
 
 describe('ReviewsList rendering', () => {
+  let productId = '37314';
+  it('should render the reviewList container to the DOM', () => {
+    // const user = userEvent.setup();
+    render(<ReviewsList productID={productId}/>);
+    const input = screen.getByTestId('reviewListDivContainer');
+    expect(input).toBeTruthy();
+
+  })
   it('should display two tiles on initial render', () => {
-    //.getAllByTestId('reviewTileCounting')
+    // const user = userEvent.setup();
+    render(<ReviewsList productID={productId}/>);
+    expect(screen.getAllByTestId('reviewTileCounting')).toHaveLength(2);
+
+
   });
   it('should render two additional tiles on click of MORE REVIEWS', () => {
-
+    const user = userEvent.setup();
+    render(<ReviewsList productID={productId}/>);
+    return user.click(screen.getByRole('button', {name: /More Reviews/}))
+      .then(() => {
+        return screen.getAllByTestId('reviewTileCounting')
+      })
+      .then((arr) => {
+        expect(arr).toHaveLength(4) //to have length of 4.
+      })
   });
 })
 describe('Function Formatting in ReviewsList', () => {
