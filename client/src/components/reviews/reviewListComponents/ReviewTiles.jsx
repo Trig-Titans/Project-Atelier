@@ -62,7 +62,7 @@ const ReviewTiles = ({reviewList}) => {
     let summaryAndBody = makeReviewSummaryandBody(review.summary, review.body);
     let sellerResponse = makeSellerResponse(review.response);
 
-    return (<ReviewTileContainer key={review.review_id}>
+    return (<ReviewTileContainer data-testid="reviewTileCounting" key={review.review_id}>
       <p>{review.rating} stars {date}</p>
       {summaryAndBody}
       {recommend}
