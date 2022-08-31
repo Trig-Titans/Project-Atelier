@@ -28,7 +28,6 @@ test('date is rendering correctly', () => {
   let date = dateParser(questionData.answers[1].date);
   expect(date).toBe(' Jul 22, 2022');
 
-
 })
 
 test('add answer modal popping up correctly', () => {
