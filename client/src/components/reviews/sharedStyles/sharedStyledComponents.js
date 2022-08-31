@@ -56,3 +56,16 @@ export const SellersResponse = styled.div`
   background-color: #8eaff158;
   border-radius: 5px;
 `;
+
+export const BarForGraph = styled.div`
+  background-color: #027a02;
+  border: 2px solid black;
+  height: 10px;
+`;
+
+export const BarGraphContainer = styled.div`
+  background-color: #787878;
+  height: 10px;
+  width: 100px;
+
+`
