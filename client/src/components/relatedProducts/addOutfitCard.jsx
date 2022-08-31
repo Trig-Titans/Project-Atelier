@@ -23,7 +23,7 @@ const AddOutfit = (props) => {
 
 
   return (
-    <PlusCard>
+    <PlusCard onClick= {props.handleClick}>
       <FontAwesomeIcon style={centering} icon={faCirclePlus} />
       <p >Add an Outfit</p>
     </PlusCard>
