@@ -67,4 +67,9 @@ export const BarGraphContainer = styled.div`
   background-color: #A8A8A8;
   height: 10px;
   width: 100px;
-`
+`;
+
+export const ScrollableContainer = styled.div`
+  height: 50vh;
+  overflow: auto;
+`;

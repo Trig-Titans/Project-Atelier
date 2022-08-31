@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import {ReviewButtons} from './AdditionalButtons.jsx';
 import {ReviewTiles} from './ReviewTiles.jsx';
 import {SorterBar} from './SorterBar.jsx';
-import {ReviewsContainer} from '../sharedStyles/sharedStyledComponents';
+import {ReviewsContainer, ScrollableContainer} from '../sharedStyles/sharedStyledComponents';
 import data from '../apiExample.js';
 import axios from 'axios';
 import API_KEY from '../../../../../config.js'
@@ -72,7 +72,7 @@ const ReviewsList = ( {productID} ) => {
 
   return (<ReviewsContainer data-testid="reviewListDivContainer">
     <SorterBar setSortFilter={setSortFilter}/>
-    <ReviewTiles reviewList={currentDisplay} />
+    <ScrollableContainer><ReviewTiles reviewList={currentDisplay} /></ScrollableContainer>
     <ReviewButtons wholeReviewList={wholeReviewList} setReviewIndex={setReviewIndex} reviewIndex={reviewIndex}/>
     </ReviewsContainer>)
 }
