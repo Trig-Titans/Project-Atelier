@@ -10,7 +10,7 @@ import API_KEY from '../../../../../config.js'
 
 
 
-let ReviewsList = ( {productID} ) => {
+const ReviewsList = ( {productID} ) => {
   // dummyData
   let reviewArray = data.reviews.results;
   let reviewListExample = reviewArray.slice(0,2)
@@ -20,24 +20,24 @@ let ReviewsList = ( {productID} ) => {
 
   // on initial render, GET data for productID
 
-  // useEffect(()=>{
-  //   axios({
-  //     method: 'get',
-  //     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${productID}&page=1&count=50`,
-  //     headers: {
-  //       'Authorization': API_KEY
-  //     }
-  //   })
-  //     .then(({data})=>{
-  //       // console.log('I am the FIRST request for data', data);
-  //       reviewArray = data.results;
-  //       setWholeReviewList(data.results);
-  //       setCurrentDisplay(reviewArray.slice(0, reviewIndex));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // }, []);
+  useEffect(()=>{
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${productID}&page=1&count=50`,
+      headers: {
+        'Authorization': API_KEY
+      }
+    })
+      .then(({data})=>{
+        // console.log('I am the FIRST request for data', data);
+        reviewArray = data.results;
+        setWholeReviewList(data.results);
+        setCurrentDisplay(reviewArray.slice(0, reviewIndex));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
 
   let [currentDisplay, setCurrentDisplay] = useState(reviewListExample);
   let [reviewIndex, setReviewIndex] = useState(2);
@@ -49,28 +49,28 @@ let ReviewsList = ( {productID} ) => {
     setCurrentDisplay(wholeReviewList.slice(0, reviewIndex))
   }, [reviewIndex]);
 
-  // useEffect(()=>{
-  //   // when the sorting method changes, make new GET request to get data sorted appropriately
-  //   console.log('what is the sortFilter:', sortFilter)
-  //   axios({
-  //     method: 'get',
-  //     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${productID}&page=1&count=50&sort=-${sortFilter}`,
-  //     headers: {
-  //       'Authorization': API_KEY
-  //     }
-  //   })
-  //     .then(({data})=>{
-  //       // console.log(`I made a reqest for new data`, data.results)
-  //       reviewArray = data.results;
-  //       setWholeReviewList(data.results);
-  //       setCurrentDisplay(reviewArray.slice(0, reviewIndex));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // }, [sortFilter])
+  useEffect(()=>{
+    // when the sorting method changes, make new GET request to get data sorted appropriately
+    console.log('what is the sortFilter:', sortFilter)
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${productID}&page=1&count=50&sort=-${sortFilter}`,
+      headers: {
+        'Authorization': API_KEY
+      }
+    })
+      .then(({data})=>{
+        // console.log(`I made a reqest for new data`, data.results)
+        reviewArray = data.results;
+        setWholeReviewList(data.results);
+        setCurrentDisplay(reviewArray.slice(0, reviewIndex));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [sortFilter])
 
-  return (<ReviewsContainer>
+  return (<ReviewsContainer data-testid="reviewListDivContainer">
     <SorterBar setSortFilter={setSortFilter}/>
     <ReviewTiles reviewList={currentDisplay} />
     <ReviewButtons wholeReviewList={wholeReviewList} setReviewIndex={setReviewIndex} reviewIndex={reviewIndex}/>
