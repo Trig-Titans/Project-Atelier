@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Breakdown from './breakdownComponents/Breakdown.jsx';
 import ReviewsList from './reviewListComponents/ReviewsList.jsx';
 import {Container} from './sharedStyles/sharedStyledComponents.js'
-import data from './apiExample.js'
+
 
 
 
 let Reviews = () => {
-  // let [review, setReview] = useState()
+  let productID = '37314';
   return (<Container>
     <h1>Ratings & Reviews</h1>
-    <Breakdown meta={data.reviewsMeta}/> <ReviewsList reviews={data.reviews}/>
+    <Breakdown productID={productID}/> <ReviewsList productID={productID} />
     </Container>);
 }
 
