@@ -23,7 +23,7 @@ const responsive = {
 
 const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
-  const product_id = "37314"
+  const product_id = props.mainProduct
 
   React.useEffect(() => {
 
@@ -69,7 +69,7 @@ const RelatedProducts = (props) => {
           })
           .catch(err => { console.log('ERROR IN PROMISE ALL CALL FOR RELATED: ', err) })
       })
-  }, []);
+  }, [product_id]);
 
   return (
     <List>
@@ -90,14 +90,16 @@ const RelatedProducts = (props) => {
                 '$' + style.sale_price : index % 2 === 0 ?
                   '$7327.00' : null}
               key={index}
-              button={<StarBtn />} />
+              button={<StarBtn />}
+              handleChangeProduct ={props.handleChangeProduct}
+                            />
           )
         })}
 
       </Carousel>
       <br />
       <br />
-      <Outfit />
+      <Outfit handleChangeProduct ={props.handleChangeProduct}/>
     </List>
   );
 }

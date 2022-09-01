@@ -81,7 +81,9 @@ const Outfit = (props) => {
                             '$' + style.sale_price : list.length % 2 === 0 ?
                               '$7327.00' : null}
                           key={product_id}
-                          button={<FontAwesomeIcon icon={faCircleXmark} />}
+                          button={<FontAwesomeIcon icon={faCircleXmark}
+                          handleChangeProduct ={props.handleChangeProduct}
+                          />}
                         />]
                       })
                     }

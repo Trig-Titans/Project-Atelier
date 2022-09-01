@@ -89,7 +89,7 @@ const Card = (props) => {
   }
 
   return (
-    <Carta>
+    <Carta onClick = {props.handleChangeProduct}>
       <PicContainer >
         <RelatedBtn>{props.button}</RelatedBtn>
         <Pic src={props.picUrls[0]} onMouseEnter ={hoverHandler} onMouseLeave={exitHandler}/>
