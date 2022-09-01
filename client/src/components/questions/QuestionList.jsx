@@ -22,6 +22,7 @@ const QuestionList = ({ questions, productName }) => {
       setVisible('block');
       setList(questions.slice(0,2));
     } else {
+      setVisible('none');
       setList(questions);
     }
   }, [questions])

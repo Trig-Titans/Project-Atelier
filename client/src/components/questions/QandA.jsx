@@ -12,6 +12,9 @@ const QandA = () => {
   var product_id = 37314;
   var product_name = "Slacker's Slacks";
   const [questions, setQuestions] = useState([]);
+  const [value, setValue] = useState('');
+  const [masterList, setMasterList] = useState([]);
+
 
   useEffect(() => {
     axios({
@@ -22,18 +25,32 @@ const QandA = () => {
     .then((response) => {
       console.log(response.data.results);
       setQuestions(response.data.results);
+      setMasterList(response.data.results);
     })
     .catch((err) => {
       //console.log(err);
     })
-
   }, [])
 
+  var handleChange = (e) => {
+    setValue(e.target.value);
+    if (e.target.value.length >= 3) {
+      var filteredQuestions = [];
+      for (var i = 0; i < masterList.length; i++) {
+        if (masterList[i].question_body.indexOf(e.target.value) != -1) {
+          filteredQuestions.push(masterList[i]);
+        }
+      }
+      setQuestions(filteredQuestions);
+    } else {
+      setQuestions(masterList);
+    }
+  }
 
   return (
     <div >
       <h4>QUESTIONS &#38; ANSWERS</h4>
-      <QuestionSearch/>
+      <QuestionSearch handleChange={handleChange} value={value}/>
       <QuestionList productName={product_name} questions={questions}/>
       <div>Add Question Button</div>
     </div>
