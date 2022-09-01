@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {ReviewTileContainer, RecommendationContainer, SellersResponse} from '../sharedStyles/sharedStyledComponents';
 import {ThumbnailModel} from './ThumbnailModal.jsx';
+import axios from 'axios';
+import API_KEY from '../../../../../config.js'
 const {Checkmark} = require('react-checkmark');
 
 const makeDate = (dateData) => {
@@ -55,10 +57,35 @@ const makeSellerResponse = (response) => {
   }
 };
 
+
+
 const ReviewTiles = ({reviewList}) => {
   let [thumbnailView, setThumbnailView] = useState(false);
   let [thumbnailUrl, setThumbnailUrl] = useState('');
 
+  //either this state needs to be on EACH review card separately as a boolean
+  // OR it can be an array of review IDs such that when they are clicked they don't allow subsequent clicks if the IDarray includes clicked review ID
+  let [clickedHelpful, setClickedHelpful] = useState([]);
+
+  const addHelpfulRating = (review_id) => {
+    //PUT /reviews/:review_id/helpful
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review_id}/helpful`,
+      headers: {
+        'Authorization': API_KEY
+      }
+    })
+      .then(() => {
+        let temp = clickedHelpful;
+        temp.push(review_id);
+        setClickedHelpful(temp);
+        console.log('I AM A SUCCESSFUL addHelpfulRating request!')
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   const openThumbnail = (url) => {
     setThumbnailView(true);
@@ -76,6 +103,8 @@ const ReviewTiles = ({reviewList}) => {
     }
   }
   return reviewList.map((review) => {
+    console.log("I AM REVIEW", review);
+
     let recommend = makeRecommendation(review.recommend);
     let date = makeDate(review.date);
     let summaryAndBody = makeReviewSummaryandBody(review.summary, review.body);
@@ -89,11 +118,11 @@ const ReviewTiles = ({reviewList}) => {
       {thumbnailView ? <ThumbnailModel thumbnailUrl={thumbnailUrl} setThumbnailView={setThumbnailView}></ThumbnailModel> : <div></div>}
       {recommend}
       <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
+      <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({review.helpfulness}) | <u style={{textDecoration: 'underline'}}>Report</u></p>
       {sellerResponse}
     </ReviewTileContainer>)
   });
 
-  //   <p>Is this helpful? Yes [###] | No [###]</p>
 
 }
 
