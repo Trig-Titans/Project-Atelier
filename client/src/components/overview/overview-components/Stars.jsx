@@ -7,8 +7,7 @@ grid-area: OvStar;
 margin-top: 50px
 `;
 
-export default function OverviewStars({ stars }) {
-  console.log(stars);
+export default function OverviewStars({ stars, reviewCount }) {
   return (
     <StyledOverviewStars data-testid="stars">
         <StarRatings
@@ -19,6 +18,7 @@ export default function OverviewStars({ stars }) {
           starHoverColor="yellow"
           name='rating'
         />
+        <div style={{cursor: 'pointer', textDecoration: 'none', color: '#6699cc'}}>Read all {reviewCount} reviews</div>
       </StyledOverviewStars>
   );
 }
