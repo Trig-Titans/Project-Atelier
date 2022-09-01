@@ -6,7 +6,7 @@ const StyledBackground = styled.div`
   background: rgba(0, 0, 0, .5);
   position: fixed;
   top: 0; left: 0;
-  width: 100vw; height: 100vw;
+  width: 100vw; height: 100vh;
   z-index: 100;
   cursor: pointer;
 `;
@@ -43,6 +43,7 @@ const StyledInput = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  text-align: left;
   padding: 2.5vh 0;
 `;
 
@@ -142,4 +143,6 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
 
 }
 
-export {AnswerModal, StyledBackground, StyledModal};
+
+export {AnswerModal, StyledBackground, StyledModal, StyledTitle, StyledForm, StyledInput, StyledLabel, StyledAnswerBox};
+
