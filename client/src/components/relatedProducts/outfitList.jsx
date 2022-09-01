@@ -60,60 +60,37 @@ const Outfit = (props) => {
   return (
     <div>
       <Carousel responsive={responsive}>
-        {/* <div>
-        <AddOutfit
-            handleClick={
-              () => {
-                let style = productData.styles.results.filter(result => result.style_id === product_style)[0]
-
-                setList((list) => {
-                  return [...list, <Card
-                    picUrls={style.photos.map(photo => photo.url)}
-                    category={productData.info.category}
-                    name={productData.info.name}
-                    price={'$' + style.original_price}
-                    salePrice={style.sale_price ?
-                      '$' + style.sale_price : list.length % 2 === 0 ?
-                        '$7327.00' : null}
-                    key={list.length}
-                    button={<FontAwesomeIcon icon={faCircleXmark} />}
-                  />]
-                })
-              }
-            }
-          />
-        </div> */}
-
         {
-
           [
-            <div key = {list.length}>
-            <AddOutfit
+            <div key={0}>
+              <AddOutfit
                 handleClick={
                   () => {
                     let style = productData.styles.results.filter(result => result.style_id === product_style)[0]
 
-                    setList((list) => {
-                      return [...list, <Card
-                        picUrls={style.photos.map(photo => photo.url)}
-                        category={productData.info.category}
-                        name={productData.info.name}
-                        price={'$' + style.original_price}
-                        salePrice={style.sale_price ?
-                          '$' + style.sale_price : list.length % 2 === 0 ?
-                            '$7327.00' : null}
-                        key={list.length}
-                        button={<FontAwesomeIcon icon={faCircleXmark} />}
-                      />]
-                    })
+                    if (list.find(item => item.key === product_id) === undefined) {
+
+                      setList((list) => {
+
+                        return [...list, <Card
+                          picUrls={style.photos.map(photo => photo.url)}
+                          category={productData.info.category}
+                          name={productData.info.name}
+                          price={'$' + style.original_price}
+                          salePrice={style.sale_price ?
+                            '$' + style.sale_price : list.length % 2 === 0 ?
+                              '$7327.00' : null}
+                          key={product_id}
+                          button={<FontAwesomeIcon icon={faCircleXmark} />}
+                        />]
+                      })
+                    }
                   }
                 }
               />
             </div>
           ].concat(list)
-
         }
-
       </Carousel>
     </div>
   );
