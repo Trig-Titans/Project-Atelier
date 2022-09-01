@@ -2,8 +2,18 @@ import styled from 'styled-components';
 import React, { useState } from "react";
 
 const StyledOverviewProductDescription = styled.div`
-  margin-left: 30%;
+  margin: auto;
   grid-area: OvDesc;
+  width: 100%;
+  p {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    min-height: 90px;
+    line-height: 45px;
+  }
 `;
 
 export default function OverviewDescription({ description }) {

@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import styled from 'styled-components';
 import { findAverageRating } from '../GalleryView.jsx'
+import { faChevronLeft, faChevronRight, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const StyledOverviewCarousel = styled.div`
   grid-area: OvPicture;
@@ -58,7 +60,7 @@ const Slide = styled.div`
   cursor: zoom-in;
   img {
     transition: 0.5s;
-    border-radius: 2px;
+    border-radius: 5px;
   }
 `
 // left button for carousel
@@ -171,7 +173,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   <StyledOverviewCarousel>
     {photoList}
     <ThumbnailSelector>
-      {y !== 0 ? <UpButton onClick={goUp}>Up</UpButton> : <div></div>}
+      {y !== 0 ? <UpButton onClick={goUp}><FontAwesomeIcon icon={faChevronUp} /></UpButton> : <div></div>}
       {
         photos.map((photo, index) => {
           // if the thumbnail is selected, change the opacity of the image
@@ -194,11 +196,11 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
           }
         })
       }
-      {y >= ((photos.length * 135) - 800) ? <DownButton onClick={goDown}>Down</DownButton> : (<div></div>)}
+      {y >= ((photos.length * 135) - 800) ? <DownButton onClick={goDown}><FontAwesomeIcon icon={faChevronDown} /></DownButton> : (<div></div>)}
     </ThumbnailSelector>
     {/* these two ternary statements are to render in either a button or nothing depending on what position the gallery is in */}
-    {x === 0 ? (<div></div>) : (<LeftButton onClick={goLeft}>left</LeftButton>)}
-    {x > (-100 * photos.length + 100) ? (<RightButton onClick={goRight}>right</RightButton>) : (<div></div>)}
+    {x === 0 ? (<div></div>) : (<LeftButton onClick={goLeft}><FontAwesomeIcon icon={faChevronLeft} /></LeftButton>)}
+    {x > (-100 * photos.length + 100) ? (<RightButton onClick={goRight}><FontAwesomeIcon icon={faChevronRight} /></RightButton>) : (<div></div>)}
   </StyledOverviewCarousel>
   )
 }

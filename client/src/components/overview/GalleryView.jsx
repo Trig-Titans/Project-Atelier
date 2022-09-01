@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from "react";
 import styled from 'styled-components';
 import axios from 'axios';
@@ -16,13 +17,15 @@ import Expanded from './overview-components/Expanded.jsx'
 // Here are all of the styled components
 const StyledOverviewGrid = styled.div`
   min-height: 30rem;
+  margin-top: 4rem;
+  margin-bottom: 20px;
   column-gap: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  row-gap: 20px;
+  row-gap: 0px;
   width: 50%;
-  text-align: center;
+  text-align: left;
   display: grid;
   color: black;
   grid-template-areas:
@@ -31,35 +34,11 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvPrice'
     'OvPicture OvStyle'
     'OvPicture OvForm'
+    'OvPicture blank'
+    'OvPicture blank'
     'OvDesc OvMeta'
 `;
 
-// Here is the axios request to receive the style information for a product
-const retrieveStyles = axios({
-  method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/styles',
-  headers: {
-    Authorization: API_KEY
-  }
-});
-
-// Here is the axios request to receive the product information
-const retrieveProductInfo = axios({
-  method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/',
-  headers: {
-    Authorization: API_KEY
-  }
-});
-
-// Here is the axios request to receive receive the ratings of a product
-const retrieveRatingInfo = axios({
-  method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37314',
-  headers: {
-    Authorization: API_KEY
-  }
-});
 
 // This is the function to create the average rating
 function findAverageRating(ratings)  {
@@ -81,7 +60,9 @@ function findAverageRating(ratings)  {
 
 
 // This is the actual functional component
-function Overview(props) {
+function Overview({ currentStyleId, setCurrentStyleId }) {
+  var productSku = 37314;
+  var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
   var [imgIndex, setImgIndex] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0)
@@ -111,8 +92,45 @@ function Overview(props) {
   });
   // single digit average rating of the product
   var [rating, setRating] = useState(0);
+
+  // Here is the axios request to receive the style information for a product
+  const retrieveStyles = axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productSku}/styles`,
+    headers: {
+      Authorization: API_KEY
+    }
+  });
+
+  // Here is the axios request to receive the product information
+  const retrieveProductInfo = axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productSku}/`,
+    headers: {
+      Authorization: API_KEY
+    }
+  });
+
+  // Here is the axios request to receive receive the ratings of a product
+  const retrieveRatingInfo = axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${productSku}`,
+    headers: {
+      Authorization: API_KEY
+    }
+  });
+
+  const retrieveReviewInfo = axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productSku}`,
+    headers: {
+      Authorization: API_KEY
+    }
+  })
+
+
   useEffect(() => {
-    Promise.all([retrieveStyles, retrieveProductInfo, retrieveRatingInfo])
+    Promise.all([retrieveStyles, retrieveProductInfo, retrieveRatingInfo, retrieveReviewInfo])
       .then((response) => {
         // this sets the styles to an array of different styles
         setStyles(styles = response[0].data.results);
@@ -120,6 +138,8 @@ function Overview(props) {
         setInfo(productInfo = response[1].data);
         // this sets the rating to the average of all the votes
         setRating(rating = findAverageRating(response[2].data.ratings));
+        // this sets the review state to the number of reviews
+        setReviewCount(reviewCount = response[3].data.count);
       }).catch((err) => {
         console.log(err);
       })
@@ -179,18 +199,36 @@ function Overview(props) {
       });
     }
   });
-
+  /* find(obj => obj.style_id === currentStyleId) */
   if (!expanded) {
     return (
       <StyledOverviewGrid>
-        <OverviewCarousel photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/>
-        <OverViewStars stars={rating}/>
-        <OverViewName name={productInfo.name} category={productInfo.category}/>
-        <OverViewPrice price={styles[styleIndex]}/>
-        <OverViewSelector styles={styles} setStyles={setStyleIndex} styleIndex={styleIndex}/>
-        <OverViewForm styles={styles[styleIndex]}/>
-        <OverviewDescription description={productInfo.description}/>
-        <OverviewFacts facts={productInfo.features}/>
+        <OverviewCarousel
+          photos={styles[styleIndex].photos}
+          expanded={expanded}
+          setView={setView}
+          imgIndex = {imgIndex}
+          setImgIndex={setImgIndex}/>
+        <OverViewStars
+          stars={rating}
+          reviewCount={reviewCount}/>
+        <OverViewName
+          name={productInfo.name}
+          category={productInfo.category}/>
+        <OverViewPrice
+          price={styles[styleIndex]}/>
+        <OverViewSelector
+          styles={styles}
+          setStyles={setStyleIndex}
+          styleIndex={styleIndex}
+          currentStyleId={currentStyleId}
+          setCurrentStyleId={setCurrentStyleId}/>
+        <OverViewForm
+          styles={styles[styleIndex]}/>
+        <OverviewDescription
+          description={productInfo.description}/>
+        <OverviewFacts
+          facts={productInfo.features}/>
       </StyledOverviewGrid>
     )
   } else {
