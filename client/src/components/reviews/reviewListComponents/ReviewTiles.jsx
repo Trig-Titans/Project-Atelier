@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReviewTileContainer, RecommendationContainer, SellersResponse} from '../sharedStyles/sharedStyledComponents';
+import {ReviewTileContainer, RecommendationContainer, SellersResponse, Thumbnail} from '../sharedStyles/sharedStyledComponents';
 const {Checkmark} = require('react-checkmark');
 
 const makeDate = (dateData) => {
@@ -54,29 +54,40 @@ const makeSellerResponse = (response) => {
   }
 };
 
+const makePhotos = (photoArray) => {
+  if (photoArray.length === 0) {
+    return <div></div>
+  } else {
+    let thumbnailPics = photoArray.map((picUrl) => {
+      // <Thumbnail
+      return (<img style={{height: '70px', width:'70px', margin: '5px'}} key={picUrl.id} src={picUrl.url} />)
+    });
+    return (<RecommendationContainer>{thumbnailPics}</RecommendationContainer>);
+  }
+}
+
 const ReviewTiles = ({reviewList}) => {
 
   return reviewList.map((review) => {
+
     let recommend = makeRecommendation(review.recommend);
     let date = makeDate(review.date);
     let summaryAndBody = makeReviewSummaryandBody(review.summary, review.body);
     let sellerResponse = makeSellerResponse(review.response);
+    let photoThumbnails = makePhotos(review.photos);
 
     return (<ReviewTileContainer data-testid="reviewTileCounting" key={review.review_id}>
       <p>{review.rating} stars {date}</p>
       {summaryAndBody}
+      {photoThumbnails}
       {recommend}
       <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
       {sellerResponse}
     </ReviewTileContainer>)
   });
-  // (<div>
-  //   <p> Star Rating  Username and Date</p>
-  //   <p>Title Line - summary max 60 char and bold</p>
-  //   <p>Message Body - display only the 1st 250 characters</p>
+
   //   <p>Thumbnail pictures if any -- review.photos (is an array, if length is more than 0, display</p>
-  //   <p><Checkmark size='medium'/> I recommend this product! -- make it a banner? if review.recommend</p>
-  //   <p>Response from Seller: if any and message attached. Styling should be different if review.response</p>
+
   //   <p>Is this helpful? Yes [###] | No [###]</p>
   //   <hr />
   // </div>);
