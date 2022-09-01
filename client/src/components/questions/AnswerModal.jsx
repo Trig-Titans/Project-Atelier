@@ -57,4 +57,4 @@ const AnswerModal = ({ productName, questionBody }) => {
 
 }
 
-export default AnswerModal;
+export {AnswerModal, StyledBackground, StyledModal};

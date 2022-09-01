@@ -59,7 +59,6 @@ const makePhotos = (photoArray) => {
     return <div></div>
   } else {
     let thumbnailPics = photoArray.map((picUrl) => {
-      // <Thumbnail
       return (<img style={{height: '70px', width:'70px', margin: '5px'}} key={picUrl.id} src={picUrl.url} />)
     });
     return (<RecommendationContainer>{thumbnailPics}</RecommendationContainer>);
@@ -86,12 +85,8 @@ const ReviewTiles = ({reviewList}) => {
     </ReviewTileContainer>)
   });
 
-  //   <p>Thumbnail pictures if any -- review.photos (is an array, if length is more than 0, display</p>
-
   //   <p>Is this helpful? Yes [###] | No [###]</p>
-  //   <hr />
-  // </div>);
-}
 
+}
 
 export {ReviewTiles, makeDate, makeRecommendation, makeReviewSummaryandBody}
