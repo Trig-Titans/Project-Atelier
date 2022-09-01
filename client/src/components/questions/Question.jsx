@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import AnswerList from './AnswerList.jsx';
-import AnswerModal from './AnswerModal.jsx';
+import { AnswerModal } from './AnswerModal.jsx';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
 

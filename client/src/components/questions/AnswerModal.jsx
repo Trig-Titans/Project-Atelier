@@ -142,4 +142,4 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
 
 }
 
-export default AnswerModal;
+export {AnswerModal, StyledBackground, StyledModal};
