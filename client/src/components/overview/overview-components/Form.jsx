@@ -5,11 +5,54 @@ import {faStar} from '@fortawesome/free-solid-svg-icons'
 
 
 
-const StyledOverviewOptionForm = styled.div`
+const StyledOverviewOptionForm = styled.form`
+  padding-top: 10px;
+  padding-left: 10px;
   grid-area: OvForm;
+  display: inline-flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  justify-content: flex-start;
 `;
 const StyledOverviewFavoriteStar = styled.button`
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  background-color: #white;
+  border-radius: 5px;
+  border: black;
+  color: gray;
 `;
+const StyledSubmit = styled.input`
+  cursor: pointer;
+  height: 40px;
+  min-width: 150px;
+  background-color: #white;
+  border-radius: 5px;
+  border: black;
+  color: gray;
+`
+const StyledSelect = styled.select`
+  min-width: 150px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #white;
+  border-radius: 5px;
+  border: black;
+  color: gray;
+  align-text: center;
+`
+const StyledQuant = styled.select`
+  min-width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #white;
+  border-radius: 5px;
+  border: black;
+  color: gray;
+  align-text: center;
+`
 
 export default function OverViewForm({ styles }) {
   const sizeAndQuant = Object.values(styles.skus);
@@ -64,31 +107,28 @@ export default function OverViewForm({ styles }) {
   }
 
   return (
-    <StyledOverviewOptionForm>
-        <form onSubmit={handleSubmit}>
-          <label>
-          {!selected ? <select ref={sizeSelectorRef} onChange={(e) => {
-                setSize(currentSize = e.target.value);
-              }}>
-              <option>-- select a size --</option>
-              {sizeList}
-            </select> :
-            <select style={{backgroundColor: '#d107079b'}}ref={sizeSelectorRef} onChange={(e) => {
-                setSize(currentSize = e.target.value);
-              }}>
-                <option>-- select a size --</option>
-                {sizeList}
-            </select>}
-          </label>
-          <label>
-            <select>
-              {quantList}
-            </select>
-          </label>
-          {addedToBag ? <input type="submit" value="Added! Remove?"/> : <input type="submit" value="Add to Bag"/>}
-          <StyledOverviewFavoriteStar onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon icon={faStar} style={{color: 'black'}}/>}</StyledOverviewFavoriteStar>
-        </form>
-
-      </StyledOverviewOptionForm>
+    <StyledOverviewOptionForm onSubmit={handleSubmit}>
+      <label>
+      {!selected ? <StyledSelect ref={sizeSelectorRef} onChange={(e) => {
+            setSize(currentSize = e.target.value);
+          }}>
+          <option>-- select a size --</option>
+          {sizeList}
+        </StyledSelect> :
+        <StyledSelect style={{backgroundColor: '#d107079b'}}ref={sizeSelectorRef} onChange={(e) => {
+            setSize(currentSize = e.target.value);
+          }}>
+            <option>-- select a size --</option>
+            {sizeList}
+        </StyledSelect>}
+      </label>
+      <label>
+        <StyledQuant>
+          {quantList}
+        </StyledQuant>
+      </label> <br></br>
+      {addedToBag ? <StyledSubmit type="submit" value="Added! Remove?"/> : <StyledSubmit type="submit" value="Add to Bag"/>}
+      <StyledOverviewFavoriteStar onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon icon={faStar} style={{color: 'white'}}/>}</StyledOverviewFavoriteStar>
+    </StyledOverviewOptionForm>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import styled from 'styled-components';
+import { faMinimize } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const StyledExpandedView = styled.div`
     min-width:60rem;
@@ -14,8 +16,10 @@ const StyledExpandedView = styled.div`
   const StyledShrinkButton = styled.button`
     position: absolute;
     z-index: 1;
+    min-height: 40px;
+    min-width: 40px;
     margin-top: 10px;
-    margin-left: 55rem;
+    margin-left: 57rem;
     background-color: #2525257f;
     color: white;
     border-radius: 5px;
@@ -66,7 +70,7 @@ export default function Expanded({ photos, expanded, setView, imgIndex, setImgIn
 
   return (
     <StyledExpandedView className='detail-view' style={{backgroundImage: `url(${photos[imgIndex].url})`}}>
-      <StyledShrinkButton onClick={handleShrink}>Shrink</StyledShrinkButton>
+      <StyledShrinkButton onClick={handleShrink}><FontAwesomeIcon icon={faMinimize}/></StyledShrinkButton>
       <StyledIconSection>
         {
           photos.map((photo, index) => {

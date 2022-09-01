@@ -17,13 +17,15 @@ import Expanded from './overview-components/Expanded.jsx'
 // Here are all of the styled components
 const StyledOverviewGrid = styled.div`
   min-height: 30rem;
+  margin-top: 4rem;
+  margin-bottom: 20px;
   column-gap: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  row-gap: 20px;
+  row-gap: 0px;
   width: 50%;
-  text-align: center;
+  text-align: left;
   display: grid;
   color: black;
   grid-template-areas:
@@ -32,6 +34,8 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvPrice'
     'OvPicture OvStyle'
     'OvPicture OvForm'
+    'OvPicture blank'
+    'OvPicture blank'
     'OvDesc OvMeta'
 `;
 
@@ -195,7 +199,7 @@ function Overview({ currentStyleId, setCurrentStyleId }) {
       });
     }
   });
-
+  /* find(obj => obj.style_id === currentStyleId) */
   if (!expanded) {
     return (
       <StyledOverviewGrid>

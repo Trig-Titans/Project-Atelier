@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import StarRatings from 'react-star-ratings';
 
 const StyledOverviewStars = styled.div`
+padding: 10px;
 grid-area: OvStar;
 margin-top: 50px
 `;

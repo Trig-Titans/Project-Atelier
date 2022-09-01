@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState } from "react";
 
 const StyledOverviewPrice = styled.div`
+padding-left: 10px;
   grid-area: OvPrice;
 `;
 
