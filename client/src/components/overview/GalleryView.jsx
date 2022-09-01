@@ -88,7 +88,7 @@ function findAverageRating(ratings)  {
 
 
 // This is the actual functional component
-function Overview(props) {
+function Overview({ currentSku, setCurrentSku }) {
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
   var [imgIndex, setImgIndex] = useState(0);
@@ -193,14 +193,32 @@ function Overview(props) {
   if (!expanded) {
     return (
       <StyledOverviewGrid>
-        <OverviewCarousel photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/>
-        <OverViewStars stars={rating} reviewCount={reviewCount}/>
-        <OverViewName name={productInfo.name} category={productInfo.category}/>
-        <OverViewPrice price={styles[styleIndex]}/>
-        <OverViewSelector styles={styles} setStyles={setStyleIndex} styleIndex={styleIndex}/>
-        <OverViewForm styles={styles[styleIndex]}/>
-        <OverviewDescription description={productInfo.description}/>
-        <OverviewFacts facts={productInfo.features}/>
+        <OverviewCarousel
+          photos={styles[styleIndex].photos}
+          expanded={expanded}
+          setView={setView}
+          imgIndex = {imgIndex}
+          setImgIndex={setImgIndex}/>
+        <OverViewStars
+          stars={rating}
+          reviewCount={reviewCount}/>
+        <OverViewName
+          name={productInfo.name}
+          category={productInfo.category}/>
+        <OverViewPrice
+          price={styles[styleIndex]}/>
+        <OverViewSelector
+          styles={styles}
+          setStyles={setStyleIndex}
+          styleIndex={styleIndex}
+          currentSku={currentSku}
+          setCurrentSku={setCurrentSku}/>
+        <OverViewForm
+          styles={styles[styleIndex]}/>
+        <OverviewDescription
+          description={productInfo.description}/>
+        <OverviewFacts
+          facts={productInfo.features}/>
       </StyledOverviewGrid>
     )
   } else {
