@@ -1,5 +1,4 @@
 import React from 'react';
-import {ReviewTileContainer} from '../sharedStyles/sharedStyledComponents';
 import {IndividualTile} from './IndividualTile.jsx';
 
 export const ReviewTiles = ({reviewList}) => {

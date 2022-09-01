@@ -77,7 +77,6 @@ export const IndividualTile = ({review}) => {
         }
       })
         .then(() => {
-          console.log('i was reported :(', review_id)
           setClickedHelpfulReport(true);
         })
         .catch((err) => {

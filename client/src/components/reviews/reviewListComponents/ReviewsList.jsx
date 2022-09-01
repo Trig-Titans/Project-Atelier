@@ -28,7 +28,6 @@ const ReviewsList = ( {productID} ) => {
       }
     })
       .then(({data})=>{
-        // console.log('I am the FIRST request for data', data);
         reviewArray = data.results;
         setWholeReviewList(data.results);
         setCurrentDisplay(reviewArray.slice(0, reviewIndex));
