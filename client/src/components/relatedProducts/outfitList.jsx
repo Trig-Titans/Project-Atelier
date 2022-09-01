@@ -3,11 +3,11 @@ import Carousel from 'react-multi-carousel';
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
 import AddOutfit from './addOutfitCard.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 const responsive = {
   desktop: {
@@ -18,15 +18,16 @@ const responsive = {
 };
 
 const Outfit = (props) => {
-  const [productData, setProductData] = React.useState([]);
-  const [list, setList] = React.useState([<AddOutfit key = {0} handleClick = {()=>{console.log('test add button')}}/>])
+  const [productData, setProductData] = React.useState(null);
+  const [input, setInput] = React.useState(<div>test</div>)
+  const [list, setList] = React.useState([])
+
 
   //WILL RECIEVE FROM PROPS
   const product_id = "37314"
-  const product_style = 0
+  const product_style = 221014
 
   React.useEffect(() => {
-
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}`, { headers: { Authorization: API_KEY } })
       .then(response => {
         let productInfoObj = response.data
@@ -34,32 +35,64 @@ const Outfit = (props) => {
         axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/styles`, {
           headers: { Authorization: API_KEY }
         })
+          .catch(err => { console.log('ERROR IN STYLES CALL FOR OUTFIT: ', err) })
           .then(response => {
             let productStylesObj = response.data;
 
             axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${product_id}`, {
               headers: { Authorization: API_KEY }
             })
+              .catch(err => { console.log('ERROR IN REVIEW CALL FOR OUTFIT: ', err) })
               .then(response => {
                 let productReviewsObj = response.data
 
                 setProductData({
                   info: productInfoObj,
-                  styles: productStylesObj.results[product_style],
+                  styles: productStylesObj,
                   reviews: productReviewsObj
                 })
               })
+              .catch(err => (console.log('ERROR IN setProductData CALL FOR OUTFIT: ', err)))
           })
       })
-  }, []);
-
-
+  }, [])
 
   return (
     <div>
       <Carousel responsive={responsive}>
-        <AddOutfit handleClick = {()=>{console.log('test add button')}}/>
-        {list.map(card => card)}
+        {
+          [
+            <div key={0}>
+              <AddOutfit
+                handleClick={
+                  () => {
+                    let style = productData.styles.results.filter(result => result.style_id === product_style)[0]
+
+                    if (list.find(item => item.key === product_id) === undefined) {
+
+                      setList((list) => {
+
+                        return [...list, <Card
+                          picUrls={style.photos.map(photo => photo.url)}
+                          category={productData.info.category}
+                          name={productData.info.name}
+                          price={'$' + style.original_price}
+                          salePrice={style.sale_price ?
+                            '$' + style.sale_price : list.length % 2 === 0 ?
+                              '$7327.00' : null}
+                          key={product_id}
+                          button={<FontAwesomeIcon icon={faCircleXmark}
+                          handleChangeProduct ={props.handleChangeProduct}
+                          />}
+                        />]
+                      })
+                    }
+                  }
+                }
+              />
+            </div>
+          ].concat(list)
+        }
       </Carousel>
     </div>
   );

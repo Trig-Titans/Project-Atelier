@@ -143,4 +143,6 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
 
 }
 
+
 export {AnswerModal, StyledBackground, StyledModal, StyledTitle, StyledForm, StyledInput, StyledLabel, StyledAnswerBox};
+

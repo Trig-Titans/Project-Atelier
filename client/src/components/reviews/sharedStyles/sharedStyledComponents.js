@@ -74,3 +74,12 @@ export const ScrollableContainer = styled.div`
   height: 50vh;
   overflow: auto;
 `;
+// src: props => props.src
+
+// export const Thumbnail = styled.img.attrs({
+//   src: "https://i.ytimg.com/vi/qencyFf3lAg/maxresdefault.jpg"
+// })`
+//   height: 100px;
+//   width: 100px;
+//   padding: 10px;
+// `
