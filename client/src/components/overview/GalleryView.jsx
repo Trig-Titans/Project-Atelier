@@ -61,6 +61,13 @@ const retrieveRatingInfo = axios({
   }
 });
 
+const retrieveReviewInfo = axios({
+  method: 'get',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37314',
+  headers: {
+    Authorization: API_KEY
+  }
+})
 // This is the function to create the average rating
 function findAverageRating(ratings)  {
   var ratingArray = Object.values(ratings);
@@ -82,6 +89,7 @@ function findAverageRating(ratings)  {
 
 // This is the actual functional component
 function Overview(props) {
+  var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
   var [imgIndex, setImgIndex] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0)
@@ -112,7 +120,7 @@ function Overview(props) {
   // single digit average rating of the product
   var [rating, setRating] = useState(0);
   useEffect(() => {
-    Promise.all([retrieveStyles, retrieveProductInfo, retrieveRatingInfo])
+    Promise.all([retrieveStyles, retrieveProductInfo, retrieveRatingInfo, retrieveReviewInfo])
       .then((response) => {
         // this sets the styles to an array of different styles
         setStyles(styles = response[0].data.results);
@@ -120,6 +128,8 @@ function Overview(props) {
         setInfo(productInfo = response[1].data);
         // this sets the rating to the average of all the votes
         setRating(rating = findAverageRating(response[2].data.ratings));
+        // this sets the review state to the number of reviews
+        setReviewCount(reviewCount = response[3].data.count);
       }).catch((err) => {
         console.log(err);
       })
@@ -184,7 +194,7 @@ function Overview(props) {
     return (
       <StyledOverviewGrid>
         <OverviewCarousel photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/>
-        <OverViewStars stars={rating}/>
+        <OverViewStars stars={rating} reviewCount={reviewCount}/>
         <OverViewName name={productInfo.name} category={productInfo.category}/>
         <OverViewPrice price={styles[styleIndex]}/>
         <OverViewSelector styles={styles} setStyles={setStyleIndex} styleIndex={styleIndex}/>
