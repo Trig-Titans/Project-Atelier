@@ -88,8 +88,14 @@ const Card = (props) => {
     }
   }
 
+  const handleClick = (event) => {
+    console.log(props.info)
+    props.handleChangeProduct(props.info)
+  }
+
   return (
-    <Carta onClick = {props.handleChangeProduct}>
+    <Carta onClick = { handleClick }
+    >
       <PicContainer >
         <RelatedBtn>{props.button}</RelatedBtn>
         <Pic src={props.picUrls[0]} onMouseEnter ={hoverHandler} onMouseLeave={exitHandler}/>

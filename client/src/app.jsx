@@ -11,12 +11,11 @@ export const App = () => {
   const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" )
 
 
-  const handleChangeProduct = () => {
-    return console.log('clicked')
+  const handleChangeProduct = (info) => {
+    console.log(info.id.toString(), info.name)
 
-
-      // setMainProduct( product );
-      // setMainProductName ( productName);
+      setMainProduct( info.id.toString() );
+      setMainProductName ( info.name);
   }
 
 

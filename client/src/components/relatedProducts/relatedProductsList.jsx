@@ -82,6 +82,8 @@ const RelatedProducts = (props) => {
 
           return (
             <Card
+
+            info={product.info}
               picUrls={style.photos.map(photo => photo.url)}
               category={product.info.category}
               name={product.info.name}
