@@ -98,6 +98,7 @@ const Question = ({ questionData, productName }) => {
     })
     .catch((err) => {
       //console.log(err);
+      setAnswerModal(false);
     })
   }
 

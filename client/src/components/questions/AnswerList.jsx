@@ -45,7 +45,7 @@ const AnswerList = ({ answers }) => {
           return (
           <Answer answerData={answer} key={answer.id} />
           )})}
-        <strong style={{display: visible}} onClick={loadAnswers}>{loadMore}</strong>
+        <strong style={{display: visible, cursor: 'pointer'}} onClick={loadAnswers}>{loadMore}</strong>
       </div>
     </StyledAnswerList>
   )

@@ -35,7 +35,6 @@ const QandA = () => {
       <h4>QUESTIONS &#38; ANSWERS</h4>
       <QuestionSearch/>
       <QuestionList productName={product_name} questions={questions}/>
-      <div>More Answered Questions Button</div>
       <div>Add Question Button</div>
     </div>
 
