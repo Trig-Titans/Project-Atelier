@@ -46,12 +46,14 @@ const RelatedProducts = (props) => {
                return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`, {
                 headers: { Authorization: API_KEY }
               })
+              .catch(err => {console.log('ERROR IN ACCUMULATED STYLES CALL FOR RELATED: ', err)})
                 .then(response => {
                   let productStylesObj = response.data;
 
                   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${id}`, {
                     headers: { Authorization: API_KEY }
                   })
+                  .catch(err => {console.log('ERROR IN ACCUMULATED REVIEW/META CALL FOR RELATED: ', err)})
                     .then(response => {
                       let productReviewsObj = response.data
 
@@ -63,12 +65,14 @@ const RelatedProducts = (props) => {
 
                       return productData
                     })
+                    .catch(err => {console.log('ERROR IN ACCUMULATED DATA FOR RELATED: ', err)})
                 })
             })
         }))
         .then(response => {
           setAccumulatedProductData(response)
         })
+        .catch(err => {console.log('ERROR IN PROMISE ALL CALL FOR RELATED: ', err)})
       })
   }, []);
 
