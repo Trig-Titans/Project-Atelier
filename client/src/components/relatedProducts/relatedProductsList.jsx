@@ -43,51 +43,35 @@ const RelatedProducts = (props) => {
             .then(response => {
               let productInfoObj = response.data
 
-              return productInfoObj
-            })
-        }))
-          .then(response => {
-            let productsInfoArray = response;
-
-            //ONCE WE HAVE ALL RELATED PRODUCTS FIND THE STYLES FOR EACH PRODUCT
-            Promise.all(productsInfoArray.map(product => {
-              return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, {
+               return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`, {
                 headers: { Authorization: API_KEY }
               })
                 .then(response => {
                   let productStylesObj = response.data;
 
-                  return productStylesObj;
-                })
-            }))
-              .then(response => {
-                let productsStylesArray = response;
-
-                Promise.all(productsStylesArray.map(product => {
-                  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${product.product_id}`, {
+                  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${id}`, {
                     headers: { Authorization: API_KEY }
                   })
                     .then(response => {
                       let productReviewsObj = response.data
 
-                      return productReviewsObj
+                      let productData = {
+                        info: productInfoObj,
+                        styles: productStylesObj,
+                        reviews: productReviewsObj
+                      }
+
+                      return productData
                     })
-                }))
-                  .then(response => {
-                    let productReviewsArray = response
-
-                    productsInfoArray.map((product, index) => {
-                      product.styles = productsStylesArray[index];
-                      product.reviews = productReviewsArray[index];
-                    })
-
-                    setAccumulatedProductData(productsInfoArray);
-                  })
-
-              })
-          })
+                })
+            })
+        }))
+        .then(response => {
+          setAccumulatedProductData(response)
+        })
       })
   }, []);
+
 
   // salePrice={style.sale_price}
 
