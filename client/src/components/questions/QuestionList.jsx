@@ -10,7 +10,7 @@ import API_KEY from '../../../../config.js';
 
 
 const StyledQuestionList = styled.div`
-  max-height: 70vh;
+  max-height: 60vh;
   overflow: auto;
 `;
 
