@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState, useContext } from "react";
 import styleIndexContext from '../GalleryView.jsx';
+const { Checkmark } = require('react-checkmark');
 
 const StyledOverviewStyleSelector = styled.div`
   grid-area: OvStyle;
@@ -17,14 +18,15 @@ const StyledOverviewStylesSection = styled.div`
   overflow-x: hidden;
 `;
 const StyleCircle = styled.div`
-  display: flex;
-  justify-content: center;
   align-items: center;
   width:50px;
   height:50px;
   overflow: hidden;
   border-radius: 50%;
   background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
 `;
 
 
@@ -44,6 +46,7 @@ export default function OverViewSelector({ styles, setStyles, styleIndex, curren
               setStyles(styleIndex = index);
             }}
             key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '3px solid lightgray'}}>
+              <Checkmark size='small' />
             </StyleCircle>
           )
         } else {
