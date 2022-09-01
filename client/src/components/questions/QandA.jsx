@@ -5,6 +5,7 @@ import QuestionList from './QuestionList.jsx';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
 import styled from 'styled-components';
+import { Button } from '../reviews/sharedStyles/sharedStyledComponents.js';
 
 const QandA = () => {
 
@@ -49,10 +50,9 @@ const QandA = () => {
 
   return (
     <div >
-      <h4>QUESTIONS &#38; ANSWERS</h4>
+      <h4 style={{textAlign: 'left'}}>QUESTIONS &#38; ANSWERS</h4>
       <QuestionSearch handleChange={handleChange} value={value}/>
-      <QuestionList productName={product_name} questions={questions}/>
-      <div>Add Question Button</div>
+      <QuestionList productName={product_name} productID={product_id} questions={questions}/>
     </div>
 
   )

@@ -43,6 +43,7 @@ const StyledInput = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  text-align: left;
   padding: 2.5vh 0;
 `;
 
@@ -142,4 +143,4 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
 
 }
 
-export {AnswerModal, StyledBackground, StyledModal};
+export {AnswerModal, StyledBackground, StyledModal, StyledTitle, StyledForm, StyledInput, StyledLabel, StyledAnswerBox};
