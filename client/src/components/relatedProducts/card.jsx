@@ -9,21 +9,23 @@ const Carta = styled.div`
   border-color: lightgrey;
   width: 200px;
   height: 299px;
+  position: relative;
 `
-
 const Layer = styled.div`
  width: 200px;
   height: 299px;
    position: absolute;
     border: solid;
     border-color: #fffb00;
-    z-index: 100
+    z-index: 5;
 
 `
+
 const PicContainer = styled.div`
   width: 200px;
   height: 195px;
   position: relative;
+  z-index: 8;
 `
 const RelatedBtn = styled.div`
   float: right;
@@ -31,12 +33,13 @@ const RelatedBtn = styled.div`
   right: 10px;
   top: 2px;
   color: cornflowerblue;
-  z-index: 101
+  z-index: 10;
 
 `
 const Pic = styled.img`
   width: 199px;
   height: 195px;
+  z-index: 9;
 `
 const Container = styled.div`
   text-align: left;
@@ -62,27 +65,29 @@ font-size: 11px;
 const Card = (props) => {
 
   let urlIndex = 0;
-  let intervalID ;
+  let intervalID;
+  let url = props.picUrls[0]
 
   const hoverHandler = (event) => {
 
-    intervalID = setInterval( ()=> {
+    intervalID = setInterval(() => {
       urlIndex++
 
-      if(urlIndex === props.picUrls.length ){
+      if (urlIndex === props.picUrls.length) {
         urlIndex = 0;
       }
 
-     event.target.src = props.picUrls[urlIndex]
+      event.target.src = props.picUrls[urlIndex]
 
-    },1000)
+    }, 1000)
 
-    }
+  }
 
 
   const exitHandler = (event) => {
     clearInterval(intervalID)
     event.target.src = props.picUrls[0]
+
   }
 
 
@@ -105,18 +110,27 @@ const Card = (props) => {
   }
 
   return (
-    <Carta>
-      <PicContainer >
-        <RelatedBtn>{props.button}</RelatedBtn>
-        <Layer onClick = { handleClick }></Layer>
-        <Pic src={props.picUrls[0]} onMouseEnter ={hoverHandler} onMouseLeave={exitHandler}/>
-      </PicContainer>
-      <Container>
-        <CategoryP>{props.category}</CategoryP>
-        <h5><b>{props.name}</b></h5>
-        {renderSale()}
-        <TestStarIcon />
-      </Container>
+    <Carta >
+      <RelatedBtn>{props.button}</RelatedBtn>
+      <div onClick={handleClick} >
+        <PicContainer >
+
+          <Pic src={props.picUrls[0]}
+            onMouseEnter={hoverHandler}
+            onMouseLeave={exitHandler} />
+
+
+        </PicContainer>
+
+        <Container>
+          <CategoryP>{props.category}</CategoryP>
+          <h5><b>{props.name}</b></h5>
+          {renderSale()}
+          <TestStarIcon />
+        </Container>
+
+      </div>
+
     </Carta>
   )
 }
