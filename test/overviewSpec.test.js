@@ -1,6 +1,6 @@
 const { findAverageRating } = require('../client/src/components/overview/GalleryView.jsx');
-const jest = require('jest');
-const { dateParser } = require('../client/src/components/questions/Answer.jsx');
+// const jest = require('jest');
+// const { dateParser } = require('../client/src/components/questions/Answer.jsx');
 const React = require('react');
 require('@testing-library/jest-dom');
 const {default: userEvent} = require('@testing-library/user-event');
