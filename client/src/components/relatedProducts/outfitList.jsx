@@ -60,8 +60,8 @@ const Outfit = (props) => {
   return (
     <div>
       <Carousel responsive={responsive}>
-        <div>
-          <AddOutfit
+        {/* <div>
+        <AddOutfit
             handleClick={
               () => {
                 let style = productData.styles.results.filter(result => result.style_id === product_style)[0]
@@ -82,9 +82,37 @@ const Outfit = (props) => {
               }
             }
           />
-        </div>
+        </div> */}
 
-        {list.map(item => item)}
+        {
+
+          [
+            <div key = {list.length}>
+            <AddOutfit
+                handleClick={
+                  () => {
+                    let style = productData.styles.results.filter(result => result.style_id === product_style)[0]
+
+                    setList((list) => {
+                      return [...list, <Card
+                        picUrls={style.photos.map(photo => photo.url)}
+                        category={productData.info.category}
+                        name={productData.info.name}
+                        price={'$' + style.original_price}
+                        salePrice={style.sale_price ?
+                          '$' + style.sale_price : list.length % 2 === 0 ?
+                            '$7327.00' : null}
+                        key={list.length}
+                        button={<FontAwesomeIcon icon={faCircleXmark} />}
+                      />]
+                    })
+                  }
+                }
+              />
+            </div>
+          ].concat(list)
+
+        }
 
       </Carousel>
     </div>
