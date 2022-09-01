@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from "react";
 import styled from 'styled-components';
 import axios from 'axios';
@@ -34,68 +35,9 @@ const StyledOverviewGrid = styled.div`
     'OvDesc OvMeta'
 `;
 
-// Here is the axios request to receive the style information for a product
-const retrieveStyles = axios({
-  method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/styles',
-  headers: {
-    Authorization: API_KEY
-  }
-});
 
-// Here is the axios request to receive the product information
-const retrieveProductInfo = axios({
-  method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/',
-  headers: {
-    Authorization: API_KEY
-  }
-});
-
-// Here is the axios request to receive receive the ratings of a product
-const retrieveRatingInfo = axios({
-  method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37314',
-  headers: {
-    Authorization: API_KEY
-  }
-});
-
-const retrieveReviewInfo = axios({
-  method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37314',
-  headers: {
-    Authorization: API_KEY
-  }
-})
 // This is the function to create the average rating
 function findAverageRating(ratings)  {
-  const retrieveProductInfo = axios({
-    method: 'get',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/',
-    headers: {
-      Authorization: API_KEY
-    }
-  });
-
-  // Here is the axios request to receive receive the ratings of a product
-  const retrieveRatingInfo = axios({
-    method: 'get',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37314',
-    headers: {
-      Authorization: API_KEY
-    }
-  });
-
-  // This is retrieving the review count
-  const retrieveReviewInfo = axios({
-    method: 'get',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37314',
-    headers: {
-      Authorization: API_KEY
-    }
-  })
-
   var ratingArray = Object.values(ratings);
   var numberOfVotes = 0;
   var total = 0;
@@ -115,6 +57,7 @@ function findAverageRating(ratings)  {
 
 // This is the actual functional component
 function Overview({ currentStyleId, setCurrentStyleId }) {
+  var productSku = 37314;
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
   var [imgIndex, setImgIndex] = useState(0);
@@ -145,6 +88,43 @@ function Overview({ currentStyleId, setCurrentStyleId }) {
   });
   // single digit average rating of the product
   var [rating, setRating] = useState(0);
+
+  // Here is the axios request to receive the style information for a product
+  const retrieveStyles = axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productSku}/styles`,
+    headers: {
+      Authorization: API_KEY
+    }
+  });
+
+  // Here is the axios request to receive the product information
+  const retrieveProductInfo = axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productSku}/`,
+    headers: {
+      Authorization: API_KEY
+    }
+  });
+
+  // Here is the axios request to receive receive the ratings of a product
+  const retrieveRatingInfo = axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${productSku}`,
+    headers: {
+      Authorization: API_KEY
+    }
+  });
+
+  const retrieveReviewInfo = axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productSku}`,
+    headers: {
+      Authorization: API_KEY
+    }
+  })
+
+
   useEffect(() => {
     Promise.all([retrieveStyles, retrieveProductInfo, retrieveRatingInfo, retrieveReviewInfo])
       .then((response) => {
