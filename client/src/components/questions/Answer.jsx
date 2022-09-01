@@ -2,11 +2,18 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ImageModal from './ImageModal.jsx';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
 
 const StyledAnswer = styled.div`
   padding: 0.7% 0;
+`;
+
+const StyledAnswerImage = styled.img`
+  padding: 1vh 0;
+  width: auto;
+  height: 15vh;
 `;
 
 
@@ -29,6 +36,9 @@ const Answer = ({ answerData }) => {
 
   const [checkHelpfulClick, setCheckHelpfulClick] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(answerData.helpfulness);
+
+  const [imageModal, setImageModal] = useState(false);
+  const [modalURL, setModalURL] = useState('');
 
   const dateStr = dateParser(answerData.date);
   let user = answerData.answerer_name;
@@ -74,13 +84,20 @@ const Answer = ({ answerData }) => {
     }
   }
 
+  var imageClick = (e) => {
+    setModalURL(e.target.src);
+    setImageModal(true);
+  }
+
   return (
     <StyledAnswer >
       <div>
         {answerData.body}
       </div>
+      {answerData.photos.length > 0 ? answerData.photos.map((url) => (<StyledAnswerImage src={url} key={url} onClick={imageClick}></StyledAnswerImage>)) : <div></div>}
+      {imageModal ? <ImageModal setImageModal={setImageModal} url={modalURL}/> : <div></div>}
       <div>
-        by: {user}, {dateStr} &nbsp;&nbsp;|&nbsp;&nbsp; Helpful?&nbsp; <u onClick={helpfulClick}>Yes</u>{`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <span onClick={reportClick}>{reportText}</span>
+        by: {user}, {dateStr} &nbsp;&nbsp;|&nbsp;&nbsp; Helpful?&nbsp; <u onClick={helpfulClick} style={{cursor: 'pointer'}}>Yes</u>{`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <span onClick={reportClick} style={{cursor: 'pointer'}}>{reportText}</span>
       </div>
     </StyledAnswer>
   )

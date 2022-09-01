@@ -6,7 +6,6 @@ import QandA from './components/questions/QandA.jsx'
 
 
 export const App = () => {
-  var [currentStyleId, setCurrentStyleId] = useState('221014');
   function handleScroll (e) {
     let offsetTop  = document.getElementById(e).offsetTop;
     window.scrollTo({
@@ -14,7 +13,18 @@ export const App = () => {
       behavior: "smooth"
     });
   }
+  
+  const [mainProduct, setMainProduct] = React.useState("37314");
+  const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" )
+  var [currentStyleId, setCurrentStyleId] = useState('221014');
 
+  const handleChangeProduct = (info) => {
+    console.log(info.id.toString(), info.name)
+
+      setMainProduct( info.id.toString() );
+      setMainProductName ( info.name);
+  }
+  
   return  (
           <div>
             {/* this is the start of the navbar */}
@@ -41,7 +51,7 @@ export const App = () => {
               <Overview currentStyleId={currentStyleId} setCurrentStyleId={setCurrentStyleId}/>
             </div>
             <div id='related-products'>
-              <RelatedProducts />
+              <RelatedProducts mainProduct = {mainProduct} handleChangeProduct = {handleChangeProduct}/>
             </div>
             <div id='q-and-a'>
               <QandA />

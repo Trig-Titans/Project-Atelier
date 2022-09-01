@@ -1,11 +1,12 @@
 import React from 'react';
+import {RecommendationContainer} from '../sharedStyles/sharedStyledComponents.js'
 
-let AverageRating = () => {
-  return(<div>
-    <p>3.6</p>
-    <p>ALL OF THE STARS</p>
-    <p>Total Number of Reviews</p>
-  </div>);
+let AverageRating = ({averageStars, totalCount}) => {
+  return(<RecommendationContainer>
+    <h1>{averageStars}</h1>
+    <p>Star Component</p>
+    <p>({totalCount})</p>
+  </RecommendationContainer>);
 };
 
 export {AverageRating};
