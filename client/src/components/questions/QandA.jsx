@@ -50,7 +50,7 @@ const QandA = () => {
 
   return (
     <div >
-      <h4 style={{textAlign: 'left'}}>QUESTIONS &#38; ANSWERS</h4>
+      <h4 style={{textAlign: 'left', paddingTop: '5vh'}}>QUESTIONS &#38; ANSWERS</h4>
       <QuestionSearch handleChange={handleChange} value={value}/>
       <QuestionList productName={product_name} productID={product_id} questions={questions}/>
     </div>
