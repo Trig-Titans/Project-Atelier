@@ -8,10 +8,11 @@ margin-top: 50px
 `;
 
 export default function OverviewStars({ stars }) {
+  console.log(stars);
   return (
     <StyledOverviewStars data-testid="stars">
         <StarRatings
-          rating={3.5}
+          rating={parseFloat(stars)}
           starRatedColor="gray"
           numberOfStars={5}
           starDimension="15px"
