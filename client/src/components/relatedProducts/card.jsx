@@ -10,6 +10,16 @@ const Carta = styled.div`
   width: 200px;
   height: 299px;
 `
+
+const Layer = styled.div`
+ width: 200px;
+  height: 299px;
+   position: absolute;
+    border: solid;
+    border-color: #fffb00;
+    z-index: 100
+
+`
 const PicContainer = styled.div`
   width: 200px;
   height: 195px;
@@ -21,6 +31,7 @@ const RelatedBtn = styled.div`
   right: 10px;
   top: 2px;
   color: cornflowerblue;
+  z-index: 101
 
 `
 const Pic = styled.img`
@@ -94,10 +105,10 @@ const Card = (props) => {
   }
 
   return (
-    <Carta onClick = { handleClick }
-    >
+    <Carta>
       <PicContainer >
         <RelatedBtn>{props.button}</RelatedBtn>
+        <Layer onClick = { handleClick }></Layer>
         <Pic src={props.picUrls[0]} onMouseEnter ={hoverHandler} onMouseLeave={exitHandler}/>
       </PicContainer>
       <Container>
