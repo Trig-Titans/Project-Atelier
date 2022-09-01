@@ -18,7 +18,6 @@ describe('ReviewsList rendering', () => {
     render(<ReviewsList productID={productId}/>);
     expect(screen.getAllByTestId('reviewTileCounting')).toHaveLength(2);
 
-
   });
   it('should render two additional tiles on click of MORE REVIEWS', () => {
     const user = userEvent.setup();
