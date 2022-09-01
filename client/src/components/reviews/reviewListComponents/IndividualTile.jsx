@@ -43,29 +43,47 @@ export const makeSellerResponse = (response) => {
 export const IndividualTile = ({review}) => {
   let [thumbnailView, setThumbnailView] = useState(false);
   let [thumbnailUrl, setThumbnailUrl] = useState('');
-
-
-  //either this state needs to be on EACH review card separately as a boolean
-  // OR it can be an array of review IDs such that when they are clicked they don't allow subsequent clicks if the IDarray includes clicked review ID
-  let [clickedHelpful, setClickedHelpful] = useState([]);
+  let [displayHelpfulness, setDisplayHelpfulness] = useState(review.helpfulness)
+  let [clickedHelpfulReport, setClickedHelpfulReport] = useState(false)
 
   const addHelpfulRating = (review_id) => {
     //PUT /reviews/:review_id/helpful
-    axios({
-      method: 'put',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review_id}/helpful`,
-      headers: {
-        'Authorization': API_KEY
-      }
-    })
-      .then(() => {
-        let temp = clickedHelpful;
-        temp.push(review_id);
-        setClickedHelpful(temp);
+    if(!clickedHelpfulReport) {
+      axios({
+        method: 'put',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review_id}/helpful`,
+        headers: {
+          'Authorization': API_KEY
+        }
       })
-      .catch((err) => {
-        console.log(err);
+        .then(() => {
+          setDisplayHelpfulness(displayHelpfulness + 1);
+          setClickedHelpfulReport(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }
+
+  const addReportRating = (review_id) => {
+    //PUT /reviews/:review_id/report
+    if (!setClickedHelpfulReport) {
+      axios({
+        method: 'put',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review_id}/report`,
+        headers: {
+          'Authorization': API_KEY
+        }
       })
+        .then(() => {
+          console.log('i was reported :(', review_id)
+          setClickedHelpfulReport(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
   }
 
   const openThumbnail = (url) => {
@@ -118,8 +136,10 @@ export const IndividualTile = ({review}) => {
       return <p>{body}</p>
     }
   }
+  let notYetDisplayed = true;
   let [showLongBody, setShowLongBody] = useState(false);
   const changeBody = () => {
+    notYetDisplayed = false;
     setShowLongBody(true);
   }
 
@@ -129,17 +149,23 @@ export const IndividualTile = ({review}) => {
   let body = makeBody(review.body)
   let sellerResponse = makeSellerResponse(review.response);
   let photoThumbnails = makePhotos(review.photos);
-
+  let display = <div></div>;
+  if(notYetDisplayed) {
+    if(longBody) {
+      display = <u onClick={()=>{changeBody()}}>(See More)</u>
+    }
+  }
   return (<ReviewTileContainer>
         <p>{review.rating} stars {date}</p>
         {summary}
         {showLongBody ? longBodyText : body}
-        {longBody ? <u onClick={()=>{changeBody()}}>(See More)</u> : <div></div>}
+        {/* This is the SeeMore link that needs to disappear if the full body has been displayed */}
+        {display}
         {photoThumbnails}
         {thumbnailView ? <ThumbnailModel thumbnailUrl={thumbnailUrl} setThumbnailView={setThumbnailView}></ThumbnailModel> : <div></div>}
         {recommend}
         <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
-        <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({review.helpfulness}) | <u style={{textDecoration: 'underline'}}>Report</u></p>
+        <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({displayHelpfulness}) | <u style={{textDecoration: 'underline'}} onClick={() => {addReportRating(review.review_id)}}>Report</u></p>
         {sellerResponse}
       </ReviewTileContainer>)
 }
