@@ -6,11 +6,10 @@ import QandA from './components/questions/QandA.jsx'
 
 
 export const App = () => {
-  var [currentSku, setCurrentSku] = useState(0);
-
+  var [currentStyleId, setCurrentStyleId] = useState(0);
   return  <div >
            <h1>Front End Capstone Avatar Project</h1>
-              <Overview currentSku={currentSku} setCurrentSku={setCurrentSku}/>
+              <Overview currentStyleId={currentStyleId} setCurrentStyleId={setCurrentStyleId}/>
               <RelatedProducts />
               <QandA />
               <Reviews />

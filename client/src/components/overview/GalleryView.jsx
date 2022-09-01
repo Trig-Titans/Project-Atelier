@@ -70,6 +70,32 @@ const retrieveReviewInfo = axios({
 })
 // This is the function to create the average rating
 function findAverageRating(ratings)  {
+  const retrieveProductInfo = axios({
+    method: 'get',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37314/',
+    headers: {
+      Authorization: API_KEY
+    }
+  });
+
+  // Here is the axios request to receive receive the ratings of a product
+  const retrieveRatingInfo = axios({
+    method: 'get',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37314',
+    headers: {
+      Authorization: API_KEY
+    }
+  });
+
+  // This is retrieving the review count
+  const retrieveReviewInfo = axios({
+    method: 'get',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37314',
+    headers: {
+      Authorization: API_KEY
+    }
+  })
+
   var ratingArray = Object.values(ratings);
   var numberOfVotes = 0;
   var total = 0;
@@ -88,7 +114,7 @@ function findAverageRating(ratings)  {
 
 
 // This is the actual functional component
-function Overview({ currentSku, setCurrentSku }) {
+function Overview({ currentStyleId, setCurrentStyleId }) {
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
   var [imgIndex, setImgIndex] = useState(0);
@@ -211,8 +237,8 @@ function Overview({ currentSku, setCurrentSku }) {
           styles={styles}
           setStyles={setStyleIndex}
           styleIndex={styleIndex}
-          currentSku={currentSku}
-          setCurrentSku={setCurrentSku}/>
+          currentStyleId={currentStyleId}
+          setCurrentStyleId={setCurrentStyleId}/>
         <OverViewForm
           styles={styles[styleIndex]}/>
         <OverviewDescription

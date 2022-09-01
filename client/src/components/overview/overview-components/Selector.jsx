@@ -28,8 +28,7 @@ const StyleCircle = styled.div`
 `;
 
 
-export default function OverViewSelector({ styles, setStyles, styleIndex }) {
-
+export default function OverViewSelector({ styles, setStyles, styleIndex, currentStyleId, setCurrentStyleId }) {
   return (
   <StyledOverviewStyleSelector>
     <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
@@ -51,6 +50,7 @@ export default function OverViewSelector({ styles, setStyles, styleIndex }) {
           return (
             <StyleCircle onClick={() => {
               setStyles(styleIndex = index);
+              setCurrentStyleId(currentStyleId = style.style_id)
             }}
             key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '2px solid gray'}}>
             </StyleCircle>
