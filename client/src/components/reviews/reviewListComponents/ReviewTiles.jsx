@@ -1,5 +1,6 @@
-import React from 'react';
-import {ReviewTileContainer, RecommendationContainer, SellersResponse, Thumbnail} from '../sharedStyles/sharedStyledComponents';
+import React, {useState} from 'react';
+import {ReviewTileContainer, RecommendationContainer, SellersResponse} from '../sharedStyles/sharedStyledComponents';
+import {ThumbnailModel} from './ThumbnailModal.jsx';
 const {Checkmark} = require('react-checkmark');
 
 const makeDate = (dateData) => {
@@ -54,21 +55,27 @@ const makeSellerResponse = (response) => {
   }
 };
 
-const makePhotos = (photoArray) => {
-  if (photoArray.length === 0) {
-    return <div></div>
-  } else {
-    let thumbnailPics = photoArray.map((picUrl) => {
-      return (<img style={{height: '70px', width:'70px', margin: '5px'}} key={picUrl.id} src={picUrl.url} />)
-    });
-    return (<RecommendationContainer>{thumbnailPics}</RecommendationContainer>);
-  }
-}
-
 const ReviewTiles = ({reviewList}) => {
+  let [thumbnailView, setThumbnailView] = useState(false);
+  let [thumbnailUrl, setThumbnailUrl] = useState('');
 
+
+  const openThumbnail = (url) => {
+    setThumbnailView(true);
+    setThumbnailUrl(url);
+  }
+
+  const makePhotos = (photoArray) => {
+    if (photoArray.length === 0) {
+      return <div></div>
+    } else {
+      let thumbnailPics = photoArray.map((picUrl) => {
+        return (<img style={{height: '70px', width:'70px', margin: '5px'}} key={picUrl.id} src={picUrl.url} onClick={()=>{openThumbnail(picUrl.url)}}/>)
+      });
+      return (<RecommendationContainer>{thumbnailPics}</RecommendationContainer>);
+    }
+  }
   return reviewList.map((review) => {
-
     let recommend = makeRecommendation(review.recommend);
     let date = makeDate(review.date);
     let summaryAndBody = makeReviewSummaryandBody(review.summary, review.body);
@@ -79,6 +86,7 @@ const ReviewTiles = ({reviewList}) => {
       <p>{review.rating} stars {date}</p>
       {summaryAndBody}
       {photoThumbnails}
+      {thumbnailView ? <ThumbnailModel thumbnailUrl={thumbnailUrl} setThumbnailView={setThumbnailView}></ThumbnailModel> : <div></div>}
       {recommend}
       <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
       {sellerResponse}
