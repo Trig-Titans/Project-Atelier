@@ -13,7 +13,6 @@ const List = styled.div`
   margin-left: 23%;
   width:53%;
 `
-
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -21,10 +20,6 @@ const responsive = {
     slidesToSlide: .75
   }
 };
-
-
-
-//for new commit aug 30
 
 const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
@@ -43,17 +38,17 @@ const RelatedProducts = (props) => {
             .then(response => {
               let productInfoObj = response.data
 
-               return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`, {
+              return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`, {
                 headers: { Authorization: API_KEY }
               })
-              .catch(err => {console.log('ERROR IN ACCUMULATED STYLES CALL FOR RELATED: ', err)})
+                .catch(err => { console.log('ERROR IN ACCUMULATED STYLES CALL FOR RELATED: ', err) })
                 .then(response => {
                   let productStylesObj = response.data;
 
                   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${id}`, {
                     headers: { Authorization: API_KEY }
                   })
-                  .catch(err => {console.log('ERROR IN ACCUMULATED REVIEW/META CALL FOR RELATED: ', err)})
+                    .catch(err => { console.log('ERROR IN ACCUMULATED REVIEW/META CALL FOR RELATED: ', err) })
                     .then(response => {
                       let productReviewsObj = response.data
 
@@ -65,40 +60,44 @@ const RelatedProducts = (props) => {
 
                       return productData
                     })
-                    .catch(err => {console.log('ERROR IN ACCUMULATED DATA FOR RELATED: ', err)})
+                    .catch(err => { console.log('ERROR IN ACCUMULATED DATA FOR RELATED: ', err) })
                 })
             })
         }))
-        .then(response => {
-          setAccumulatedProductData(response)
-        })
-        .catch(err => {console.log('ERROR IN PROMISE ALL CALL FOR RELATED: ', err)})
+          .then(response => {
+            setAccumulatedProductData(response)
+          })
+          .catch(err => { console.log('ERROR IN PROMISE ALL CALL FOR RELATED: ', err) })
       })
   }, []);
 
-
-  // salePrice={style.sale_price}
-
   return (
     <List>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <Carousel responsive={responsive}>
-        {accumulatedProductData.map((product, index) => {
 
-            let style = product.styles.results.find(result => result['default?'] === true) !== undefined ?
-              product.styles.results.find(result => result['default?'] === true)
-              : product.styles.results[0]
+        {accumulatedProductData.map((product, index) => {
+          let style = product.styles.results[0]
 
           return (
-            <Card picUrls={style.photos.map(photo => photo.url)}  category={product.category} name={product.name} price={'$' +style.original_price} salePrice={ style.sale_price ? '$' + style.sale_price : index % 2 === 0 ? '$7327.00' : null} key={index} button={<StarBtn/>} />
+            <Card
+              picUrls={style.photos.map(photo => photo.url)}
+              category={product.info.category}
+              name={product.info.name}
+              price={'$' + style.original_price}
+              salePrice={style.sale_price ?
+                '$' + style.sale_price : index % 2 === 0 ?
+                  '$7327.00' : null}
+              key={index}
+              button={<StarBtn />} />
           )
         })}
-      </Carousel>
-      <br/>
-        <br/>
-        <Outfit/>
 
+      </Carousel>
+      <br />
+      <br />
+      <Outfit />
     </List>
   );
 }
