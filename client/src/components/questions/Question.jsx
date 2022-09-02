@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import AnswerList from './AnswerList.jsx';
 import { AnswerModal } from './AnswerModal.jsx';
+import { StyledLinks } from './Answer.jsx';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
 
@@ -15,10 +16,8 @@ const StyledQandA = styled.div`
 const StyledQuestion = styled.div`
   display: flex;
   justify-content: space-between;
-
-`;
-const StyledLinks = styled.div`
-
+  margin-right: .5vw;
+  padding: 2vh 0 1vh;
 `;
 
 // turns the answers object into an array and sorts it based on helpfulness and if the seller answered.
@@ -82,6 +81,7 @@ const Question = ({ questionData, productName }) => {
   var submitAnswer = (e, photoArray) => {
     e.preventDefault();
 
+
     axios({
       method: 'post',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionData.question_id}/answers`,
@@ -106,7 +106,7 @@ const Question = ({ questionData, productName }) => {
   return (
     <StyledQandA >
       <StyledQuestion >
-        <strong>{'Q: ' + questionData.question_body}</strong>
+        <h4>{'Q: ' + questionData.question_body}</h4>
         <StyledLinks>
           Helpful? <u onClick={helpfulClick} style={{cursor: 'pointer'}}>Yes</u> {`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <u data-testid={questionData.question_id} onClick={addAnswer} style={{cursor: 'pointer'}}>Add Answer</u>
         </StyledLinks>

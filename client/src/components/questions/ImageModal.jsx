@@ -17,7 +17,9 @@ const StyledExitButton = styled.button`
 
 const StyledImageModal = styled.div`
   position: fixed;
-  top: 12.5vh; left: 25vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 101;
   max-width: 50vw;
   width: max-content;

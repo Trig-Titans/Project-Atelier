@@ -19,7 +19,7 @@ const StyledOverviewFavoriteStar = styled.button`
   cursor: pointer;
   height: 40px;
   width: 40px;
-  background-color: #white;
+  background-color: #DBDBD6;
   border-radius: 5px;
   border: black;
   color: gray;
@@ -28,10 +28,10 @@ const StyledSubmit = styled.input`
   cursor: pointer;
   height: 40px;
   min-width: 150px;
-  background-color: #white;
+  background-color: #DBDBD6;
   border-radius: 5px;
   border: black;
-  color: gray;
+  color: #006B6B;
 `
 const StyledSelect = styled.select`
   min-width: 150px;

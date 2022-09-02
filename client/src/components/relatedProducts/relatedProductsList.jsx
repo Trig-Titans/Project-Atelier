@@ -10,8 +10,8 @@ import StarBtn from './relatedBtn.jsx'
 import Outfit from './outfitList.jsx'
 
 const List = styled.div`
-  margin-left: 23%;
-  width:53%;
+  margin: auto;
+  width: 80%;
 `
 const responsive = {
   desktop: {

@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {ReviewTileContainer, RecommendationContainer, SellersResponse} from '../sharedStyles/sharedStyledComponents';
 import {ThumbnailModel} from './ThumbnailModal.jsx';
 import axios from 'axios';
-import API_KEY from '../../../../../config.js'
+import API_KEY from '../../../../../config.js';
+import { StyledLinks } from '../../questions/Answer.jsx';
 const {Checkmark} = require('react-checkmark');
 import {OverviewStars} from '../StarComponent.jsx';
 
@@ -125,7 +126,7 @@ export const IndividualTile = ({review}) => {
         longBodyText = <p>{body.substring(30)}</p>;
         bod += '...';
       }
-      return <p>{bod}</p>
+      return <p style={{fontSize: '14px'}}>{bod}</p>
     } else {
       if (body.length > 250) {
         longBody = true;
@@ -133,7 +134,7 @@ export const IndividualTile = ({review}) => {
         body = body.substring(0,250);
         body += '...';
       }
-      return <p>{body}</p>
+      return <p style={{fontSize: '14px'}}>{body}</p>
     }
   }
   let notYetDisplayed = true;
@@ -165,7 +166,10 @@ export const IndividualTile = ({review}) => {
         {thumbnailView ? <ThumbnailModel thumbnailUrl={thumbnailUrl} setThumbnailView={setThumbnailView}></ThumbnailModel> : <div></div>}
         {recommend}
         <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
-        <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({displayHelpfulness}) | <u style={{textDecoration: 'underline'}} onClick={() => {addReportRating(review.review_id)}}>Report</u></p>
+        <StyledLinks>
+          <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({displayHelpfulness}) | <u style={{textDecoration: 'underline'}} onClick={() => {addReportRating(review.review_id)}}>Report</u></p>
+        </StyledLinks>
+
         {sellerResponse}
       </ReviewTileContainer>)
 }

@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import RelatedProducts from './components/relatedProducts/relatedProductsList.jsx'
-import { Overview } from "./components/overview/GalleryView.jsx"
-import Reviews from "./components/reviews/ReviewsMain.jsx"
-import QandA from './components/questions/QandA.jsx'
+import { Overview } from "./components/overview/GalleryView.jsx";
+import Reviews from "./components/reviews/ReviewsMain.jsx";
+import { QandA } from './components/questions/QandA.jsx';
+import styled from 'styled-components';
+
+const StyledPageBackground = styled.img`
+  z-index: -5;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  width: 100vw;
+`;
 
 import {Container} from './components/reviews/sharedStyles/sharedStyledComponents'
 
@@ -28,10 +37,10 @@ export const App = () => {
   }
 
   return  (
-          <div>
+          <div style={{background: "white"}}>
             {/* this is the start of the navbar */}
             <div className="topnav">
-              <h1>Omozan</h1>
+              <h1 style={{color: '#006B6B'}}>Omozan</h1>
               <div className="topnav-right">
                 <a onClick={() => {
                   handleScroll("overview")
@@ -56,11 +65,12 @@ export const App = () => {
               <RelatedProducts mainProduct = {mainProduct} handleChangeProduct = {handleChangeProduct}/>
             </div>
             <div id='q-and-a'>
-              <QandA />
+              <QandA mainProduct = {mainProduct} mainProductName={mainProductName}/>
             </div>
             <div id='reviews'>
               <Reviews mainProductName={mainProductName} mainProduct={mainProduct}/>
             </div>
+            <StyledPageBackground src="https://www.respectability.org/wp-content/uploads/2018/02/New-York-City-skyline.jpg"/>
           </div>
   )
 }
