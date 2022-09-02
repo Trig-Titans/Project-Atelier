@@ -4,6 +4,8 @@ import { Overview } from "./components/overview/GalleryView.jsx"
 import Reviews from "./components/reviews/ReviewsMain.jsx"
 import QandA from './components/questions/QandA.jsx'
 
+import {Container} from './components/reviews/sharedStyles/sharedStyledComponents'
+
 
 export const App = () => {
   function handleScroll (e) {
@@ -57,7 +59,7 @@ export const App = () => {
               <QandA />
             </div>
             <div id='reviews'>
-              <Reviews />
+              <Reviews mainProductName={mainProductName} mainProduct={mainProduct}/>
             </div>
           </div>
   )

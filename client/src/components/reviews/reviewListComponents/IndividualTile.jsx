@@ -4,6 +4,7 @@ import {ThumbnailModel} from './ThumbnailModal.jsx';
 import axios from 'axios';
 import API_KEY from '../../../../../config.js'
 const {Checkmark} = require('react-checkmark');
+import {OverviewStars} from '../StarComponent.jsx';
 
 
 // FORMATING FUNCTIONS
@@ -145,7 +146,7 @@ export const IndividualTile = ({review}) => {
   let recommend = makeRecommendation(review.recommend);
   let date = makeDate(review.date);
   let summary = makeSummary(review.summary);
-  let body = makeBody(review.body)
+  let body = makeBody(review.body);
   let sellerResponse = makeSellerResponse(review.response);
   let photoThumbnails = makePhotos(review.photos);
   let display = <div></div>;
@@ -155,7 +156,7 @@ export const IndividualTile = ({review}) => {
     }
   }
   return (<ReviewTileContainer>
-        <p>{review.rating} stars {date}</p>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}><OverviewStars stars={review.rating} starSizePx={'20px'} /><p>{date}</p></div>
         {summary}
         {showLongBody ? longBodyText : body}
         {/* This is the SeeMore link that needs to disappear if the full body has been displayed */}
