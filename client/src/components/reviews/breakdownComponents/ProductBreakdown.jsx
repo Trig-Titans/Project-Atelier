@@ -14,12 +14,7 @@ let ProductBreakdown = ({characteristics}) => {
     productBreakdownArray.push(item);
   }
 
-  //product breakdown is an array of characteristics where:
-  // index 0 -> name of characteristic
-  // index 1 -> id of characteristic
-  // index 2 -> rating to the tenths place out of 5
-
-
+  // labels for the graphs
   let descriptions = {
     Size: ['Too Small', 'Perfect', 'Too Big'],
     Width: ['Too Narrow', 'Perfect', 'Too Wide'],
@@ -29,12 +24,35 @@ let ProductBreakdown = ({characteristics}) => {
     Fit: ['Runs Tight', 'Perfect', 'Runs Tight']
   }
 
+  // make the tiny triangle
+  let imgStyling = {
+    height:`10px`,
+    width:`10px`,
+    float: 'right'
+  }
+
   return (productBreakdownArray.map( (nested) => {
+    //for each characteristic, find the appropriate description
     let graphDescription = descriptions[nested[0]];
+
+    //calculate the percent (which will end up being where the tiny triangle lies)
     let percent = nested[2];
+    percent /= 5;
+    percent *= 100;
+    percent = Math.round(percent);
+
+    //container to house the tiny triangle and place it at the appropriate spot
+    let divStyling = {
+      width: `${percent}px`,
+      display: 'flex',
+      justifyContent: 'flex-end'
+    }
+
     return (<div key={nested[1]}>
       <h3>{nested[0]}</h3>
-      <img src='https://www.citypng.com/public/uploads/preview/transparent-black-triangle-upside-down-31629765706xur3pxzdee.png' style={{height:`10px`, width:`10px`}}/>
+      <div style={divStyling}>
+        <img src='https://www.citypng.com/public/uploads/preview/transparent-black-triangle-upside-down-31629765706xur3pxzdee.png' style={imgStyling}/>
+      </div>
       <BarGraphContainer></BarGraphContainer>
       <p style={{fontSize: '8px'}}>{graphDescription[0]} {graphDescription[1]} {graphDescription[2]}</p>
       </div>)
