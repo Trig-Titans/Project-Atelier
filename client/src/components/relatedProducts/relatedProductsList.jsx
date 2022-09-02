@@ -24,6 +24,8 @@ const responsive = {
 const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
   const product_id = props.mainProduct
+  const product_style = props.currentStyleId
+  console.log(product_style)
 
   React.useEffect(() => {
 
@@ -77,7 +79,9 @@ const RelatedProducts = (props) => {
       <br />
       <Carousel responsive={responsive}>
 
-        {accumulatedProductData.map((product, index) => {
+
+        {
+        accumulatedProductData.map((product, index) => {
           let style = product.styles.results[0]
 
           return (
@@ -101,7 +105,11 @@ const RelatedProducts = (props) => {
       </Carousel>
       <br />
       <br />
-      <Outfit handleChangeProduct ={props.handleChangeProduct}/>
+      <Outfit
+      addProduct = {props.mainProduct}
+      addStyle = {props.currentStyleId}
+      handleChangeProduct ={props.handleChangeProduct}
+      />
     </List>
   );
 }

@@ -24,8 +24,8 @@ const Outfit = (props) => {
 
 
   //WILL RECIEVE FROM PROPS
-  const product_id = "37314"
-  const product_style = 221014
+  const product_id = props.addProduct
+  const product_style = Number(props.addStyle)
 
   React.useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}`, { headers: { Authorization: API_KEY } })
@@ -55,7 +55,7 @@ const Outfit = (props) => {
               .catch(err => (console.log('ERROR IN setProductData CALL FOR OUTFIT: ', err)))
           })
       })
-  }, [])
+  }, [product_id, product_style])
 
   return (
     <div>
@@ -66,13 +66,14 @@ const Outfit = (props) => {
               <AddOutfit
                 handleClick={
                   () => {
-                    let style = productData.styles.results.filter(result => result.style_id === product_style)[0]
+                    let style = productData.styles.results.find(result => result.style_id === product_style)
 
                     if (list.find(item => item.key === product_id) === undefined) {
 
                       setList((list) => {
 
                         return [...list, <Card
+                          info={productData.info}
                           picUrls={style.photos.map(photo => photo.url)}
                           category={productData.info.category}
                           name={productData.info.name}
@@ -81,9 +82,8 @@ const Outfit = (props) => {
                             '$' + style.sale_price : list.length % 2 === 0 ?
                               '$7327.00' : null}
                           key={product_id}
-                          button={<FontAwesomeIcon icon={faCircleXmark}
+                          button={<FontAwesomeIcon icon={faCircleXmark} />}
                           handleChangeProduct ={props.handleChangeProduct}
-                          />}
                         />]
                       })
                     }

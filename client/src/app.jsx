@@ -13,10 +13,10 @@ export const App = () => {
       behavior: "smooth"
     });
   }
-  
+
   const [mainProduct, setMainProduct] = React.useState("37314");
-  const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" )
-  var [currentStyleId, setCurrentStyleId] = useState('221014');
+  const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" );
+  const [currentStyleId, setCurrentStyleId] = React.useState('221014');
 
   const handleChangeProduct = (info) => {
     console.log(info.id.toString(), info.name)
@@ -24,7 +24,7 @@ export const App = () => {
       setMainProduct( info.id.toString() );
       setMainProductName ( info.name);
   }
-  
+
   return  (
           <div>
             {/* this is the start of the navbar */}
@@ -51,7 +51,7 @@ export const App = () => {
               <Overview currentStyleId={currentStyleId} setCurrentStyleId={setCurrentStyleId}/>
             </div>
             <div id='related-products'>
-              <RelatedProducts mainProduct = {mainProduct} handleChangeProduct = {handleChangeProduct}/>
+              <RelatedProducts mainProduct = {mainProduct} currentStyleId={currentStyleId} handleChangeProduct = {handleChangeProduct}/>
             </div>
             <div id='q-and-a'>
               <QandA />
