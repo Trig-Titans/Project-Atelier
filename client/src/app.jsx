@@ -13,7 +13,7 @@ export const App = () => {
       behavior: "smooth"
     });
   }
-  
+
   const [mainProduct, setMainProduct] = React.useState("37314");
   const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" )
   var [currentStyleId, setCurrentStyleId] = useState('221014');
@@ -24,7 +24,7 @@ export const App = () => {
       setMainProduct( info.id.toString() );
       setMainProductName ( info.name);
   }
-  
+
   return  (
           <div>
             {/* this is the start of the navbar */}
@@ -48,7 +48,7 @@ export const App = () => {
             {/* this is the end of the navbar */}
             <h1>Front End Capstone Avatar Project</h1>
             <div id='overview'>
-              <Overview currentStyleId={currentStyleId} setCurrentStyleId={setCurrentStyleId}/>
+              <Overview mainProduct ={mainProduct} currentStyleId={currentStyleId} setCurrentStyleId={setCurrentStyleId}/>
             </div>
             <div id='related-products'>
               <RelatedProducts mainProduct = {mainProduct} handleChangeProduct = {handleChangeProduct}/>

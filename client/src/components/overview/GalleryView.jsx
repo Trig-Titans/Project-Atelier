@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from 'styled-components';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
@@ -24,7 +24,7 @@ const StyledOverviewGrid = styled.div`
   margin-left: auto;
   margin-right: auto;
   row-gap: 0px;
-  width: 50%;
+  width:50%;
   text-align: left;
   display: grid;
   color: black;
@@ -39,6 +39,33 @@ const StyledOverviewGrid = styled.div`
     'OvDesc OvMeta'
 `;
 
+const StyledIconSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    width: 2%;
+    position: absolute;
+    width: auto;
+  `;
+
+const StyledIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:40px;
+  height:40px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-size: cover;
+  margin: 5px;
+  cursor: pointer;
+  border: 2px solid gray;
+  transition: 0.3s;
+  &:hover {
+    border: 2px solid white;
+  }
+`;
 
 // This is the function to create the average rating
 function findAverageRating(ratings)  {
@@ -57,11 +84,11 @@ function findAverageRating(ratings)  {
   return roundNearQtr(average);
 }
 
-
+const ExpandedContext = React.createContext(2)
 
 // This is the actual functional component
-function Overview({ currentStyleId, setCurrentStyleId }) {
-  var productSku = 37314;
+function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
+  var productSku = mainProduct;
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
   var [imgIndex, setImgIndex] = useState(0);
@@ -143,9 +170,10 @@ function Overview({ currentStyleId, setCurrentStyleId }) {
       }).catch((err) => {
         console.log(err);
       })
-  }, []);
+  }, [mainProduct]);
 
   const isInitialMount = useRef(true);
+  // This is the function to make the zoom effect. Not my code.
   useEffect(() => {
     if (isInitialMount.current) {
      isInitialMount.current = false;
@@ -232,13 +260,28 @@ function Overview({ currentStyleId, setCurrentStyleId }) {
       </StyledOverviewGrid>
     )
   } else {
+    // this is done using create context and higher order  component paradigm to showcase how it is supposed to work
     return (
       <StyledOverviewGrid>
-        <Expanded photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/>
+        <ExpandedContext.Provider value={{ photos: styles[styleIndex].photos, expandedVal: [expanded, setView], imgIndexVal: [imgIndex, setImgIndex] }}>
+          <Expanded>
+            <StyledIconSection>
+              {
+                styles[styleIndex].photos.map((photo, index) => {
+                  return <StyledIcon onClick={() => {
+                    setImgIndex(index);
+                  }}
+                  value={index} key={index} style={{backgroundImage: `url(${photo.url})`}}></StyledIcon>
+                })
+              }
+            </StyledIconSection>
+          </Expanded>
+        </ExpandedContext.Provider>
+        {/* <Expanded photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/> */}
       </StyledOverviewGrid>
     )
   }
 }
 
 
-export {Overview, findAverageRating}
+export {Overview, findAverageRating, ExpandedContext}
