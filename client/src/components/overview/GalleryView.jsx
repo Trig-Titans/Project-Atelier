@@ -21,8 +21,7 @@ const StyledOverviewGrid = styled.div`
   margin-bottom: 20px;
   column-gap: 20px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 0 10px;
   row-gap: 0px;
   width: 100%;
   text-align: left;

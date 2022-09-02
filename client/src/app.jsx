@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RelatedProducts from './components/relatedProducts/relatedProductsList.jsx'
 import { Overview } from "./components/overview/GalleryView.jsx";
 import Reviews from "./components/reviews/ReviewsMain.jsx";
-import QandA from './components/questions/QandA.jsx';
+import { QandA } from './components/questions/QandA.jsx';
 import styled from 'styled-components';
 
 const StyledPageBackground = styled.img`
@@ -38,7 +38,7 @@ export const App = () => {
           <div style={{background: "white"}}>
             {/* this is the start of the navbar */}
             <div className="topnav">
-              <h1>Omozan</h1>
+              <h1 style={{color: '#006B6B'}}>Omozan</h1>
               <div className="topnav-right">
                 <a onClick={() => {
                   handleScroll("overview")

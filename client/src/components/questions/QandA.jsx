@@ -12,6 +12,12 @@ const StyledQandAContainer = styled.div`
   margin: auto;
 `;
 
+const StyledHeader = styled.p`
+  text-align: left;
+  padding-top: 5vh;
+  font-size: 16px;
+`;
+
 const QandA = ({ mainProduct, mainProductName }) => {
 
   //depending on what product is given as prop make api request and change state
@@ -53,7 +59,7 @@ const QandA = ({ mainProduct, mainProductName }) => {
 
   return (
     <StyledQandAContainer >
-      <h4 style={{textAlign: 'left', paddingTop: '5vh'}}>QUESTIONS &#38; ANSWERS</h4>
+      <StyledHeader >QUESTIONS &#38; ANSWERS</StyledHeader>
       <QuestionSearch handleChange={handleChange} value={value}/>
       <QuestionList productName={mainProductName} productID={mainProduct} questions={questions}/>
     </StyledQandAContainer>
@@ -61,4 +67,4 @@ const QandA = ({ mainProduct, mainProductName }) => {
   )
 }
 
-export default QandA;
+export { QandA, StyledHeader };

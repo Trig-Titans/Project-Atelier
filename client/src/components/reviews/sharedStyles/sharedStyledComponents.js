@@ -1,21 +1,22 @@
 import styled, {css} from 'styled-components';
 
 export const Button = styled.button`
-  background-color: #a8bdff;
+  background-color: #DBDBD6;
   border-radius: 3px;
-  border: 2px solid #222325;
-  color: #040c27;
+  border: 2px solid teal;
+  color: #006B6B;
   margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
 
   &:hover {
-    background-color: #6684e7e6
+    background-color: #C2B280;
   }
 
   ${props => props.primary && css`
-    background: #002d71;
-    color: white;
+    border: 2px solid #C4C4BA;
+    background: #006B6B;
+    color: #DBDBD6;
   `}
 `;
 

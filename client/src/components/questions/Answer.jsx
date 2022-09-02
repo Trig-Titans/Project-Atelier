@@ -7,15 +7,25 @@ import axios from 'axios';
 import API_KEY from '../../../../config.js';
 
 const StyledAnswer = styled.div`
-  padding: 0 0 0.7% 0;
+  padding: 0 0 2vh 0;
   margin-right: .5vw;
 `;
 
 const StyledAnswerImage = styled.img`
-  padding: 1vh 0;
+  padding: 0 0 1vh 0;
   width: auto;
   height: 15vh;
   cursor: pointer;
+`;
+
+const StyledLinks = styled.div`
+  font-size: 11px;
+`;
+
+const StyledAnswerBody = styled.div`
+  font-size: 14px;
+  padding: 0 0 1vh 0;
+
 `;
 
 
@@ -93,16 +103,16 @@ const Answer = ({ answerData }) => {
 
   return (
     <StyledAnswer >
-      <div>
+      <StyledAnswerBody>
         {answerData.body}
-      </div>
+      </StyledAnswerBody>
       {answerData.photos.length > 0 ? answerData.photos.map((url) => (<StyledAnswerImage src={url} key={url} onClick={imageClick}></StyledAnswerImage>)) : <div></div>}
       {imageModal ? <ImageModal setImageModal={setImageModal} url={modalURL}/> : <div></div>}
-      <div>
+      <StyledLinks>
         by: {user}, {dateStr} &nbsp;&nbsp;|&nbsp;&nbsp; Helpful?&nbsp; <u onClick={helpfulClick} style={{cursor: 'pointer'}}>Yes</u>{`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <span onClick={reportClick} style={{cursor: 'pointer'}}>{reportText}</span>
-      </div>
+      </StyledLinks>
     </StyledAnswer>
   )
 }
 
-export {Answer, dateParser};
+export {Answer, dateParser, StyledLinks};
