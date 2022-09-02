@@ -13,6 +13,8 @@ const StyledPageBackground = styled.img`
   width: 100vw;
 `;
 
+import {Container} from './components/reviews/sharedStyles/sharedStyledComponents'
+
 
 export const App = () => {
   function handleScroll (e) {
@@ -56,8 +58,8 @@ export const App = () => {
             </div>
             {/* this is the end of the navbar */}
             <h1>Front End Capstone Avatar Project</h1>
-            <div id='overview' >
-              <Overview currentStyleId={currentStyleId} setCurrentStyleId={setCurrentStyleId}/>
+            <div id='overview'>
+              <Overview mainProduct ={mainProduct} currentStyleId={currentStyleId} setCurrentStyleId={setCurrentStyleId}/>
             </div>
             <div id='related-products'>
               <RelatedProducts mainProduct = {mainProduct} handleChangeProduct = {handleChangeProduct}/>
@@ -65,8 +67,8 @@ export const App = () => {
             <div id='q-and-a'>
               <QandA mainProduct = {mainProduct} mainProductName={mainProductName}/>
             </div>
-            <div id='reviews' >
-              <Reviews />
+            <div id='reviews'>
+              <Reviews mainProductName={mainProductName} mainProduct={mainProduct}/>
             </div>
             <StyledPageBackground src="https://www.respectability.org/wp-content/uploads/2018/02/New-York-City-skyline.jpg"/>
           </div>

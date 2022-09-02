@@ -29,9 +29,9 @@ export const Container = styled.div`
 
 export const ReviewTileContainer = styled.div`
   text-align: left;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   margin: 10px;
-  padding: 2px;
+  padding: 10px 30px;
 `;
 
 export const ReviewsContainer = styled.div`
@@ -78,9 +78,18 @@ export const BarGraphContainer = styled.div`
 `;
 
 export const ScrollableContainer = styled.div`
-  height: 50vh;
+  height: 60vh;
   overflow: auto;
 `;
+
+export const StyledOverviewStars = styled.div`
+padding: 10px;
+display: flex;
+flex-wrap: none;
+/* grid-area: OvStar; */
+/* margin-top: 10px; */
+`;
+
 // src: props => props.src
 
 // export const Thumbnail = styled.img.attrs({
