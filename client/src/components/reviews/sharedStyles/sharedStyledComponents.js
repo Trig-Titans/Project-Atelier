@@ -75,6 +75,14 @@ export const ScrollableContainer = styled.div`
   overflow: auto;
 `;
 
+export const StyledOverviewStars = styled.div`
+padding: 10px;
+display: flex;
+flex-wrap: none;
+/* grid-area: OvStar; */
+/* margin-top: 10px; */
+`;
+
 // src: props => props.src
 
 // export const Thumbnail = styled.img.attrs({

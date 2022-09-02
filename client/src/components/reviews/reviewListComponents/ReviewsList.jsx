@@ -10,7 +10,7 @@ import API_KEY from '../../../../../config.js'
 
 
 
-const ReviewsList = ( {productID, productName} ) => {
+const ReviewsList = ( {productID, productName, characteristics} ) => {
   // dummyData
   let reviewArray = data.reviews.results;
   let reviewListExample = reviewArray.slice(0,2)
@@ -70,7 +70,7 @@ const ReviewsList = ( {productID, productName} ) => {
   return (<ReviewsContainer data-testid="reviewListDivContainer">
     <SorterBar setSortFilter={setSortFilter}/>
     <ScrollableContainer><ReviewTiles reviewList={currentDisplay} /></ScrollableContainer>
-    <ReviewButtons wholeReviewList={wholeReviewList} setReviewIndex={setReviewIndex} reviewIndex={reviewIndex} productName={productName}/>
+    <ReviewButtons characteristics={characteristics} wholeReviewList={wholeReviewList} setReviewIndex={setReviewIndex} reviewIndex={reviewIndex} productName={productName}/>
     </ReviewsContainer>)
 }
 

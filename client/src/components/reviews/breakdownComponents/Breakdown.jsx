@@ -5,6 +5,7 @@ import {AverageRating} from './AverageRating.jsx';
 import {BreakdownContainer} from '../sharedStyles/sharedStyledComponents';
 import data from '../apiExample.js';
 
+
 let ratingsCountTotal = (ratingsObj) => {
   let sum = 0;
   for (let key in ratingsObj) {
@@ -30,13 +31,18 @@ let averageRating = (ratingsObj, total) => {
   return average.toFixed(1);
 }
 
-let Breakdown = ( {productID} ) => {
+let Breakdown = ( {reviewsMeta} ) => {
 
   // dummy data
-  const meta = data.reviewsMeta;
-
+  let meta;
+  if (reviewsMeta.length === 0) {
+    meta = data.reviewsMeta;
+  } else {
+    meta = reviewsMeta;
+  }
 
   // calculations for total number of reviews and the average rating
+
   let totalReviews = ratingsCountTotal(meta.ratings);
   let averageStars = averageRating(meta.ratings, totalReviews);
 
