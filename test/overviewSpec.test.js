@@ -11,7 +11,6 @@ describe('Jest+RTL Workshop', function() {
   const user = userEvent.setup();
   beforeEach(() => {
     render(<App />);
-    console.log('brad is neat');
   })
   test('should take in an object of ratings and the count of each rating and returns a value to the nearest quarter', () => {
     expect(findAverageRating({1: '16', 2: '12', 3: '58', 4: '45', 5: '58'})).toBe("3.50");
@@ -29,7 +28,7 @@ describe('Jest+RTL Workshop', function() {
   test('When rendered, there should be 6 photos for slacks product', () => {
     return waitFor(() => expect(screen.queryByText(/I'll tell/)).toBeInTheDocument())
     .then(() => {
-      expect(screen.queryByTestId('carousel').children.length).toBe(8)
+      expect(screen.queryByTestId('vertical-carousel').children.length).toBe(8)
     })
   })
 
@@ -38,5 +37,27 @@ describe('Jest+RTL Workshop', function() {
     .then(() => {
       expect(screen.getByRole('option', { name: '-- select a size --' }).selected).toBe(true)
     })
+  })
+
+  it('should change the style when clicked', () => {
+    var currentStyle = '';
+    return waitFor(() => expect(screen.queryByText(/I'll tell/)).toBeInTheDocument())
+      .then(() => {
+        currentStyle = screen.getByTestId('carousel').children[0];
+        return user.click(document.getElementsByClassName('style-button')[1])
+      }).then(() => {
+        expect(currentStyle).not.toBe(screen.getByTestId('carousel').children[1]);
+      })
+  })
+
+  it('should not change the style when the same style is clicked', () => {
+    var currentStyle = '';
+    return waitFor(() => expect(screen.queryByText(/I'll tell/)).toBeInTheDocument())
+      .then(() => {
+        currentStyle = screen.getByTestId('carousel').children[0];
+        return user.click(document.getElementsByClassName('style-button')[0])
+      }).then(() => {
+        expect(currentStyle).toBe(screen.getByTestId('carousel').children[0]);
+      })
   })
 })
