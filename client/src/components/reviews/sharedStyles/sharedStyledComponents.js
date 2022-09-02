@@ -37,13 +37,18 @@ export const ReviewsContainer = styled.div`
   text-align: left;
   float: left;
   width: 65%;
+  padding-right: 10%;
+  height: 60vh;
+  background: white;
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
-  margin-left: 10%;
   float: left;
-  width: 25%;
+  width: 35%;
+  padding-left: 10%;
+  height: 60vh;
+  background: white;
 `;
 
 export const RecommendationContainer = styled.div`
@@ -51,6 +56,7 @@ export const RecommendationContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  background: white;
 `;
 
 export const SellersResponse = styled.div`

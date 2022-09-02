@@ -8,10 +8,10 @@ import {Container} from './sharedStyles/sharedStyledComponents.js'
 
 let Reviews = () => {
   let productID = '37314';
-  return (<Container>
+  return (<div >
     <h1>Ratings & Reviews</h1>
     <Breakdown productID={productID}/> <ReviewsList productID={productID} />
-    </Container>);
+    </div>);
 }
 
 export default Reviews;

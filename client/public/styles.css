@@ -14,11 +14,11 @@ body {
 }
 
 
-
 body {
   text-align: center;
-  /* background-image: url("https://project-nerd.com/wp-content/uploads/2020/07/aang-temple.jpg"); */
   height: 100%;
+  max-width: 75%;
+  margin: auto;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -27,6 +27,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+
 
 img,
 picture,
@@ -62,7 +63,7 @@ main {
 
 .topnav {
   position: fixed;
-  top: 0;
+  top: 0; left: 0;
   width: 100%;
   z-index: 1;
   background-color: gray;

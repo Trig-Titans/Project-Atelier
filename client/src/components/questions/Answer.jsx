@@ -7,7 +7,7 @@ import axios from 'axios';
 import API_KEY from '../../../../config.js';
 
 const StyledAnswer = styled.div`
-  padding: 0.7% 0;
+  padding: 0 0 0.7% 0;
   margin-right: .5vw;
 `;
 

@@ -15,7 +15,7 @@ const StyledQandA = styled.div`
 const StyledQuestion = styled.div`
   display: flex;
   justify-content: space-between;
-
+  margin-right: .5vw;
 `;
 const StyledLinks = styled.div`
 
