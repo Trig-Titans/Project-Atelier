@@ -1,4 +1,5 @@
 import React from 'react';
+import {BarGraphContainer} from '../sharedStyles/sharedStyledComponents.js';
 
 let ProductBreakdown = ({characteristics}) => {
 
@@ -13,8 +14,30 @@ let ProductBreakdown = ({characteristics}) => {
     productBreakdownArray.push(item);
   }
 
+  //product breakdown is an array of characteristics where:
+  // index 0 -> name of characteristic
+  // index 1 -> id of characteristic
+  // index 2 -> rating to the tenths place out of 5
+
+
+  let descriptions = {
+    Size: ['Too Small', 'Perfect', 'Too Big'],
+    Width: ['Too Narrow', 'Perfect', 'Too Wide'],
+    Comfort: ['Uncomfortable', 'Ok', 'Perfect'],
+    Quality: ['Poor', 'As Expected', 'Exceptional'],
+    Length: ['Runs Short', 'Perfect', 'Runs Long'],
+    Fit: ['Runs Tight', 'Perfect', 'Runs Tight']
+  }
+
   return (productBreakdownArray.map( (nested) => {
-    return (<h3 key={nested[1]}>{nested[0]}{nested[2]}</h3>)
+    let graphDescription = descriptions[nested[0]];
+    let percent = nested[2];
+    return (<div key={nested[1]}>
+      <h3>{nested[0]}</h3>
+      <img src='https://www.citypng.com/public/uploads/preview/transparent-black-triangle-upside-down-31629765706xur3pxzdee.png' style={{height:`10px`, width:`10px`}}/>
+      <BarGraphContainer></BarGraphContainer>
+      <p style={{fontSize: '8px'}}>{graphDescription[0]} {graphDescription[1]} {graphDescription[2]}</p>
+      </div>)
   }))
 };
 
