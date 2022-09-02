@@ -93,8 +93,7 @@ const RelatedProducts = (props) => {
               name={product.info.name}
               price={'$' + style.original_price}
               salePrice={style.sale_price ?
-                '$' + style.sale_price : index % 2 === 0 ?
-                  '$7327.00' : null}
+                '$' + style.sale_price : null}
               key={index}
               button={<StarBtn />}
               handleChangeProduct ={props.handleChangeProduct}

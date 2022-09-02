@@ -68,7 +68,7 @@ const Outfit = (props) => {
                   () => {
                     let style = productData.styles.results.find(result => result.style_id === product_style)
 
-                    if (list.find(item => item.key === product_id) === undefined) {
+                    if (list.find(item => item.key === product_id+props.addStyle) === undefined) {
 
                       setList((list) => {
 
@@ -82,8 +82,11 @@ const Outfit = (props) => {
                           salePrice={style.sale_price ?
                             '$' + style.sale_price : list.length % 2 === 0 ?
                               '$7327.00' : null}
-                          key={product_id}
-                          button={<FontAwesomeIcon icon={faCircleXmark} />}
+                          key={product_id+props.addStyle}
+                          button={<FontAwesomeIcon onClick = {()=>{
+                            console.log('X button clicked' )
+                            setList((list)=> list.filter(item => item.key !== product_id+props.addStyle))
+                          }}icon={faCircleXmark} />}
                           handleChangeProduct ={props.handleChangeProduct}
                         />]
                       })
