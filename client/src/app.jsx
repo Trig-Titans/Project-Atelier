@@ -18,9 +18,9 @@ export const App = () => {
   const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" );
   const [currentStyleId, setCurrentStyleId] = React.useState('221014');
 
-  const handleChangeProduct = (info) => {
-    console.log(info.id.toString(), info.name)
-
+  const handleChangeProduct = (info, style) => {
+    console.log(info.id.toString(), info.name, style )
+      setCurrentStyleId(style)
       setMainProduct( info.id.toString() );
       setMainProductName ( info.name);
   }

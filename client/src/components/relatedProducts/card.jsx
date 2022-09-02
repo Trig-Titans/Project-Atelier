@@ -107,7 +107,7 @@ const Card = (props) => {
   const handleClick = (event) => {
     console.log(props.info)
     clearInterval(intervalID)
-    props.handleChangeProduct(props.info)
+    props.handleChangeProduct(props.info, props.style)
   }
 
   return (

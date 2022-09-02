@@ -73,6 +73,7 @@ const Outfit = (props) => {
                       setList((list) => {
 
                         return [...list, <Card
+                        style={props.addStyle}
                           info={productData.info}
                           picUrls={style.photos.map(photo => photo.url)}
                           category={productData.info.category}
