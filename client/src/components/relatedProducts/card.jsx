@@ -122,7 +122,7 @@ const Card = (props) => {
     <Carta >
       <RelatedBtn  onClick={()=>{
         console.log(`clicked ${props.btnStyle} button`)
-        props.btnStyle === 'x' ? props.handleXClick() : props.setIsOpen(true)
+        props.btnStyle === 'x' ? props.handleXClick() : props.setModalOpen(true)
         }}>
         {/* {props.button} */}
         {props.btnStyle === 'star' ? <FontAwesomeIcon  style={second} icon={faStar} />: <FontAwesomeIcon  style={second} icon={faCircleXmark} />}

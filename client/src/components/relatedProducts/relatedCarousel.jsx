@@ -17,12 +17,12 @@ const responsive = {
   }
 };
 
-const RelatedProducts = (props) => {
+const RelatedCarousel = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
-  // const [isOpen, setIsOpen] = React.useState(false);
+
   const product_id = props.product_id
   const product_style = props.product_style
-  console.log('RelatedProducts component called')
+  console.log('RelatedCarousel component called')
 
   React.useEffect(() => {
 
@@ -91,9 +91,8 @@ const RelatedProducts = (props) => {
               salePrice={style.sale_price ?
                 '$' + style.sale_price : null}
               key={index}
-              // button={<FontAwesomeIcon  onClick={handleStarClick} style={second} icon={faStar} />}
               btnStyle={'star'}
-              setIsOpen = {setIsOpen}
+              setModalOpen = {props.setModalOpen}
               handleChangeProduct ={props.handleChangeProduct}
              />
           )
