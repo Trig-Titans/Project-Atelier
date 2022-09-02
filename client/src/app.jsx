@@ -13,7 +13,7 @@ export const App = () => {
       behavior: "smooth"
     });
   }
-  
+
   const [mainProduct, setMainProduct] = React.useState("37314");
   const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" )
   var [currentStyleId, setCurrentStyleId] = useState('221014');
@@ -24,7 +24,7 @@ export const App = () => {
       setMainProduct( info.id.toString() );
       setMainProductName ( info.name);
   }
-  
+
   return  (
           <div>
             {/* this is the start of the navbar */}
@@ -54,7 +54,7 @@ export const App = () => {
               <RelatedProducts mainProduct = {mainProduct} handleChangeProduct = {handleChangeProduct}/>
             </div>
             <div id='q-and-a'>
-              <QandA />
+              <QandA mainProduct = {mainProduct} mainProductName={mainProductName}/>
             </div>
             <div id='reviews'>
               <Reviews />

@@ -8,7 +8,7 @@ const StyledAnswerList = styled.div`
   justify-content: flex-start;
   max-height: 50vh;
   overflow: auto;
-
+  width: max-content;
 `;
 
 const AnswerList = ({ answers }) => {

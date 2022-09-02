@@ -7,11 +7,9 @@ import API_KEY from '../../../../config.js';
 import styled from 'styled-components';
 import { Button } from '../reviews/sharedStyles/sharedStyledComponents.js';
 
-const QandA = () => {
+const QandA = ({ mainProduct, mainProductName }) => {
 
   //depending on what product is given as prop make api request and change state
-  var product_id = 37314;
-  var product_name = "Slacker's Slacks";
   const [questions, setQuestions] = useState([]);
   const [value, setValue] = useState('');
   const [masterList, setMasterList] = useState([]);
@@ -20,7 +18,7 @@ const QandA = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${product_id}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${mainProduct}`,
       headers: {Authorization: API_KEY}
     })
     .then((response) => {
@@ -52,7 +50,7 @@ const QandA = () => {
     <div >
       <h4 style={{textAlign: 'left', paddingTop: '5vh'}}>QUESTIONS &#38; ANSWERS</h4>
       <QuestionSearch handleChange={handleChange} value={value}/>
-      <QuestionList productName={product_name} productID={product_id} questions={questions}/>
+      <QuestionList productName={mainProductName} productID={mainProduct} questions={questions}/>
     </div>
 
   )

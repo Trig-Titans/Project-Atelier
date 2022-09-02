@@ -8,12 +8,14 @@ import API_KEY from '../../../../config.js';
 
 const StyledAnswer = styled.div`
   padding: 0.7% 0;
+  margin-right: .5vw;
 `;
 
 const StyledAnswerImage = styled.img`
   padding: 1vh 0;
   width: auto;
   height: 15vh;
+  cursor: pointer;
 `;
 
 

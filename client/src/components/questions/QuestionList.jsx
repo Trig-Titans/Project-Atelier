@@ -16,7 +16,6 @@ const StyledQuestionList = styled.div`
 
 const StyledButtonList = styled.div`
   display: flex;
-
 `;
 
 
