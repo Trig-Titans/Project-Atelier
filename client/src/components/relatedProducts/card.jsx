@@ -112,7 +112,9 @@ const Card = (props) => {
 
   return (
     <Carta >
-      <RelatedBtn>{props.button}</RelatedBtn>
+      <RelatedBtn>
+        {props.button}
+        </RelatedBtn>
       <div onClick={handleClick} >
         <PicContainer >
 

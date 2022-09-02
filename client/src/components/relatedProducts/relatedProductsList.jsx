@@ -6,8 +6,14 @@ import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
-import StarBtn from './relatedBtn.jsx'
 import Outfit from './outfitList.jsx'
+import RelationModal from './relationModal.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faStar} from '@fortawesome/free-solid-svg-icons'
+
+let second= {
+  color: 'cornflowerblue',
+}
 
 const List = styled.div`
   margin-left: 23%;
@@ -23,6 +29,7 @@ const responsive = {
 
 const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
+  const [isOpen, setIsOpen] = React.useState(false);
   const product_id = props.mainProduct
   const product_style = props.currentStyleId
   console.log(product_style)
@@ -73,6 +80,13 @@ const RelatedProducts = (props) => {
       })
   }, [product_id]);
 
+  const handleStarClick =() => {
+    // React.useEffect(()=> {
+      setIsOpen(true)
+    // },[])
+
+  }
+
   return (
     <List>
       <br />
@@ -86,8 +100,8 @@ const RelatedProducts = (props) => {
 
           return (
             <Card
-            style={style.style_id}
-            info={product.info}
+             style={style.style_id}
+             info={product.info}
               picUrls={style.photos.map(photo => photo.url)}
               category={product.info.category}
               name={product.info.name}
@@ -95,7 +109,8 @@ const RelatedProducts = (props) => {
               salePrice={style.sale_price ?
                 '$' + style.sale_price : null}
               key={index}
-              button={<StarBtn />}
+              button={<FontAwesomeIcon style={second}
+              onClick={handleStarClick}icon={faStar} />}
               handleChangeProduct ={props.handleChangeProduct}
                             />
           )
@@ -109,6 +124,7 @@ const RelatedProducts = (props) => {
       addStyle = {props.currentStyleId}
       handleChangeProduct ={props.handleChangeProduct}
       />
+      {isOpen? <RelationModal setIsOpen= {setIsOpen}/> : <div></div>}
     </List>
   );
 }
