@@ -5,12 +5,13 @@ import {Container} from './sharedStyles/sharedStyledComponents.js'
 
 
 
-
-let Reviews = () => {
-  let productID = '37314';
+//mainProductName={mainProductName} mainProduct={mainProduct}
+let Reviews = ({mainProductName, mainProduct}) => {
+  let productID = mainProduct;
+  let productName = mainProductName;
   return (<Container>
     <h1>Ratings & Reviews</h1>
-    <Breakdown productID={productID}/> <ReviewsList productID={productID} />
+    <Breakdown productID={productID}/> <ReviewsList productID={productID} productName={productName} />
     </Container>);
 }
 

@@ -4,6 +4,8 @@ import { Overview } from "./components/overview/GalleryView.jsx"
 import Reviews from "./components/reviews/ReviewsMain.jsx"
 import QandA from './components/questions/QandA.jsx'
 
+import {Container} from './components/reviews/sharedStyles/sharedStyledComponents'
+
 
 export const App = () => {
   function handleScroll (e) {
@@ -13,7 +15,7 @@ export const App = () => {
       behavior: "smooth"
     });
   }
-  
+
   const [mainProduct, setMainProduct] = React.useState("37314");
   const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" )
   var [currentStyleId, setCurrentStyleId] = useState('221014');
@@ -24,7 +26,7 @@ export const App = () => {
       setMainProduct( info.id.toString() );
       setMainProductName ( info.name);
   }
-  
+
   return  (
           <div>
             {/* this is the start of the navbar */}
@@ -57,7 +59,7 @@ export const App = () => {
               <QandA />
             </div>
             <div id='reviews'>
-              <Reviews />
+              <Reviews mainProductName={mainProductName} mainProduct={mainProduct}/>
             </div>
           </div>
   )

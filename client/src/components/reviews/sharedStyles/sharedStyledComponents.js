@@ -28,22 +28,22 @@ export const Container = styled.div`
 
 export const ReviewTileContainer = styled.div`
   text-align: left;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   margin: 10px;
-  padding: 2px;
+  padding: 10px 30px;
 `;
 
 export const ReviewsContainer = styled.div`
   text-align: left;
   float: left;
-  width: 65%;
+  width: 69%;
+  padding: 10px;
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
-  margin-left: 10%;
   float: left;
-  width: 25%;
+  width: 29%;
 `;
 
 export const RecommendationContainer = styled.div`
@@ -71,9 +71,10 @@ export const BarGraphContainer = styled.div`
 `;
 
 export const ScrollableContainer = styled.div`
-  height: 50vh;
+  height: 60vh;
   overflow: auto;
 `;
+
 // src: props => props.src
 
 // export const Thumbnail = styled.img.attrs({
