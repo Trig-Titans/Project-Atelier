@@ -7,8 +7,6 @@ import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
 
-
-
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },

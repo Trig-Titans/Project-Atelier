@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Outfit from './outfitList.jsx'
 import RelationModal from './relationModal.jsx'
 import RelatedCarousel from './relatedCarousel.jsx'
-
+///
 const Lists = styled.div`
   margin-left: 23%;
   width:53%;

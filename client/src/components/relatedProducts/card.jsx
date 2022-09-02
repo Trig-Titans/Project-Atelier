@@ -2,7 +2,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import TestStarIcon from '../stars/star.jsx'
-//////////
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import {faStar} from '@fortawesome/free-solid-svg-icons'

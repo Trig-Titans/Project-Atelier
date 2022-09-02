@@ -6,8 +6,6 @@ import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
 import AddOutfit from './addOutfitCard.jsx'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 const responsive = {
   desktop: {

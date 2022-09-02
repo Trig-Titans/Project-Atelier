@@ -33,8 +33,6 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   `
 
-
-
 const RelationModal = (props) => {
   return (
     <div>
