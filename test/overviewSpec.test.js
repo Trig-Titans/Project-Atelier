@@ -7,7 +7,7 @@ const {default: userEvent} = require('@testing-library/user-event');
 const { render, screen, waitFor } = require('@testing-library/react');
 const { App } = require('../client/src/app.jsx');
 
-describe('Jest+RTL Workshop', function() {
+describe('FEC - Omozan overview tests', function() {
   const user = userEvent.setup();
   beforeEach(() => {
     render(<App />);
