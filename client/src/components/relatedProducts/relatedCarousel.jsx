@@ -6,19 +6,9 @@ import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
-import Outfit from './outfitList.jsx'
-import RelationModal from './relationModal.jsx'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import {faStar} from '@fortawesome/free-solid-svg-icons'
 
-// let second= {
-//   color: 'cornflowerblue',
-// }
 
-const List = styled.div`
-  margin-left: 23%;
-  width:53%;
-`
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -29,9 +19,9 @@ const responsive = {
 
 const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
-  const [isOpen, setIsOpen] = React.useState(false);
-  const product_id = props.mainProduct
-  const product_style = props.currentStyleId
+  // const [isOpen, setIsOpen] = React.useState(false);
+  const product_id = props.product_id
+  const product_style = props.product_style
   console.log('RelatedProducts component called')
 
   React.useEffect(() => {
@@ -80,18 +70,9 @@ const RelatedProducts = (props) => {
       })
   }, [product_id]);
 
-  // const handleStarClick =() => {
-  //   console.log('star is clicked from related')
-    // React.useEffect(()=> {
-      // setIsOpen(true)
-    // },[])
-
-  // }
-
   return (
-    <List>
-      <br />
-      <br />
+    <div>
+
       <Carousel responsive={responsive}>
 
 
@@ -119,16 +100,8 @@ const RelatedProducts = (props) => {
         })}
 
       </Carousel>
-      <br />
-      <br />
-      <Outfit
-      addProduct = {props.mainProduct}
-      addStyle = {props.currentStyleId}
-      handleChangeProduct ={props.handleChangeProduct}
-      />
-      {isOpen? <RelationModal setIsOpen= {setIsOpen}/> : <div></div>}
-    </List>
+    </div>
   );
 }
 
-export default RelatedProducts;
+export default RelatedCarousel;

@@ -44,8 +44,6 @@ const RelationModal = (props) => {
         <p>comparison modal</p>
       </Modal>
     </Centered>
-
-
     </div>
 
   )

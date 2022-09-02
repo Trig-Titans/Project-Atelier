@@ -6,8 +6,8 @@ import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
 import AddOutfit from './addOutfitCard.jsx'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 const responsive = {
   desktop: {
@@ -80,13 +80,15 @@ const Outfit = (props) => {
                           name={productData.info.name}
                           price={'$' + style.original_price}
                           salePrice={style.sale_price ?
-                            '$' + style.sale_price : list.length % 2 === 0 ?
-                              '$7327.00' : null}
+                            '$' + style.sale_price : null}
                           key={product_id+props.addStyle}
-                          button={<FontAwesomeIcon onClick = {()=>{
-                            console.log('X button clicked' )
+                          btnStyle={'x'}
+                          handleXClick = {
+                            ()=>{
+                            console.log('X button clicked from outfitlist' )
                             setList((list)=> list.filter(item => item.key !== product_id+props.addStyle))
-                          }}icon={faCircleXmark} />}
+                          }
+                        }
                           handleChangeProduct ={props.handleChangeProduct}
                         />]
                       })

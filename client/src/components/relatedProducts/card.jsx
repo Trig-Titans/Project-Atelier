@@ -2,6 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import TestStarIcon from '../stars/star.jsx'
+//////////
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import {faStar} from '@fortawesome/free-solid-svg-icons'
+
+let second= {
+  color: 'cornflowerblue',
+}
 
 const Carta = styled.div`
   border: solid 1px;
@@ -112,8 +120,12 @@ const Card = (props) => {
 
   return (
     <Carta >
-      <RelatedBtn>
-        {props.button}
+      <RelatedBtn  onClick={()=>{
+        console.log(`clicked ${props.btnStyle} button`)
+        props.btnStyle === 'x' ? props.handleXClick() : props.setIsOpen(true)
+        }}>
+        {/* {props.button} */}
+        {props.btnStyle === 'star' ? <FontAwesomeIcon  style={second} icon={faStar} />: <FontAwesomeIcon  style={second} icon={faCircleXmark} />}
         </RelatedBtn>
       <div onClick={handleClick} >
         <PicContainer >
