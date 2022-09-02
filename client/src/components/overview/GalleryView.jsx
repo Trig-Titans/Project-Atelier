@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from 'styled-components';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
@@ -24,7 +24,7 @@ const StyledOverviewGrid = styled.div`
   margin-left: auto;
   margin-right: auto;
   row-gap: 0px;
-  width: 50%;
+  width:50%;
   text-align: left;
   display: grid;
   color: black;
@@ -57,11 +57,11 @@ function findAverageRating(ratings)  {
   return roundNearQtr(average);
 }
 
-
+const ExpandedContext = React.createContext(2)
 
 // This is the actual functional component
-function Overview({ currentStyleId, setCurrentStyleId }) {
-  var productSku = 37314;
+function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
+  var productSku = mainProduct;
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
   var [imgIndex, setImgIndex] = useState(0);
@@ -143,9 +143,10 @@ function Overview({ currentStyleId, setCurrentStyleId }) {
       }).catch((err) => {
         console.log(err);
       })
-  }, []);
+  }, [mainProduct]);
 
   const isInitialMount = useRef(true);
+  // This is the function to make the zoom effect. Not my code.
   useEffect(() => {
     if (isInitialMount.current) {
      isInitialMount.current = false;

@@ -67,7 +67,7 @@ const Slide = styled.div`
 const LeftButton = styled.button`
   position: absolute;
   width: 10%;
-  margin-left: 14%;
+  margin-left: 16%;
   height: 60%;
   border: none;
   background-color: transparent;
@@ -172,7 +172,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   return (
   <StyledOverviewCarousel>
     {photoList}
-    <ThumbnailSelector>
+    <ThumbnailSelector data-testid='carousel'>
       {y !== 0 ? <UpButton onClick={goUp}><FontAwesomeIcon icon={faChevronUp} /></UpButton> : <div></div>}
       {
         photos.map((photo, index) => {

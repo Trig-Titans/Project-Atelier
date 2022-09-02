@@ -6,7 +6,7 @@ import {faStar} from '@fortawesome/free-solid-svg-icons'
 
 
 const StyledOverviewOptionForm = styled.form`
-  padding-top: 10px;
+  padding-top: 20px;
   padding-left: 10px;
   grid-area: OvForm;
   display: inline-flex;
