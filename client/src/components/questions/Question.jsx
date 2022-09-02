@@ -94,11 +94,11 @@ const Question = ({ questionData, productName }) => {
       }
     })
     .then((response) => {
-      console.log(response);
+      //console.log(response);
       setAnswerModal(false);
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       setAnswerModal(false);
     })
   }
