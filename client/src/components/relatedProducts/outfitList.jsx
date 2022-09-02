@@ -19,9 +19,6 @@ const Outfit = (props) => {
   const [productData, setProductData] = React.useState(null);
   const [input, setInput] = React.useState(<div>test</div>)
   const [list, setList] = React.useState([])
-
-
-  //WILL RECIEVE FROM PROPS
   const product_id = props.addProduct
   const product_style = Number(props.addStyle)
 

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState } from "react";
 import styled from 'styled-components';
 import Outfit from './outfitList.jsx'
@@ -9,14 +9,12 @@ const Lists = styled.div`
   margin-left: 23%;
   width:53%;
 `
-
 const RelatedProducts = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const product_id = props.mainProduct
   const product_style = props.currentStyleId
     const [modalOpen, setModalOpen] = React.useState(false);
   console.log('RelatedProducts component called')
-
 
   return (
     <Lists>
@@ -42,3 +40,4 @@ const RelatedProducts = (props) => {
 }
 
 export default RelatedProducts;
+

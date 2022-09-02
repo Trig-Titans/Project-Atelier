@@ -24,12 +24,10 @@ const RelatedCarousel = (props) => {
 
   React.useEffect(() => {
 
-    //FIND LIST OF RELATED PRODUCT IDS
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: { Authorization: API_KEY } })
       .then((response) => {
         let arrayOfRelatedProductIDs = response.data;
 
-        //FIND All RELATED PRODUCTS INFO
         Promise.all(arrayOfRelatedProductIDs.map(id => {
           return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, { headers: { Authorization: API_KEY } })
             .then(response => {
