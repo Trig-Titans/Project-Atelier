@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import styled from 'styled-components';
 import { faMinimize } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ExpandedContext } from '../GalleryView.jsx';
 
 const StyledExpandedView = styled.div`
     min-width:60rem;
@@ -61,11 +62,17 @@ const StyledExpandedView = styled.div`
       border: 2px solid white;
     }
   `;
-export default function Expanded({ photos, expanded, setView, imgIndex, setImgIndex }) {
+// export default function Expanded({ photos, expanded, setView, imgIndex, setImgIndex }) {
+export default function Expanded() {
+  // these are the props that are available using useContext
+  const { photos, expandedVal, imgIndexVal } = useContext(ExpandedContext);
+  // destructured state
+  const [expanded, setView] = expandedVal;
+  const [imgIndex, setImgIndex] = imgIndexVal
   var [currentImg, setImg] = useState(0);
   const handleShrink = (e) => {
     e.preventDefault();
-    setView(expanded = !expanded)
+    expandedVal[1](!expanded)
   }
 
   return (
@@ -75,7 +82,7 @@ export default function Expanded({ photos, expanded, setView, imgIndex, setImgIn
         {
           photos.map((photo, index) => {
             return <StyledIcon onClick={() => {
-              setImgIndex(imgIndex = index);
+              setImgIndex(index);
             }}
             value={index} key={index} style={{backgroundImage: `url(${photo.url})`}}></StyledIcon>
           })

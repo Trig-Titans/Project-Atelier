@@ -233,13 +233,17 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
       </StyledOverviewGrid>
     )
   } else {
+    // this is done using create context
     return (
       <StyledOverviewGrid>
-        <Expanded photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/>
+        <ExpandedContext.Provider value={{ photos: styles[styleIndex].photos, expandedVal: [expanded, setView], imgIndexVal: [imgIndex, setImgIndex] }}>
+          <Expanded/>
+        </ExpandedContext.Provider>
+        {/* <Expanded photos={styles[styleIndex].photos} expanded={expanded} setView={setView} imgIndex = {imgIndex} setImgIndex={setImgIndex}/> */}
       </StyledOverviewGrid>
     )
   }
 }
 
 
-export {Overview, findAverageRating}
+export {Overview, findAverageRating, ExpandedContext}
