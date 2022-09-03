@@ -82,12 +82,26 @@ export const ScrollableContainer = styled.div`
   overflow: auto;
 `;
 
+export const StarFilterLink = styled.button`
+  color: #006B6B;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+
+  &:hover {
+    color: black;
+  }
+`;
+
 export const StyledOverviewStars = styled.div`
-padding: 10px;
-display: flex;
-flex-wrap: none;
-/* grid-area: OvStar; */
-/* margin-top: 10px; */
+  padding: 10px;
+  display: flex;
+  flex-wrap: none;
+  /* grid-area: OvStar; */
+  /* margin-top: 10px; */
 `;
 
 // src: props => props.src

@@ -6,32 +6,32 @@ import {BreakdownContainer} from '../sharedStyles/sharedStyledComponents';
 import data from '../apiExample.js';
 
 
-let ratingsCountTotal = (ratingsObj) => {
-  let sum = 0;
+export const ratingsCountTotal = (ratingsObj) => {
+  let totalNumberOfRatings = 0;
   for (let key in ratingsObj) {
-    sum += Number(ratingsObj[key]);
+    totalNumberOfRatings += Number(ratingsObj[key]);
   }
-  return sum;
+  return totalNumberOfRatings;
 }
 
-let averageRating = (ratingsObj, total) => {
+export const averageRating = (ratingsObj, total) => {
   // if there are no reviews you can't divide by zero so return 0;
   if (total === 0) { return 0; }
   // define variable for the sum of all the star votes
-  let weightedSum = 0
-  let star, value, average;
+  let weightedSumOfRatings = 0
+  let star, value, averageStarRating;
   //loop through the ratings object to calculate the weightedSum
   for (let key in ratingsObj) {
     star = Number(key);
     value = Number(ratingsObj[key]);
-    weightedSum += (star * value);
+    weightedSumOfRatings += (star * value);
   }
   //calculate final average and return it rounded to tenths place
-  average = (weightedSum/total);
-  return average.toFixed(1);
+  averageStarRating = (weightedSumOfRatings/total);
+  return averageStarRating.toFixed(1);
 }
 
-let Breakdown = ( {reviewsMeta} ) => {
+export const Breakdown = ( {reviewsMeta} ) => {
 
   // dummy data
   let meta;
@@ -42,10 +42,8 @@ let Breakdown = ( {reviewsMeta} ) => {
   }
 
   // calculations for total number of reviews and the average rating
-
   let totalReviews = ratingsCountTotal(meta.ratings);
   let averageStars = averageRating(meta.ratings, totalReviews);
-
 
   return (<BreakdownContainer>
     <AverageRating averageStars={averageStars} totalCount={totalReviews}/>
@@ -53,4 +51,3 @@ let Breakdown = ( {reviewsMeta} ) => {
     <ProductBreakdown characteristics={meta.characteristics}/>
     </BreakdownContainer>);
 }
-export default Breakdown;

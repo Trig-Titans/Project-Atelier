@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Breakdown from './breakdownComponents/Breakdown.jsx';
+import {Breakdown} from './breakdownComponents/Breakdown.jsx';
 import ReviewsList from './reviewListComponents/ReviewsList.jsx';
 import {Container} from './sharedStyles/sharedStyledComponents.js';
 import styled from 'styled-components';
@@ -38,10 +38,10 @@ let Reviews = ({mainProductName, mainProduct}) => {
       })
   }, []);
   console.log(reviewsMeta)
-  return (<div>
+  return (<Container>
     <StyledHeader >RATINGS & REVIEWS</StyledHeader>
     <Breakdown reviewsMeta={reviewsMeta}/> <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics}/>
-    </div>);
+    </Container>);
 }
 
 export default Reviews;
