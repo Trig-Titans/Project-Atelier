@@ -16,63 +16,55 @@ const responsive = {
 };
 
 const Outfit = (props) => {
-
-  const [input, setInput] = React.useState(<div>test</div>)
   const [list, setList] = React.useState([])
   const product_id = props.addProduct
   const product_style = Number(props.addStyle)
+
+  const handleClick= () => {
+      let style = props.productData.styles.results.find(result => result.style_id === props.addStyle)
+      console.log('style info of added outfit:', style)
+
+      if (list.find(item => item.key === props.addProduct+props.addStyle) === undefined) {
+
+        setList((list) => {
+
+          return [
+                  ...list,
+                  <Card
+                    style={props.addStyle}
+                    info={props.productData.info}
+                    picUrls={
+                    style.photos.map(photo => photo.url !== null ?
+                        photo.url : 'https://www.foodnavigator-usa.com/var/wrbm_gb_food_pharma/storage/images/_aliases/news_large/9/7/3/7/217379-6-eng-GB/IDBS-SIC-Food-20122.jpg')
+                      }
+                    category={props.productData.info.category}
+                    name={props.productData.info.name}
+                    price={'$' + style.original_price}
+                    salePrice={
+                      style.sale_price ?
+                        '$' + style.sale_price : null
+                      }
+                    key={product_id+props.addStyle}
+                    btnStyle={'x'}
+                    handleXClick = {
+                      ()=>{
+
+                        console.log('X button clicked from outfitlist' )
+                        setList((list)=> list.filter(item => item.key !== product_id+props.addStyle))
+                      }
+                    }
+                    handleChangeProduct ={props.handleChangeProduct}
+                  />
+                ]
+        })
+      }
+    }
 
   return (
     <div>
       <Carousel responsive={responsive}>
         {
-          [
-            <div key={0}>
-              <AddOutfit
-                handleClick={
-                  () => {
-                    let style = props.productData.styles.results.find(result => result.style_id === props.addStyle)
-                    console.log('style info of added outfit:', style)
-
-                    if (list.find(item => item.key === props.addProduct+props.addStyle) === undefined) {
-
-                      setList((list) => {
-
-                        return [
-                                ...list,
-                                <Card
-                                  style={props.addStyle}
-                                  info={props.productData.info}
-                                  picUrls={
-                                  style.photos.map(photo => photo.url !== null ?
-                                      photo.url : 'https://www.foodnavigator-usa.com/var/wrbm_gb_food_pharma/storage/images/_aliases/news_large/9/7/3/7/217379-6-eng-GB/IDBS-SIC-Food-20122.jpg')
-                                    }
-                                  category={props.productData.info.category}
-                                  name={props.productData.info.name}
-                                  price={'$' + style.original_price}
-                                  salePrice={
-                                    style.sale_price ?
-                                      '$' + style.sale_price : null
-                                    }
-                                  key={product_id+props.addStyle}
-                                  btnStyle={'x'}
-                                  handleXClick = {
-                                    ()=>{
-
-                                      console.log('X button clicked from outfitlist' )
-                                      setList((list)=> list.filter(item => item.key !== product_id+props.addStyle))
-                                    }
-                                  }
-                                  handleChangeProduct ={props.handleChangeProduct}
-                                />
-                              ]
-                      })
-                    }
-                  }
-                }
-              />
-            </div>
-          ].concat(list)
+          [ <AddOutfit key ={0} handleClick={ handleClick}/> ].concat(list)
         }
       </Carousel>
     </div>
