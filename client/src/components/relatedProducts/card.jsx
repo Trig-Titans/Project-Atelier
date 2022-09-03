@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import TestStarIcon from '../stars/star.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
-import {faStar} from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-let second= {
+let second = {
   color: 'cornflowerblue',
 }
 
@@ -78,28 +78,29 @@ const Card = (props) => {
   const hoverHandler = (event) => {
 
     intervalID = setInterval(() => {
-      urlIndex++
 
+      urlIndex++
       if (urlIndex === props.picUrls.length) {
         urlIndex = 0;
       }
 
       event.target.src = props.picUrls[urlIndex]
-
     }, 1000)
 
   }
 
 
   const exitHandler = (event) => {
+
     clearInterval(intervalID)
     event.target.src = props.picUrls[0]
-
   }
 
 
   const renderSale = () => {
+
     if (props.salePrice !== null) {
+
       return (
         <div>
           <SaleP>{props.salePrice}</SaleP>
@@ -107,40 +108,53 @@ const Card = (props) => {
         </div>
       )
     } else {
+
       return (<PriceP>{props.price}</PriceP>)
     }
   }
 
   const handleClick = (event) => {
-    console.log(props.info)
+
     clearInterval(intervalID)
     props.handleChangeProduct(props.info, props.style)
   }
 
   return (
     <Carta >
-      <RelatedBtn  onClick={()=>{
-        console.log(`clicked ${props.btnStyle} button`)
-        props.btnStyle === 'x' ? props.handleXClick() : props.setModalOpen(true)
-        }}>
-        {/* {props.button} */}
-        {props.btnStyle === 'star' ? <FontAwesomeIcon  style={second} icon={faStar} />: <FontAwesomeIcon  style={second} icon={faCircleXmark} />}
-        </RelatedBtn>
+
+      <RelatedBtn
+        onClick={() => {
+          props.btnStyle === 'x' ?
+            props.handleXClick() : props.setModalOpen(true); }}>
+
+        {
+        props.btnStyle === 'star' ?
+          <FontAwesomeIcon style={second} icon={faStar} /> :
+          <FontAwesomeIcon style={second} icon={faCircleXmark} />
+        }
+
+      </RelatedBtn>
+
       <div onClick={handleClick} >
+
         <PicContainer >
 
-          <Pic src={props.picUrls[0]}
+          <Pic
+            src={props.picUrls[0]}
             onMouseEnter={hoverHandler}
-            onMouseLeave={exitHandler} />
-
+            onMouseLeave={exitHandler}
+          />
 
         </PicContainer>
 
         <Container>
+
           <CategoryP>{props.category}</CategoryP>
           <h5><b>{props.name}</b></h5>
           {renderSale()}
-          <TestStarIcon />
+
+          {"star rating"}
+
         </Container>
 
       </div>

@@ -4,11 +4,8 @@ import styled from 'styled-components';
 import Outfit from './outfitList.jsx'
 import RelationModal from './relationModal.jsx'
 import RelatedCarousel from './relatedCarousel.jsx'
-//
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
-//
-
 
 const Lists = styled.div`
   margin-left: 23%;
@@ -20,20 +17,14 @@ const RelatedProducts = (props) => {
   const product_id = Number(props.mainProduct)
   const product_style = props.currentStyleId
   const [modalOpen, setModalOpen] = React.useState(false);
-
-
-  //
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
   const [productData, setProductData] = React.useState(null);
-  //
 
-
-
-  console.log(`produc_id: ${product_id}, product_style: ${product_style}`)
-
-
+  // console.log(`-RELATED PRODUCTS-
+  //     ID: ${product_id}, Style: ${product_style}`)
 
   React.useEffect(() => {
+
     //CALLS FOR MAIN PRODUCT
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}`, { headers: { Authorization: API_KEY } })
       .catch(err => { console.log('ERROR IN INFO CALL FOR MAIN PRODUCT: ', err) })
@@ -110,6 +101,7 @@ const RelatedProducts = (props) => {
 
   return (
     <Lists>
+
       <br />
       <br />
 
@@ -120,15 +112,19 @@ const RelatedProducts = (props) => {
         setModalOpen={setModalOpen}
         handleChangeProduct={props.handleChangeProduct}
       />
+
       <br />
       <br />
+
       <Outfit
         productData = {productData}
         addProduct={props.mainProduct}
         addStyle={props.currentStyleId}
         handleChangeProduct={props.handleChangeProduct}
       />
+
       {isOpen ? <RelationModal setIsOpen={setIsOpen} /> : <div></div>}
+
     </Lists>
   );
 }

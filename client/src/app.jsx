@@ -30,7 +30,10 @@ export const App = () => {
   const [currentStyleId, setCurrentStyleId] = React.useState(221014);
 
   const handleChangeProduct = (info, style) => {
-    console.log(info.id.toString(), info.name)
+    console.log(`-APP-
+    ID: ${info.id.toString()},
+    Name: ${info.name},
+    Style: ${style}`)
 
       setCurrentStyleId(style)
       setMainProduct( info.id.toString() );

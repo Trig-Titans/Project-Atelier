@@ -37,7 +37,7 @@ let Reviews = ({mainProductName, mainProduct}) => {
         console.log(err);
       })
   }, []);
-  console.log(reviewsMeta)
+  // console.log(reviewsMeta)
   return (<Container>
     <StyledHeader >RATINGS & REVIEWS</StyledHeader>
     <Breakdown reviewsMeta={reviewsMeta}/> <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics}/>
