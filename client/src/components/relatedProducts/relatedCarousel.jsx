@@ -20,7 +20,6 @@ const RelatedCarousel = (props) => {
 
   const product_id = props.product_id
   const product_style = props.product_style
-  console.log('RelatedCarousel component called')
 
   // React.useEffect(() => {
 
@@ -74,15 +73,16 @@ const RelatedCarousel = (props) => {
 
         {
         props.accumulatedProductData.map((product, index) => {
-          let style = product.styles.results[0]
+          let style = product.styles.results[0];
+          let info = product.info;
 
           return (
             <Card
              style={style.style_id}
-             info={product.info}
+             info={info}
               picUrls={style.photos.map(photo => photo.url !== null? photo.url : 'https://www.foodnavigator-usa.com/var/wrbm_gb_food_pharma/storage/images/_aliases/news_large/9/7/3/7/217379-6-eng-GB/IDBS-SIC-Food-20122.jpg')}
-              category={product.info.category}
-              name={product.info.name}
+              category={info.category}
+              name={info.name}
               price={'$' + style.original_price}
               salePrice={style.sale_price ?
                 '$' + style.sale_price : null}

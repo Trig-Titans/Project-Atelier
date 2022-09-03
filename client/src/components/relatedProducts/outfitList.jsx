@@ -61,10 +61,10 @@ const Outfit = (props) => {
               <AddOutfit
                 handleClick={
                   () => {
-                    let style = props.productData.styles.results.find(result => result.style_id === product_style)
+                    let style = props.productData.styles.results.find(result => result.style_id === props.addStyle)
                     console.log(style)
 
-                    if (list.find(item => item.key === product_id+props.addStyle) === undefined) {
+                    if (list.find(item => item.key === props.addProduct+props.addStyle) === undefined) {
 
                       setList((list) => {
 

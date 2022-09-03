@@ -27,11 +27,12 @@ export const App = () => {
 
   const [mainProduct, setMainProduct] = React.useState("37314");
   const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" );
-  const [currentStyleId, setCurrentStyleId] = React.useState('221014');
+  const [currentStyleId, setCurrentStyleId] = React.useState(221014);
 
-  const handleChangeProduct = (info) => {
+  const handleChangeProduct = (info, style) => {
     console.log(info.id.toString(), info.name)
 
+      setCurrentStyleId(style)
       setMainProduct( info.id.toString() );
       setMainProductName ( info.name);
   }

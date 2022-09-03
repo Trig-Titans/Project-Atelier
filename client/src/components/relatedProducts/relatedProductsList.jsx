@@ -16,7 +16,8 @@ const Lists = styled.div`
 `
 const RelatedProducts = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const product_id = props.mainProduct
+  //Koz has it started as a string
+  const product_id = Number(props.mainProduct)
   const product_style = props.currentStyleId
   const [modalOpen, setModalOpen] = React.useState(false);
 
