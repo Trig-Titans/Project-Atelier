@@ -80,7 +80,7 @@ const RelatedCarousel = (props) => {
             <Card
              style={style.style_id}
              info={product.info}
-              picUrls={style.photos.map(photo => photo.url)}
+              picUrls={style.photos.map(photo => photo.url !== null? photo.url : 'https://www.foodnavigator-usa.com/var/wrbm_gb_food_pharma/storage/images/_aliases/news_large/9/7/3/7/217379-6-eng-GB/IDBS-SIC-Food-20122.jpg')}
               category={product.info.category}
               name={product.info.name}
               price={'$' + style.original_price}

@@ -14,7 +14,7 @@ const RelatedProducts = (props) => {
   const product_id = props.mainProduct
   const product_style = props.currentStyleId
     const [modalOpen, setModalOpen] = React.useState(false);
-  console.log('RelatedProducts component called')
+  console.log(`produc_id: ${product_id}, product_style: ${ product_style}`)
 
   return (
     <Lists>

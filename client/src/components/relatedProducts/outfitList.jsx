@@ -62,6 +62,7 @@ const Outfit = (props) => {
                 handleClick={
                   () => {
                     let style = productData.styles.results.find(result => result.style_id === product_style)
+                    console.log(style)
 
                     if (list.find(item => item.key === product_id+props.addStyle) === undefined) {
 
@@ -70,7 +71,7 @@ const Outfit = (props) => {
                         return [...list, <Card
                         style={props.addStyle}
                           info={productData.info}
-                          picUrls={style.photos.map(photo => photo.url)}
+                          picUrls={style.photos.map(photo => photo.url !== null? photo.url : 'https://www.foodnavigator-usa.com/var/wrbm_gb_food_pharma/storage/images/_aliases/news_large/9/7/3/7/217379-6-eng-GB/IDBS-SIC-Food-20122.jpg')}
                           category={productData.info.category}
                           name={productData.info.name}
                           price={'$' + style.original_price}
