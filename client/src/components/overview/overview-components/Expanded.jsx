@@ -47,7 +47,6 @@ export default function Expanded(props) {
     e.preventDefault();
     expandedVal[1](!expanded)
   }
-  console.log(photos[imgIndex].url);
   return (
     <StyledExpandedView data-testid='expanded-image' className='detail-view' style={{backgroundImage: `url(${photos[imgIndex].url})`}}>
       <StyledShrinkButton data-testid='shrink-button' onClick={handleShrink}><FontAwesomeIcon icon={faMinimize}/></StyledShrinkButton>

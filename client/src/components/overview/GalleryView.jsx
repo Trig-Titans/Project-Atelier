@@ -88,7 +88,6 @@ const ExpandedContext = React.createContext(2)
 
 // This is the actual functional component
 function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
-  console.log(document.body.scrollTop);
   var productSku = mainProduct;
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
@@ -266,7 +265,7 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
       <StyledOverviewGrid>
         <ExpandedContext.Provider value={{ photos: styles[styleIndex].photos, expandedVal: [expanded, setView], imgIndexVal: [imgIndex, setImgIndex] }}>
           <Expanded>
-            <StyledIconSection>
+            <StyledIconSection data-testid='expanded-icons'>
               {
                 styles[styleIndex].photos.map((photo, index) => {
                   return <StyledIcon onClick={() => {

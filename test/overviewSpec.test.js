@@ -206,6 +206,17 @@ describe('FEC - Omozan overview tests', function() {
       });
   });
 
+  it('should change the image rendered when an icon is clicked', () => {
+    return waitFor(() => expect(screen.queryByText(/I'll tell/)).toBeInTheDocument())
+      .then(() => {
+        return user.click(screen.getByTestId('carousel').children[0])
+      }).then(() => {
+        return user.click(screen.getByTestId('expanded-icons').children[1])
+      }).then(() => {
+        expect(screen.getByTestId('expanded-image')).not.toHaveStyle(`backgroundImage: url(https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)`);
+      });
+  });
+
   it('should return the expanded view to gallery', () => {
     return waitFor(() => expect(screen.queryByText(/I'll tell/)).toBeInTheDocument())
       .then(() => {
