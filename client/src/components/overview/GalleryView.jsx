@@ -88,6 +88,7 @@ const ExpandedContext = React.createContext(2)
 
 // This is the actual functional component
 function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
+  console.log(document.body.scrollTop);
   var productSku = mainProduct;
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
@@ -230,7 +231,7 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
   /* find(obj => obj.style_id === currentStyleId) */
   if (!expanded) {
     return (
-      <StyledOverviewGrid>
+      <StyledOverviewGrid data-testid='overview'>
         <OverviewCarousel
           photos={styles[styleIndex].photos}
           expanded={expanded}
@@ -260,7 +261,7 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
       </StyledOverviewGrid>
     )
   } else {
-    // this is done using create context and higher order  component paradigm to showcase how it is supposed to work
+    // this is done using create context and children props to showcase how it is supposed to work
     return (
       <StyledOverviewGrid>
         <ExpandedContext.Provider value={{ photos: styles[styleIndex].photos, expandedVal: [expanded, setView], imgIndexVal: [imgIndex, setImgIndex] }}>

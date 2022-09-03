@@ -41,6 +41,7 @@ const ThumbnailSelector = styled.div`
 const Thumbnail = styled.div`
   margin: 5px;
   margin-top: 5px;
+  min-height: 30px;
   max-height: 30px;
   border: 2px solid grey;
   width: 75px;
@@ -133,7 +134,6 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
     // https://www.youtube.com/watch?v=Tdpq-9XYoNM
   var [x, setx] = useState(0);
   var [y, sety] = useState(0);
-
   // function for the image to expand on click
   // on click function to move the carousel to the left
   const goLeft = () => {
@@ -172,6 +172,8 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   return (
   <StyledOverviewCarousel data-testid='carousel'>
     {photoList}
+    {x}
+    {y}
     <ThumbnailSelector data-testid='vertical-carousel'>
       {y !== 0 ? <UpButton data-testid='up-arrow' onClick={goUp}><FontAwesomeIcon icon={faChevronUp} /></UpButton> : <div></div>}
       {
@@ -196,11 +198,11 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
           }
         })
       }
-      {y >= ((photos.length * 135) - 800) ? <DownButton data-testid='down-arrow' onClick={goDown}><FontAwesomeIcon icon={faChevronDown} /></DownButton> : (<div></div>)}
+      {photos.length > 7 ? <DownButton data-testid='down-arrow' onClick={goDown}><FontAwesomeIcon icon={faChevronDown} /></DownButton> : (<div></div>)}
     </ThumbnailSelector>
     {/* these two ternary statements are to render in either a button or nothing depending on what position the gallery is in */}
-    {x === 0 ? (<div></div>) : (<LeftButton data-testid='right-arrow' onClick={goLeft}><FontAwesomeIcon icon={faChevronLeft} /></LeftButton>)}
-    {x > (-100 * photos.length + 100) ? (<RightButton data-testid='left-arrow' onClick={goRight}><FontAwesomeIcon icon={faChevronRight} /></RightButton>) : (<div></div>)}
+    {x === 0 ? (<div></div>) : (<LeftButton data-testid='left-arrow' onClick={goLeft}><FontAwesomeIcon icon={faChevronLeft} /></LeftButton>)}
+    {x > (-100 * photos.length + 100) ? (<RightButton data-testid='right-arrow' onClick={goRight}><FontAwesomeIcon icon={faChevronRight} /></RightButton>) : (<div></div>)}
   </StyledOverviewCarousel>
   )
 }
