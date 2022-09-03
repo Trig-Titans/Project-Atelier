@@ -18,8 +18,8 @@ const responsive = {
 const RelatedCarousel = (props) => {
   // const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
 
-  const product_id = props.product_id
-  const product_style = props.product_style
+  // const product_id = props.product_id
+  // const product_style = props.product_style
 
   // React.useEffect(() => {
 
