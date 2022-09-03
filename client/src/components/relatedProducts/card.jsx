@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-let second = {
+let fAColor = {
   color: 'cornflowerblue',
 }
 
-const Carta = styled.div`
+const ProductCard = styled.div`
   border: solid 1px;
   border-width: thin;
   border-color: lightgrey;
@@ -27,7 +27,6 @@ const Layer = styled.div`
     z-index: 5;
 
 `
-
 const PicContainer = styled.div`
   width: 200px;
   height: 195px;
@@ -89,13 +88,11 @@ const Card = (props) => {
 
   }
 
-
   const exitHandler = (event) => {
 
     clearInterval(intervalID)
     event.target.src = props.picUrls[0]
   }
-
 
   const renderSale = () => {
 
@@ -120,7 +117,7 @@ const Card = (props) => {
   }
 
   return (
-    <Carta >
+    <ProductCard >
 
       <RelatedBtn
         onClick={() => {
@@ -129,8 +126,8 @@ const Card = (props) => {
 
         {
         props.btnStyle === 'star' ?
-          <FontAwesomeIcon style={second} icon={faStar} /> :
-          <FontAwesomeIcon style={second} icon={faCircleXmark} />
+          <FontAwesomeIcon style={fAColor} icon={faStar} /> :
+          <FontAwesomeIcon style={fAColor} icon={faCircleXmark} />
         }
 
       </RelatedBtn>
@@ -159,7 +156,7 @@ const Card = (props) => {
 
       </div>
 
-    </Carta>
+    </ProductCard>
   )
 }
 
