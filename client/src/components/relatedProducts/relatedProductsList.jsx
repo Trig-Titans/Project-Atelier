@@ -113,6 +113,7 @@ const RelatedProducts = (props) => {
       <br />
 
       <RelatedCarousel
+        accumulatedProductData = {accumulatedProductData}
         product_id={product_id}
         product_style={product_style}
         setModalOpen={setModalOpen}
