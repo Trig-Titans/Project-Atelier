@@ -16,41 +16,41 @@ const responsive = {
 };
 
 const Outfit = (props) => {
-  const [productData, setProductData] = React.useState(null);
+  // const [props.productData, setProductData] = React.useState(null);
   const [input, setInput] = React.useState(<div>test</div>)
   const [list, setList] = React.useState([])
   const product_id = props.addProduct
   const product_style = Number(props.addStyle)
 
-  React.useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}`, { headers: { Authorization: API_KEY } })
-      .then(response => {
-        let productInfoObj = response.data
+  // React.useEffect(() => {
+  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}`, { headers: { Authorization: API_KEY } })
+  //     .then(response => {
+  //       let productInfoObj = response.data
 
-        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/styles`, {
-          headers: { Authorization: API_KEY }
-        })
-          .catch(err => { console.log('ERROR IN STYLES CALL FOR OUTFIT: ', err) })
-          .then(response => {
-            let productStylesObj = response.data;
+  //       axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/styles`, {
+  //         headers: { Authorization: API_KEY }
+  //       })
+  //         .catch(err => { console.log('ERROR IN STYLES CALL FOR OUTFIT: ', err) })
+  //         .then(response => {
+  //           let productStylesObj = response.data;
 
-            axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${product_id}`, {
-              headers: { Authorization: API_KEY }
-            })
-              .catch(err => { console.log('ERROR IN REVIEW CALL FOR OUTFIT: ', err) })
-              .then(response => {
-                let productReviewsObj = response.data
+  //           axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${product_id}`, {
+  //             headers: { Authorization: API_KEY }
+  //           })
+  //             .catch(err => { console.log('ERROR IN REVIEW CALL FOR OUTFIT: ', err) })
+  //             .then(response => {
+  //               let productReviewsObj = response.data
 
-                setProductData({
-                  info: productInfoObj,
-                  styles: productStylesObj,
-                  reviews: productReviewsObj
-                })
-              })
-              .catch(err => (console.log('ERROR IN setProductData CALL FOR OUTFIT: ', err)))
-          })
-      })
-  }, [product_id, product_style])
+  //               setProductData({
+  //                 info: productInfoObj,
+  //                 styles: productStylesObj,
+  //                 reviews: productReviewsObj
+  //               })
+  //             })
+  //             .catch(err => (console.log('ERROR IN setProductData CALL FOR OUTFIT: ', err)))
+  //         })
+  //     })
+  // }, [product_id, product_style])
 
   return (
     <div>
@@ -61,7 +61,7 @@ const Outfit = (props) => {
               <AddOutfit
                 handleClick={
                   () => {
-                    let style = productData.styles.results.find(result => result.style_id === product_style)
+                    let style = props.productData.styles.results.find(result => result.style_id === product_style)
                     console.log(style)
 
                     if (list.find(item => item.key === product_id+props.addStyle) === undefined) {
@@ -70,10 +70,10 @@ const Outfit = (props) => {
 
                         return [...list, <Card
                         style={props.addStyle}
-                          info={productData.info}
+                          info={props.productData.info}
                           picUrls={style.photos.map(photo => photo.url !== null? photo.url : 'https://www.foodnavigator-usa.com/var/wrbm_gb_food_pharma/storage/images/_aliases/news_large/9/7/3/7/217379-6-eng-GB/IDBS-SIC-Food-20122.jpg')}
-                          category={productData.info.category}
-                          name={productData.info.name}
+                          category={props.productData.info.category}
+                          name={props.productData.info.name}
                           price={'$' + style.original_price}
                           salePrice={style.sale_price ?
                             '$' + style.sale_price : null}
