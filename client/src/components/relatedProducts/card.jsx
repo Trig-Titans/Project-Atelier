@@ -121,6 +121,8 @@ const Card = (props) => {
 
       <RelatedBtn
         onClick={() => {
+          console.log(props.btnStyle, 'clicked')
+
           props.btnStyle === 'x' ?
             props.handleXClick() : props.setModalOpen(true); }}>
 

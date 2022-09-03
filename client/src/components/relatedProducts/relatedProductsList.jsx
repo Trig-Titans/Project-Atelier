@@ -12,7 +12,6 @@ const Lists = styled.div`
   width:53%;
 `
 const RelatedProducts = (props) => {
-  const [isOpen, setIsOpen] = React.useState(false);
   //Koz has it started as a string
   const product_id = Number(props.mainProduct)
   const product_style = props.currentStyleId
@@ -20,8 +19,8 @@ const RelatedProducts = (props) => {
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
   const [productData, setProductData] = React.useState(null);
 
-  // console.log(`-RELATED PRODUCTS-
-  //     ID: ${product_id}, Style: ${product_style}`)
+  console.log(`-RELATED PRODUCTS-
+      ID: ${product_id}, Style: ${product_style}`)
 
   React.useEffect(() => {
 
@@ -123,7 +122,7 @@ const RelatedProducts = (props) => {
         handleChangeProduct={props.handleChangeProduct}
       />
 
-      {isOpen ? <RelationModal setIsOpen={setIsOpen} /> : <div></div>}
+      {modalOpen ? <RelationModal setModalOpen={setModalOpen} /> : <div></div>}
 
     </Lists>
   );

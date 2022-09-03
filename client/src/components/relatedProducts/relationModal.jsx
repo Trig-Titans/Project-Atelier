@@ -32,7 +32,13 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
 const RelationModal = (props) => {
   return (
     <div>
-       <DarkBackGround oncClick={ props.setIsOpen(false) } />
+       <DarkBackGround onClick={()=>{
+
+        console.log('dark background clicked')
+        props.setModalOpen(false) }
+       }
+        // props.setIsOpen(false) }
+        />
     <Centered>
       <Modal>
         <p>comparison modal</p>
