@@ -5,14 +5,21 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
 
   const DarkBackGround = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 10;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
+  position: fixed;
   `
+    // background: rgba(0, 0, 0, .5);
+    // position: fixed;
+    // top: 0; left: 0;
+    // width: 100vw; height: 100vh;
+    // z-index: 100;
+    // cursor: pointer;
+
   const Centered = styled.div`
   position: fixed;
   top: 50%;
@@ -24,7 +31,7 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
   width: 250px;
   height: 170px;
   background: white;
-  color: white;
+  color: teal;
   z-index: 15;
   border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);

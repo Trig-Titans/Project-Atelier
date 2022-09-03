@@ -7,7 +7,7 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 let fAColor = {
-  color: 'cornflowerblue',
+  color: 'teal',
 }
 
 const ProductCard = styled.div`
@@ -134,7 +134,7 @@ const Card = (props) => {
 
       </RelatedBtn>
 
-      <div onClick={handleClick} >
+      <div onClick={handleClick} onMouseLeave={exitHandler} >
 
         <PicContainer >
 
