@@ -31,7 +31,7 @@ const PicContainer = styled.div`
   width: 200px;
   height: 195px;
   position: relative;
-  z-index: 8;
+  z-index: 9;
 `
 const RelatedBtn = styled.div`
   float: right;
@@ -43,9 +43,9 @@ const RelatedBtn = styled.div`
 
 `
 const Pic = styled.img`
-  width: 199px;
+  width: 198px;
   height: 195px;
-  z-index: 9;
+  z-index: 8;
 `
 const Container = styled.div`
   text-align: left;
