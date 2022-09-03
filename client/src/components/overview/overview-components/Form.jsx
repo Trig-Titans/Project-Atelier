@@ -16,22 +16,38 @@ const StyledOverviewOptionForm = styled.form`
   justify-content: flex-start;
 `;
 const StyledOverviewFavoriteStar = styled.button`
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
   background-color: #DBDBD6;
-  border-radius: 5px;
-  border: black;
-  color: gray;
+  border-radius: 3px;
+  border: 2px solid teal;
+  color: #006B6B;
+  margin: 0.5em 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #800000;
+    color: #DBDBD6;
+  }
 `;
 const StyledSubmit = styled.input`
-  cursor: pointer;
-  height: 40px;
-  min-width: 150px;
   background-color: #DBDBD6;
-  border-radius: 5px;
-  border: black;
+  border-radius: 3px;
+  border: 2px solid teal;
   color: #006B6B;
+  margin: 0.5em 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #800000;
+    color: #DBDBD6;
+  }
+
+  ${props => props.primary && css`
+    border: 2px solid #C4C4BA;
+    background: #006B6B;
+    color: #DBDBD6;
+  `}
 `
 const StyledSelect = styled.select`
   min-width: 150px;

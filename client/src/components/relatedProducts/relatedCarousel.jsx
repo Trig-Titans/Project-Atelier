@@ -20,7 +20,7 @@ const RelatedCarousel = (props) => {
 
   const product_id = props.product_id
   const product_style = props.product_style
-  console.log('RelatedCarousel component called')
+  //console.log('RelatedCarousel component called')
 
   React.useEffect(() => {
 

@@ -29,11 +29,11 @@ const QandA = ({ mainProduct, mainProductName }) => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${mainProduct}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${mainProduct}&count=35`,
       headers: {Authorization: API_KEY}
     })
     .then((response) => {
-      //console.log(response.data.results);
+      console.log(response.data.results);
       setQuestions(response.data.results);
       setMasterList(response.data.results);
     })

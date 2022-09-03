@@ -10,7 +10,8 @@ export const Button = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #C2B280;
+    background-color: #800000;
+    color: #DBDBD6;
   }
 
   ${props => props.primary && css`
@@ -21,10 +22,10 @@ export const Button = styled.button`
 `;
 
 export const Container = styled.div`
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 100%;
 `;
 
 export const ReviewTileContainer = styled.div`
@@ -39,7 +40,6 @@ export const ReviewsContainer = styled.div`
   float: left;
   width: 65%;
   padding-right: 10%;
-  height: 60vh;
   background: white;
 `;
 
@@ -48,8 +48,8 @@ export const BreakdownContainer = styled.div`
   float: left;
   width: 35%;
   padding-left: 10%;
-  height: 60vh;
   background: white;
+  height: 100%;
 `;
 
 export const RecommendationContainer = styled.div`

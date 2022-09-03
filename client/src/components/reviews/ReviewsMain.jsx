@@ -37,11 +37,15 @@ let Reviews = ({mainProductName, mainProduct}) => {
         console.log(err);
       })
   }, []);
-  console.log(reviewsMeta)
-  return (<Container>
-    <StyledHeader >RATINGS & REVIEWS</StyledHeader>
-    <Breakdown reviewsMeta={reviewsMeta}/> <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics}/>
-    </Container>);
+  //console.log(reviewsMeta)
+  return (
+    <div>
+      <StyledHeader >RATINGS & REVIEWS</StyledHeader>
+      <Container>
+        <Breakdown reviewsMeta={reviewsMeta}/> <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics}/>
+      </Container>
+    </div>
+    );
 }
 
 export default Reviews;
