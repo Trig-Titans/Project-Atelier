@@ -1,21 +1,22 @@
 import styled, {css} from 'styled-components';
 
 export const Button = styled.button`
-  background-color: #a8bdff;
+  background-color: #DBDBD6;
   border-radius: 3px;
-  border: 2px solid #222325;
-  color: #040c27;
+  border: 2px solid teal;
+  color: #006B6B;
   margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
 
   &:hover {
-    background-color: #6684e7e6
+    background-color: #C2B280;
   }
 
   ${props => props.primary && css`
-    background: #002d71;
-    color: white;
+    border: 2px solid #C4C4BA;
+    background: #006B6B;
+    color: #DBDBD6;
   `}
 `;
 
@@ -28,22 +29,27 @@ export const Container = styled.div`
 
 export const ReviewTileContainer = styled.div`
   text-align: left;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   margin: 10px;
-  padding: 2px;
+  padding: 10px 30px;
 `;
 
 export const ReviewsContainer = styled.div`
   text-align: left;
   float: left;
   width: 65%;
+  padding-right: 10%;
+  height: 60vh;
+  background: white;
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
-  margin-left: 10%;
   float: left;
-  width: 25%;
+  width: 35%;
+  padding-left: 10%;
+  height: 60vh;
+  background: white;
 `;
 
 export const RecommendationContainer = styled.div`
@@ -51,6 +57,7 @@ export const RecommendationContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  background: white;
 `;
 
 export const SellersResponse = styled.div`
@@ -71,9 +78,18 @@ export const BarGraphContainer = styled.div`
 `;
 
 export const ScrollableContainer = styled.div`
-  height: 50vh;
+  height: 60vh;
   overflow: auto;
 `;
+
+export const StyledOverviewStars = styled.div`
+padding: 10px;
+display: flex;
+flex-wrap: none;
+/* grid-area: OvStar; */
+/* margin-top: 10px; */
+`;
+
 // src: props => props.src
 
 // export const Thumbnail = styled.img.attrs({

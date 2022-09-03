@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import {ReviewTileContainer, RecommendationContainer, SellersResponse} from '../sharedStyles/sharedStyledComponents';
 import {ThumbnailModel} from './ThumbnailModal.jsx';
 import axios from 'axios';
-import API_KEY from '../../../../../config.js'
+import API_KEY from '../../../../../config.js';
+import { StyledLinks } from '../../questions/Answer.jsx';
 const {Checkmark} = require('react-checkmark');
+import {OverviewStars} from '../StarComponent.jsx';
 
 
 // FORMATING FUNCTIONS
@@ -124,7 +126,7 @@ export const IndividualTile = ({review}) => {
         longBodyText = <p>{body.substring(30)}</p>;
         bod += '...';
       }
-      return <p>{bod}</p>
+      return <p style={{fontSize: '14px'}}>{bod}</p>
     } else {
       if (body.length > 250) {
         longBody = true;
@@ -132,7 +134,7 @@ export const IndividualTile = ({review}) => {
         body = body.substring(0,250);
         body += '...';
       }
-      return <p>{body}</p>
+      return <p style={{fontSize: '14px'}}>{body}</p>
     }
   }
   let notYetDisplayed = true;
@@ -145,7 +147,7 @@ export const IndividualTile = ({review}) => {
   let recommend = makeRecommendation(review.recommend);
   let date = makeDate(review.date);
   let summary = makeSummary(review.summary);
-  let body = makeBody(review.body)
+  let body = makeBody(review.body);
   let sellerResponse = makeSellerResponse(review.response);
   let photoThumbnails = makePhotos(review.photos);
   let display = <div></div>;
@@ -155,7 +157,7 @@ export const IndividualTile = ({review}) => {
     }
   }
   return (<ReviewTileContainer>
-        <p>{review.rating} stars {date}</p>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}><OverviewStars stars={review.rating} starSizePx={'20px'} /><p>{date}</p></div>
         {summary}
         {showLongBody ? longBodyText : body}
         {/* This is the SeeMore link that needs to disappear if the full body has been displayed */}
@@ -164,7 +166,10 @@ export const IndividualTile = ({review}) => {
         {thumbnailView ? <ThumbnailModel thumbnailUrl={thumbnailUrl} setThumbnailView={setThumbnailView}></ThumbnailModel> : <div></div>}
         {recommend}
         <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
-        <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({displayHelpfulness}) | <u style={{textDecoration: 'underline'}} onClick={() => {addReportRating(review.review_id)}}>Report</u></p>
+        <StyledLinks>
+          <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({displayHelpfulness}) | <u style={{textDecoration: 'underline'}} onClick={() => {addReportRating(review.review_id)}}>Report</u></p>
+        </StyledLinks>
+
         {sellerResponse}
       </ReviewTileContainer>)
 }

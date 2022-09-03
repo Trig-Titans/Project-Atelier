@@ -6,6 +6,7 @@ const { Checkmark } = require('react-checkmark');
 const StyledOverviewStyleSelector = styled.div`
   grid-area: OvStyle;
   padding-left: 10px;
+  color: #006B6B;
 
 `;
 const StyledOverviewStylesTitle = styled.div`
@@ -47,7 +48,7 @@ export default function OverViewSelector({ styles, setStyles, styleIndex, curren
   return (
   <StyledOverviewStyleSelector>
     <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
-    <StyledOverviewStylesSection>
+    <StyledOverviewStylesSection data-testid='styles-buttons'>
       {
       styles.map((style, index) => {
         if (styleIndex === index) {
@@ -55,12 +56,14 @@ export default function OverViewSelector({ styles, setStyles, styleIndex, curren
             // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
             // i.e. the first picture is at x=0, the second is x=100, the third is x=200
             // updating the x value changes what picture is shown
-            <StyleCircle onClick={() => {
-              setStyles(styleIndex = index);
-            }}
-            key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '3px solid lightgray'}}>
-              <Checkmark size='small' />
-            </StyleCircle>
+            <span className='style-button' key={index}>
+              <StyleCircle onClick={() => {
+                  setStyles(styleIndex = index);
+                }}
+                style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '3px solid lightgray'}}>
+                  <Checkmark size='small' />
+              </StyleCircle>
+            </span>
           )
         } else {
           return (

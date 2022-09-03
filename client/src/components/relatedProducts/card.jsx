@@ -1,7 +1,14 @@
-/* eslint-disable no-unused-vars */
+
 import React from 'react';
 import styled from 'styled-components';
 import TestStarIcon from '../stars/star.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import {faStar} from '@fortawesome/free-solid-svg-icons'
+
+let second= {
+  color: 'cornflowerblue',
+}
 
 const Carta = styled.div`
   border: solid 1px;
@@ -107,12 +114,18 @@ const Card = (props) => {
   const handleClick = (event) => {
     console.log(props.info)
     clearInterval(intervalID)
-    props.handleChangeProduct(props.info)
+    props.handleChangeProduct(props.info, props.style)
   }
 
   return (
     <Carta >
-      <RelatedBtn>{props.button}</RelatedBtn>
+      <RelatedBtn  onClick={()=>{
+        console.log(`clicked ${props.btnStyle} button`)
+        props.btnStyle === 'x' ? props.handleXClick() : props.setModalOpen(true)
+        }}>
+        {/* {props.button} */}
+        {props.btnStyle === 'star' ? <FontAwesomeIcon  style={second} icon={faStar} />: <FontAwesomeIcon  style={second} icon={faCircleXmark} />}
+        </RelatedBtn>
       <div onClick={handleClick} >
         <PicContainer >
 

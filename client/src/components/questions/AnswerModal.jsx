@@ -13,7 +13,9 @@ const StyledBackground = styled.div`
 
 const StyledModal = styled.div`
   position: fixed;
-  top: 12.5vh; left: 25vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 101;
   max-width: 50vw;
   width: 50vw;
@@ -65,6 +67,7 @@ const StyledPhoto = styled.img`
   margin: 2vh 0;
 `;
 
+
 const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
 
   const [photoArray, setPhotoArray] = useState([]);
@@ -79,13 +82,17 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
       return;
     }
 
-    var reader = new FileReader();
+    setPhotoArray(photoArray => [...photoArray, URL.createObjectURL(input.target.files[0])]);
 
-    reader.onload = function (e) {
-      setPhotoArray(photoArray => [...photoArray, e.target.result]);
-    };
+    // var reader = new FileReader();
 
-    reader.readAsDataURL(input.target.files[0]);
+    // reader.onload = function (e) {
+    //   console.log(e)
+
+    //   setPhotoArray(photoArray => [...photoArray, e.target.result]);
+    // };
+
+    // reader.readAsDataURL(input.target.files[0]);
     setLargeImgErr('none');
   }
 

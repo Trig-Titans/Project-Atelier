@@ -4,6 +4,7 @@ import React, { useState } from "react";
 const StyledOverviewName = styled.div`
   padding-left: 10px;
   grid-area: OvName;
+  color: #006B6B;
 `;
 
 const StyledOverviewCategory = styled.p`

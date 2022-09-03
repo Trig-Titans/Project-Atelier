@@ -3,13 +3,18 @@ import React, { useState, useEffect } from 'react';
 import { Answer } from './Answer.jsx';
 import styled from 'styled-components';
 
-const StyledAnswerList = styled.div`
+const StyledAnswerContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   max-height: 50vh;
-  overflow: auto;
-
+  width: max-content;
 `;
+
+const StyledAnswerList = styled.div`
+  overflow: auto;
+  max-width: 50vw;
+`;
+
 
 const AnswerList = ({ answers }) => {
 
@@ -36,18 +41,18 @@ const AnswerList = ({ answers }) => {
   }
 
   return (
-    <StyledAnswerList>
+    <StyledAnswerContainer>
       <div>
-          <strong>A:&nbsp;   </strong>
+          <h4>A:&nbsp;   </h4>
       </div>
-      <div>
+      <StyledAnswerList>
         {list.map((answer) => {
           return (
           <Answer answerData={answer} key={answer.id} />
           )})}
-        <strong style={{display: visible, cursor: 'pointer'}} onClick={loadAnswers}>{loadMore}</strong>
-      </div>
-    </StyledAnswerList>
+        <strong style={{display: visible, cursor: 'pointer', fontSize: '13px'}} onClick={loadAnswers}>{loadMore}</strong>
+      </StyledAnswerList>
+    </StyledAnswerContainer>
   )
 }
 

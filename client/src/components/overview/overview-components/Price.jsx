@@ -4,6 +4,7 @@ import React, { useState } from "react";
 const StyledOverviewPrice = styled.div`
 padding-left: 10px;
   grid-area: OvPrice;
+  color: #006B6B;
 `;
 
 export default function OverViewPrice({ price }) {

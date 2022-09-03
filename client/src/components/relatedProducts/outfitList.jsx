@@ -6,8 +6,6 @@ import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
 import AddOutfit from './addOutfitCard.jsx'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 const responsive = {
   desktop: {
@@ -21,9 +19,6 @@ const Outfit = (props) => {
   const [productData, setProductData] = React.useState(null);
   const [input, setInput] = React.useState(<div>test</div>)
   const [list, setList] = React.useState([])
-
-
-  //WILL RECIEVE FROM PROPS
   const product_id = props.addProduct
   const product_style = Number(props.addStyle)
 
@@ -68,21 +63,27 @@ const Outfit = (props) => {
                   () => {
                     let style = productData.styles.results.find(result => result.style_id === product_style)
 
-                    if (list.find(item => item.key === product_id) === undefined) {
+                    if (list.find(item => item.key === product_id+props.addStyle) === undefined) {
 
                       setList((list) => {
 
                         return [...list, <Card
+                        style={props.addStyle}
                           info={productData.info}
                           picUrls={style.photos.map(photo => photo.url)}
                           category={productData.info.category}
                           name={productData.info.name}
                           price={'$' + style.original_price}
                           salePrice={style.sale_price ?
-                            '$' + style.sale_price : list.length % 2 === 0 ?
-                              '$7327.00' : null}
-                          key={product_id}
-                          button={<FontAwesomeIcon icon={faCircleXmark} />}
+                            '$' + style.sale_price : null}
+                          key={product_id+props.addStyle}
+                          btnStyle={'x'}
+                          handleXClick = {
+                            ()=>{
+                            console.log('X button clicked from outfitlist' )
+                            setList((list)=> list.filter(item => item.key !== product_id+props.addStyle))
+                          }
+                        }
                           handleChangeProduct ={props.handleChangeProduct}
                         />]
                       })
