@@ -1,10 +1,14 @@
 import * as React from "react";
 
+let zIndex = {
+  zIndex: 10
+}
+
 const CustomLeftArrow = ({ onClick }) => (
-  <i onClick={() => onClick()} className="custom-left-arrow" />
+  <i style ={zIndex} onClick={() => onClick()} className="custom-left-arrow" />
 );
 const CustomRightArrow = ({ onClick }) => {
-  return <i className="custom-right-arrow" onClick={() => onClick()} />;
+  return <i  style ={zIndex} className="custom-right-arrow" onClick={() => onClick()} />;
 };
 
 const CustomButtonGroup = ({ next, previous, goToSlide, carouselState }) => {

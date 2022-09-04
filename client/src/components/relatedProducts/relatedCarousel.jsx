@@ -6,6 +6,8 @@ import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
+import {CustomLeftArrow, CustomRightArrow} from './arrows.jsx'
+import {findAverageRating} from '.././overview/GalleryView.jsx'
 
 const responsive = {
 
@@ -28,12 +30,14 @@ const RelatedCarousel = (props) => {
 
   return (
     <div>
-      <Carousel responsive={responsive} >
+      <Carousel
+      responsive={responsive} >
 
         {
           props.accumulatedProductData.map((product, index) => {
             let style = product.styles.results[0];
             let info = product.info;
+            let starCount = findAverageRating( product.reviews.ratings )
 
             return (
                 <Card
@@ -50,6 +54,7 @@ const RelatedCarousel = (props) => {
                   setModalOpen = {props.setModalOpen}
                   handleChangeProduct ={props.handleChangeProduct}
                   setProductCardClickedOn ={props.setProductCardClickedOn}
+                  starCount = {starCount}
                 />
               )
           })

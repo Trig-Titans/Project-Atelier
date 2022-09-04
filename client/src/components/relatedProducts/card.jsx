@@ -1,10 +1,11 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import TestStarIcon from '../stars/star.jsx'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import TestStarIcon from '../stars/star.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import StarRatings from 'react-star-ratings';
 
 let fAColor = {
   color: 'teal',
@@ -151,11 +152,24 @@ const Card = (props) => {
           <h5><b>{props.name}</b></h5>
           {renderSale()}
 
-          {"star rating"}
+          {/* {"star rating"} */}
 
         </Container>
 
       </div>
+      {props.starCount > 0 ?
+        (<StarRatings
+        rating={parseFloat(props.starCount)}
+        starRatedColor="gray"
+        numberOfStars={5}
+        starDimension="15px"
+        starHoverColor="yellow"
+        name='rating'
+        />)
+        :( <div></div> )
+
+    }
+
 
     </ProductCard>
   )

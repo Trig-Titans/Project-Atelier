@@ -5,7 +5,8 @@ import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
-import AddOutfit from './addOutfitCard.jsx'
+import AddOutfit from './addOutfitCard.jsx';
+import {findAverageRating} from '.././overview/GalleryView.jsx';
 
 const responsive = {
 
@@ -72,6 +73,7 @@ const Outfit = (props) => {
                       }
                     }
                     handleChangeProduct ={props.handleChangeProduct}
+                    starCount = {findAverageRating( props.productData.reviews.ratings )}
                   />
                 ]
         })
