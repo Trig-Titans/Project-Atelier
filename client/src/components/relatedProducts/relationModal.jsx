@@ -4,30 +4,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {FaCheck} from '@fortawesome/free-solid-svg-icons'
 
   const DarkBackGround = styled.div`
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, .5);
+  position: fixed;
   width: 100%;
   height: 100%;
   z-index: 10;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+
   position: fixed;
   `
   const Centered = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+
   z-index: 10;
   `
   const Modal = styled.div`
-  width: 250px;
-  height: 170px;
+  width: auto;
+  height: auto;
   background: white;
   color: teal;
   z-index: 15;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: auto;
   `
 const RelationModal = (props) => {
 
@@ -46,7 +48,7 @@ let whereToCheck = totalFeatures.map(feature => {
       mainName : relatedName;
 });
 let table = [
-            <thead>
+            <thead key= {'head'}>
               <tr>
                 <td>{mainName}</td>
                 <td></td>
@@ -57,48 +59,57 @@ let table = [
 
   return (
     <div>
+
        <DarkBackGround onClick={()=>{
 
         console.log('dark background clicked', mainFeatures, relatedFeatures, sameFeatures, differentFeatures, totalFeatures, whereToCheck)
         props.setModalOpen(false) }
        }
         />
-    <Centered>
-      <Modal>
 
-         <table>
+      <Centered>
 
-          {table.concat(whereToCheck.map((location, index) => {
-            return location === 'both' ?
-              (
-                <tbody key={index} >
-                  <tr>
-                  <td>{'x'}</td>
-                  <td>{totalFeatures[index]}</td>
-                  <td>{'x'}</td>
-                  </tr>
-                </tbody>
+        <Modal>
 
-              ) : location === mainName ?
+          <table>
+            {table.concat(whereToCheck.map((location, index) => {
+              return location === 'both' ?
                 (
-                  <tr key={index} >
-                    <td>{'x'}</td>
-                    <td>{totalFeatures[index]}</td>
-                    <td></td>
-                  </tr>
-                )
-                  :  (
-                    <tr key={index} >
-                      <td></td>
+                  <tbody key={index} >
+                    <tr>
+                      <td>{'x'}</td>
                       <td>{totalFeatures[index]}</td>
                       <td>{'x'}</td>
                     </tr>
+                  </tbody>
 
-                    )
-          }))}
-        </table>
-      </Modal>
-    </Centered>
+                ) : location === mainName ?
+                  (
+                    <tbody  key={index} >
+                      <tr>
+                        <td>{'x'}</td>
+                        <td>{totalFeatures[index]}</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+
+                  )
+                    :  (
+                          <tbody  key={index} >
+                            <tr>
+                              <td></td>
+                              <td>{totalFeatures[index]}</td>
+                              <td>{'x'}</td>
+                            </tr>
+                          </tbody>
+                      )
+            }))}
+          </table>
+
+        </Modal>
+
+      </Centered>
+
     </div>
   )
 };
