@@ -30,6 +30,7 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: auto;
+  padding: 20px;
   `
 const RelationModal = (props) => {
 
@@ -59,7 +60,7 @@ let table = [
 
   return (
     <div>
-
+      <br/>
        <DarkBackGround onClick={()=>{
 
         console.log('dark background clicked', mainFeatures, relatedFeatures, sameFeatures, differentFeatures, totalFeatures, whereToCheck)
