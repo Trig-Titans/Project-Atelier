@@ -116,6 +116,11 @@ const Card = (props) => {
     props.handleChangeProduct(props.info, props.style)
   }
 
+  const starBtnHanlder = ()=>{
+    props.setModalOpen(true)
+    props.setProductCardClickedOn(props.info.id)
+  }
+
   return (
     <ProductCard >
 
@@ -124,7 +129,9 @@ const Card = (props) => {
           console.log(props.btnStyle, 'clicked')
 
           props.btnStyle === 'x' ?
-            props.handleXClick() : props.setModalOpen(true); }}>
+            props.handleXClick() :
+            starBtnHanlder();
+        }}>
 
         {
         props.btnStyle === 'star' ?

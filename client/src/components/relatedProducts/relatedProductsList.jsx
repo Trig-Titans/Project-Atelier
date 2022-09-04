@@ -18,6 +18,7 @@ const RelatedProducts = (props) => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
   const [productData, setProductData] = React.useState(null);
+  const [productCardClickedOn, setProductCardClickedOn] = React.useState('')
 
   console.log(`-RELATED PRODUCTS-
       ID: ${product_id}, Style: ${product_style}`)
@@ -110,6 +111,7 @@ const RelatedProducts = (props) => {
         product_style={product_style}
         setModalOpen={setModalOpen}
         handleChangeProduct={props.handleChangeProduct}
+        setProductCardClickedOn={setProductCardClickedOn}
       />
 
       <br />
@@ -122,7 +124,16 @@ const RelatedProducts = (props) => {
         handleChangeProduct={props.handleChangeProduct}
       />
 
-      {modalOpen ? <RelationModal setModalOpen={setModalOpen} /> : <div></div>}
+      {
+      modalOpen ?
+      <RelationModal
+        setModalOpen={setModalOpen}
+        productData = {productData}
+        accumulatedProductData = {accumulatedProductData}
+        productCardClickedOn = {productCardClickedOn}
+
+
+        /> : <div></div>}
 
     </Lists>
   );

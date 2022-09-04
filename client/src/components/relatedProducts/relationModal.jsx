@@ -13,13 +13,6 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
   transform: translate(-50%, -50%);
   position: fixed;
   `
-    // background: rgba(0, 0, 0, .5);
-    // position: fixed;
-    // top: 0; left: 0;
-    // width: 100vw; height: 100vh;
-    // z-index: 100;
-    // cursor: pointer;
-
   const Centered = styled.div`
   position: fixed;
   top: 50%;
@@ -48,7 +41,8 @@ const RelationModal = (props) => {
         />
     <Centered>
       <Modal>
-        <p>comparison modal</p>
+        <span>{props.productData.info.name}</span>
+        <span>{props.accumulatedProductData.filter(product => product.info.id === props.productCardClickedOn)[0].info.name}</span>
       </Modal>
     </Centered>
     </div>

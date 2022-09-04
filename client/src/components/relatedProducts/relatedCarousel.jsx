@@ -40,6 +40,7 @@ const RelatedCarousel = (props) => {
                   btnStyle={'star'}
                   setModalOpen = {props.setModalOpen}
                   handleChangeProduct ={props.handleChangeProduct}
+                  setProductCardClickedOn ={props.setProductCardClickedOn}
                 />
               )
           })
