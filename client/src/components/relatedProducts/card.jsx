@@ -18,15 +18,7 @@ const ProductCard = styled.div`
   height: 299px;
   position: relative;
 `
-const Layer = styled.div`
- width: 200px;
-  height: 299px;
-   position: absolute;
-    border: solid;
-    border-color: #fffb00;
-    z-index: 5;
 
-`
 const PicContainer = styled.div`
   width: 200px;
   height: 195px;

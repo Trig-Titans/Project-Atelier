@@ -24,6 +24,15 @@ const responsive = {
   }
 };
 
+const Layer = styled.div`
+ width: 200px;
+  height: 299px;
+    border: solid;
+    border-color: #fffb00;
+    z-index: 0;
+
+`
+
 const Outfit = (props) => {
   const [list, setList] = React.useState([])
   const product_id = props.addProduct
@@ -71,9 +80,12 @@ const Outfit = (props) => {
 
   return (
     <div>
+      <span>
+      <AddOutfit  handleClick={ handleClick}/>
+      </span>
       <Carousel responsive={responsive}>
         {
-          [ <AddOutfit key ={0} handleClick={ handleClick}/> ].concat(list)
+          [<Layer key ={0} />  ].concat(list)
         }
       </Carousel>
     </div>
