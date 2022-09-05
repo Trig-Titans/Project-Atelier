@@ -71,6 +71,7 @@ let table = [
       <Centered>
 
         <Modal>
+          <p>COMPARING</p>
 
           <table>
             {table.concat(whereToCheck.map((location, index) => {

@@ -65,22 +65,20 @@ font-size: 11px;
 `
 
 const Card = (props) => {
-
   let urlIndex = 0;
   let intervalID;
-  let url = props.picUrls[0]
 
   const hoverHandler = (event) => {
 
-    intervalID = setInterval(() => {
+      intervalID = setInterval(() => {
+        urlIndex++
 
-      urlIndex++
-      if (urlIndex === props.picUrls.length) {
-        urlIndex = 0;
-      }
+        if (urlIndex === props.picUrls.length) {
+          urlIndex = 0;
+        }
 
-      event.target.src = props.picUrls[urlIndex]
-    }, 1000)
+        event.target.src = props.picUrls[urlIndex];
+      }, 1000)
 
   }
 
@@ -137,7 +135,12 @@ const Card = (props) => {
 
       </RelatedBtn>
 
-      <div onClick={handleClick} onMouseLeave={exitHandler} >
+      <div
+        // onMouseEnter={hoverHandler}
+        // onMouseLeave={exitHandler}
+        onClick={handleClick}
+        onMouseLeave={exitHandler}
+      >
 
         <PicContainer >
 
@@ -155,8 +158,6 @@ const Card = (props) => {
           <h5><b>{props.name}</b></h5>
           {renderSale()}
 
-          {/* {"star rating"} */}
-
         </Container>
 
       </div>
@@ -172,7 +173,6 @@ const Card = (props) => {
         :( <div></div> )
 
     }
-
 
     </ProductCard>
   )
