@@ -24,7 +24,7 @@ export const Container = styled.div`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  background-color: white;
 `;
 
 export const ReviewTileContainer = styled.div`
@@ -38,8 +38,9 @@ export const ReviewsContainer = styled.div`
   text-align: left;
   float: left;
   width: 65%;
+  overflow: auto;
   padding-right: 10%;
-  height: 60vh;
+  height: 80vh;
   background: white;
 `;
 
@@ -47,8 +48,8 @@ export const BreakdownContainer = styled.div`
   text-align: left;
   float: left;
   width: 35%;
-  padding-left: 10%;
-  height: 60vh;
+  padding-left: 5%;
+  height: 80vh;
   background: white;
 `;
 
@@ -78,8 +79,8 @@ export const BarGraphContainer = styled.div`
 `;
 
 export const ScrollableContainer = styled.div`
-  height: 60vh;
-  overflow: auto;
+  height: 65vh;
+  overflow: scroll;
 `;
 
 export const StarFilterLink = styled.button`
@@ -99,9 +100,39 @@ export const StarFilterLink = styled.button`
 export const StyledOverviewStars = styled.div`
   padding: 10px;
   display: flex;
+  flex-direction: 'row';
   flex-wrap: none;
   /* grid-area: OvStar; */
   /* margin-top: 10px; */
+`;
+
+export const RadioInputContainer = styled.div`
+  display: 'flex';
+  flex-direction: 'row';
+  width: 100%;
+`;
+
+export const RadioContainer = styled.div`
+  display: 'flex';
+  flex-direction: 'column';
+  margin-left: 4%;
+`;
+
+export const RadioLabel = styled.label`
+  margin-left: 2%;
+`
+export const StyledPhoto = styled.img`
+  height: 10vh;
+  width: auto;
+  margin: 2vh 0;
+`;
+
+export const StyledInput = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  padding: 2.5vh 0;
 `;
 
 // src: props => props.src

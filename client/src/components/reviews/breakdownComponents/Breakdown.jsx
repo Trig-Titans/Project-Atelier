@@ -31,7 +31,7 @@ export const averageRating = (ratingsObj, total) => {
   return averageStarRating.toFixed(1);
 }
 
-export const Breakdown = ( {reviewsMeta} ) => {
+export const Breakdown = ( {reviewsMeta, starsToFilterReviews, setStarsToFilterReviews} ) => {
 
   // dummy data
   let meta;
@@ -45,9 +45,67 @@ export const Breakdown = ( {reviewsMeta} ) => {
   let totalReviews = ratingsCountTotal(meta.ratings);
   let averageStars = averageRating(meta.ratings, totalReviews);
 
+
+  const closeReview = (starValue) => {
+    let temp = starsToFilterReviews;
+    let index = temp.indexOf(starValue);
+    temp.splice(index, 1);
+    var newArray = temp.slice();
+    setStarsToFilterReviews(newArray);
+  }
+
+  const closeALLReviews = () => {
+    setStarsToFilterReviews([]);
+  }
+
+  // conditionally render filter-clickable links
+  let fiveStars
+  if (starsToFilterReviews.indexOf(5) > -1){
+    fiveStars = <div style={{padding: '5px 2px', width: '100%'}}><u onClick={()=>{closeReview(5)}}>Filter 5-Star Reviews [x]</u></div>
+  } else {
+    fiveStars = <div></div>
+  }
+  let fourStars
+  if (starsToFilterReviews.indexOf(4) > -1){
+    fourStars = <div style={{padding: '5px 2px', width: '100%'}}><u onClick={()=>{closeReview(4)}}>Filter 4-Star Reviews [x]</u></div>
+  } else {
+    fourStars = <div></div>
+  }
+  let threeStars
+  if (starsToFilterReviews.indexOf(3) > -1){
+    threeStars = <div style={{padding: '5px 2px', width: '100%'}}><u onClick={()=>{closeReview(3)}}>Filter 3-Star Reviews [x]</u></div>
+  } else {
+    threeStars = <div></div>
+  }
+  let twoStars
+  if (starsToFilterReviews.indexOf(2) > -1){
+    twoStars = <div style={{padding: '5px 2px', width: '100%'}}><u onClick={()=>{closeReview(2)}}>Filter 2-Star Reviews [x]</u></div>
+  } else {
+    twoStars = <div></div>
+  }
+  let oneStars
+  if (starsToFilterReviews.indexOf(1) > -1){
+    oneStars = <div style={{padding: '5px 2px', width: '100%'}}><u onClick={()=>{closeReview(1)}}>Filter 1-Star Reviews [x]</u></div>
+  } else {
+    oneStars = <div></div>
+  }
+
+  let closeAllReviews
+  if (starsToFilterReviews.length > 0) {
+    closeAllReviews = <div style={{padding: '5px 2px', width: '100%'}}><u onClick={()=>{closeALLReviews()}}>Remove all filters[x]</u></div>
+  } else {
+    closeAllReviews = <div></div>
+  }
+
   return (<BreakdownContainer>
     <AverageRating averageStars={averageStars} totalCount={totalReviews}/>
-    <RatingBreakdown starRatings={meta.ratings} totalCount={totalReviews} recommended={meta.recommended.true}/>
+    <RatingBreakdown starRatings={meta.ratings} totalCount={totalReviews} recommended={meta.recommended.true} starsToFilterReviews={starsToFilterReviews} setStarsToFilterReviews={setStarsToFilterReviews}/>
     <ProductBreakdown characteristics={meta.characteristics}/>
+    {fiveStars}
+    {fourStars}
+    {threeStars}
+    {twoStars}
+    {oneStars}
+    {closeAllReviews}
     </BreakdownContainer>);
 }
