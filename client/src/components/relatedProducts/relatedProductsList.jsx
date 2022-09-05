@@ -11,6 +11,9 @@ const Lists = styled.div`
   margin-left: 23%;
   width:53%;
 `
+const Title = styled.p`
+  text-align: left;
+`
 const RelatedProducts = (props) => {
   //Koz has it started as a string
   const product_id = Number(props.mainProduct)
@@ -103,6 +106,7 @@ const RelatedProducts = (props) => {
     <Lists>
 
       <br />
+      <Title>RELATED PRODUCTS</Title>
       <br />
 
       <RelatedCarousel
@@ -115,6 +119,7 @@ const RelatedProducts = (props) => {
       />
 
       <br />
+      <Title>OUTFIT</Title>
       <br />
 
       <Outfit

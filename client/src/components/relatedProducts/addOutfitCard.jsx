@@ -13,6 +13,7 @@ const PlusCard = styled.div`
   height: 299px;
   position: absolute;
   z-index: 5;
+  border-radius: 4%;
 `
 
  let centering= {

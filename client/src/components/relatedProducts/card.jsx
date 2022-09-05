@@ -18,6 +18,7 @@ const ProductCard = styled.div`
   width: 200px;
   height: 299px;
   position: relative;
+  border-radius: 4%;
 `
 
 const PicContainer = styled.div`
@@ -25,6 +26,7 @@ const PicContainer = styled.div`
   height: 195px;
   position: relative;
   z-index: 9;
+  border-radius: 4%;
 `
 const RelatedBtn = styled.div`
   float: right;
@@ -39,6 +41,7 @@ const Pic = styled.img`
   width: 198px;
   height: 195px;
   z-index: 8;
+  border-radius: 4% 4% 0px 0px;
 `
 const Container = styled.div`
   text-align: left;

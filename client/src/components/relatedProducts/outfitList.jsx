@@ -28,8 +28,6 @@ const responsive = {
 const Layer = styled.div`
  width: 200px;
   height: 299px;
-    border: solid;
-    border-color: #fffb00;
     z-index: 0;
 
 `
