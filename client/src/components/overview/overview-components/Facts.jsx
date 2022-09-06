@@ -21,7 +21,7 @@ export default function OverviewFacts({ facts }) {
   })
   return (
     <StyledOverviewProductFacts>
-      <ul>
+      <ul data-testid='facts'>
         {factList}
       </ul>
     </StyledOverviewProductFacts>

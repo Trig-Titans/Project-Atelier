@@ -229,7 +229,7 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
   /* find(obj => obj.style_id === currentStyleId) */
   if (!expanded) {
     return (
-      <StyledOverviewGrid>
+      <StyledOverviewGrid data-testid='overview'>
         <OverviewCarousel
           photos={styles[styleIndex].photos}
           expanded={expanded}
@@ -259,12 +259,12 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
       </StyledOverviewGrid>
     )
   } else {
-    // this is done using create context and higher order  component paradigm to showcase how it is supposed to work
+    // this is done using create context and children props to showcase how it is supposed to work
     return (
       <StyledOverviewGrid>
         <ExpandedContext.Provider value={{ photos: styles[styleIndex].photos, expandedVal: [expanded, setView], imgIndexVal: [imgIndex, setImgIndex] }}>
           <Expanded>
-            <StyledIconSection>
+            <StyledIconSection data-testid='expanded-icons'>
               {
                 styles[styleIndex].photos.map((photo, index) => {
                   return <StyledIcon onClick={() => {

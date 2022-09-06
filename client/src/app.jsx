@@ -46,7 +46,7 @@ export const App = () => {
             <div className="topnav">
               <h1 style={{color: '#006B6B'}}>Omozan</h1>
               <div className="topnav-right">
-                <a onClick={() => {
+                <a data-testid='overview-click' onClick={() => {
                   handleScroll("overview")
                 }}>Overview</a>
                 <a onClick={() => {

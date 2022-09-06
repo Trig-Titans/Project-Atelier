@@ -19,7 +19,7 @@ const StyledOverviewProductDescription = styled.div`
 export default function OverviewDescription({ description }) {
   return (
     <StyledOverviewProductDescription>
-      <p>{description}</p>
+      <p data-testid="description">{description}</p>
     </StyledOverviewProductDescription>
   );
 }

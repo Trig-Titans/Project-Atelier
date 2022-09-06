@@ -10,7 +10,8 @@ export const Button = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #C2B280;
+    background-color: #800000;
+    color: #DBDBD6;
   }
 
   ${props => props.primary && css`
@@ -21,9 +22,10 @@ export const Button = styled.button`
 `;
 
 export const Container = styled.div`
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
   background-color: white;
 `;
 
@@ -40,17 +42,15 @@ export const ReviewsContainer = styled.div`
   width: 65%;
   overflow: auto;
   padding-right: 10%;
-  height: 80vh;
-  background: white;
+  height: 100%;
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
   float: left;
   width: 35%;
-  padding-left: 5%;
-  height: 80vh;
-  background: white;
+  padding-left: 10%;
+  height: 100%;
 `;
 
 export const RecommendationContainer = styled.div`

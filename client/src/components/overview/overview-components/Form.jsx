@@ -16,22 +16,38 @@ const StyledOverviewOptionForm = styled.form`
   justify-content: flex-start;
 `;
 const StyledOverviewFavoriteStar = styled.button`
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
   background-color: #DBDBD6;
-  border-radius: 5px;
-  border: black;
-  color: gray;
+  border-radius: 3px;
+  border: 2px solid teal;
+  color: #006B6B;
+  margin: 0.5em 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #800000;
+    color: #DBDBD6;
+  }
 `;
 const StyledSubmit = styled.input`
-  cursor: pointer;
-  height: 40px;
-  min-width: 150px;
   background-color: #DBDBD6;
-  border-radius: 5px;
-  border: black;
+  border-radius: 3px;
+  border: 2px solid teal;
   color: #006B6B;
+  margin: 0.5em 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #800000;
+    color: #DBDBD6;
+  }
+
+  ${props => props.primary && css`
+    border: 2px solid #C4C4BA;
+    background: #006B6B;
+    color: #DBDBD6;
+  `}
 `
 const StyledSelect = styled.select`
   min-width: 150px;
@@ -109,13 +125,13 @@ export default function OverViewForm({ styles }) {
   return (
     <StyledOverviewOptionForm onSubmit={handleSubmit}>
       <label>
-      {!selected ? <StyledSelect ref={sizeSelectorRef} onChange={(e) => {
+      {!selected ? <StyledSelect data-testid='size-options' ref={sizeSelectorRef} onChange={(e) => {
             setSize(currentSize = e.target.value);
           }}>
           <option>-- select a size --</option>
           {sizeList}
         </StyledSelect> :
-        <StyledSelect style={{backgroundColor: '#d107079b'}}ref={sizeSelectorRef} onChange={(e) => {
+        <StyledSelect data-testid='size-options' style={{backgroundColor: '#d107079b'}}ref={sizeSelectorRef} onChange={(e) => {
             setSize(currentSize = e.target.value);
           }}>
             <option>-- select a size --</option>
@@ -123,12 +139,12 @@ export default function OverViewForm({ styles }) {
         </StyledSelect>}
       </label>
       <label>
-        <StyledQuant>
+        <StyledQuant data-testid='quant-options'>
           {quantList}
         </StyledQuant>
       </label> <br></br>
-      {addedToBag ? <StyledSubmit type="submit" value="Added! Remove?"/> : <StyledSubmit type="submit" value="Add to Bag"/>}
-      <StyledOverviewFavoriteStar onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon icon={faStar} style={{color: 'white'}}/>}</StyledOverviewFavoriteStar>
+      {addedToBag ? <StyledSubmit type="submit" value="Added! Remove?"/> : <StyledSubmit data-testid='add-to-bag' type="submit" value="Add to Bag"/>}
+      <StyledOverviewFavoriteStar data-testid='favorite-button'onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'white'}}/>}</StyledOverviewFavoriteStar>
     </StyledOverviewOptionForm>
   );
 }

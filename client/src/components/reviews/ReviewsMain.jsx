@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
 import data from './apiExample.js';
+import {Container} from './sharedStyles/sharedStyledComponents.js';
 
 const StyledHeader = styled.p`
   text-align: left;
@@ -39,10 +40,13 @@ let Reviews = ({mainProductName, mainProduct}) => {
   }, []);
 
 
-  return (<div style={{backgroundColor: '#FFFFFF'}}>
+  return (
+    <div >
       <StyledHeader >RATINGS & REVIEWS</StyledHeader>
-      <Breakdown reviewsMeta={reviewsMeta} starsToFilterReviews={starsToFilterReviews} setStarsToFilterReviews={setStarsToFilterReviews}/>
-      <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics} starsToFilterReviews={starsToFilterReviews}/>
+      <Container>
+        <Breakdown reviewsMeta={reviewsMeta} starsToFilterReviews={starsToFilterReviews} setStarsToFilterReviews={setStarsToFilterReviews}/>
+        <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics} starsToFilterReviews={starsToFilterReviews}/>
+      </Container>
     </div>);
 
 }

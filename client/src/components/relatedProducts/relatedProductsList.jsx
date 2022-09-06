@@ -18,6 +18,7 @@ const RelatedProducts = (props) => {
   //Koz has it started as a string
   const product_id = Number(props.mainProduct)
   const product_style = props.currentStyleId
+
   const [modalOpen, setModalOpen] = React.useState(false);
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
   const [productData, setProductData] = React.useState(null);
@@ -101,6 +102,7 @@ const RelatedProducts = (props) => {
       })
 
   }, [product_id, product_style])
+
 
   return (
     <Lists>

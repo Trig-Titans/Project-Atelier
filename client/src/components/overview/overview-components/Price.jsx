@@ -17,7 +17,7 @@ export default function OverViewPrice({ price }) {
     );
   } else {
     return (
-      <StyledOverviewPrice>
+      <StyledOverviewPrice data-testid='price'>
         <p>${price.original_price}</p>
       </StyledOverviewPrice>
     );

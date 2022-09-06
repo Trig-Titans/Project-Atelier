@@ -27,9 +27,9 @@ export default function OverviewStars({ stars, reviewCount }) {
           starHoverColor="yellow"
           name='rating'
         />
-        <div onClick={() => {
+        <div data-testid='review-count' onClick={() => {
           handleScroll("reviews")
-        }}style={{cursor: 'pointer', textDecoration: 'none', color: '#6699cc'}}>Read all {reviewCount} reviews</div>
+        }}style={{cursor: 'pointer', textDecoration: 'none', color: '#800000'}}>Read all {reviewCount} reviews</div>
       </StyledOverviewStars>
   );
 }

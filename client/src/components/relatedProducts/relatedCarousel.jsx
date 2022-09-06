@@ -29,6 +29,7 @@ const responsive = {
 //   zIndex: 10
 // }
 
+
 // const CustomLeftArrow = ({ onClick }) => (
 //   <i style ={zIndex} onClick={() => onClick()} className="custom-left-arrow" />
 // );
