@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Breakdown from './breakdownComponents/Breakdown.jsx';
+import {Breakdown} from './breakdownComponents/Breakdown.jsx';
 import ReviewsList from './reviewListComponents/ReviewsList.jsx';
-import {Container} from './sharedStyles/sharedStyledComponents.js';
 import styled from 'styled-components';
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
@@ -19,6 +18,7 @@ let Reviews = ({mainProductName, mainProduct}) => {
   let productID = mainProduct;
   let productName = mainProductName;
 
+  let [starsToFilterReviews, setStarsToFilterReviews] = useState([])
 
   let [reviewsMeta, setReviewsMeta] = useState(data.reviewsMeta);
 
@@ -30,22 +30,21 @@ let Reviews = ({mainProductName, mainProduct}) => {
         'Authorization': API_KEY
       }
     })
-      .then((data)=> {
-        setReviewsMeta(data.data)
+      .then((response)=> {
+        setReviewsMeta(response.data)
       })
       .catch((err) => {
         console.log(err);
       })
   }, []);
-  //console.log(reviewsMeta)
-  return (
-    <div>
+  
+  return (<div style={{backgroundColor: '#FFFFFF'}}>
       <StyledHeader >RATINGS & REVIEWS</StyledHeader>
       <Container>
-        <Breakdown reviewsMeta={reviewsMeta}/> <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics}/>
+        <Breakdown reviewsMeta={reviewsMeta} starsToFilterReviews={starsToFilterReviews} setStarsToFilterReviews={setStarsToFilterReviews}/>
+        <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics} starsToFilterReviews={starsToFilterReviews}/>
       </Container>
-    </div>
-    );
+    </div>);
 }
 
 export default Reviews;
