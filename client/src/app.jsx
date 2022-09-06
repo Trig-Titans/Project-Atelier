@@ -25,8 +25,13 @@ export const App = () => {
       setMainProductName ( info.name);
   }
 
+  const handleInteractions = (e) => {
+    console.log('it worked, this is the element: ', e.target.outerHTML.toString());
+    console.log('timestamp: ', Date.now());
+  }
+
   return  (
-          <div>
+          <div onClick={handleInteractions}>
             {/* this is the start of the navbar */}
             <div className="topnav">
               <h1>Omozan</h1>
