@@ -20,23 +20,24 @@ const StyledOverviewFavoriteStar = styled.button`
   border-radius: 3px;
   border: 2px solid teal;
   color: #006B6B;
-  margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
     background-color: #800000;
     color: #DBDBD6;
   }
 `;
+
 const StyledSubmit = styled.input`
   background-color: #DBDBD6;
   border-radius: 3px;
   border: 2px solid teal;
   color: #006B6B;
-  margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
     background-color: #800000;
@@ -83,7 +84,7 @@ export default function OverViewForm({ styles }) {
     for (var i = 0; i < quantity; i ++) {
       array.push(i + 1);
     }
-    return array;
+    return array.slice(0, 15);
   }
 
   // make a variable using the function above
