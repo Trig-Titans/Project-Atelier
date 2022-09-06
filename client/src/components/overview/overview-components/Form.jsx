@@ -74,6 +74,7 @@ const StyledQuant = styled.select`
 export default function OverViewForm({ styles }) {
   const sizeAndQuant = Object.values(styles.skus);
   var [selected, setSelected] = useState(false);
+  var [sizeSelected, setSizeSelected] = useState(false);
   var [addedToBag, setAdded] = useState(false);
   var [currentSize, setSize] = useState(0);
   var [isFavorite, setFavorite] = useState(false);
@@ -127,6 +128,7 @@ export default function OverViewForm({ styles }) {
     <StyledOverviewOptionForm onSubmit={handleSubmit}>
       <label>
       {!selected ? <StyledSelect data-testid='size-options' ref={sizeSelectorRef} onChange={(e) => {
+            setSizeSelected(true);
             setSize(currentSize = e.target.value);
           }}>
           <option>-- select a size --</option>
@@ -140,9 +142,12 @@ export default function OverViewForm({ styles }) {
         </StyledSelect>}
       </label>
       <label>
-        <StyledQuant data-testid='quant-options'>
+        {sizeSelected ? <StyledQuant data-testid='quant-options'>
           {quantList}
-        </StyledQuant>
+        </StyledQuant> :
+        <StyledQuant data-testid='quant-options' disabled>
+          <option>-</option>
+        </StyledQuant>}
       </label> <br></br>
       {addedToBag ? <StyledSubmit type="submit" value="Added! Remove?"/> : <StyledSubmit data-testid='add-to-bag' type="submit" value="Add to Bag"/>}
       <StyledOverviewFavoriteStar data-testid='favorite-button'onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'white'}}/>}</StyledOverviewFavoriteStar>

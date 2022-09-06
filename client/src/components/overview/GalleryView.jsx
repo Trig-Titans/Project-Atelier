@@ -87,7 +87,7 @@ const ExpandedContext = React.createContext(2)
 
 // This is the actual functional component
 function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
-  var productSku = mainProduct;
+  var productSku = 37315;
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
   var [imgIndex, setImgIndex] = useState(0);
