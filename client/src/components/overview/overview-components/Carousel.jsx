@@ -138,7 +138,6 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   // on click function to move the carousel to the left
   const goLeft = () => {
     setx(x + 100);
-    console.log('x', x, 'y', y);
     if (x < - 600) {
       sety(y + 135);
     }
@@ -146,7 +145,6 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   // on click function to move the carousel to the right
   const goRight = () => {
     setx(x - 100);
-    console.log('x', x, 'y', y);
     if (x < -500) {
       sety(y - 135);
     }

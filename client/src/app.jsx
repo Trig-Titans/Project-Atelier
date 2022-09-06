@@ -4,6 +4,8 @@ import { Overview } from "./components/overview/GalleryView.jsx";
 import Reviews from "./components/reviews/ReviewsMain.jsx";
 import { QandA } from './components/questions/QandA.jsx';
 import styled from 'styled-components';
+import axios from 'axios';
+import API_KEY from '../../config.js';
 
 const StyledPageBackground = styled.img`
   z-index: -5;
@@ -40,6 +42,27 @@ export const App = () => {
       setMainProductName ( info.name);
   }
 
+  const interactionPost = (element, widget, timeStamp) => {
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions`,
+      {
+        element: `${element}`,
+        widget: `${widget}`,
+        time: `${timeStamp}`,
+      },
+      {
+        headers: {
+          'Authorization': API_KEY
+        }
+      }
+    )
+      .then((res) => {
+        // console.log(res.statusText);
+      })
+      .catch((err) => {
+        // console.log(err.statusText);
+      })
+  }
+
   return  (
           <div style={{background: "white"}}>
             {/* this is the start of the navbar */}
@@ -62,16 +85,28 @@ export const App = () => {
             </div>
             {/* this is the end of the navbar */}
             <h1>Front End Capstone Avatar Project</h1>
-            <div id='overview'>
+            <div onClick={(e) => {
+              interactionPost(e.target.outerHTML, 'overview', Date.now());
+            }}
+            id='overview'>
               <Overview mainProduct ={mainProduct} currentStyleId={currentStyleId} setCurrentStyleId={setCurrentStyleId}/>
-            </div>
-            <div id='related-products'>
+            </div >
+            <div onClick={(e) => {
+              interactionPost(e.target.outerHTML, 'related-products', Date.now());
+            }}
+            id='related-products'>
               <RelatedProducts mainProduct = {mainProduct} currentStyleId={currentStyleId} handleChangeProduct = {handleChangeProduct}/>
             </div>
-            <div id='q-and-a'>
+            <div onClick={(e) => {
+              interactionPost(e.target.outerHTML, 'q-and-a', Date.now());
+            }}
+            id='q-and-a'>
               <QandA mainProduct = {mainProduct} mainProductName={mainProductName}/>
             </div>
-            <div id='reviews'>
+            <div onClick={(e) => {
+              interactionPost(e.target.outerHTML, 'reviews', Date.now());
+            }}
+            id='reviews'>
               <Reviews mainProductName={mainProductName} mainProduct={mainProduct}/>
             </div>
             <StyledPageBackground src="https://www.respectability.org/wp-content/uploads/2018/02/New-York-City-skyline.jpg"/>
