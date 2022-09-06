@@ -20,8 +20,8 @@ const StyledOverviewTitle = styled.div`
 export default function OverViewName({ name, category }) {
   return (
     <StyledOverviewName>
-      <StyledOverviewCategory>{category}</StyledOverviewCategory>
-      <StyledOverviewTitle>{name}</StyledOverviewTitle>
+      <StyledOverviewCategory data-testid='category'>{category}</StyledOverviewCategory>
+      <StyledOverviewTitle data-testid='product-name'>{name}</StyledOverviewTitle>
     </StyledOverviewName>
   );
 }

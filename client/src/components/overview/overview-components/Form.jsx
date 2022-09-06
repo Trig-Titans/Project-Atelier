@@ -109,13 +109,13 @@ export default function OverViewForm({ styles }) {
   return (
     <StyledOverviewOptionForm onSubmit={handleSubmit}>
       <label>
-      {!selected ? <StyledSelect ref={sizeSelectorRef} onChange={(e) => {
+      {!selected ? <StyledSelect data-testid='size-options' ref={sizeSelectorRef} onChange={(e) => {
             setSize(currentSize = e.target.value);
           }}>
           <option>-- select a size --</option>
           {sizeList}
         </StyledSelect> :
-        <StyledSelect style={{backgroundColor: '#d107079b'}}ref={sizeSelectorRef} onChange={(e) => {
+        <StyledSelect data-testid='size-options' style={{backgroundColor: '#d107079b'}}ref={sizeSelectorRef} onChange={(e) => {
             setSize(currentSize = e.target.value);
           }}>
             <option>-- select a size --</option>
@@ -123,12 +123,12 @@ export default function OverViewForm({ styles }) {
         </StyledSelect>}
       </label>
       <label>
-        <StyledQuant>
+        <StyledQuant data-testid='quant-options'>
           {quantList}
         </StyledQuant>
       </label> <br></br>
-      {addedToBag ? <StyledSubmit type="submit" value="Added! Remove?"/> : <StyledSubmit type="submit" value="Add to Bag"/>}
-      <StyledOverviewFavoriteStar onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon icon={faStar} style={{color: 'white'}}/>}</StyledOverviewFavoriteStar>
+      {addedToBag ? <StyledSubmit type="submit" value="Added! Remove?"/> : <StyledSubmit data-testid='add-to-bag' type="submit" value="Add to Bag"/>}
+      <StyledOverviewFavoriteStar data-testid='favorite-button'onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'white'}}/>}</StyledOverviewFavoriteStar>
     </StyledOverviewOptionForm>
   );
 }

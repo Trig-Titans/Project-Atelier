@@ -43,14 +43,16 @@ export default function Expanded(props) {
   const [expanded, setView] = expandedVal;
   const [imgIndex, setImgIndex] = imgIndexVal
   var [currentImg, setImg] = useState(0);
+  const handleClick= (e) => {
+    console.log('it worked, this is the element: ', e.target);
+  }
   const handleShrink = (e) => {
     e.preventDefault();
     expandedVal[1](!expanded)
   }
-
   return (
-    <StyledExpandedView className='detail-view' style={{backgroundImage: `url(${photos[imgIndex].url})`}}>
-      <StyledShrinkButton onClick={handleShrink}><FontAwesomeIcon icon={faMinimize}/></StyledShrinkButton>
+    <StyledExpandedView data-testid='expanded-image' className='detail-view' style={{backgroundImage: `url(${photos[imgIndex].url})`}}>
+      <StyledShrinkButton data-testid='shrink-button' onClick={handleShrink}><FontAwesomeIcon icon={faMinimize}/></StyledShrinkButton>
       {props.children}
     </StyledExpandedView>
   )

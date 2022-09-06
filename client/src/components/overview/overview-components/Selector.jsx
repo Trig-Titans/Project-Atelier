@@ -47,15 +47,12 @@ const StyleCircle = styled.div`
 export default function OverViewSelector({ styles, setStyles, styleIndex, currentStyleId, setCurrentStyleId }) {
   return (
   <StyledOverviewStyleSelector>
-    <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
+    <StyledOverviewStylesTitle data-testid='style-name'>Style {'>'} {styles[styleIndex].name}</StyledOverviewStylesTitle>
     <StyledOverviewStylesSection data-testid='styles-buttons'>
       {
       styles.map((style, index) => {
         if (styleIndex === index) {
           return (
-            // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
-            // i.e. the first picture is at x=0, the second is x=100, the third is x=200
-            // updating the x value changes what picture is shown
             <span className='style-button' key={index}>
               <StyleCircle onClick={() => {
                   setStyles(styleIndex = index);
