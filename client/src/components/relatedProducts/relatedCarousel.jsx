@@ -6,7 +6,6 @@ import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
-import {CustomLeftArrow, CustomRightArrow} from './arrows.jsx'
 import {findAverageRating} from '.././overview/GalleryView.jsx'
 
 const responsive = {
