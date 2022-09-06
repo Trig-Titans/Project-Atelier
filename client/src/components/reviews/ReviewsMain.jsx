@@ -39,6 +39,7 @@ let Reviews = ({mainProductName, mainProduct}) => {
       })
   }, []);
 
+
   return (
     <div >
       <StyledHeader >RATINGS & REVIEWS</StyledHeader>
@@ -47,6 +48,7 @@ let Reviews = ({mainProductName, mainProduct}) => {
         <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics} starsToFilterReviews={starsToFilterReviews}/>
       </Container>
     </div>);
+
 }
 
 export default Reviews;

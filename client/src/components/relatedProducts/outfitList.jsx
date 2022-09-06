@@ -5,94 +5,97 @@ import API_KEY from '../../../../config.js'
 import Card from './card.jsx'
 import styled from 'styled-components';
 import "react-multi-carousel/lib/styles.css";
-import AddOutfit from './addOutfitCard.jsx'
+import AddOutfit from './addOutfitCard.jsx';
+import {findAverageRating} from '.././overview/GalleryView.jsx';
 
 const responsive = {
+
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3.25,
     slidesToSlide: .75
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
   }
 };
 
+const Layer = styled.div`
+ width: 200px;
+  height: 299px;
+    z-index: 0;
+
+`
+// let zIndex = {
+//   zIndex: 10
+// }
+
+// const CustomLeftArrow = ({ onClick }) => (
+//   <i style ={zIndex} onClick={() => onClick()} className="custom-left-arrow" />
+// );
+// const CustomRightArrow = ({ onClick }) => {
+//   return <i  style ={zIndex} className="custom-right-arrow" onClick={() => onClick()} />;
+// };
+
 const Outfit = (props) => {
-  const [productData, setProductData] = React.useState(null);
-  const [input, setInput] = React.useState(<div>test</div>)
   const [list, setList] = React.useState([])
   const product_id = props.addProduct
   const product_style = Number(props.addStyle)
 
-  React.useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}`, { headers: { Authorization: API_KEY } })
-      .then(response => {
-        let productInfoObj = response.data
+  const handleClick= () => {
+      let style = props.productData.styles.results.find(result => result.style_id === props.addStyle)
+      console.log('style info of added outfit:', style)
 
-        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/styles`, {
-          headers: { Authorization: API_KEY }
+      if (list.find(item => item.key === props.addProduct+props.addStyle) === undefined) {
+
+        setList((list) => {
+
+          return [
+                  ...list,
+                  <Card
+                    style={props.addStyle}
+                    info={props.productData.info}
+                    picUrls={
+                    style.photos.map(photo => photo.url !== null ?
+                        photo.url : 'https://www.foodnavigator-usa.com/var/wrbm_gb_food_pharma/storage/images/_aliases/news_large/9/7/3/7/217379-6-eng-GB/IDBS-SIC-Food-20122.jpg')
+                      }
+                    category={props.productData.info.category}
+                    name={props.productData.info.name}
+                    price={'$' + style.original_price}
+                    salePrice={
+                      style.sale_price ?
+                        '$' + style.sale_price : null
+                      }
+                    key={product_id+props.addStyle}
+                    btnStyle={'x'}
+                    handleXClick = {
+                      ()=>{
+
+                        console.log('X button clicked from outfitlist' )
+                        setList((list)=> list.filter(item => item.key !== product_id+props.addStyle))
+                      }
+                    }
+                    handleChangeProduct ={props.handleChangeProduct}
+                    starCount = {findAverageRating( props.productData.reviews.ratings )}
+                  />
+                ]
         })
-          .catch(err => { console.log('ERROR IN STYLES CALL FOR OUTFIT: ', err) })
-          .then(response => {
-            let productStylesObj = response.data;
-
-            axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${product_id}`, {
-              headers: { Authorization: API_KEY }
-            })
-              .catch(err => { console.log('ERROR IN REVIEW CALL FOR OUTFIT: ', err) })
-              .then(response => {
-                let productReviewsObj = response.data
-
-                setProductData({
-                  info: productInfoObj,
-                  styles: productStylesObj,
-                  reviews: productReviewsObj
-                })
-              })
-              .catch(err => (console.log('ERROR IN setProductData CALL FOR OUTFIT: ', err)))
-          })
-      })
-  }, [product_id, product_style])
+      }
+    }
 
   return (
     <div>
+      <span>
+      <AddOutfit  handleClick={ handleClick}/>
+      </span>
       <Carousel responsive={responsive}>
         {
-          [
-            <div key={0}>
-              <AddOutfit
-                handleClick={
-                  () => {
-                    let style = productData.styles.results.find(result => result.style_id === product_style)
-
-                    if (list.find(item => item.key === product_id+props.addStyle) === undefined) {
-
-                      setList((list) => {
-
-                        return [...list, <Card
-                        style={props.addStyle}
-                          info={productData.info}
-                          picUrls={style.photos.map(photo => photo.url)}
-                          category={productData.info.category}
-                          name={productData.info.name}
-                          price={'$' + style.original_price}
-                          salePrice={style.sale_price ?
-                            '$' + style.sale_price : null}
-                          key={product_id+props.addStyle}
-                          btnStyle={'x'}
-                          handleXClick = {
-                            ()=>{
-                            console.log('X button clicked from outfitlist' )
-                            setList((list)=> list.filter(item => item.key !== product_id+props.addStyle))
-                          }
-                        }
-                          handleChangeProduct ={props.handleChangeProduct}
-                        />]
-                      })
-                    }
-                  }
-                }
-              />
-            </div>
-          ].concat(list)
+          [<Layer key ={0} />  ].concat(list)
         }
       </Carousel>
     </div>

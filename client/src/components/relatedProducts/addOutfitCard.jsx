@@ -8,15 +8,19 @@ const PlusCard = styled.div`
   border: solid 1px;
   border-width: thin;
   border-color: lightgrey;
-  background-color: transparent;
+  background-color: white;
   width: 200px;
   height: 299px;
+  position: absolute;
+  z-index: 5;
+  border-radius: 4%;
 `
 
-let centering= {
+ let centering= {
   padding: '50px',
- 'fontSize': '100px',
-  color: 'lightgrey',
+  fontSize: '100px',
+   color: 'lightgrey',
+   zIndex: 5
 }
 
 const AddOutfit = (props) => {
@@ -24,7 +28,9 @@ const AddOutfit = (props) => {
 
   return (
     <PlusCard onClick= {props.handleClick}>
-      <FontAwesomeIcon style={centering} icon={faCirclePlus} />
+      <FontAwesomeIcon
+      style={centering}
+      icon={faCirclePlus} />
       <p >Add an Outfit</p>
     </PlusCard>
   )
