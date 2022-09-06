@@ -24,6 +24,7 @@ const QandA = ({ mainProduct, mainProductName }) => {
   const [questions, setQuestions] = useState([]);
   const [value, setValue] = useState('');
   const [masterList, setMasterList] = useState([]);
+  const [loading, setLoading] = useState('block');
 
 
   useEffect(() => {
@@ -36,6 +37,7 @@ const QandA = ({ mainProduct, mainProductName }) => {
       console.log(response.data.results);
       setQuestions(response.data.results);
       setMasterList(response.data.results);
+      setLoading('none');
     })
     .catch((err) => {
       //console.log(err);
@@ -59,6 +61,7 @@ const QandA = ({ mainProduct, mainProductName }) => {
 
   return (
     <StyledQandAContainer >
+      <div style={{display: loading}}>LOADING</div>
       <StyledHeader >QUESTIONS &#38; ANSWERS</StyledHeader>
       <QuestionSearch handleChange={handleChange} value={value}/>
       <QuestionList productName={mainProductName} productID={mainProduct} questions={questions}/>
