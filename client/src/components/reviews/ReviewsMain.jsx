@@ -37,11 +37,13 @@ let Reviews = ({mainProductName, mainProduct}) => {
         console.log(err);
       })
   }, []);
-
+  
   return (<div style={{backgroundColor: '#FFFFFF'}}>
       <StyledHeader >RATINGS & REVIEWS</StyledHeader>
-      <Breakdown reviewsMeta={reviewsMeta} starsToFilterReviews={starsToFilterReviews} setStarsToFilterReviews={setStarsToFilterReviews}/>
-      <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics} starsToFilterReviews={starsToFilterReviews}/>
+      <Container>
+        <Breakdown reviewsMeta={reviewsMeta} starsToFilterReviews={starsToFilterReviews} setStarsToFilterReviews={setStarsToFilterReviews}/>
+        <ReviewsList productID={productID} productName={productName} characteristics={reviewsMeta.characteristics} starsToFilterReviews={starsToFilterReviews}/>
+      </Container>
     </div>);
 }
 

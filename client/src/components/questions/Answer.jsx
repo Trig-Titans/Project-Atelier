@@ -12,7 +12,7 @@ const StyledAnswer = styled.div`
 `;
 
 const StyledAnswerImage = styled.img`
-  padding: 0 0 1vh 0;
+  padding: 0 1vh 1vh 1vh;
   width: auto;
   height: 15vh;
   cursor: pointer;
@@ -106,7 +106,9 @@ const Answer = ({ answerData }) => {
       <StyledAnswerBody>
         {answerData.body}
       </StyledAnswerBody>
-      {answerData.photos.length > 0 ? answerData.photos.map((url) => (<StyledAnswerImage src={url} key={url} onClick={imageClick}></StyledAnswerImage>)) : <div></div>}
+      <div style={{display: 'flex'}}>
+        {answerData.photos.length > 0 ? answerData.photos.map((url) => (<StyledAnswerImage src={url} key={url} onClick={imageClick}></StyledAnswerImage>)) : <div></div>}
+      </div>
       {imageModal ? <ImageModal setImageModal={setImageModal} url={modalURL}/> : <div></div>}
       <StyledLinks>
         by: {user}, {dateStr} &nbsp;&nbsp;|&nbsp;&nbsp; Helpful?&nbsp; <u onClick={helpfulClick} style={{cursor: 'pointer'}}>Yes</u>{`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <span onClick={reportClick} style={{cursor: 'pointer'}}>{reportText}</span>

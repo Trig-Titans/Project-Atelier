@@ -34,7 +34,7 @@ export const ReviewButtons = ( { wholeReviewList, setReviewIndex, reviewIndex, p
     <Container>
       {formVisable ? <NewReview setFormVisable={setFormVisable} productName={productName} submitReview={submitReview} characteristics={characteristics}/> : <div></div>}
       {moreReviews}
-      <Button primary onClick={() => {setFormVisable(true)}}>Add Reivew +</Button>
+      <Button primary onClick={() => {setFormVisable(true)}}>Add Review +</Button>
     </Container>
   );
 }

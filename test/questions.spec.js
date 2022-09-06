@@ -35,7 +35,22 @@ test('add answer modal popping up correctly', () => {
   const user = userEvent.setup();
   render(<App />);
 
-  return waitFor(() => expect(screen.queryByText(/does this go well with black/)).toBeInTheDocument())
+  return waitFor(() => expect(screen.queryByText(/LOADING/)).not.toBeInTheDocument())
+  .then(() => {
+    return user.click(screen.getByTestId(642189))
+  })
+  .then(() => {
+    expect(screen.queryByText(/Submit your Answer/)).toBeInTheDocument();
+  })
+
+})
+
+test('question search bar filtering questions correctly', () => {
+
+  const user = userEvent.setup();
+  render(<App />);
+
+  return waitFor(() => expect(screen.queryByText(/LOADING/)).not.toBeInTheDocument())
   .then(() => {
     return user.click(screen.getByTestId(642189))
   })
