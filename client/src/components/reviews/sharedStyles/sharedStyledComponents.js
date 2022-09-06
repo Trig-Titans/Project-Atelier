@@ -42,17 +42,14 @@ export const ReviewsContainer = styled.div`
   width: 65%;
   overflow: auto;
   padding-right: 10%;
-  height: 80vh;
-  background: white;
+  height: 100%;
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
   float: left;
   width: 35%;
-  padding-left: 5%;
-  height: 80vh;
-  background: white;
+  padding-left: 10%;
   height: 100%;
 `;
 

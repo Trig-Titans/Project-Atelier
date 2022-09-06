@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
 import data from './apiExample.js';
+import {Container} from './sharedStyles/sharedStyledComponents.js';
 
 const StyledHeader = styled.p`
   text-align: left;
@@ -37,8 +38,9 @@ let Reviews = ({mainProductName, mainProduct}) => {
         console.log(err);
       })
   }, []);
-  
-  return (<div style={{backgroundColor: '#FFFFFF'}}>
+
+  return (
+    <div >
       <StyledHeader >RATINGS & REVIEWS</StyledHeader>
       <Container>
         <Breakdown reviewsMeta={reviewsMeta} starsToFilterReviews={starsToFilterReviews} setStarsToFilterReviews={setStarsToFilterReviews}/>
