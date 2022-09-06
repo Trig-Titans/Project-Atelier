@@ -26,6 +26,17 @@ const responsive = {
   }
 };
 
+// let zIndex = {
+//   zIndex: 10
+// }
+
+// const CustomLeftArrow = ({ onClick }) => (
+//   <i style ={zIndex} onClick={() => onClick()} className="custom-left-arrow" />
+// );
+// const CustomRightArrow = ({ onClick }) => {
+//   return <i  style ={zIndex} className="custom-right-arrow" onClick={() => onClick()} />;
+// };
+
 const RelatedCarousel = (props) => {
 
   return (

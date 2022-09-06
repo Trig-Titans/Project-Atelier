@@ -31,6 +31,16 @@ const Layer = styled.div`
     z-index: 0;
 
 `
+// let zIndex = {
+//   zIndex: 10
+// }
+
+// const CustomLeftArrow = ({ onClick }) => (
+//   <i style ={zIndex} onClick={() => onClick()} className="custom-left-arrow" />
+// );
+// const CustomRightArrow = ({ onClick }) => {
+//   return <i  style ={zIndex} className="custom-right-arrow" onClick={() => onClick()} />;
+// };
 
 const Outfit = (props) => {
   const [list, setList] = React.useState([])
