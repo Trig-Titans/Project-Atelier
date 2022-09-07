@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import React, { useState, createRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
+import API_KEY from '../../../../../config.js';
 
 
 
@@ -20,23 +22,24 @@ const StyledOverviewFavoriteStar = styled.button`
   border-radius: 3px;
   border: 2px solid teal;
   color: #006B6B;
-  margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
     background-color: #800000;
     color: #DBDBD6;
   }
 `;
+
 const StyledSubmit = styled.input`
   background-color: #DBDBD6;
   border-radius: 3px;
   border: 2px solid teal;
   color: #006B6B;
-  margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
     background-color: #800000;
@@ -72,7 +75,9 @@ const StyledQuant = styled.select`
 
 export default function OverViewForm({ styles }) {
   const sizeAndQuant = Object.values(styles.skus);
+  const skus = Object.keys(styles.skus)
   var [selected, setSelected] = useState(false);
+  var [sizeSelected, setSizeSelected] = useState(false);
   var [addedToBag, setAdded] = useState(false);
   var [currentSize, setSize] = useState(0);
   var [isFavorite, setFavorite] = useState(false);
@@ -83,7 +88,7 @@ export default function OverViewForm({ styles }) {
     for (var i = 0; i < quantity; i ++) {
       array.push(i + 1);
     }
-    return array;
+    return array.slice(0, 15);
   }
 
   // make a variable using the function above
@@ -92,7 +97,7 @@ export default function OverViewForm({ styles }) {
   // map out the sizes into the options bar
   const sizeList = sizeAndQuant.map((size, index) => {
     return (
-      <option value={index} key={index} className={size.size}>{size.size}</option>
+      <option value={index} key={skus[index]} className={size.size}>{size.size}</option>
     )
   })
 
@@ -111,6 +116,7 @@ export default function OverViewForm({ styles }) {
 
   // This uses createRef from React to make a reference point for the size selector to be accessed when the user clicks the add button
   const sizeSelectorRef = createRef()
+  const quantRef = createRef();
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -118,6 +124,25 @@ export default function OverViewForm({ styles }) {
       setSelected(selected = true);
       return;
     }
+    var sku = skus[sizeSelectorRef.current.value];
+    var quantity = quantRef.current.value;
+    // here I could do a for loop for the quantity. But that would be slow and add a bunch of api calls, when normally and API would probaly accept a quantity as a parameter, so this wouldn't be an issue, I am opting out of doing that.
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart`,
+      {
+        sku_id: sku,
+      },
+      {
+        headers: {
+          'Authorization': API_KEY
+        }
+      }
+    )
+      .then((res) => {
+        // console.log(res.statusText);
+      })
+      .catch((err) => {
+        // console.log(err.statusText);
+      })
     setSelected(selected = false);
     setAdded(addedToBag = !addedToBag);
   }
@@ -126,12 +151,13 @@ export default function OverViewForm({ styles }) {
     <StyledOverviewOptionForm onSubmit={handleSubmit}>
       <label>
       {!selected ? <StyledSelect data-testid='size-options' ref={sizeSelectorRef} onChange={(e) => {
+            setSizeSelected(true);
             setSize(currentSize = e.target.value);
           }}>
           <option>-- select a size --</option>
           {sizeList}
         </StyledSelect> :
-        <StyledSelect data-testid='size-options' style={{backgroundColor: '#d107079b'}}ref={sizeSelectorRef} onChange={(e) => {
+        <StyledSelect data-testid='size-options' style={{backgroundColor: '#800000', color: '#9e9e9e'}} ref={sizeSelectorRef} onChange={(e) => {
             setSize(currentSize = e.target.value);
           }}>
             <option>-- select a size --</option>
@@ -139,11 +165,14 @@ export default function OverViewForm({ styles }) {
         </StyledSelect>}
       </label>
       <label>
-        <StyledQuant data-testid='quant-options'>
+        {sizeSelected ? <StyledQuant ref={quantRef} data-testid='quant-options'>
           {quantList}
-        </StyledQuant>
+        </StyledQuant> :
+        <StyledQuant data-testid='quant-options' disabled>
+          <option>-</option>
+        </StyledQuant>}
       </label> <br></br>
-      {addedToBag ? <StyledSubmit type="submit" value="Added! Remove?"/> : <StyledSubmit data-testid='add-to-bag' type="submit" value="Add to Bag"/>}
+      {addedToBag ? <StyledSubmit type="submit" value="Added!"/> : <StyledSubmit data-testid='add-to-bag' type="submit" value="Add to Bag"/>}
       <StyledOverviewFavoriteStar data-testid='favorite-button'onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'white'}}/>}</StyledOverviewFavoriteStar>
     </StyledOverviewOptionForm>
   );
