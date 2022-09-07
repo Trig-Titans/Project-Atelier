@@ -19,7 +19,7 @@ const StyledOverviewStylesSection = styled.div`
   gap: 5px;
   max-width: 210px;
   max-height: 175px;
-  overflow-x: hidden;
+  overflow: auto;
   &::-webkit-scrollbar {
     width: 7px;
   }
