@@ -138,10 +138,16 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   // on click function to move the carousel to the left
   const goLeft = () => {
     setx(x + 100);
+    if (x < - 600) {
+      sety(y + 135);
+    }
   }
   // on click function to move the carousel to the right
   const goRight = () => {
     setx(x - 100);
+    if (x < -500) {
+      sety(y - 135);
+    }
   }
 
   const goUp = () => {
@@ -198,7 +204,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
           }
         })
       }
-      {photos.length > 7 ? <DownButton data-testid='down-arrow' onClick={goDown}><FontAwesomeIcon icon={faChevronDown} /></DownButton> : (<div></div>)}
+      {photos.length > 7 && y >= -(photos.length * 135) + 945 ? <DownButton data-testid='down-arrow' onClick={goDown}><FontAwesomeIcon icon={faChevronDown} /></DownButton> : (<div></div>)}
     </ThumbnailSelector>
     {/* these two ternary statements are to render in either a button or nothing depending on what position the gallery is in */}
     {x === 0 ? (<div></div>) : (<LeftButton data-testid='left-arrow' onClick={goLeft}><FontAwesomeIcon icon={faChevronLeft} /></LeftButton>)}

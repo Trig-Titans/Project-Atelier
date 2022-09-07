@@ -13,7 +13,8 @@ import OverViewSelector from './overview-components/Selector.jsx';
 import OverViewForm from './overview-components/Form.jsx';
 import OverviewDescription from './overview-components/Description.jsx';
 import OverviewFacts from './overview-components/Facts.jsx';
-import Expanded from './overview-components/Expanded.jsx'
+import Expanded from './overview-components/Expanded.jsx';
+import Social from './overview-components/Social.jsx'
 // Here are all of the styled components
 const StyledOverviewGrid = styled.div`
   min-height: 30rem;
@@ -33,7 +34,7 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvPrice'
     'OvPicture OvStyle'
     'OvPicture OvForm'
-    'OvPicture blank'
+    'OvPicture OvSocial'
     'OvPicture blank'
     'OvDesc OvMeta'
 `;
@@ -256,6 +257,7 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
           description={productInfo.description}/>
         <OverviewFacts
           facts={productInfo.features}/>
+        <Social/>
       </StyledOverviewGrid>
     )
   } else {

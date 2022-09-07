@@ -6,7 +6,7 @@ export const Characteristics = ({showSize, showWidth, showComfort, showQuality, 
   let size, width, comfort, quality, length, fit;
 
   if (showSize) {
-    size = <div> <StyledLabel htmlFor="characteristicSize">How would you rate the SIZE of the product*:</StyledLabel>
+    size = <div data-testid="FindingSizeCharacteristicInput"> <StyledLabel htmlFor="characteristicSize">How would you rate the SIZE of the product*:</StyledLabel>
       <RadioContainer>
         <RadioInputContainer>
         <input type="radio" id="size1Small" name="characteristicSize" value="1" />
@@ -35,7 +35,7 @@ export const Characteristics = ({showSize, showWidth, showComfort, showQuality, 
   }
 
   if (showWidth) {
-    width = <div>
+    width = <div data-testid="FindingWidthCharacteristicInput">
       <StyledLabel htmlFor="characteristicWidth">How would you rate the WIDTH of the product*:</StyledLabel>
       <RadioContainer>
         <RadioInputContainer>
@@ -65,7 +65,7 @@ export const Characteristics = ({showSize, showWidth, showComfort, showQuality, 
   }
 
   if (showComfort) {
-    comfort = <div>
+    comfort = <div data-testid="FindingComfortCharacteristicInput">
       <StyledLabel htmlFor="characteristicComfort">How would you rate the COMFORT of the product*:</StyledLabel>
       <RadioContainer>
         <RadioInputContainer>
@@ -99,7 +99,7 @@ export const Characteristics = ({showSize, showWidth, showComfort, showQuality, 
   }
 
   if (showQuality) {
-    quality =<div>
+    quality =<div data-testid="FindingQualityCharacteristicInput">
       <StyledLabel htmlFor="characteristicQuality">How would you rate the QUALITY of the product*:</StyledLabel>
       <RadioContainer>
         <RadioInputContainer>
@@ -129,7 +129,7 @@ export const Characteristics = ({showSize, showWidth, showComfort, showQuality, 
   }
 
   if (showLength) {
-    length =<div>
+    length =<div data-testid="FindingLengthCharacteristicInput">
       <StyledLabel htmlFor="characteristicLength">How would you rate the Length of the product*:</StyledLabel>
       <RadioContainer>
         <RadioInputContainer>
@@ -159,7 +159,7 @@ export const Characteristics = ({showSize, showWidth, showComfort, showQuality, 
   }
 
   if (showFit) {
-    fit = <div>
+    fit = <div data-testid="FindingFitCharacteristicInput">
       <StyledLabel htmlFor="characteristicFit">How would you rate the FIT of the product*:</StyledLabel>
       <RadioContainer>
         <RadioInputContainer>

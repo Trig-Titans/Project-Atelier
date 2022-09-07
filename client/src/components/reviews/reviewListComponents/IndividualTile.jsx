@@ -31,6 +31,41 @@ export const makeRecommendation = (recommendation) => {
   }
 };
 
+let longBody = false;
+export const makeSummary = (summary, body) => {
+  if (summary === undefined) {
+    let sum;
+    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+    sum = body.substring(0, 30);
+    sum += '...';
+    return <h4>{sum}</h4>
+  } else {
+    return <h4>{summary}</h4>
+  }
+}
+let longBodyText;
+export const makeBody = (summary, body) => {
+  if (summary === undefined) {
+    let bod;
+    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+    bod = body.substring(30, 280);
+    if (body.length > 280) {
+      longBody = true;
+      longBodyText = <p>{body.substring(30)}</p>;
+      bod += '...';
+    }
+    return <p style={{fontSize: '14px'}}>{bod}</p>
+  } else {
+    if (body.length > 250) {
+      longBody = true;
+      longBodyText = <p>{body}</p>;
+      body = body.substring(0,250);
+      body += '...';
+    }
+    return <p style={{fontSize: '14px'}}>{body}</p>
+  }
+}
+
 export const makeSellerResponse = (response) => {
   if (response !== null) {
     return <SellersResponse><h4>Response from seller:</h4><p>{response}</p></SellersResponse>
@@ -103,40 +138,6 @@ export const IndividualTile = ({review}) => {
     }
   }
 
-  let longBody = false;
-  const makeSummary = (summary) => {
-    if (summary === undefined) {
-      let sum;
-      // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
-      sum = review.body.substring(0, 30);
-      sum += '...';
-      return <h4>{sum}</h4>
-    } else {
-      return <h4>{summary}</h4>
-    }
-  }
-  let longBodyText;
-  const makeBody = (body) => {
-    if (review.summary === undefined) {
-      let bod;
-      // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
-      bod = body.substring(30, 280);
-      if (body.length > 280) {
-        longBody = true;
-        longBodyText = <p>{body.substring(30)}</p>;
-        bod += '...';
-      }
-      return <p style={{fontSize: '14px'}}>{bod}</p>
-    } else {
-      if (body.length > 250) {
-        longBody = true;
-        longBodyText = <p>{body}</p>;
-        body = body.substring(0,250);
-        body += '...';
-      }
-      return <p style={{fontSize: '14px'}}>{body}</p>
-    }
-  }
   let notYetDisplayed = true;
   let [showLongBody, setShowLongBody] = useState(false);
   const changeBody = () => {
@@ -146,8 +147,8 @@ export const IndividualTile = ({review}) => {
 
   let recommend = makeRecommendation(review.recommend);
   let date = makeDate(review.date);
-  let summary = makeSummary(review.summary);
-  let body = makeBody(review.body);
+  let summary = makeSummary(review.summary, review.body);
+  let body = makeBody(review.summary, review.body);
   let sellerResponse = makeSellerResponse(review.response);
   let photoThumbnails = makePhotos(review.photos);
   let display = <div></div>;
@@ -156,8 +157,12 @@ export const IndividualTile = ({review}) => {
       display = <u onClick={()=>{changeBody()}}>(See More)</u>
     }
   }
+  let reviewStars = `${review.rating}-stars`
   return (<ReviewTileContainer>
-        <div style={{display: 'flex', justifyContent: 'space-between'}}><OverviewStars stars={review.rating} starSizePx={'20px'} /><p>{date}</p></div>
+        <div data-testid={reviewStars} style={{display: 'flex', justifyContent: 'space-between'}}>
+          <OverviewStars stars={review.rating} starSizePx={'20px'} />
+          <p>{date}</p>
+        </div>
         {summary}
         {showLongBody ? longBodyText : body}
         {/* This is the SeeMore link that needs to disappear if the full body has been displayed */}

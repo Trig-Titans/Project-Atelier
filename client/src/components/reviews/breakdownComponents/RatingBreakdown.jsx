@@ -4,7 +4,6 @@ import {BarGraphContainer, RecommendationContainer, StarFilterLink} from '../sha
 
 
 export const RatingBreakdown = ({ starRatings, totalCount, recommended, starsToFilterReviews, setStarsToFilterReviews }) => {
-
   const recommendation = 100*recommended/totalCount;
 
   const findPercent = (star) => {

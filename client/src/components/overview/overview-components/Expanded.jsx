@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ExpandedContext } from '../GalleryView.jsx';
 
 const StyledExpandedView = styled.div`
-    min-width:60rem;
+    min-width: 75rem;
     min-height: 40rem;
     display: flex;
     margin: auto;
@@ -20,7 +20,7 @@ const StyledShrinkButton = styled.button`
   min-height: 40px;
   min-width: 40px;
   margin-top: 10px;
-  margin-left: 57rem;
+  margin-left: 72rem;
   background-color: #2525257f;
   color: white;
   border-radius: 5px;
