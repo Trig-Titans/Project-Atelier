@@ -89,11 +89,14 @@ const Outfit = (props) => {
     }
 
   return (
-    <div>
+    <div
+     data-testid = 'outfitCarousel'
+     >
       <span>
       <AddOutfit  handleClick={ handleClick}/>
       </span>
-      <Carousel responsive={responsive}>
+      <Carousel
+      responsive={responsive}>
         {
           [<Layer key ={0} />  ].concat(list)
         }

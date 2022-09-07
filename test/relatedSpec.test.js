@@ -11,5 +11,27 @@ describe('FEC - Omozan Related/Outfit tests', function () {
     render(<App/>)
   })
 
-  // test('')
+  test('it should render related carousel', () => {
+
+    return waitFor(()=> expect(screen.queryByText(/RELATED PRODUCTS/)).toBeInTheDocument())
+    .then(()=> expect(screen.getByTestId('relatedCarousel').children.length).toBeGreaterThan(0))
+  })
+
+  test('it should render an outfit carousel', () => {
+
+  return waitFor(()=> expect(screen.queryByText(/OUTFIT/)).toBeInTheDocument())
+  .then(()=> expect(screen.getByTestId('outfitCarousel').children.length).toBeGreaterThan(0))
+  })
+
+  // test('cards', ()=>{
+  //   return waitFor(()=> expect(screen.queryByText(/OUTFIT/)).toBeInTheDocument())
+  //   .then(()=> {
+  //     let firstRelatedProduct =  document.getElementById('relatedProducts').children[0].name
+
+  //     return user.click(firstRelatedProduct)
+  //   })
+  //   .then(()=>{
+  //     expect(firstRelatedProduct).not.toBe(relatedProducts.children[0].name)
+  //   })
+  // })
 })
