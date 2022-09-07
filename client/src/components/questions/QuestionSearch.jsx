@@ -12,7 +12,7 @@ const QuestionSearch = ({ handleChange, value }) => {
 
   return (
     <form style={{padding: '2vh 0'}}>
-      <StyledSearchBar type='text' name='questionSearch' placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...' value={value} onChange={handleChange}></StyledSearchBar>
+      <StyledSearchBar data-testid="Search" type='text' name='questionSearch' placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...' value={value} onChange={handleChange}></StyledSearchBar>
     </form>
   )
 }

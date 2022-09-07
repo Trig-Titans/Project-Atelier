@@ -57,7 +57,7 @@ const ReviewsList = ( {productID, productName, characteristics, starsToFilterRev
 
   //when the starFiltering changes, update the reviews list
   useEffect(()=>{
-    console.log(`${starsToFilterReviews} is inside useEffect ln75 ReviewsList`)
+    //console.log(`${starsToFilterReviews} is inside useEffect ln75 ReviewsList`)
     filteredArray = starFilteringFunction(wholeReviewList)
     setFilteredReviewList(filteredArray);
     setCurrentDisplay(filteredArray.slice(0, reviewIndex));
@@ -79,7 +79,7 @@ const ReviewsList = ( {productID, productName, characteristics, starsToFilterRev
         setCurrentDisplay(filteredArray.slice(0, reviewIndex));
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       })
   }, [sortFilter]);
 

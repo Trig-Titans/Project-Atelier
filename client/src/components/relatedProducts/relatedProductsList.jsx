@@ -24,14 +24,16 @@ const RelatedProducts = (props) => {
   const [productData, setProductData] = React.useState(null);
   const [productCardClickedOn, setProductCardClickedOn] = React.useState('')
 
-  console.log(`-RELATED PRODUCTS-
-      ID: ${product_id}, Style: ${product_style}`)
+  //console.log(`-RELATED PRODUCTS-
+      //ID: ${product_id}, Style: ${product_style}`)
 
   React.useEffect(() => {
 
     //CALLS FOR MAIN PRODUCT
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}`, { headers: { Authorization: API_KEY } })
-      .catch(err => { console.log('ERROR IN INFO CALL FOR MAIN PRODUCT: ', err) })
+      .catch(err => {
+        //console.log('ERROR IN INFO CALL FOR MAIN PRODUCT: ', err)
+      })
       .then(response => {
         let productInfoObj = response.data
 
@@ -61,7 +63,9 @@ const RelatedProducts = (props) => {
 
     //CALLS FOR RELATED PRODUCTS
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: { Authorization: API_KEY } })
-      .catch(err => { console.log('ERROR IN CALL FOR RELATED PPRODUCTS: ', err) })
+      .catch(err => {
+        //console.log('ERROR IN CALL FOR RELATED PPRODUCTS: ', err)
+      })
       .then((response) => {
         let arrayOfRelatedProductIDs = response.data;
 

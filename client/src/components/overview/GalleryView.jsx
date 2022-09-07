@@ -167,7 +167,7 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
         // this sets the review state to the number of reviews
         setReviewCount(reviewCount = response[3].data.count);
       }).catch((err) => {
-        console.log(err);
+        //console.log(err);
       })
   }, [mainProduct]);
 

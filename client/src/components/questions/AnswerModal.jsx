@@ -25,6 +25,16 @@ const StyledModal = styled.div`
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #9e9e9e;
+    border-radius: 4px;
+  }
 `;
 
 const StyledTitle = styled.div`
@@ -122,7 +132,7 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
             </StyledInput>
             <StyledInput>
               <StyledLabel htmlFor="photos">Upload your photos :</StyledLabel>
-              <input type="file" name="photos" onChange={addPhoto} accept="image/*"></input>
+              <input data-testid="upload" type="file" name="photos" onChange={addPhoto} accept="image/*"></input>
               <div style={{display: largeImgErr, color: 'red'}}>Image too large, please upload smaller image file.</div>
               {photoArray.length > 0 ? photoArray.map((photoURL, index) => {
                 if (index === 4) {
