@@ -116,7 +116,7 @@ const Card = (props) => {
   }
 
   return (
-    <ProductCard >
+    <ProductCard>
 
       <RelatedBtn
         onClick={() => {
@@ -133,9 +133,10 @@ const Card = (props) => {
           <FontAwesomeIcon style={fAColor} icon={faCircleXmark} />
         }
 
-      </RelatedBtn>
+      </RelatedBtn >
 
       <div
+      data-testid = {props.btnStyle ==='x' ?  'outfit'+props.name : 'related'+ props.name}
         // onMouseEnter={hoverHandler}
         // onMouseLeave={exitHandler}
         onClick={handleClick}

@@ -40,8 +40,11 @@ const responsive = {
 const RelatedCarousel = (props) => {
 
   return (
-    <div>
+    <div
+    id='relatedProducts'
+    data-testid = 'relatedCarousel'>
       <Carousel
+
       responsive={responsive} >
 
         {
