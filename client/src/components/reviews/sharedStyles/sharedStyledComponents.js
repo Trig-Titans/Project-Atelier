@@ -40,9 +40,8 @@ export const ReviewsContainer = styled.div`
   text-align: left;
   float: left;
   width: 65%;
-  overflow: auto;
   padding-right: 10%;
-  height: 100%;
+  /* height: 100%; */
 `;
 
 export const BreakdownContainer = styled.div`
@@ -80,7 +79,7 @@ export const BarGraphContainer = styled.div`
 
 export const ScrollableContainer = styled.div`
   height: 65vh;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 export const StarFilterLink = styled.button`

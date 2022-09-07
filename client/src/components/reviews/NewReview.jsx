@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 import {Characteristics} from './CharacteristicsInputs.jsx';
 import {RadioLabel, RadioContainer, RadioInputContainer, StyledPhoto, StyledInput} from './sharedStyles/sharedStyledComponents.js';
 
-export const NewReview = ({setFormVisable, productName, submitReview, characteristics}) => {
+export const NewReview = ({ wholeReviewList, setReviewIndex, reviewIndex, productName, characteristics, productID}) => {
   const [reviewBodyCount, setReviewBodyCount] = useState(0);
   const [photoArray, setPhotoArray] = useState([]);
   const [largeImgErr, setLargeImgErr] = useState('none');
@@ -60,14 +60,14 @@ export const NewReview = ({setFormVisable, productName, submitReview, characteri
     }
   }
 
-  return (<div>
+  return (<div data-testid="ModalPopUpCreateNewReview">
     <StyledBackground onClick={()=>{setFormVisable(false)}}></StyledBackground>
     <StyledModal>
       <StyledTitle>
       <h2>Write Your Review</h2>
       <h4>About the {productName}</h4>
       </StyledTitle>
-      <StyledForm  onSubmit={(e, photoArray)=>{submitReview(e, photoArray)}}>
+      <StyledForm  onSubmit={(e)=>{submitReview(e, photoArray, currentRating)}}>
         {/* onclick of star it displays the appropriate text next (poor, fair, average, good, great) */}
         <StyledLabel htmlFor="newReviewRating">Overall Rating*:</StyledLabel>
         <StarRatings

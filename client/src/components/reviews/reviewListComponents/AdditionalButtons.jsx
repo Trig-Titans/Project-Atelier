@@ -10,24 +10,42 @@ export const ReviewButtons = ( { wholeReviewList, setReviewIndex, reviewIndex, p
   } else {
     moreReviews = <div></div>
   }
-  const submitReview = (e, photoArray) => {
+  const submitReview = (e, photoArray, currentRating) => {
     e.preventDefault();
-    productID
-    console.log(e.target.Helpfulness.value)
-    console.log(e)
-    // const data = new FormData(e.target);
-    // let result = {};
-    // for (let name of data.keys()) {
-    //   const input = e.target.elements[name];
-    //   const parserName = input.dataset.parse;
 
-    //   if (parserName) {
-    //     let key = parserName;
-    //     let value = key(data.get(name));
-    //     result[key] = value;
-    //   }
-    // }
-    // console.log('What is result?', result)
+    console.log("product_id", productID);
+    // console.log(e)
+    // console.log("🚀 ~ file: AdditionalButtons.jsx ~ line 14 ~ photoArray", photoArray);
+
+
+    // star rating value
+    //console.log(e.target.newReviewRating.value);
+    console.log('rating', currentRating)
+    // do you recommend?
+    console.log('recommend', e.target.Helpfulness.value);
+    // characteristics
+    console.log("🚀 ~ file: AdditionalButtons.jsx ~ line 14 ~ characteristics", characteristics);
+    let list = [];
+    for (let key in characteristics) {
+      list.push(key);
+      console.log('key', key, 'id', characteristics[key].id)
+    }
+    if(e.target.characteristicSize !== undefined) {
+      console.log('size', e.target.characteristicSize.value);
+    }
+    if(e.target.characteristicComfort !== undefined) {
+      console.log('comfort', e.target.characteristicComfort.value);
+    }
+    // photos
+    console.log('photos', e.target.photos.value);
+    // review summary text
+    console.log('summary', e.target.ReviewSummaryText.value);
+    // review body text
+    console.log('body', e.target.ReviewBodyText.value);
+    // review Nickname
+    console.log('name', e.target.reviewNickname.value);
+    // review Email
+    console.log('email', e.target.reviewEmail.value);
   }
 
   return (
