@@ -10,8 +10,7 @@ import API_KEY from '../../../../../config.js'
 
 
 
-const ReviewsList = ( {productID, productName, characteristics, starsToFilterReviews} ) => {
-
+export const ReviewsList = ( {productID, productName, characteristics, starsToFilterReviews} ) => {
 
   // filter the reviews by stars if there is any filter in the state
   const starFilteringFunction = (currentData) => {
@@ -29,6 +28,7 @@ const ReviewsList = ( {productID, productName, characteristics, starsToFilterRev
       return currentData;
     }
   }
+
 
   // dummyData - whole list
   let reviewArray = data.reviews.results;
@@ -57,7 +57,6 @@ const ReviewsList = ( {productID, productName, characteristics, starsToFilterRev
 
   //when the starFiltering changes, update the reviews list
   useEffect(()=>{
-    console.log(`${starsToFilterReviews} is inside useEffect ln75 ReviewsList`)
     filteredArray = starFilteringFunction(wholeReviewList)
     setFilteredReviewList(filteredArray);
     setCurrentDisplay(filteredArray.slice(0, reviewIndex));
@@ -89,5 +88,3 @@ const ReviewsList = ( {productID, productName, characteristics, starsToFilterRev
     <ReviewButtons characteristics={characteristics} wholeReviewList={wholeReviewList} setReviewIndex={setReviewIndex} reviewIndex={reviewIndex} productName={productName} productID={productID}/>
     </ReviewsContainer>)
 }
-
-export default ReviewsList;

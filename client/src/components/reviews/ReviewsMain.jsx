@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Breakdown} from './breakdownComponents/Breakdown.jsx';
-import ReviewsList from './reviewListComponents/ReviewsList.jsx';
+import {ReviewsList} from './reviewListComponents/ReviewsList.jsx';
 import styled from 'styled-components';
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
