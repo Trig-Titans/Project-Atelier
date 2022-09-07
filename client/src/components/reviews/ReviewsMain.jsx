@@ -35,7 +35,7 @@ let Reviews = ({mainProductName, mainProduct}) => {
         setReviewsMeta(response.data)
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       })
   }, []);
 

@@ -78,7 +78,7 @@ export const ReviewsList = ( {productID, productName, characteristics, starsToFi
         setCurrentDisplay(filteredArray.slice(0, reviewIndex));
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       })
   }, [sortFilter]);
 
