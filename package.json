@@ -25,10 +25,11 @@
     "styled-components": "^5.3.5"
   },
   "scripts": {
-    "start": "webpack --mode=development",
+    "start": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
-    "test": "jest"
+    "test": "jest",
+    "server": "nodemon ./server/api.js"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",

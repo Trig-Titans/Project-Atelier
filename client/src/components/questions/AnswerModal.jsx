@@ -13,7 +13,9 @@ const StyledBackground = styled.div`
 
 const StyledModal = styled.div`
   position: fixed;
-  top: 12.5vh; left: 25vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 101;
   max-width: 50vw;
   width: 50vw;
@@ -23,6 +25,16 @@ const StyledModal = styled.div`
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #9e9e9e;
+    border-radius: 4px;
+  }
 `;
 
 const StyledTitle = styled.div`
@@ -65,6 +77,7 @@ const StyledPhoto = styled.img`
   margin: 2vh 0;
 `;
 
+
 const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
 
   const [photoArray, setPhotoArray] = useState([]);
@@ -79,13 +92,17 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
       return;
     }
 
-    var reader = new FileReader();
+    setPhotoArray(photoArray => [...photoArray, URL.createObjectURL(input.target.files[0])]);
 
-    reader.onload = function (e) {
-      setPhotoArray(photoArray => [...photoArray, e.target.result]);
-    };
+    // var reader = new FileReader();
 
-    reader.readAsDataURL(input.target.files[0]);
+    // reader.onload = function (e) {
+    //   console.log(e)
+
+    //   setPhotoArray(photoArray => [...photoArray, e.target.result]);
+    // };
+
+    // reader.readAsDataURL(input.target.files[0]);
     setLargeImgErr('none');
   }
 
@@ -115,7 +132,7 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
             </StyledInput>
             <StyledInput>
               <StyledLabel htmlFor="photos">Upload your photos :</StyledLabel>
-              <input type="file" name="photos" onChange={addPhoto} accept="image/*"></input>
+              <input data-testid="upload" type="file" name="photos" onChange={addPhoto} accept="image/*"></input>
               <div style={{display: largeImgErr, color: 'red'}}>Image too large, please upload smaller image file.</div>
               {photoArray.length > 0 ? photoArray.map((photoURL, index) => {
                 if (index === 4) {

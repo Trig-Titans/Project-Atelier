@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import {ReviewTileContainer, RecommendationContainer, SellersResponse} from '../sharedStyles/sharedStyledComponents';
 import {ThumbnailModel} from './ThumbnailModal.jsx';
 import axios from 'axios';
-import API_KEY from '../../../../../config.js'
+import API_KEY from '../../../../../config.js';
+import { StyledLinks } from '../../questions/Answer.jsx';
 const {Checkmark} = require('react-checkmark');
+import {OverviewStars} from '../StarComponent.jsx';
 
 
 // FORMATING FUNCTIONS
@@ -28,6 +30,41 @@ export const makeRecommendation = (recommendation) => {
     return '';
   }
 };
+
+let longBody = false;
+export const makeSummary = (summary, body) => {
+  if (summary === undefined) {
+    let sum;
+    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+    sum = body.substring(0, 30);
+    sum += '...';
+    return <h4>{sum}</h4>
+  } else {
+    return <h4>{summary}</h4>
+  }
+}
+let longBodyText;
+export const makeBody = (summary, body) => {
+  if (summary === undefined) {
+    let bod;
+    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+    bod = body.substring(30, 280);
+    if (body.length > 280) {
+      longBody = true;
+      longBodyText = <p>{body.substring(30)}</p>;
+      bod += '...';
+    }
+    return <p style={{fontSize: '14px'}}>{bod}</p>
+  } else {
+    if (body.length > 250) {
+      longBody = true;
+      longBodyText = <p>{body}</p>;
+      body = body.substring(0,250);
+      body += '...';
+    }
+    return <p style={{fontSize: '14px'}}>{body}</p>
+  }
+}
 
 export const makeSellerResponse = (response) => {
   if (response !== null) {
@@ -101,40 +138,6 @@ export const IndividualTile = ({review}) => {
     }
   }
 
-  let longBody = false;
-  const makeSummary = (summary) => {
-    if (summary === undefined) {
-      let sum;
-      // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
-      sum = review.body.substring(0, 30);
-      sum += '...';
-      return <h4>{sum}</h4>
-    } else {
-      return <h4>{summary}</h4>
-    }
-  }
-  let longBodyText;
-  const makeBody = (body) => {
-    if (review.summary === undefined) {
-      let bod;
-      // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
-      bod = body.substring(30, 280);
-      if (body.length > 280) {
-        longBody = true;
-        longBodyText = <p>{body.substring(30)}</p>;
-        bod += '...';
-      }
-      return <p>{bod}</p>
-    } else {
-      if (body.length > 250) {
-        longBody = true;
-        longBodyText = <p>{body}</p>;
-        body = body.substring(0,250);
-        body += '...';
-      }
-      return <p>{body}</p>
-    }
-  }
   let notYetDisplayed = true;
   let [showLongBody, setShowLongBody] = useState(false);
   const changeBody = () => {
@@ -144,8 +147,8 @@ export const IndividualTile = ({review}) => {
 
   let recommend = makeRecommendation(review.recommend);
   let date = makeDate(review.date);
-  let summary = makeSummary(review.summary);
-  let body = makeBody(review.body)
+  let summary = makeSummary(review.summary, review.body);
+  let body = makeBody(review.summary, review.body);
   let sellerResponse = makeSellerResponse(review.response);
   let photoThumbnails = makePhotos(review.photos);
   let display = <div></div>;
@@ -154,8 +157,12 @@ export const IndividualTile = ({review}) => {
       display = <u onClick={()=>{changeBody()}}>(See More)</u>
     }
   }
+  let reviewStars = `${review.rating}-stars`
   return (<ReviewTileContainer>
-        <p>{review.rating} stars {date}</p>
+        <div data-testid={reviewStars} style={{display: 'flex', justifyContent: 'space-between'}}>
+          <OverviewStars stars={review.rating} starSizePx={'20px'} />
+          <p>{date}</p>
+        </div>
         {summary}
         {showLongBody ? longBodyText : body}
         {/* This is the SeeMore link that needs to disappear if the full body has been displayed */}
@@ -164,7 +171,10 @@ export const IndividualTile = ({review}) => {
         {thumbnailView ? <ThumbnailModel thumbnailUrl={thumbnailUrl} setThumbnailView={setThumbnailView}></ThumbnailModel> : <div></div>}
         {recommend}
         <p style={{textAlign: 'right'}}>{review.reviewer_name}</p>
-        <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({displayHelpfulness}) | <u style={{textDecoration: 'underline'}} onClick={() => {addReportRating(review.review_id)}}>Report</u></p>
+        <StyledLinks>
+          <p>Is this helpful? <u onClick={()=>{addHelpfulRating(review.review_id)}} style={{textDecoration: 'underline'}}>Yes</u> ({displayHelpfulness}) | <u style={{textDecoration: 'underline'}} onClick={() => {addReportRating(review.review_id)}}>Report</u></p>
+        </StyledLinks>
+
         {sellerResponse}
       </ReviewTileContainer>)
 }

@@ -16,7 +16,7 @@ const StyledQuestionList = styled.div`
 
 const StyledButtonList = styled.div`
   display: flex;
-
+  padding-top: 2vh;
 `;
 
 
@@ -25,6 +25,8 @@ const QuestionList = ({ questions, productName, productID }) => {
   const [visible, setVisible] = useState('none');
   const [list, setList] = useState(questions);
   const [questionModal, setQuestionModal] = useState(false);
+
+  var count = 100;
 
 
   useEffect(() => {
@@ -46,7 +48,7 @@ const QuestionList = ({ questions, productName, productID }) => {
 
   var submitQuestion = (e) => {
     e.preventDefault();
-    console.log(e);
+    //console.log(e);
 
     axios({
       method: 'post',
@@ -73,13 +75,15 @@ const QuestionList = ({ questions, productName, productID }) => {
   return (
     <div>
       <StyledQuestionList>
-        {list.map((q) => (
-          <Question questionData={q} key={q.question_id} productName={productName}/>
-        ))}
+        {list.map((q) => {
+          count++;
+          return (
+          <Question questionData={q} id={count} key={q.question_id} productName={productName}/>
+        )})}
       </StyledQuestionList>
       <StyledButtonList>
         <Button style={{display: visible}} onClick={loadQuestions}>MORE ANSWERED QUESTIONS</Button>
-        <Button onClick={() => {setQuestionModal(true)}} primary>ADD A QUESTION +</Button>
+        <Button data-testid="AddQuestion"onClick={() => {setQuestionModal(true)}} primary>ADD A QUESTION +</Button>
       </StyledButtonList>
       {questionModal ? <QuestionModal productName={productName} setQuestionModal={setQuestionModal} submit={submitQuestion}/> : <div></div>}
     </div>

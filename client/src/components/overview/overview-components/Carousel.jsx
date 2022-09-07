@@ -41,6 +41,7 @@ const ThumbnailSelector = styled.div`
 const Thumbnail = styled.div`
   margin: 5px;
   margin-top: 5px;
+  min-height: 30px;
   max-height: 30px;
   border: 2px solid grey;
   width: 75px;
@@ -67,7 +68,7 @@ const Slide = styled.div`
 const LeftButton = styled.button`
   position: absolute;
   width: 10%;
-  margin-left: 14%;
+  margin-left: 16%;
   height: 60%;
   border: none;
   background-color: transparent;
@@ -133,15 +134,20 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
     // https://www.youtube.com/watch?v=Tdpq-9XYoNM
   var [x, setx] = useState(0);
   var [y, sety] = useState(0);
-
   // function for the image to expand on click
   // on click function to move the carousel to the left
   const goLeft = () => {
     setx(x + 100);
+    if (x < - 600) {
+      sety(y + 135);
+    }
   }
   // on click function to move the carousel to the right
   const goRight = () => {
     setx(x - 100);
+    if (x < -500) {
+      sety(y - 135);
+    }
   }
 
   const goUp = () => {
@@ -170,10 +176,12 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   })
 
   return (
-  <StyledOverviewCarousel>
+  <StyledOverviewCarousel data-testid='carousel'>
     {photoList}
-    <ThumbnailSelector>
-      {y !== 0 ? <UpButton onClick={goUp}><FontAwesomeIcon icon={faChevronUp} /></UpButton> : <div></div>}
+    {x}
+    {y}
+    <ThumbnailSelector data-testid='vertical-carousel'>
+      {y !== 0 ? <UpButton data-testid='up-arrow' onClick={goUp}><FontAwesomeIcon icon={faChevronUp} /></UpButton> : <div></div>}
       {
         photos.map((photo, index) => {
           // if the thumbnail is selected, change the opacity of the image
@@ -196,11 +204,11 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
           }
         })
       }
-      {y >= ((photos.length * 135) - 800) ? <DownButton onClick={goDown}><FontAwesomeIcon icon={faChevronDown} /></DownButton> : (<div></div>)}
+      {photos.length > 7 && y >= -(photos.length * 135) + 945 ? <DownButton data-testid='down-arrow' onClick={goDown}><FontAwesomeIcon icon={faChevronDown} /></DownButton> : (<div></div>)}
     </ThumbnailSelector>
     {/* these two ternary statements are to render in either a button or nothing depending on what position the gallery is in */}
-    {x === 0 ? (<div></div>) : (<LeftButton onClick={goLeft}><FontAwesomeIcon icon={faChevronLeft} /></LeftButton>)}
-    {x > (-100 * photos.length + 100) ? (<RightButton onClick={goRight}><FontAwesomeIcon icon={faChevronRight} /></RightButton>) : (<div></div>)}
+    {x === 0 ? (<div></div>) : (<LeftButton data-testid='left-arrow' onClick={goLeft}><FontAwesomeIcon icon={faChevronLeft} /></LeftButton>)}
+    {x > (-100 * photos.length + 100) ? (<RightButton data-testid='right-arrow' onClick={goRight}><FontAwesomeIcon icon={faChevronRight} /></RightButton>) : (<div></div>)}
   </StyledOverviewCarousel>
   )
 }

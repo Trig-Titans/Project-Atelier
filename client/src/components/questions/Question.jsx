@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import AnswerList from './AnswerList.jsx';
 import { AnswerModal } from './AnswerModal.jsx';
+import { StyledLinks } from './Answer.jsx';
 import axios from 'axios';
 import API_KEY from '../../../../config.js';
 
@@ -15,10 +16,8 @@ const StyledQandA = styled.div`
 const StyledQuestion = styled.div`
   display: flex;
   justify-content: space-between;
-
-`;
-const StyledLinks = styled.div`
-
+  margin-right: .5vw;
+  padding: 2vh 0 1vh;
 `;
 
 // turns the answers object into an array and sorts it based on helpfulness and if the seller answered.
@@ -46,7 +45,7 @@ var sortAnswers = (answersObject) => {
 }
 
 
-const Question = ({ questionData, productName }) => {
+const Question = ({ questionData, productName, id }) => {
 
   const [answerModal, setAnswerModal] = useState(false);
 
@@ -56,7 +55,9 @@ const Question = ({ questionData, productName }) => {
   var answerArray = sortAnswers(questionData.answers);
   const [answers, setAnswers] = useState(answerArray);
 
-  var helpfulClick = () => {
+  var helpfulClick = (e) => {
+
+    console.log(e.target.nextElementSibling.innerHTML.slice(1,3));
     if (checkUserClick === true) {
       return;
     } else {
@@ -81,6 +82,8 @@ const Question = ({ questionData, productName }) => {
 
   var submitAnswer = (e, photoArray) => {
     e.preventDefault();
+    console.log(photoArray);
+
 
     axios({
       method: 'post',
@@ -106,9 +109,9 @@ const Question = ({ questionData, productName }) => {
   return (
     <StyledQandA >
       <StyledQuestion >
-        <strong>{'Q: ' + questionData.question_body}</strong>
+        <h4>{'Q: ' + questionData.question_body}</h4>
         <StyledLinks>
-          Helpful? <u onClick={helpfulClick} style={{cursor: 'pointer'}}>Yes</u> {`(${helpfulCount})`} &nbsp;&nbsp;|&nbsp;&nbsp; <u data-testid={questionData.question_id} onClick={addAnswer} style={{cursor: 'pointer'}}>Add Answer</u>
+          Helpful? <u data-testid={id + 'helpful'} onClick={helpfulClick} style={{cursor: 'pointer'}}>Yes</u> <span>{`(${helpfulCount})`}</span> &nbsp;&nbsp;|&nbsp;&nbsp; <u data-testid={id} onClick={addAnswer} style={{cursor: 'pointer'}}>Add Answer</u>
         </StyledLinks>
       </StyledQuestion>
       <AnswerList answers={answers}/>

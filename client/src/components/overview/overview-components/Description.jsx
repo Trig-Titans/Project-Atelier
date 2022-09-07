@@ -8,8 +8,8 @@ const StyledOverviewProductDescription = styled.div`
   p {
     margin-top: 10px;
     padding: 20px;
-    background-color: gray;
-    color: white;
+    background-color: #DBDBD6;
+    color: #006B6B;
     border-radius: 5px;
     min-height: 90px;
     line-height: 45px;
@@ -19,7 +19,7 @@ const StyledOverviewProductDescription = styled.div`
 export default function OverviewDescription({ description }) {
   return (
     <StyledOverviewProductDescription>
-      <p>{description}</p>
+      <p data-testid="description">{description}</p>
     </StyledOverviewProductDescription>
   );
 }

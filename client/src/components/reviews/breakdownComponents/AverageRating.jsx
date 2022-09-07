@@ -1,12 +1,10 @@
-import React from 'react';
-import {RecommendationContainer} from '../sharedStyles/sharedStyledComponents.js'
+import React from "react";
+import {OverviewStars} from '../StarComponent.jsx';
 
-let AverageRating = ({averageStars, totalCount}) => {
-  return(<RecommendationContainer>
+export const AverageRating = ({averageStars, totalCount}) => {
+  return(<div style={{display: 'flex', flexDirection: 'row', alignItems:'center', minWidth: '230px'}}>
     <h1>{averageStars}</h1>
-    <p>Star Component</p>
+    <OverviewStars stars={averageStars} starSizePx={'2vw'}/>
     <p>({totalCount})</p>
-  </RecommendationContainer>);
+  </div>);
 };
-
-export {AverageRating};

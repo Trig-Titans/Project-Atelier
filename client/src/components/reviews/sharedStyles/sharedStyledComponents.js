@@ -1,49 +1,55 @@
 import styled, {css} from 'styled-components';
 
 export const Button = styled.button`
-  background-color: #a8bdff;
+  background-color: #DBDBD6;
   border-radius: 3px;
-  border: 2px solid #222325;
-  color: #040c27;
+  border: 2px solid teal;
+  color: #006B6B;
   margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
 
   &:hover {
-    background-color: #6684e7e6
+    background-color: #800000;
+    color: #DBDBD6;
   }
 
   ${props => props.primary && css`
-    background: #002d71;
-    color: white;
+    border: 2px solid #C4C4BA;
+    background: #006B6B;
+    color: #DBDBD6;
   `}
 `;
 
 export const Container = styled.div`
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 100%;
+  background-color: white;
 `;
 
 export const ReviewTileContainer = styled.div`
   text-align: left;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   margin: 10px;
-  padding: 2px;
+  padding: 10px 30px;
 `;
 
 export const ReviewsContainer = styled.div`
   text-align: left;
   float: left;
   width: 65%;
+  padding-right: 10%;
+  /* height: 100%; */
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
-  margin-left: 10%;
   float: left;
-  width: 25%;
+  width: 35%;
+  padding-left: 10%;
+  height: 100%;
 `;
 
 export const RecommendationContainer = styled.div`
@@ -51,6 +57,7 @@ export const RecommendationContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  background: white;
 `;
 
 export const SellersResponse = styled.div`
@@ -71,9 +78,62 @@ export const BarGraphContainer = styled.div`
 `;
 
 export const ScrollableContainer = styled.div`
-  height: 50vh;
+  height: 65vh;
   overflow: auto;
 `;
+
+export const StarFilterLink = styled.button`
+  color: #006B6B;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+
+  &:hover {
+    color: black;
+  }
+`;
+
+export const StyledOverviewStars = styled.div`
+  padding: 10px;
+  display: flex;
+  flex-direction: 'row';
+  flex-wrap: none;
+  /* grid-area: OvStar; */
+  /* margin-top: 10px; */
+`;
+
+export const RadioInputContainer = styled.div`
+  display: 'flex';
+  flex-direction: 'row';
+  width: 100%;
+`;
+
+export const RadioContainer = styled.div`
+  display: 'flex';
+  flex-direction: 'column';
+  margin-left: 4%;
+`;
+
+export const RadioLabel = styled.label`
+  margin-left: 2%;
+`
+export const StyledPhoto = styled.img`
+  height: 10vh;
+  width: auto;
+  margin: 2vh 0;
+`;
+
+export const StyledInput = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  padding: 2.5vh 0;
+`;
+
 // src: props => props.src
 
 // export const Thumbnail = styled.img.attrs({

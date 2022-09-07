@@ -1,38 +1,32 @@
-/* eslint-disable no-unused-vars */
+
 import React from 'react';
 import styled from 'styled-components';
-import TestStarIcon from '../stars/star.jsx'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
-import {faStar} from '@fortawesome/free-solid-svg-icons'
+import TestStarIcon from '../stars/star.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import StarRatings from 'react-star-ratings';
 
-let second= {
-  color: 'cornflowerblue',
+let fAColor = {
+  color: 'teal',
 }
 
-const Carta = styled.div`
+const ProductCard = styled.div`
   border: solid 1px;
   border-width: thin;
   border-color: lightgrey;
   width: 200px;
   height: 299px;
   position: relative;
-`
-const Layer = styled.div`
- width: 200px;
-  height: 299px;
-   position: absolute;
-    border: solid;
-    border-color: #fffb00;
-    z-index: 5;
-
+  border-radius: 4%;
 `
 
 const PicContainer = styled.div`
   width: 200px;
   height: 195px;
   position: relative;
-  z-index: 8;
+  z-index: 9;
+  border-radius: 4%;
 `
 const RelatedBtn = styled.div`
   float: right;
@@ -44,9 +38,10 @@ const RelatedBtn = styled.div`
 
 `
 const Pic = styled.img`
-  width: 199px;
+  width: 198px;
   height: 195px;
-  z-index: 9;
+  z-index: 8;
+  border-radius: 4% 4% 0px 0px;
 `
 const Container = styled.div`
   text-align: left;
@@ -70,36 +65,33 @@ font-size: 11px;
 `
 
 const Card = (props) => {
-
   let urlIndex = 0;
   let intervalID;
-  let url = props.picUrls[0]
 
   const hoverHandler = (event) => {
 
-    intervalID = setInterval(() => {
-      urlIndex++
+      intervalID = setInterval(() => {
+        urlIndex++
 
-      if (urlIndex === props.picUrls.length) {
-        urlIndex = 0;
-      }
+        if (urlIndex === props.picUrls.length) {
+          urlIndex = 0;
+        }
 
-      event.target.src = props.picUrls[urlIndex]
-
-    }, 1000)
+        event.target.src = props.picUrls[urlIndex];
+      }, 1000)
 
   }
-
 
   const exitHandler = (event) => {
+
     clearInterval(intervalID)
     event.target.src = props.picUrls[0]
-
   }
 
-
   const renderSale = () => {
+
     if (props.salePrice !== null) {
+
       return (
         <div>
           <SaleP>{props.salePrice}</SaleP>
@@ -107,45 +99,82 @@ const Card = (props) => {
         </div>
       )
     } else {
+
       return (<PriceP>{props.price}</PriceP>)
     }
   }
 
   const handleClick = (event) => {
-    console.log(props.info)
+
     clearInterval(intervalID)
     props.handleChangeProduct(props.info, props.style)
   }
 
+  const starBtnHanlder = ()=>{
+    props.setModalOpen(true)
+    props.setProductCardClickedOn(props.info.id)
+  }
+
   return (
-    <Carta >
-      <RelatedBtn  onClick={()=>{
-        console.log(`clicked ${props.btnStyle} button`)
-        props.btnStyle === 'x' ? props.handleXClick() : props.setModalOpen(true)
+    <ProductCard>
+
+      <RelatedBtn
+        onClick={() => {
+          console.log(props.btnStyle, 'clicked')
+
+          props.btnStyle === 'x' ?
+            props.handleXClick() :
+            starBtnHanlder();
         }}>
-        {/* {props.button} */}
-        {props.btnStyle === 'star' ? <FontAwesomeIcon  style={second} icon={faStar} />: <FontAwesomeIcon  style={second} icon={faCircleXmark} />}
-        </RelatedBtn>
-      <div onClick={handleClick} >
+
+        {
+        props.btnStyle === 'star' ?
+          <FontAwesomeIcon style={fAColor} icon={faStar} /> :
+          <FontAwesomeIcon style={fAColor} icon={faCircleXmark} />
+        }
+
+      </RelatedBtn >
+
+      <div
+      data-testid = {props.btnStyle ==='x' ?  'outfit'+props.name : 'related'+ props.name}
+        // onMouseEnter={hoverHandler}
+        // onMouseLeave={exitHandler}
+        onClick={handleClick}
+        onMouseLeave={exitHandler}
+      >
         <PicContainer >
 
-          <Pic src={props.picUrls[0]}
+          <Pic
+            src={props.picUrls[0]}
             onMouseEnter={hoverHandler}
-            onMouseLeave={exitHandler} />
-
+            onMouseLeave={exitHandler}
+          />
 
         </PicContainer>
 
         <Container>
+
           <CategoryP>{props.category}</CategoryP>
           <h5><b>{props.name}</b></h5>
           {renderSale()}
-          <TestStarIcon />
+
         </Container>
 
       </div>
+      {props.starCount > 0 ?
+        (<StarRatings
+        rating={parseFloat(props.starCount)}
+        starRatedColor="gray"
+        numberOfStars={5}
+        starDimension="15px"
+        starHoverColor="yellow"
+        name='rating'
+        />)
+        :( <div></div> )
 
-    </Carta>
+    }
+
+    </ProductCard>
   )
 }
 

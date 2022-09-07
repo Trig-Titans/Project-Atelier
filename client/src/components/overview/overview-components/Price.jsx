@@ -4,6 +4,7 @@ import React, { useState } from "react";
 const StyledOverviewPrice = styled.div`
 padding-left: 10px;
   grid-area: OvPrice;
+  color: #006B6B;
 `;
 
 export default function OverViewPrice({ price }) {
@@ -16,7 +17,7 @@ export default function OverViewPrice({ price }) {
     );
   } else {
     return (
-      <StyledOverviewPrice>
+      <StyledOverviewPrice data-testid='price'>
         <p>${price.original_price}</p>
       </StyledOverviewPrice>
     );

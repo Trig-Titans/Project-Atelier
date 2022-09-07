@@ -6,6 +6,7 @@ const { Checkmark } = require('react-checkmark');
 const StyledOverviewStyleSelector = styled.div`
   grid-area: OvStyle;
   padding-left: 10px;
+  color: #006B6B;
 
 `;
 const StyledOverviewStylesTitle = styled.div`
@@ -18,7 +19,7 @@ const StyledOverviewStylesSection = styled.div`
   gap: 5px;
   max-width: 210px;
   max-height: 175px;
-  overflow-x: hidden;
+  overflow: auto;
   &::-webkit-scrollbar {
     width: 7px;
   }
@@ -46,21 +47,20 @@ const StyleCircle = styled.div`
 export default function OverViewSelector({ styles, setStyles, styleIndex, currentStyleId, setCurrentStyleId }) {
   return (
   <StyledOverviewStyleSelector>
-    <StyledOverviewStylesTitle>Style {'>'} selected style</StyledOverviewStylesTitle>
-    <StyledOverviewStylesSection>
+    <StyledOverviewStylesTitle data-testid='style-name'>Style {'>'} {styles[styleIndex].name}</StyledOverviewStylesTitle>
+    <StyledOverviewStylesSection data-testid='styles-buttons'>
       {
       styles.map((style, index) => {
         if (styleIndex === index) {
           return (
-            // This translate x transformation is given to the slide div because it allows the picture to be shown that correlates with the x axis vertex
-            // i.e. the first picture is at x=0, the second is x=100, the third is x=200
-            // updating the x value changes what picture is shown
-            <StyleCircle onClick={() => {
-              setStyles(styleIndex = index);
-            }}
-            key={index} style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '3px solid lightgray'}}>
-              <Checkmark size='small' />
-            </StyleCircle>
+            <span className='style-button' key={index}>
+              <StyleCircle onClick={() => {
+                  setStyles(styleIndex = index);
+                }}
+                style={{backgroundImage: `url(${style.photos[0].thumbnail_url})`, border: '3px solid lightgray'}}>
+                  <Checkmark size='small' />
+              </StyleCircle>
+            </span>
           )
         } else {
           return (
