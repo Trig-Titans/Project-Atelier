@@ -14,6 +14,7 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
 
   position: fixed;
   `
+
   const Centered = styled.div`
   position: fixed;
   top: 50%;
@@ -117,4 +118,5 @@ let table = [
 };
 
 export default RelationModal;
+
 

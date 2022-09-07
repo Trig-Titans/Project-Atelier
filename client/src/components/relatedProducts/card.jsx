@@ -142,7 +142,6 @@ const Card = (props) => {
         onClick={handleClick}
         onMouseLeave={exitHandler}
       >
-
         <PicContainer >
 
           <Pic

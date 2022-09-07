@@ -74,6 +74,7 @@ const RelatedCarousel = (props) => {
           })
         }
 
+
       </Carousel>
     </div>
   );
