@@ -16,6 +16,7 @@ export const Button = styled.button`
   &:hover {
     background-color: #800000;
     color: #DBDBD6;
+    transition: 0.3s;
   }
 
   ${props => props.primary && css`

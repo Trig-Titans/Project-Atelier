@@ -20,6 +20,7 @@ const StyledButtonList = styled.div`
   @media (max-width: 600px) {
     margin-left: 1.3rem;
   }
+  margin-bottom: 5vh;
 `;
 
 
