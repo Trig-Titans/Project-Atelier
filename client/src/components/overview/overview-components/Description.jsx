@@ -14,6 +14,11 @@ const StyledOverviewProductDescription = styled.div`
     min-height: 90px;
     line-height: 45px;
   }
+  @media (max-width: 600px) {
+    margin-top: 1rem;
+    max-width: 15rem;
+    margin-right: 3.9rem;
+  }
 `;
 
 export default function OverviewDescription({ description }) {

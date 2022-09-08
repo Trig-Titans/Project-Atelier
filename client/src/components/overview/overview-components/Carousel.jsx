@@ -15,6 +15,10 @@ const StyledOverviewCarousel = styled.div`
   overflow: hidden;
   border-radius: 2px;
   background-color: white;
+  @media (max-width: 600px) {
+    background-color: transparent;
+    margin-bottom: -30%;
+  }
 `;
 
 const ThumbnailSelector = styled.div`
@@ -62,6 +66,10 @@ const Slide = styled.div`
   img {
     transition: 0.5s;
     border-radius: 5px;
+    @media (max-width: 600px) {
+      width: 17rem;
+      height: auto;
+    }
   }
 `
 // left button for carousel
@@ -99,6 +107,9 @@ const RightButton = styled.button`
     border-radius: 10px;
     color: black;
   }
+  @media (max-width: 600px) {
+      right:30%;
+    }
 `
 
 const DownButton = styled.button`

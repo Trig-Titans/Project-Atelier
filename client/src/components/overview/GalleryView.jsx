@@ -36,7 +36,22 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvForm'
     'OvPicture OvSocial'
     'OvPicture blank'
-    'OvDesc OvMeta'
+    'OvDesc OvMeta';
+  @media (max-width: 600px) {
+    max-width: 17rem;
+    margin-top: 15rem;
+    grid-template-areas:
+      'OvPicture'
+      'OvStar'
+      'OvName'
+      'OvPrice'
+      'OvStyle'
+      'OvForm'
+      'OvSocial'
+      'OvDesc'
+      'OvMeta'
+    ;
+  }
 `;
 
 const StyledIconSection = styled.div`
