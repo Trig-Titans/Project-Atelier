@@ -108,7 +108,7 @@ main {
 }
 
 @media screen and (max-width: 600px) {
-  .topnav a, .topnav-right {
+  .topnav a, .topnav h1, .topnav-right {
     float: none;
     display: block;
   }
@@ -118,5 +118,15 @@ main {
     top: 0;
     left: 0;
     transform: none;
+  }
+
+  .topnav {
+    position: absolute;
+    margin-bottom: 100vh;
+    overflow: auto;
+  }
+
+  #sorting-reviews {
+    margin-right: 2.9rem;
   }
 }

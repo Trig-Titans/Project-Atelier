@@ -43,9 +43,6 @@ export default function Expanded(props) {
   const [expanded, setView] = expandedVal;
   const [imgIndex, setImgIndex] = imgIndexVal
   var [currentImg, setImg] = useState(0);
-  const handleClick= (e) => {
-    console.log('it worked, this is the element: ', e.target);
-  }
   const handleShrink = (e) => {
     e.preventDefault();
     expandedVal[1](!expanded)

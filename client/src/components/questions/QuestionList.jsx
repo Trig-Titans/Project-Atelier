@@ -17,6 +17,9 @@ const StyledQuestionList = styled.div`
 const StyledButtonList = styled.div`
   display: flex;
   padding-top: 2vh;
+  @media (max-width: 600px) {
+    margin-left: 1.3rem;
+  }
 `;
 
 

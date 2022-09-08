@@ -8,7 +8,11 @@ export const Button = styled.button`
   margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
-
+  @media (max-width: 600px) {
+    max-width: 5rem;
+    max-height: 5rem;
+    font-size: 10px;
+  }
   &:hover {
     background-color: #800000;
     color: #DBDBD6;
@@ -27,6 +31,10 @@ export const Container = styled.div`
   margin-right: auto;
   width: 100%;
   background-color: white;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    border-top: 2px solid teal;
+  }
 `;
 
 export const ReviewTileContainer = styled.div`
@@ -42,6 +50,12 @@ export const ReviewsContainer = styled.div`
   width: 65%;
   padding-right: 10%;
   /* height: 100%; */
+  @media (max-width: 600px) {
+    margin-top: 2.0rem;
+    margin-left: 1.5rem;
+    float: none;
+    width: 17rem;
+  }
 `;
 
 export const BreakdownContainer = styled.div`
@@ -50,6 +64,11 @@ export const BreakdownContainer = styled.div`
   width: 35%;
   padding-left: 10%;
   height: 100%;
+  @media (max-width: 600px) {
+    margin-left: 1.2rem;
+    float: none;
+    width: 17rem;
+  }
 `;
 
 export const RecommendationContainer = styled.div`
