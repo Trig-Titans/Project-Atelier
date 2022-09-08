@@ -43,24 +43,25 @@ export const App = () => {
   }
 
   const interactionPost = (element, widget, timeStamp) => {
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions`,
-      {
-        element: `${element}`,
-        widget: `${widget}`,
-        time: `${timeStamp}`,
-      },
-      {
-        headers: {
-          'Authorization': API_KEY
-        }
-      }
-    )
-      .then((res) => {
-        // console.log(res.statusText);
-      })
-      .catch((err) => {
-        // console.log(err.statusText);
-      })
+    // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions`,
+    //   {
+    //     element: `${element}`,
+    //     widget: `${widget}`,
+    //     time: `${timeStamp}`,
+    //   },
+    //   {
+    //     headers: {
+    //       'Authorization': API_KEY
+    //     }
+    //   }
+    // )
+    //   .then((res) => {
+    //     // console.log(res.statusText);
+    //   })
+    //   .catch((err) => {
+    //     // console.log(err.statusText);
+    //   })
+    console.log('This element was clicked : ', element);
   }
 
   return  (
