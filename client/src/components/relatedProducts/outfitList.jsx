@@ -8,7 +8,6 @@ import "react-multi-carousel/lib/styles.css";
 import AddOutfit from './addOutfitCard.jsx';
 import {findAverageRating} from '.././overview/GalleryView.jsx';
 
-
 const responsive = {
 
   desktop: {
@@ -92,6 +91,7 @@ const Outfit = (props) => {
   return (
     <div
      data-testid = 'outfitCarousel'
+     style={{'margin-bottom': '10vh'}}
      >
       <span>
       <AddOutfit  handleClick={ handleClick}/>
@@ -100,7 +100,6 @@ const Outfit = (props) => {
       responsive={responsive}>
         {
           [<Layer key ={0} />  ].concat(list)
-
         }
       </Carousel>
     </div>
