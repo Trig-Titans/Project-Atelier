@@ -13,6 +13,10 @@ const StyledOverviewProductFacts = styled.div`
     border-radius: 5px;
     min-height: 90px;
   }
+  @media (max-width: 600px) {
+    max-width: 15rem;
+    margin-left: 1.1rem;
+  }
 `;
 
 export default function OverviewFacts({ facts }) {
