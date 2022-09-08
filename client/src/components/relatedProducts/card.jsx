@@ -15,15 +15,15 @@ const ProductCard = styled.div`
   border: solid 1px;
   border-width: thin;
   border-color: lightgrey;
-  width: 200px;
-  height: 299px;
+  width: 250px;
+  height: 350px;
   position: relative;
   border-radius: 4%;
 `
 
 const PicContainer = styled.div`
-  width: 200px;
-  height: 195px;
+  width: 249px;
+  height: 245px;
   position: relative;
   z-index: 9;
   border-radius: 4%;
@@ -38,8 +38,8 @@ const RelatedBtn = styled.div`
 
 `
 const Pic = styled.img`
-  width: 198px;
-  height: 195px;
+  width: 248px;
+  height: 245px;
   z-index: 8;
   border-radius: 4% 4% 0px 0px;
 `
