@@ -54,14 +54,14 @@ export const ReviewButtons = ( { filteredReviewList, setReviewIndex, reviewIndex
 
 
     let body = {};
-    body.product_id = `${productID}`;
-    body.rating = `${currentRating}`;
-    body.summary = `${e.target.ReviewSummaryText.value}`;
-    body.body = `${e.target.ReviewBodyText.value}`;
-    body.recommend = `${e.target.Helpfulness.value}`;
-    body.name = `${e.target.reviewNickname.value}`;
-    body.email = `${e.target.reviewEmail.value}`;
-    body.photos = `[]`;
+    body.product_id = productID;
+    body.rating = currentRating;
+    body.summary = e.target.ReviewSummaryText.value;
+    body.body = e.target.ReviewBodyText.value;
+    body.recommend = e.target.Helpfulness.value;
+    body.name = e.target.reviewNickname.value;
+    body.email = e.target.reviewEmail.value;
+    body.photos = [];
     body.characteristics = reviewCharacteristicRatings;
 
     axios({
