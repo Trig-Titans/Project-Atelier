@@ -3,14 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCirclePlus} from '@fortawesome/free-solid-svg-icons'
-
+//
 const PlusCard = styled.div`
   border: solid 1px;
   border-width: thin;
   border-color: lightgrey;
   background-color: white;
-  width: 200px;
-  height: 299px;
+  width: 250px;
+  height: 350px;
   position: absolute;
   z-index: 5;
   border-radius: 4%;

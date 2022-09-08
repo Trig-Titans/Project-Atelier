@@ -32,11 +32,6 @@ export const App = () => {
   const [currentStyleId, setCurrentStyleId] = React.useState(221014);
 
   const handleChangeProduct = (info, style) => {
-    console.log(`-APP-
-    ID: ${info.id.toString()},
-    Name: ${info.name},
-    Style: ${style}`)
-
       setCurrentStyleId(style)
       setMainProduct( info.id.toString() );
       setMainProductName ( info.name);
@@ -61,7 +56,7 @@ export const App = () => {
     //   .catch((err) => {
     //     // console.log(err.statusText);
     //   })
-    console.log('it got clicked on');
+    console.log('This element was clicked : ', element);
   }
 
   return  (

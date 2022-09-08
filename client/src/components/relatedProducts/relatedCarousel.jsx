@@ -41,6 +41,7 @@ const RelatedCarousel = (props) => {
 
   return (
     <div
+    // style={{width: "60%"}}
     id='relatedProducts'
     data-testid = 'relatedCarousel'>
       <Carousel
@@ -73,6 +74,7 @@ const RelatedCarousel = (props) => {
               )
           })
         }
+
 
       </Carousel>
     </div>

@@ -7,9 +7,11 @@ import RelatedCarousel from './relatedCarousel.jsx'
 import axios from 'axios';
 import API_KEY from '../../../../config.js'
 
+
 const Lists = styled.div`
-  margin-left: 23%;
-  width:53%;
+  margin-left: 10%;
+  width:80%;
+  margin-bottom: 5vh;
 `
 const Title = styled.p`
   text-align: left;
@@ -111,6 +113,7 @@ const RelatedProducts = (props) => {
   return (
     <Lists>
 
+
       <br />
       <Title>RELATED PRODUCTS</Title>
       <br />
@@ -123,6 +126,7 @@ const RelatedProducts = (props) => {
         handleChangeProduct={props.handleChangeProduct}
         setProductCardClickedOn={setProductCardClickedOn}
       />
+
 
       <br />
       <Title>OUTFIT</Title>
@@ -145,6 +149,7 @@ const RelatedProducts = (props) => {
 
 
         /> : <div></div>}
+
 
     </Lists>
   );
