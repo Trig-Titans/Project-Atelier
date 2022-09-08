@@ -97,14 +97,14 @@ export default function OverViewForm({ styles }) {
   // map out the sizes into the options bar
   const sizeList = sizeAndQuant.map((size, index) => {
     return (
-      <option value={index} key={skus[index]} className={size.size}>{size.size}</option>
+      <option style={{color: 'teal'}} value={index} key={skus[index]} className={size.size}>{size.size}</option>
     )
   })
 
   // Map out the quantities into the options bar
   const quantList = quantArray.map((quantity, index) => {
     return (
-      <option value={quantity} key={index}>{quantity}</option>
+      <option style={{color: 'teal'}} value={quantity} key={index}>{quantity}</option>
     )
   })
 
@@ -160,7 +160,7 @@ export default function OverViewForm({ styles }) {
         <StyledSelect data-testid='size-options' style={{backgroundColor: '#800000', color: '#9e9e9e'}} ref={sizeSelectorRef} onChange={(e) => {
             setSize(currentSize = e.target.value);
           }}>
-            <option>-- select a size --</option>
+            <option style={{color: 'black'}}>-- select a size --</option>
             {sizeList}
         </StyledSelect>}
       </label>
