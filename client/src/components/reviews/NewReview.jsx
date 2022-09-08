@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 import {Characteristics} from './CharacteristicsInputs.jsx';
 import {RadioLabel, RadioContainer, RadioInputContainer, StyledPhoto, StyledInput} from './sharedStyles/sharedStyledComponents.js';
 
-export const NewReview = ({ wholeReviewList, setReviewIndex, reviewIndex, productName, characteristics, productID}) => {
+export const NewReview = ({ setFormVisable,wholeReviewList, setReviewIndex, reviewIndex, productName, characteristics, productID}) => {
   const [reviewBodyCount, setReviewBodyCount] = useState(0);
   const [photoArray, setPhotoArray] = useState([]);
   const [largeImgErr, setLargeImgErr] = useState('none');
