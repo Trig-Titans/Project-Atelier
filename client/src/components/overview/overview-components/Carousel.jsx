@@ -170,7 +170,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
         setImgIndex(imgIndex += (index - imgIndex));
       }}
       style={{transform: `translateX(${x}%)`}}>
-        <img src={photo.url}/>
+        <img src={photo.url} alt='style-photo'/>
       </Slide>
     )
   })
@@ -190,7 +190,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
               <Thumbnail key={index} style={{border: '2px solid white', transform: `translateY(${y}%)`}}onClick={() => {
                 setx(x = -100*index);
               }}>
-                <img src={photo.thumbnail_url}></img>
+                <img src={photo.thumbnail_url} alt='style-thumbnail-photo'></img>
               </Thumbnail>
             )
           } else {
@@ -198,7 +198,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
               <Thumbnail style={{transform: `translateY(${y}%)`}} key={index} onClick={() => {
                 setx(x = -100*index)
               }}>
-                <img src={photo.thumbnail_url}></img>
+                <img  src={photo.thumbnail_url} alt='style-thumbnail-photo'></img>
               </Thumbnail>
             )
           }
