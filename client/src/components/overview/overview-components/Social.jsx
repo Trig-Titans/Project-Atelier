@@ -23,13 +23,13 @@ export default function Social() {
   return (
     <OverviewSocialStyled>
       <SocialBubbleStyled href='https://www.facebook.com'>
-        <img src="https://catholiccemeteries.com.au/wp-content/uploads/2017/07/facebook-icon-1.png"/>
+        <img src="https://catholiccemeteries.com.au/wp-content/uploads/2017/07/facebook-icon-1.png" alt='facebook-icon-link'/>
       </SocialBubbleStyled>
       <SocialBubbleStyled href='https://www.instagram.com/'>
-        <img src="https://toppng.com/uploads/preview/instagram-logo-circle-11549679754rhbcorxntv.png"/>
+        <img src="https://toppng.com/uploads/preview/instagram-logo-circle-11549679754rhbcorxntv.png" alt='instagram-icon-link'/>
       </SocialBubbleStyled>
       <SocialBubbleStyled href='https://www.twitter.com/'>
-        <img src="https://finnsranch.com/wp-content/uploads/2019/04/logo-twitter-circle-png-transparent-image-1.png"/>
+        <img src="https://finnsranch.com/wp-content/uploads/2019/04/logo-twitter-circle-png-transparent-image-1.png" alt='twitter-icon-link'/>
       </SocialBubbleStyled>
     </OverviewSocialStyled>
   )
