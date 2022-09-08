@@ -9,8 +9,9 @@ import API_KEY from '../../../../config.js'
 
 
 const Lists = styled.div`
-  margin-left: 23%;
-  width:53%;
+  margin-left: 10%;
+  width:80%;
+  margin-bottom: 5vh;
 `
 const Title = styled.p`
   text-align: left;
