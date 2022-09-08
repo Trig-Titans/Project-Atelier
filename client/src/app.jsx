@@ -105,6 +105,11 @@ export const App = () => {
             id='reviews'>
               <Reviews mainProductName={mainProductName} mainProduct={mainProduct}/>
             </div>
+            <div className='bottom-nav'>
+              <a style={{cursor: 'pointer'}} onClick={() => {
+                    handleScroll("overview")
+                  }}>Back to top</a>
+              </div>
             <StyledPageBackground src="https://www.respectability.org/wp-content/uploads/2018/02/New-York-City-skyline.jpg"/>
           </div>
   )
