@@ -17,6 +17,7 @@ const StyledQuestionList = styled.div`
 const StyledButtonList = styled.div`
   display: flex;
   padding-top: 2vh;
+  margin-bottom: 5vh;
 `;
 
 

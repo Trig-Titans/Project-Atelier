@@ -4,3 +4,4 @@ config.js
 jest.config.js
 coverage
 .env
+*.pem

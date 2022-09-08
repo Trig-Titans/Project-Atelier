@@ -57,7 +57,7 @@ const Question = ({ questionData, productName, id }) => {
 
   var helpfulClick = (e) => {
 
-    console.log(e.target.nextElementSibling.innerHTML.slice(1,3));
+    //console.log(e.target.nextElementSibling.innerHTML.slice(1,3));
     if (checkUserClick === true) {
       return;
     } else {
