@@ -1,5 +1,5 @@
 import React from 'react';
-import {BarGraphContainer} from '../sharedStyles/sharedStyledComponents.js';
+import {CharBarGraphContainer} from '../sharedStyles/sharedStyledComponents.js';
 
 export const ProductBreakdown = ({characteristics}) => {
 
@@ -20,7 +20,7 @@ export const ProductBreakdown = ({characteristics}) => {
   let descriptions = {
     Size: ['Too Small', 'Perfect', 'Too Big'],
     Width: ['Too Narrow', 'Perfect', 'Too Wide'],
-    Comfort: ['Uncomfortable', 'Ok', 'Perfect'],
+    Comfort: ['Awful', 'Ok', 'Perfect'],
     Quality: ['Poor', 'As Expected', 'Exceptional'],
     Length: ['Runs Short', 'Perfect', 'Runs Long'],
     Fit: ['Runs Tight', 'Perfect', 'Runs Loose']
@@ -45,8 +45,7 @@ export const ProductBreakdown = ({characteristics}) => {
 
     //container to house the tiny triangle and place it at the appropriate spot
     let divStyling = {
-      marginLeft: '20px',
-      width: `${percent}px`,
+      width: `${percent}%`,
       display: 'flex',
       justifyContent: 'flex-end'
     }
@@ -54,21 +53,23 @@ export const ProductBreakdown = ({characteristics}) => {
     //styling the description paragraph tags below the graphs
     let descriptionStyling = {
       fontSize: '8px',
-      maxWidth: '30%',
+      width: '30%',
       textAlign: 'center',
       wrap: 'auto'
     }
 
-    return (<div key={individualCharacteristic[1]}>
+    return (<div key={individualCharacteristic[1]} style={{marginBottom: '3%'}}>
         <h3>{individualCharacteristic[0]}</h3>
-        <div style={{marginLeft: '15%'}}>
+        <div style={{ marginBottom: '2%', width: '70%', maxWidth: '140px', marginLeft: '10%'}}>
           <div style={divStyling}>
             <img src='https://www.citypng.com/public/uploads/preview/transparent-black-triangle-upside-down-31629765706xur3pxzdee.png' style={imgStyling}/>
           </div>
-          <BarGraphContainer style={{marginLeft: '20px'}}/>
+          <CharBarGraphContainer />
         </div>
         <div style={{width: '90%', maxWidth:'200px', display: 'flex', justifyContent: 'space-between'}}>
-          <p style={descriptionStyling}>{graphDescription[0]}</p> <p style={descriptionStyling}>{graphDescription[1]}</p> <p style={descriptionStyling}>{graphDescription[2]}</p>
+          <p style={descriptionStyling}>{graphDescription[0]}</p>
+          <p style={descriptionStyling}>{graphDescription[1]}</p>
+          <p style={descriptionStyling}>{graphDescription[2]}</p>
         </div>
       </div>)
   }))

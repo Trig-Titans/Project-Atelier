@@ -63,6 +63,8 @@ export const BreakdownContainer = styled.div`
   text-align: left;
   float: left;
   width: 35%;
+  min-width: 220px;
+  max-width: 400px;
   padding-left: 10%;
   height: 100%;
   @media (max-width: 600px) {
@@ -97,15 +99,32 @@ export const BarGraphContainer = styled.div`
   width: 100px;
 `;
 
+export const CharBarGraphContainer = styled.div`
+  background-color: #A8A8A8;
+  height: 10px;
+  width: 100%;
+`;
+
 export const ScrollableContainer = styled.div`
-  height: 65vh;
+  max-height: 65vh;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #9e9e9e;
+    border-radius: 4px;
+  }
 `;
 
 export const StarFilterLink = styled.button`
   color: #006B6B;
   margin: 0;
   padding: 0;
+  min-width: 52px;
   cursor: pointer;
   text-decoration: underline;
   background: transparent;

@@ -31,40 +31,6 @@ export const makeRecommendation = (recommendation) => {
   }
 };
 
-let longBody = false;
-export const makeSummary = (summary, body) => {
-  if (summary === undefined) {
-    let sum;
-    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
-    sum = body.substring(0, 30);
-    sum += '...';
-    return <h4>{sum}</h4>
-  } else {
-    return <h4>{summary}</h4>
-  }
-}
-let longBodyText;
-export const makeBody = (summary, body) => {
-  if (summary === undefined) {
-    let bod;
-    // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
-    bod = body.substring(30, 280);
-    if (body.length > 280) {
-      longBody = true;
-      longBodyText = <p>{body.substring(30)}</p>;
-      bod += '...';
-    }
-    return <p style={{fontSize: '14px'}}>{bod}</p>
-  } else {
-    if (body.length > 250) {
-      longBody = true;
-      longBodyText = <p>{body}</p>;
-      body = body.substring(0,250);
-      body += '...';
-    }
-    return <p style={{fontSize: '14px'}}>{body}</p>
-  }
-}
 
 export const makeSellerResponse = (response) => {
   if (response !== null) {
@@ -100,6 +66,40 @@ export const IndividualTile = ({review}) => {
         .catch((err) => {
           console.log(err);
         })
+    }
+  }
+  let longBody = false;
+  const makeSummary = (summary, body) => {
+    if (summary === undefined) {
+      let sum;
+      // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+      sum = body.substring(0, 30);
+      sum += '...';
+      return <h4>{sum}</h4>
+    } else {
+      return <h4>{summary}</h4>
+    }
+  }
+  let longBodyText;
+  const makeBody = (summary, body) => {
+    if (summary === undefined) {
+      let bod;
+      // minimum length body from form submission is 50 characters, so summary will be first 30 characters and rest will be body
+      bod = body.substring(30, 280);
+      if (body.length > 280) {
+        longBody = true;
+        longBodyText = <p>{body.substring(30)}</p>;
+        bod += '...';
+      }
+      return <p style={{fontSize: '14px'}}>{bod}</p>
+    } else {
+      if (body.length > 250) {
+        longBody = true;
+        longBodyText = <p>{body}</p>;
+        body = body.substring(0,250);
+        body += '...';
+      }
+      return <p style={{fontSize: '14px'}}>{body}</p>
     }
   }
 
@@ -160,7 +160,7 @@ export const IndividualTile = ({review}) => {
   let reviewStars = `${review.rating}-stars`
   return (<ReviewTileContainer>
         <div data-testid={reviewStars} style={{display: 'flex', justifyContent: 'space-between'}}>
-          <OverviewStars stars={review.rating} starSizePx={'20px'} />
+          <OverviewStars stars={review.rating} starSizePx={'15px'} />
           <p>{date}</p>
         </div>
         {summary}
