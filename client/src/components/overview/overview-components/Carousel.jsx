@@ -176,7 +176,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   })
 
   return (
-  <StyledOverviewCarousel data-testid='carousel'>
+  <StyledOverviewCarousel data-testid='carousel'style={{color: 'teal'}}>
     {photoList}
     {x}
     {y}
