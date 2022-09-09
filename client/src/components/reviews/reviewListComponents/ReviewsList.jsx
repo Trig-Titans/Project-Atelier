@@ -80,7 +80,7 @@ import API_KEY from '../../../../../config.js'
       .catch((err) => {
         console.log(err);
       })
-  }, [sortFilter]);
+  }, [sortFilter, productName]);
 
   return (<ReviewsContainer data-testid="reviewListDivContainer">
     <SorterBar setSortFilter={setSortFilter}/>
