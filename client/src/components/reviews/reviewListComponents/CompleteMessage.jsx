@@ -25,7 +25,7 @@ export const CompletedFormModal = ({ setFormComplete }) => {
       <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: '2%', textAlign: 'center', paddingTop: '8%'}}>
       <h3>Review Recorded!</h3>
       <p>Please continue browsing while our systems update.</p>
-      <Button>Continue</Button>
+      <Button onClick={()=>{setFormComplete(false)}}>Continue</Button>
       </div>
     </StyledCompleteModal>
     </div>

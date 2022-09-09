@@ -40,7 +40,7 @@ export const ReviewButtons = ( { filteredReviewList, setReviewIndex, reviewIndex
     // characteristics
     let reviewCharacteristicRatings = {};
     for (let key in characteristics) {
-      let id = characteristics[key].id
+      let id = characteristics[key].id;
       if (key === 'size') {
         reviewCharacteristicRatings[id] = e.target.characteristicSize.value;
       } else if (key === 'width') {
@@ -58,45 +58,54 @@ export const ReviewButtons = ( { filteredReviewList, setReviewIndex, reviewIndex
 
 
 
-    let body = {};
-    // body.product_id = parseInt(productID);
-    // body.rating = parseInt(currentRating);
-    // body.summary = e.target.ReviewSummaryText.value;
-    // body.body = e.target.ReviewBodyText.value;
-    // body.recommend = Boolean(e.target.Helpfulness.value);
-    // body.name = e.target.reviewNickname.value;
-    // body.email = e.target.reviewEmail.value;
-    // body.photos = [];
-    // body.characteristics = reviewCharacteristicRatings;
+    let body = {
+      "product_id": parseInt(productID),
+      "rating": parseInt(currentRating),
+      "summary": e.target.ReviewSummaryText.value,
+      "body": e.target.ReviewBodyText.value,
+      "recommend": Boolean(e.target.Helpfulness.value),
+      "name": e.target.reviewNickname.value,
+      "email": e.target.reviewEmail.value,
+      "photos": ['https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/12/31/17/toy-story-woody-buzz.jpg?quality=75&width=1200&auto=webp'],
+      "characteristics": reviewCharacteristicRatings
+    }
+    let req = JSON.stringify(body);
 
     axios({
       method: 'post',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews`,
       headers: {
-        'Authorization': API_KEY
+        'Authorization': API_KEY,
       },
-      body: {
-        product_id: parseInt(productID),
-        rating: parseInt(currentRating),
-        summary: e.target.ReviewSummaryText.value,
-        body: e.target.ReviewBodyText.value,
-        recommend: Boolean(e.target.Helpfulness.value),
-        name: e.target.reviewNickname.value,
-        email: e.target.reviewEmail.value,
-        photos: [],
-        characteristics: reviewCharacteristicRatings
-      }
+      data: {
+        "product_id":37314,
+        "rating":2,
+        "summary":"Mission Log: Zurg Not Found",
+        "body":"Buzz Lightyear to Star Command. Come in, Star Command. Star Command, come in. Do you read me? Why don't they answer? My ship! Blast! This will take weeks to repair. Buzz Lightyear mission log, star date 4-0-7-2. My ship has run off course en route to sector 12. I've crash-landed on a strange planet. The impact must have awoken me from hyper sleep. Terrain seems a bit unstable. No readout yet if the air is breathable. And there seems to be no sign of intelligent life anywhere.",
+        "recommend":false,
+        "name":"Buzz",
+        "email":"socks@lightyear.com",
+        "photos":[
+
+        ],
+        "characteristics":{
+           "125040":2,
+           "125041":2,
+           "125042":2,
+           "125043":2
+        }
+     }
     })
     .then((response)=> {
       console.log(response);
-      setFormVisable(false);
-      setFormComplete(true);
+      // setFormVisable(false);
+      // setFormComplete(true);
 
     })
     .catch((err) => {
       console.log(err);
-      setFormVisable(false);
-      setFormComplete(true);
+      // setFormVisable(false);
+      // setFormComplete(true);
 
     })
   }
