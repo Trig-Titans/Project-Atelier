@@ -37,7 +37,7 @@ let Reviews = ({mainProductName, mainProduct}) => {
       .catch((err) => {
         console.log(err);
       })
-  }, []);
+  }, [mainProduct]);
 
 
   return (

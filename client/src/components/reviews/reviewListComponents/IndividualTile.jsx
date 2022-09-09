@@ -138,11 +138,13 @@ export const IndividualTile = ({review}) => {
     }
   }
 
-  let notYetDisplayed = true;
+  let [notYetDisplayed, setNotYetDisplayed] = useState(true);
   let [showLongBody, setShowLongBody] = useState(false);
+
   const changeBody = () => {
-    notYetDisplayed = false;
+    setNotYetDisplayed(false);
     setShowLongBody(true);
+    display = <div></div>
   }
 
   let recommend = makeRecommendation(review.recommend);
