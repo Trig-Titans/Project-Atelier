@@ -154,7 +154,7 @@ export default function OverViewForm({ styles }) {
             setSizeSelected(true);
             setSize(currentSize = e.target.value);
           }}>
-          <option disabled>-- select a size --</option>
+          <option>-- select a size --</option>
           {sizeList}
         </StyledSelect> :
         <StyledSelect data-testid='size-options' style={{backgroundColor: '#800000', color: '#9e9e9e'}} ref={sizeSelectorRef} onChange={(e) => {
