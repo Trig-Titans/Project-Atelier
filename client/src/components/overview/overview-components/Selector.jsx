@@ -16,8 +16,8 @@ const StyledOverviewStylesSection = styled.div`
   justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  max-width: 210px;
+  gap: 10px;
+  max-width: 270px;
   max-height: 175px;
   overflow: auto;
   &::-webkit-scrollbar {
@@ -33,14 +33,19 @@ const StyledOverviewStylesSection = styled.div`
 `;
 const StyleCircle = styled.div`
   align-items: center;
-  width:40px;
-  height:40px;
+  width:50px;
+  height:50px;
   overflow: hidden;
   border-radius: 50%;
   background-size: cover;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 2px 2px 5px black;
+  }
 `;
 
 
