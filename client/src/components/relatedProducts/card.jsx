@@ -20,7 +20,6 @@ const ProductCard = styled.div`
   position: relative;
   border-radius: 4%;
 `
-
 const PicContainer = styled.div`
   width: 249px;
   height: 245px;
@@ -65,7 +64,6 @@ font-size: 11px;
 `
 
 const Card = (props) => {
-
   let urlIndex = 0;
   let intervalID;
   const [picUrl, setPicUrl] = React.useState(props.picUrls[0])
@@ -76,21 +74,16 @@ const Card = (props) => {
   }, [props.picUrls[0]])
 
   const hoverHandler = (event) => {
-
       intervalID = setInterval(() => {
         urlIndex++
         if (urlIndex === props.picUrls.length) { urlIndex = 0 }
         setPicUrl(props.picUrls[urlIndex])
-        console.log(event.target)
       }, 1000)
 
-      console.log('hover', intervalID)
       setIntervalState(intervalID)
   }
 
   const exitHandler = (event) => {
-    console.log('exit', intervalID)
-    console.log('intervalState', intervalState)
     clearInterval(intervalState)
     setPicUrl(props.picUrls[0])
   }
@@ -123,16 +116,12 @@ const Card = (props) => {
 
   return (
     <ProductCard>
-
       <RelatedBtn
         onClick={() => {
-          console.log(props.btnStyle, 'clicked')
-
           props.btnStyle === 'x' ?
             props.handleXClick() :
             starBtnHanlder();
         }}>
-
         {
         props.btnStyle === 'star' ?
           <FontAwesomeIcon style={fAColor} icon={faStar} /> :
@@ -152,7 +141,9 @@ const Card = (props) => {
 
         <Container>
           <CategoryP>{props.category}</CategoryP>
+
           <h5><b>{props.name}</b></h5>
+
           {renderSale()}
         </Container>
 
@@ -169,7 +160,6 @@ const Card = (props) => {
         />)
         :( <div></div> )
       }
-
     </ProductCard>
   )
 }
