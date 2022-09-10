@@ -31,16 +31,6 @@ const Layer = styled.div`
     z-index: 0;
 
 `
-// let zIndex = {
-//   zIndex: 10
-// }
-
-// const CustomLeftArrow = ({ onClick }) => (
-//   <i style ={zIndex} onClick={() => onClick()} className="custom-left-arrow" />
-// );
-// const CustomRightArrow = ({ onClick }) => {
-//   return <i  style ={zIndex} className="custom-right-arrow" onClick={() => onClick()} />;
-// };
 
 const Outfit = (props) => {
   const [list, setList] = React.useState([])
@@ -49,10 +39,8 @@ const Outfit = (props) => {
 
   const handleClick= () => {
       let style = props.productData.styles.results.find(result => result.style_id === props.addStyle)
-      console.log('style info of added outfit:', style)
 
       if (list.find(item => item.key === props.addProduct+props.addStyle) === undefined) {
-
         setList((list) => {
 
           return [
@@ -75,8 +63,6 @@ const Outfit = (props) => {
                     btnStyle={'x'}
                     handleXClick = {
                       ()=>{
-
-                        console.log('X button clicked from outfitlist' )
                         setList((list)=> list.filter(item => item.key !== product_id+props.addStyle))
                       }
                     }
@@ -91,7 +77,7 @@ const Outfit = (props) => {
   return (
     <div
      data-testid = 'outfitCarousel'
-     style={{'margin-bottom': '10vh'}}
+     style={{'marginBottom': '10vh'}}
      >
       <span>
       <AddOutfit  handleClick={ handleClick}/>

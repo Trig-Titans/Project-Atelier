@@ -20,7 +20,6 @@ const ProductCard = styled.div`
   position: relative;
   border-radius: 4%;
 `
-
 const PicContainer = styled.div`
   width: 249px;
   height: 245px;
@@ -67,25 +66,36 @@ font-size: 11px;
 const Card = (props) => {
   let urlIndex = 0;
   let intervalID;
+  const [picUrl, setPicUrl] = React.useState(props.picUrls[0])
+  const [intervalState, setIntervalState] = React.useState(null)
+
+  React.useEffect(()=>{
+    setPicUrl(props.picUrls[0])
+  }, [props.picUrls[0]])
 
   const hoverHandler = (event) => {
-
       intervalID = setInterval(() => {
         urlIndex++
-
-        if (urlIndex === props.picUrls.length) {
-          urlIndex = 0;
-        }
-
-        event.target.src = props.picUrls[urlIndex];
+        if (urlIndex === props.picUrls.length) { urlIndex = 0 }
+        setPicUrl(props.picUrls[urlIndex])
       }, 1000)
 
+      setIntervalState(intervalID)
   }
 
   const exitHandler = (event) => {
+    clearInterval(intervalState)
+    setPicUrl(props.picUrls[0])
+  }
 
-    clearInterval(intervalID)
-    event.target.src = props.picUrls[0]
+  const handleClick = (event) => {
+    props.handleChangeProduct(props.info, props.style)
+    clearInterval(intervalState)
+  }
+
+  const starBtnHanlder = ()=>{
+    props.setModalOpen(true)
+    props.setProductCardClickedOn(props.info.id)
   }
 
   const renderSale = () => {
@@ -104,63 +114,41 @@ const Card = (props) => {
     }
   }
 
-  const handleClick = (event) => {
-
-    clearInterval(intervalID)
-    props.handleChangeProduct(props.info, props.style)
-  }
-
-  const starBtnHanlder = ()=>{
-    props.setModalOpen(true)
-    props.setProductCardClickedOn(props.info.id)
-  }
-
   return (
     <ProductCard>
-
       <RelatedBtn
         onClick={() => {
-          console.log(props.btnStyle, 'clicked')
-
           props.btnStyle === 'x' ?
             props.handleXClick() :
             starBtnHanlder();
         }}>
-
         {
         props.btnStyle === 'star' ?
           <FontAwesomeIcon style={fAColor} icon={faStar} /> :
           <FontAwesomeIcon style={fAColor} icon={faCircleXmark} />
         }
-
       </RelatedBtn >
 
       <div
       data-testid = {props.btnStyle ==='x' ?  'outfit'+props.name : 'related'+ props.name}
-        // onMouseEnter={hoverHandler}
-        // onMouseLeave={exitHandler}
-        onClick={handleClick}
-        onMouseLeave={exitHandler}
+      onClick={handleClick}
+      onMouseEnter={hoverHandler}
+      onMouseLeave={exitHandler}
       >
         <PicContainer >
-
-          <Pic
-            src={props.picUrls[0]}
-            onMouseEnter={hoverHandler}
-            onMouseLeave={exitHandler}
-          />
-
+          <Pic src= {picUrl}/>
         </PicContainer>
 
         <Container>
-
           <CategoryP>{props.category}</CategoryP>
-          <h5><b>{props.name}</b></h5>
-          {renderSale()}
 
+          <h5><b>{props.name}</b></h5>
+
+          {renderSale()}
         </Container>
 
       </div>
+
       {props.starCount > 0 ?
         (<StarRatings
         rating={parseFloat(props.starCount)}
@@ -171,9 +159,7 @@ const Card = (props) => {
         name='rating'
         />)
         :( <div></div> )
-
-    }
-
+      }
     </ProductCard>
   )
 }

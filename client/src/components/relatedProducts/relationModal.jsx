@@ -14,7 +14,6 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
 
   position: fixed;
   `
-
   const Centered = styled.div`
   position: fixed;
   top: 50%;
@@ -27,14 +26,15 @@ import {FaCheck} from '@fortawesome/free-solid-svg-icons'
   height: auto;
   background: white;
   color: teal;
-  z-index: 15;
+  z-index: 10;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: auto;
   padding: 20px;
   `
-const RelationModal = (props) => {
 
+
+const RelationModal = (props) => {
 let main = props.productData.info;
 let related = props.accumulatedProductData.filter(product => product.info.id === props.productCardClickedOn)[0].info;
 let mainName = main.name;
@@ -62,15 +62,10 @@ let table = [
   return (
     <div>
       <br/>
-       <DarkBackGround onClick={()=>{
 
-        console.log('dark background clicked', mainFeatures, relatedFeatures, sameFeatures, differentFeatures, totalFeatures, whereToCheck)
-        props.setModalOpen(false) }
-       }
-        />
+      <DarkBackGround onClick={ ()=>{ props.setModalOpen(false) } } />
 
       <Centered>
-
         <Modal>
           <p>COMPARING</p>
 
@@ -108,9 +103,7 @@ let table = [
                       )
             }))}
           </table>
-
         </Modal>
-
       </Centered>
 
     </div>
