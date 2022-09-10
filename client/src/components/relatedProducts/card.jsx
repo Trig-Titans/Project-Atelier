@@ -65,27 +65,44 @@ font-size: 11px;
 `
 
 const Card = (props) => {
+
   let urlIndex = 0;
   let intervalID;
+  const [picUrl, setPicUrl] = React.useState(props.picUrls[0])
+  const [intervalState, setIntervalState] = React.useState(null)
+
+  React.useEffect(()=>{
+    setPicUrl(props.picUrls[0])
+  }, [props.picUrls[0]])
 
   const hoverHandler = (event) => {
 
       intervalID = setInterval(() => {
         urlIndex++
-
-        if (urlIndex === props.picUrls.length) {
-          urlIndex = 0;
-        }
-
-        event.target.src = props.picUrls[urlIndex];
+        if (urlIndex === props.picUrls.length) { urlIndex = 0 }
+        setPicUrl(props.picUrls[urlIndex])
+        console.log(event.target)
       }, 1000)
 
+      console.log('hover', intervalID)
+      setIntervalState(intervalID)
   }
 
   const exitHandler = (event) => {
+    console.log('exit', intervalID)
+    console.log('intervalState', intervalState)
+    clearInterval(intervalState)
+    setPicUrl(props.picUrls[0])
+  }
 
-    clearInterval(intervalID)
-    event.target.src = props.picUrls[0]
+  const handleClick = (event) => {
+    props.handleChangeProduct(props.info, props.style)
+    clearInterval(intervalState)
+  }
+
+  const starBtnHanlder = ()=>{
+    props.setModalOpen(true)
+    props.setProductCardClickedOn(props.info.id)
   }
 
   const renderSale = () => {
@@ -102,17 +119,6 @@ const Card = (props) => {
 
       return (<PriceP>{props.price}</PriceP>)
     }
-  }
-
-  const handleClick = (event) => {
-
-    clearInterval(intervalID)
-    props.handleChangeProduct(props.info, props.style)
-  }
-
-  const starBtnHanlder = ()=>{
-    props.setModalOpen(true)
-    props.setProductCardClickedOn(props.info.id)
   }
 
   return (
@@ -137,17 +143,14 @@ const Card = (props) => {
 
       <div
       data-testid = {props.btnStyle ==='x' ?  'outfit'+props.name : 'related'+ props.name}
-        // onMouseEnter={hoverHandler}
-        // onMouseLeave={exitHandler}
-        onClick={handleClick}
-        onMouseLeave={exitHandler}
+      onClick={handleClick}
       >
         <PicContainer >
 
           <Pic
-            src={props.picUrls[0]}
             onMouseEnter={hoverHandler}
             onMouseLeave={exitHandler}
+            src= {picUrl}
           />
 
         </PicContainer>

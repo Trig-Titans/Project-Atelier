@@ -91,7 +91,7 @@ const Outfit = (props) => {
   return (
     <div
      data-testid = 'outfitCarousel'
-     style={{'margin-bottom': '10vh'}}
+     style={{'marginBottom': '10vh'}}
      >
       <span>
       <AddOutfit  handleClick={ handleClick}/>
