@@ -138,32 +138,26 @@ const Card = (props) => {
           <FontAwesomeIcon style={fAColor} icon={faStar} /> :
           <FontAwesomeIcon style={fAColor} icon={faCircleXmark} />
         }
-
       </RelatedBtn >
 
       <div
       data-testid = {props.btnStyle ==='x' ?  'outfit'+props.name : 'related'+ props.name}
       onClick={handleClick}
+      onMouseEnter={hoverHandler}
+      onMouseLeave={exitHandler}
       >
         <PicContainer >
-
-          <Pic
-            onMouseEnter={hoverHandler}
-            onMouseLeave={exitHandler}
-            src= {picUrl}
-          />
-
+          <Pic src= {picUrl}/>
         </PicContainer>
 
         <Container>
-
           <CategoryP>{props.category}</CategoryP>
           <h5><b>{props.name}</b></h5>
           {renderSale()}
-
         </Container>
 
       </div>
+
       {props.starCount > 0 ?
         (<StarRatings
         rating={parseFloat(props.starCount)}
@@ -174,8 +168,7 @@ const Card = (props) => {
         name='rating'
         />)
         :( <div></div> )
-
-    }
+      }
 
     </ProductCard>
   )
