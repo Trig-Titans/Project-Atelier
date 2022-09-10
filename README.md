@@ -11,7 +11,7 @@ Front End Capstone is a website built with React, Express, and Webpack which use
   - [Tech Stack](#tech-stack)
   - [Features](#features)
     - [Product Overview](#product-overview)
-    - [Related Products and Wishlist Carousels](#related-products)
+    - [Related Products and Outfit](#related-products)
     - [Questions and Answers](#questions-&-answers)
     - [Ratings and Reviews](#reviews)
   - [Development](#development)
