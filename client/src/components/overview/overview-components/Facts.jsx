@@ -12,6 +12,7 @@ const StyledOverviewProductFacts = styled.div`
     color: #006B6B;
     border-radius: 5px;
     min-height: 90px;
+    transition: 0.3s;
   }
   @media (max-width: 600px) {
     max-width: 15rem;
@@ -19,16 +20,26 @@ const StyledOverviewProductFacts = styled.div`
   }
 `;
 
-export default function OverviewFacts({ facts }) {
+export default function OverviewFacts({ facts, dark }) {
   var factList = facts.map((fact) => {
     return <li key={fact.value}>{fact.value}</li>
   })
-  return (
-    <StyledOverviewProductFacts>
-      <ul data-testid='facts'>
-        {factList}
-      </ul>
-    </StyledOverviewProductFacts>
-  );
+  if (!dark) {
+    return (
+      <StyledOverviewProductFacts>
+        <ul data-testid='facts'>
+          {factList}
+        </ul>
+      </StyledOverviewProductFacts>
+    );
+  } else {
+    return (
+      <StyledOverviewProductFacts>
+        <ul data-testid='facts' style={{backgroundColor: 'black', color: '#DBDBD6'}}>
+          {factList}
+        </ul>
+      </StyledOverviewProductFacts>
+    );
+  }
 }
 

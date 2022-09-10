@@ -14,7 +14,6 @@ const StyledOverviewCarousel = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 2px;
-  background-color: white;
   @media (max-width: 600px) {
     background-color: transparent;
     margin-bottom: -30%;
@@ -187,7 +186,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
   })
 
   return (
-  <StyledOverviewCarousel data-testid='carousel'style={{color: 'teal'}}>
+  <StyledOverviewCarousel data-testid='carousel'>
     {photoList}
     {x}
     {y}

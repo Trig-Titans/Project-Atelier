@@ -9,7 +9,6 @@ const PlusCard = styled.div`
   border: solid 1px;
   border-width: thin;
   border-color: lightgrey;
-  background-color: white;
   width: 250px;
   height: 350px;
   position: absolute;
