@@ -13,7 +13,6 @@ const StyledPageBackground = styled.img`
   top: 0; left: 0;
   height: 100vh;
   width: 100vw;
-  background-size: cover;
   transition: 0.3s;
 `;
 
@@ -32,9 +31,32 @@ const DarkTheme = createGlobalStyle`
   }
 `
 const ThemeToggle = styled.div`
+  padding: 5px;
   position: fixed;
   right: 0;
   top: 0;
+  transition: 0.3s;
+  font-size: small;
+  text-align: center;
+`
+const OuterToggle = styled.div`
+  padding: 2px;
+  width: 50px;
+  height: 25px;
+  border-radius: 30px;
+  background: gray;
+  transition: 0.3s;
+  float: right;
+  margin-left: 5px;
+`
+
+const InnerToggle = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: 0.3s;
+  float: left;
+  background: #DBDBD6;
 `
 
 import {Container} from './components/reviews/sharedStyles/sharedStyledComponents'
@@ -56,7 +78,7 @@ export const App = () => {
     e.target.style.background = 'black';
   }
 
-  const [dark, setDark] = React.useState(true);
+  const [dark, setDark] = React.useState(false);
   const [mainProduct, setMainProduct] = React.useState("37314");
   const [mainProductName, setMainProductName] = React.useState( "Slacker's Slacks" );
   const [currentStyleId, setCurrentStyleId] = React.useState(221014);
@@ -96,7 +118,10 @@ export const App = () => {
     return  (
         <div className='color-div' style={{backgroundColor: "white", transition: '0.3s'}}>
           {!dark ? <LightTheme/> : <DarkTheme/>}
-          <ThemeToggle onClick={handleThemeToggle}>Dark Mode</ThemeToggle>
+          <ThemeToggle onClick={handleThemeToggle} style={{color: '#800000'}}>
+            Dark Mode
+            <OuterToggle><InnerToggle></InnerToggle></OuterToggle>
+          </ThemeToggle>
           {/* this is the start of the navbar */}
           <div className="topnav" style={{backgroundColor: '#DBDBD6'}}>
             <h1 style={{color: '#006B6B'}}>Omozan</h1>
@@ -151,9 +176,12 @@ export const App = () => {
     )
   } else {
     return  (
-      <div className='color-div' style={{backgroundColor: "#330000", transition: '0.3s'}}>
+      <div className='color-div' style={{backgroundColor: "#181818", transition: '0.3s'}}>
         {!dark ? <LightTheme/> : <DarkTheme/>}
-        <ThemeToggle onClick={handleThemeToggle}>Light Mode</ThemeToggle>
+        <ThemeToggle onClick={handleThemeToggle}>
+          Light Mode
+          <OuterToggle style={{backgroundColor: '#2b2b2b'}}><InnerToggle style={{float: 'right', backgroundColor: '#006B6B'}}></InnerToggle></OuterToggle>
+        </ThemeToggle>
         {/* this is the start of the navbar */}
         <div className="topnav" style={{backgroundColor: 'black'}}>
           <h1>Omozan</h1>
@@ -208,7 +236,7 @@ export const App = () => {
                 handleScroll("overview")
               }}>Back to top</a>
           </div>
-        <StyledPageBackground src="https://p0.pikist.com/photos/562/327/night-dark-buildings-architecture-aerial-view-rooftops-new-york-nyc-city.jpg" />
+        <StyledPageBackground src="https://wallpaperaccess.com/full/7099294.jpg"/>
       </div>
   )
   }
