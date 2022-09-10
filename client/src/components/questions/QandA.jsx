@@ -10,11 +10,14 @@ import { Button } from '../reviews/sharedStyles/sharedStyledComponents.js';
 const StyledQandAContainer = styled.div`
   width: 80%;
   margin: auto;
+  border-color: #006B6B;
+  border-top-style: solid;
+  border-bottom-style: solid;
 `;
 
 const StyledHeader = styled.p`
   text-align: left;
-  padding-top: 5vh;
+  margin-top: 5vh;
   font-size: 16px;
 `;
 

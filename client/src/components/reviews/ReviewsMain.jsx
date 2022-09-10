@@ -35,13 +35,13 @@ let Reviews = ({mainProductName, mainProduct}) => {
         setReviewsMeta(response.data)
       })
       .catch((err) => {
-        //console.log(err);
+        console.log(err);
       })
-  }, []);
+  }, [mainProduct]);
 
 
   return (
-    <div >
+    <div>
       <StyledHeader >RATINGS & REVIEWS</StyledHeader>
       <Container>
         <Breakdown reviewsMeta={reviewsMeta} starsToFilterReviews={starsToFilterReviews} setStarsToFilterReviews={setStarsToFilterReviews}/>

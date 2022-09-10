@@ -62,18 +62,36 @@ main {
   margin: auto;
 }
 
+.color-div {
+  transition: 0.3;
+}
+
 .topnav {
   position: fixed;
   margin: auto;
   width: 75%;
   z-index: 10;
-  background-color: #DBDBD6;
   overflow: hidden;
+  transition: 0.3s;
 }
+
+.bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  min-height: 5rem;
+  position: absolute;
+  margin: auto;
+  width: 75%;
+  z-index: 10;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
 
 .topnav a {
   float: left;
-  color: #006B6B;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -89,7 +107,7 @@ main {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 2rem;
-  color: #006B6B;
+  transition: 0.3s;
 }
 
 .topnav a:hover {
@@ -105,10 +123,15 @@ main {
 
 .topnav-right {
   float: right;
+  transition: 0.3s;
+}
+
+#reviews {
+  padding-bottom: 5rem;
 }
 
 @media screen and (max-width: 600px) {
-  .topnav a, .topnav-right {
+  .topnav a, .topnav h1, .topnav-right {
     float: none;
     display: block;
   }
@@ -118,5 +141,15 @@ main {
     top: 0;
     left: 0;
     transform: none;
+  }
+
+  .topnav {
+    position: absolute;
+    margin-bottom: 100vh;
+    overflow: auto;
+  }
+
+  #sorting-reviews {
+    margin-right: 2.9rem;
   }
 }

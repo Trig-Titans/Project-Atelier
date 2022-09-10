@@ -27,7 +27,6 @@ const StyledOverviewGrid = styled.div`
   width: 100%;
   text-align: left;
   display: grid;
-  color: black;
   grid-template-areas:
     'OvPicture OvStar'
     'OvPicture OvName'
@@ -36,7 +35,22 @@ const StyledOverviewGrid = styled.div`
     'OvPicture OvForm'
     'OvPicture OvSocial'
     'OvPicture blank'
-    'OvDesc OvMeta'
+    'OvDesc OvMeta';
+  @media (max-width: 600px) {
+    max-width: 17rem;
+    margin-top: 15rem;
+    grid-template-areas:
+      'OvPicture'
+      'OvStar'
+      'OvName'
+      'OvPrice'
+      'OvStyle'
+      'OvForm'
+      'OvSocial'
+      'OvDesc'
+      'OvMeta'
+    ;
+  }
 `;
 
 const StyledIconSection = styled.div`
@@ -87,7 +101,7 @@ function findAverageRating(ratings)  {
 const ExpandedContext = React.createContext(2)
 
 // This is the actual functional component
-function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
+function Overview({ currentStyleId, setCurrentStyleId, mainProduct, dark }) {
   var productSku = mainProduct;
   var [reviewCount, setReviewCount] = useState(0);
   var [expanded, setView] = useState(false);
@@ -254,8 +268,10 @@ function Overview({ currentStyleId, setCurrentStyleId, mainProduct }) {
         <OverViewForm
           styles={styles[styleIndex]}/>
         <OverviewDescription
+          dark={dark}
           description={productInfo.description}/>
         <OverviewFacts
+          dark={dark}
           facts={productInfo.features}/>
         <Social/>
       </StyledOverviewGrid>

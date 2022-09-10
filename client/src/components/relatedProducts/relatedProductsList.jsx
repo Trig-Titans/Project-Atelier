@@ -9,31 +9,26 @@ import API_KEY from '../../../../config.js'
 
 
 const Lists = styled.div`
-  margin-left: 23%;
-  width:53%;
+  margin-left: 10%;
+  width:80%;
+  margin-bottom: 5vh;
 `
 const Title = styled.p`
   text-align: left;
 `
 const RelatedProducts = (props) => {
-  //Koz has it started as a string
   const product_id = Number(props.mainProduct)
   const product_style = props.currentStyleId
-
   const [modalOpen, setModalOpen] = React.useState(false);
   const [accumulatedProductData, setAccumulatedProductData] = React.useState([]);
   const [productData, setProductData] = React.useState(null);
   const [productCardClickedOn, setProductCardClickedOn] = React.useState('')
-
-  //console.log(`-RELATED PRODUCTS-
-      //ID: ${product_id}, Style: ${product_style}`)
 
   React.useEffect(() => {
 
     //CALLS FOR MAIN PRODUCT
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}`, { headers: { Authorization: API_KEY } })
       .catch(err => {
-        //console.log('ERROR IN INFO CALL FOR MAIN PRODUCT: ', err)
       })
       .then(response => {
         let productInfoObj = response.data
@@ -65,7 +60,6 @@ const RelatedProducts = (props) => {
     //CALLS FOR RELATED PRODUCTS
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product_id}/related`, { headers: { Authorization: API_KEY } })
       .catch(err => {
-        //console.log('ERROR IN CALL FOR RELATED PPRODUCTS: ', err)
       })
       .then((response) => {
         let arrayOfRelatedProductIDs = response.data;
@@ -112,7 +106,6 @@ const RelatedProducts = (props) => {
   return (
     <Lists>
 
-
       <br />
       <Title>RELATED PRODUCTS</Title>
       <br />
@@ -125,7 +118,6 @@ const RelatedProducts = (props) => {
         handleChangeProduct={props.handleChangeProduct}
         setProductCardClickedOn={setProductCardClickedOn}
       />
-
 
       <br />
       <Title>OUTFIT</Title>
@@ -145,10 +137,7 @@ const RelatedProducts = (props) => {
         productData = {productData}
         accumulatedProductData = {accumulatedProductData}
         productCardClickedOn = {productCardClickedOn}
-
-
         /> : <div></div>}
-
 
     </Lists>
   );

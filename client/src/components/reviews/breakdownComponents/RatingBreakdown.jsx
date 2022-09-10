@@ -60,6 +60,10 @@ export const RatingBreakdown = ({ starRatings, totalCount, recommended, starsToF
       <BarGraphContainer><BarGraph percent={percent[1]}/></BarGraphContainer>
       <p>({starRatings[1]})</p>
     </RecommendationContainer>
-    <p>{recommendation.toFixed(0)}% of reviewers recommend this product</p>
+    <br></br>
+    <br></br>
+    <i style={{fontSize: '14px'}}>{recommendation.toFixed(0)}% of reviewers recommend this product</i>
+    <br></br>
+    <br></br>
   </div>);
 };

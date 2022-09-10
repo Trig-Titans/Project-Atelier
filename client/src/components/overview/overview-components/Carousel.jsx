@@ -14,7 +14,10 @@ const StyledOverviewCarousel = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 2px;
-  background-color: white;
+  @media (max-width: 600px) {
+    background-color: transparent;
+    margin-bottom: -30%;
+  }
 `;
 
 const ThumbnailSelector = styled.div`
@@ -62,6 +65,10 @@ const Slide = styled.div`
   img {
     transition: 0.5s;
     border-radius: 5px;
+    @media (max-width: 600px) {
+      width: 17rem;
+      height: auto;
+    }
   }
 `
 // left button for carousel
@@ -99,6 +106,9 @@ const RightButton = styled.button`
     border-radius: 10px;
     color: black;
   }
+  @media (max-width: 600px) {
+      right:30%;
+    }
 `
 
 const DownButton = styled.button`
@@ -170,7 +180,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
         setImgIndex(imgIndex += (index - imgIndex));
       }}
       style={{transform: `translateX(${x}%)`}}>
-        <img src={photo.url}/>
+        <img src={photo.url} alt='style-photo'/>
       </Slide>
     )
   })
@@ -190,7 +200,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
               <Thumbnail key={index} style={{border: '2px solid white', transform: `translateY(${y}%)`}}onClick={() => {
                 setx(x = -100*index);
               }}>
-                <img src={photo.thumbnail_url}></img>
+                <img src={photo.thumbnail_url} alt='style-thumbnail-photo'></img>
               </Thumbnail>
             )
           } else {
@@ -198,7 +208,7 @@ export default function OverviewCarousel({ photos, expanded, setView, imgIndex, 
               <Thumbnail style={{transform: `translateY(${y}%)`}} key={index} onClick={() => {
                 setx(x = -100*index)
               }}>
-                <img src={photo.thumbnail_url}></img>
+                <img  src={photo.thumbnail_url} alt='style-thumbnail-photo'></img>
               </Thumbnail>
             )
           }

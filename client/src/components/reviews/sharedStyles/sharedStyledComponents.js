@@ -8,10 +8,15 @@ export const Button = styled.button`
   margin: 0.5em 1em;
   padding: 0.25em 1em;
   cursor: pointer;
-
+  @media (max-width: 600px) {
+    max-width: 5rem;
+    max-height: 5rem;
+    font-size: 10px;
+  }
   &:hover {
     background-color: #800000;
     color: #DBDBD6;
+    transition: 0.3s;
   }
 
   ${props => props.primary && css`
@@ -26,7 +31,10 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: white;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    border-top: 2px solid teal;
+  }
 `;
 
 export const ReviewTileContainer = styled.div`
@@ -42,14 +50,27 @@ export const ReviewsContainer = styled.div`
   width: 65%;
   padding-right: 10%;
   /* height: 100%; */
+  @media (max-width: 600px) {
+    margin-top: 2.0rem;
+    margin-left: 1.5rem;
+    float: none;
+    width: 17rem;
+  }
 `;
 
 export const BreakdownContainer = styled.div`
   text-align: left;
   float: left;
   width: 35%;
+  min-width: 220px;
+  max-width: 400px;
   padding-left: 10%;
   height: 100%;
+  @media (max-width: 600px) {
+    margin-left: 1.2rem;
+    float: none;
+    width: 17rem;
+  }
 `;
 
 export const RecommendationContainer = styled.div`
@@ -57,7 +78,6 @@ export const RecommendationContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background: white;
 `;
 
 export const SellersResponse = styled.div`
@@ -77,15 +97,32 @@ export const BarGraphContainer = styled.div`
   width: 100px;
 `;
 
+export const CharBarGraphContainer = styled.div`
+  background-color: #A8A8A8;
+  height: 10px;
+  width: 100%;
+`;
+
 export const ScrollableContainer = styled.div`
-  height: 65vh;
+  max-height: 65vh;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #9e9e9e;
+    border-radius: 4px;
+  }
 `;
 
 export const StarFilterLink = styled.button`
   color: #006B6B;
   margin: 0;
   padding: 0;
+  min-width: 52px;
   cursor: pointer;
   text-decoration: underline;
   background: transparent;

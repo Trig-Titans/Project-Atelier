@@ -13,13 +13,27 @@ const StyledOverviewProductDescription = styled.div`
     border-radius: 5px;
     min-height: 90px;
     line-height: 45px;
+    transition: 0.3s;
+  }
+  @media (max-width: 600px) {
+    margin-top: 1rem;
+    max-width: 15rem;
+    margin-right: 3.9rem;
   }
 `;
 
-export default function OverviewDescription({ description }) {
-  return (
-    <StyledOverviewProductDescription>
-      <p data-testid="description">{description}</p>
-    </StyledOverviewProductDescription>
-  );
+export default function OverviewDescription({ description, dark }) {
+  if (!dark) {
+    return (
+      <StyledOverviewProductDescription>
+        <p data-testid="description">{description}</p>
+      </StyledOverviewProductDescription>
+    );
+  } else {
+    return (
+      <StyledOverviewProductDescription>
+        <p data-testid="description" style={{backgroundColor: 'black', color: '#DBDBD6'}}>{description}</p>
+      </StyledOverviewProductDescription>
+    );
+  }
 }
