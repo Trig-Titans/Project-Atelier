@@ -8,7 +8,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import StarRatings from 'react-star-ratings';
 
 let fAColor = {
-  color: 'teal',
 }
 
 const ProductCard = styled.div`

@@ -6,7 +6,6 @@ const { Checkmark } = require('react-checkmark');
 const StyledOverviewStyleSelector = styled.div`
   grid-area: OvStyle;
   padding-left: 10px;
-  color: #006B6B;
 
 `;
 const StyledOverviewStylesTitle = styled.div`

@@ -174,7 +174,11 @@ export default function OverViewForm({ styles }) {
         </StyledQuant>}
       </label> <br></br>
       {addedToBag ? <StyledSubmit type="submit" value="Added!"/> : <StyledSubmit data-testid='add-to-bag' type="submit" value="Add to Bag"/>}
-      <StyledOverviewFavoriteStar name='star-button' data-testid='favorite-button'onClick={handleFavorite}>{isFavorite ? <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'yellow'}}/>  : <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'white'}}/>}</StyledOverviewFavoriteStar>
+      <StyledOverviewFavoriteStar name='star-button' data-testid='favorite-button'onClick={handleFavorite}>
+        {isFavorite ?
+        <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'yellow'}}/>  :
+        <FontAwesomeIcon data-testid='fav-star' icon={faStar} style={{color: 'white'}}/>}
+      </StyledOverviewFavoriteStar>
     </StyledOverviewOptionForm>
   );
 }
