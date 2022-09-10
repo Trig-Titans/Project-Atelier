@@ -16,7 +16,7 @@ Front End Capstone is a website built with React, Express, and Webpack which use
     - [Ratings and Reviews](#reviews)
   - [Development](#development)
     - [Pre-Installation Requirements](#pre-installation-requirements)
-    - [Environment Variables Management](#config-variables)
+    - [Config Variables](#config-variables)
     - [Installation](#installation)
   - [Deployment](#deployment)
   - [Team Members](#team-members)
