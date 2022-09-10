@@ -26,6 +26,7 @@ const StyledImageModal = styled.div`
   max-height: 75vh;
   height: max-content;
   border-radius: 12px;
+  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: auto;
 `;
