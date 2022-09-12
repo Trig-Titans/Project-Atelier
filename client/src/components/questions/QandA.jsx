@@ -38,7 +38,7 @@ const QandA = ({ mainProduct, mainProductName }) => {
     })
     .then((response) => {
       setQuestions(response.data.results);
-      console.log('pizza');
+      console.log('pasta');
       setMasterList(response.data.results);
       setLoading('none');
     })
