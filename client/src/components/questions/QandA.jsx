@@ -38,7 +38,6 @@ const QandA = ({ mainProduct, mainProductName }) => {
     })
     .then((response) => {
       setQuestions(response.data.results);
-      console.log('pizza');
       setMasterList(response.data.results);
       setLoading('none');
     })
