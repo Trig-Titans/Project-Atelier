@@ -37,7 +37,6 @@ const QandA = ({ mainProduct, mainProductName }) => {
       headers: {Authorization: API_KEY}
     })
     .then((response) => {
-      console.log(response.data.results);
       setQuestions(response.data.results);
       setMasterList(response.data.results);
       setLoading('none');
