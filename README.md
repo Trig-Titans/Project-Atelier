@@ -1,10 +1,10 @@
 <div id="top"></div>
 
-# Front End Capstone
+# Project Atelier
 
 ## Overview
 
-Front End Capstone is a website built with React, Express, and Webpack which used an API and business requirements that were set by stakeholders. Our engineering team of four worked on four seperate components on the site: Product Overview, Related Products/Outfit, Questions & Answers, and Ratings & Reviews. The first phase of our development was acclimating to project management tools we had not previously used in depth, such as the Git Feature Branch Workflow and Trello. We used an agile scrum methodology and held two daily standups to keep track of each member's progress on the sub-components of the product as well as rotated group leader each sprint. The strengths of this product are a functional and intuitive user experience as well as its sleek and consistent design. Our team challenged ourselves by learning new technologies, including styled-components, React Hooks, and Jest testing.
+Project Atelier is a website built with React, Express, and Webpack which used an API and business requirements that were set by stakeholders. Our engineering team of four worked on four seperate components on the site: Product Overview, Related Products/Outfit, Questions & Answers, and Ratings & Reviews. The first phase of our development was acclimating to project management tools we had not previously used in depth, such as the Git Feature Branch Workflow and Trello. We used an agile scrum methodology and held two daily standups to keep track of each member's progress on the sub-components of the product as well as rotated group leader each sprint. The strengths of this product are a functional and intuitive user experience as well as its sleek and consistent design. Our team challenged ourselves by learning new technologies, including styled-components, React Hooks, and Jest testing.
 
 ## Table of Contents
 
