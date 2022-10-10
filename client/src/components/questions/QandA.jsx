@@ -42,7 +42,6 @@ const QandA = ({ mainProduct, mainProductName }) => {
       setLoading('none');
     })
     .catch((err) => {
-      //console.log(err);
     })
   }, [mainProduct])
 

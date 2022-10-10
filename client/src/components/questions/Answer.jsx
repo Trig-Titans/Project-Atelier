@@ -73,7 +73,6 @@ const Answer = ({ answerData }) => {
         setCheckHelpfulClick(true);
       })
       .catch((err) => {
-        //console.log(err);
       })
     }
   }
@@ -91,7 +90,6 @@ const Answer = ({ answerData }) => {
         setReportText(<span>Reported</span>);
       })
       .catch((err) => {
-        //console.log(err);
       })
     }
   }

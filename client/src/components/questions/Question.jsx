@@ -70,7 +70,6 @@ const Question = ({ questionData, productName, id }) => {
         setCheckUserClick(true);
       })
       .catch((err) => {
-        //console.log(err);
       })
     }
   }
