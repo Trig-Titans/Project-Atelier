@@ -57,7 +57,6 @@ const Question = ({ questionData, productName, id }) => {
 
   var helpfulClick = (e) => {
 
-    //console.log(e.target.nextElementSibling.innerHTML.slice(1,3));
     if (checkUserClick === true) {
       return;
     } else {
@@ -82,8 +81,6 @@ const Question = ({ questionData, productName, id }) => {
 
   var submitAnswer = (e, photoArray) => {
     e.preventDefault();
-    console.log(photoArray);
-
 
     axios({
       method: 'post',
@@ -97,11 +94,9 @@ const Question = ({ questionData, productName, id }) => {
       }
     })
     .then((response) => {
-      //console.log(response);
       setAnswerModal(false);
     })
     .catch((err) => {
-      //console.log(err);
       setAnswerModal(false);
     })
   }

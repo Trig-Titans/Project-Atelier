@@ -94,15 +94,6 @@ const AnswerModal = ({ productName, questionBody, submit, setAnswerModal }) => {
 
     setPhotoArray(photoArray => [...photoArray, URL.createObjectURL(input.target.files[0])]);
 
-    // var reader = new FileReader();
-
-    // reader.onload = function (e) {
-    //   console.log(e)
-
-    //   setPhotoArray(photoArray => [...photoArray, e.target.result]);
-    // };
-
-    // reader.readAsDataURL(input.target.files[0]);
     setLargeImgErr('none');
   }
 
