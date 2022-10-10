@@ -52,7 +52,6 @@ const QuestionList = ({ questions, productName, productID }) => {
 
   var submitQuestion = (e) => {
     e.preventDefault();
-    //console.log(e);
 
     axios({
       method: 'post',
@@ -66,11 +65,9 @@ const QuestionList = ({ questions, productName, productID }) => {
       }
     })
     .then((response) => {
-      //console.log(response);
       setQuestionModal(false);
     })
     .catch((err) => {
-      //console.log(err);
       setQuestionModal(false);
     })
 
