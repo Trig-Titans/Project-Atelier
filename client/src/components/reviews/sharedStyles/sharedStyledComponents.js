@@ -31,7 +31,6 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: white;
   @media (max-width: 600px) {
     flex-direction: column;
     border-top: 2px solid teal;
@@ -79,7 +78,6 @@ export const RecommendationContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background: white;
 `;
 
 export const SellersResponse = styled.div`
