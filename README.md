@@ -105,7 +105,7 @@ Project Atelier is a website built with React, Express, and Webpack which used a
 
 ## Deployment
 
-The website is currently deployed in AWS EC2 [here](http://13.58.172.92:3000/)
+The website is currently not being hosted in AWS EC2.
 
 
 ## Team Members
