@@ -5,3 +5,4 @@ jest.config.js
 coverage
 .env
 *.pem
+.DS_Store
